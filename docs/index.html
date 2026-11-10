@@ -154,6 +154,8 @@
 ]
 </script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
@@ -454,12 +456,13 @@ footer.site p { margin: 0 0 2px; }
         <textarea id="pad" lang="bn" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="strip"></textarea>
         <div class="strip" id="strip" aria-live="polite"></div>
         <div class="tries" lang="bn">
-          <button type="button" data-keys="hfQVf">বাংলা</button>
-          <button type="button" data-keys="gfmfv">আমার</button>
-          <button type="button" data-keys="ckfmfv">তোমার</button>
-          <button type="button" data-keys="LbZhfl">ধন্যবাদ</button>
           <button type="button" data-keys="dhMghdhlZfVW">বিশ্ববিদ্যালয়</button>
-          <button type="button" data-keys="hbgLsv">বন্ধুর</button>
+          <button type="button" data-keys="ckfmfv">তোমার</button>
+          <button type="button" data-keys="chqgoV">বেঙ্গল</button>
+          <button type="button" data-keys="dhHfub">বিভাজন</button>
+          <button type="button" data-keys="dhuW">বিজয়</button>
+          <button type="button" data-keys="gdgsdbcjfe">ইউনিকোড</button>
+          <button type="button" data-keys="jgVfdnj">ক্লাসিক</button>
         </div>
         <p class="touch-note" data-i18n="touchNote">On a phone or tablet, tap a sample word to see how it is typed.</p>
       </div>
@@ -780,7 +783,6 @@ footer.site p { margin: 0 0 2px; }
 <footer class="site">
   <div class="wrap row">
     <div>
-      <p data-i18n="foot1">© 2026 Nasir Ahamed. Released under the MIT licence.</p>
       <p data-i18n="foot2">An independent project, not affiliated with Ananda Computers. Bijoy is a trademark of its respective owner.</p>
     </div>
     <div><a href="https://github.com/nasirahamed-design/bijoybanglaformac" data-i18n="footGit">Source on GitHub</a></div>
@@ -819,7 +821,6 @@ footer.site p { margin: 0 0 2px; }
     q6: "System Settings-এ কীবোর্ডের চিত্র দেখা যায় না কেন?", a6: "System Settings-এ সাধারণ কীবোর্ড লেআউটের চিত্র দেখানো হয়। বিজয় বাংলা একটি ইনপুট মেথড, যা স্বরচিহ্নের সঠিক অবস্থান ও যুক্তাক্ষর তৈরির কাজ পরিচালনা করে। তাই সেখানে কীবোর্ডের চিত্রের বদলে তথ্যবার্তা দেখা যেতে পারে। কী-চার্ট দেখতে মেনু বারের ইনপুট মেনু থেকে “Show Bijoy Keyboard Layout” নির্বাচন করুন।",
     q4: "বিজয় বাংলা কীভাবে আনইনস্টল করব?", a4: "মেনু বারের ইনপুট মেনু খুলে “Uninstall Bijoy Bangla” নির্বাচন করুন। অনুরোধ এলে Mac-এর পাসওয়ার্ড দিন, তারপর লগ আউট করে আবার সাইন ইন করুন।",
     q5: "টাইপিং-সংক্রান্ত সমস্যা কীভাবে জানাব?", a5: 'চাপা কী-গুলো এবং আপনি যে বাংলা লেখা আশা করেছিলেন, তা উল্লেখ করে <a href="https://github.com/nasirahamed-design/bijoybanglaformac/issues">GitHub</a>-এ একটি issue জমা দিন।',
-    foot1: "© ২০২৬ নাসির আহামেদ। MIT লাইসেন্সের অধীনে প্রকাশিত।",
     foot2: "এটি একটি স্বতন্ত্র প্রকল্প; আনন্দ কম্পিউটার্সের সঙ্গে এর কোনো সম্পৃক্ততা নেই। বিজয় সংশ্লিষ্ট মালিকের ট্রেডমার্ক।",
     footGit: "GitHub-এ সোর্স কোড দেখুন",
   };
@@ -889,7 +890,9 @@ footer.site p { margin: 0 0 2px; }
 
   function play(keys) {
     stopAuto();
-    commit(committed && !committed.endsWith(" ") ? " " : "");
+    // Always leave one space between the word already in the box and the new one
+    const sofar = committed + Bijoy.render(word);
+    commit(sofar && !/\s$/.test(sofar) ? " " : "");
     if (reduce) { word = keys.split(""); draw(); return; }
     let i = 0;
     const step = () => {

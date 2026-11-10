@@ -1,12 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -70 400 330">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="bbm-scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11975A"/><stop offset="1" stop-color="#075233"/></linearGradient>
-    <linearGradient id="bbm-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D3DAD6"/><stop offset="1" stop-color="#8F9A94"/></linearGradient>
+    <linearGradient id="fv-wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14A062"/><stop offset=".6" stop-color="#0A6A40"/><stop offset="1" stop-color="#044326"/></linearGradient>
+    <radialGradient id="fv-glow" cx=".78" cy=".25" r=".55"><stop offset="0" stop-color="#E0303F" stop-opacity=".7"/><stop offset="1" stop-color="#E0303F" stop-opacity="0"/></radialGradient>
+    <linearGradient id="fv-lid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9DDE0"/><stop offset="1" stop-color="#AEB5BA"/></linearGradient>
+    <linearGradient id="fv-deck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EEF0F2"/><stop offset=".5" stop-color="#C9CED2"/><stop offset="1" stop-color="#8E959B"/></linearGradient>
   </defs>
-  <rect x="30" y="2" width="340" height="164" rx="12" fill="#26302B"/>
-  <rect x="40" y="12" width="320" height="144" rx="4" fill="url(#bbm-scr)"/>
-  <rect x="196" y="5" width="8" height="3" rx="1.5" fill="#0F1712"/>
-  <circle cx="178" cy="84" r="44" fill="#E0303F"/>
-  <path d="M2 168 H398 L392 181 Q389 187 380 187 H20 Q11 187 8 181 Z" fill="url(#bbm-base)"/>
-  <rect x="168" y="168" width="64" height="6" rx="3" fill="#7D8882"/>
+  <rect x="7" y="9" width="50" height="37" rx="4.5" fill="url(#fv-lid)"/>
+  <rect x="8" y="10" width="48" height="35" rx="3.6" fill="#0B0D0E"/>
+  <rect x="10" y="12" width="44" height="31" rx="1.6" fill="url(#fv-wall)"/>
+  <rect x="10" y="12" width="44" height="31" rx="1.6" fill="url(#fv-glow)"/>
+  <path d="M28 12 h8 v1.4 q0 1 -1 1 h-6 q-1 0 -1 -1 z" fill="#0B0D0E"/>
+  <path d="M2 46 H62 V47.6 Q62 49 60.4 49.6 L56 51.6 Q55 52 53.6 52 H10.4 Q9 52 8 51.6 L3.6 49.6 Q2 49 2 47.6 Z" fill="url(#fv-deck)"/>
+  <path d="M27 46 h10 v.4 q0 1.1 -1.1 1.1 h-7.8 q-1.1 0 -1.1 -1.1 z" fill="#9AA1A6"/>
 </svg>
