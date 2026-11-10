@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <installer-gui-script minSpecVersion="2">
     <title>Bijoy Bangla</title>
+    <background file="background.png" mime-type="image/png" alignment="bottomleft" scaling="none"/>
+    <background-darkAqua file="background-dark.png" mime-type="image/png" alignment="bottomleft" scaling="none"/>
     <welcome file="welcome.html" mime-type="text/html"/>
     <conclusion file="conclusion.html" mime-type="text/html"/>
     <options customize="never" require-scripts="false" hostArchitectures="arm64,x86_64"/>
@@ -17,6 +19,5 @@
     <choice id="io.spsv.inputmethod.BijoyBangla.pkg" visible="false">
         <pkg-ref id="io.spsv.inputmethod.BijoyBangla.pkg"/>
     </choice>
-    <!-- RequireLogout: macOS only loads a newly installed input method after a fresh login -->
-    <pkg-ref id="io.spsv.inputmethod.BijoyBangla.pkg" version="__VERSION__" onConclusion="RequireLogout">component.pkg</pkg-ref>
+    <pkg-ref id="io.spsv.inputmethod.BijoyBangla.pkg" version="__VERSION__">component.pkg</pkg-ref>
 </installer-gui-script>

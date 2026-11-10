@@ -4,8 +4,16 @@ import InputMethodKit
 
 let args = CommandLine.arguments
 if args.contains("--install") {
-    InputSources.install(bundleURL: Bundle.main.bundleURL)
-    exit(0)
+    // --after-install: started by the installer's helper job in the user's
+    // session; give the installer a moment to finish, then keep trying longer.
+    let afterInstall = args.contains("--after-install")
+    if afterInstall { sleep(1) }
+    let ok = InputSources.install(bundleURL: Bundle.main.bundleURL, waitSeconds: afterInstall ? 30 : 15)
+    if afterInstall {
+        try? FileManager.default.removeItem(atPath: "/tmp/io.spsv.inputmethod.BijoyBangla.activate.plist")
+    }
+    // Exit code 0 = selected and ready, 2 = needs a log out first.
+    exit(ok ? 0 : 2)
 }
 if args.contains("--uninstall") {
     InputSources.uninstall()

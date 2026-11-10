@@ -4,6 +4,7 @@
 // installer for the logged-in user) and by the input menu.
 
 import Carbon
+import CoreServices
 import Foundation
 
 enum InputSources {
@@ -20,25 +21,55 @@ enum InputSources {
         return Unmanaged<CFString>.fromOpaque(ptr).takeUnretainedValue() as String
     }
 
-    /// Register the bundle with the system and turn on both modes so they
-    /// appear in the input menu straight away.
-    static func install(bundleURL: URL) {
+    /// Register the bundle, enable both modes and
+    /// switch to বাংলা (বিজয়), so it works right after installing with no
+    /// logout. macOS can take a moment to notice a newly installed input
+    /// method, so enabling and selecting are retried for a few seconds.
+    /// Returns true when বাংলা (বিজয়) ended up selected.
+    @discardableResult
+    static func install(bundleURL: URL, waitSeconds: Int = 15) -> Bool {
+        // Make sure Launch Services knows the app before the input source
+        // system looks for it (the installer only does this at the very end).
+        LSRegisterURL(bundleURL as CFURL, true)
         let status = TISRegisterInputSource(bundleURL as CFURL)
         if status != noErr { print("TISRegisterInputSource failed: \(status)") }
-        for src in ours() {
-            TISEnableInputSource(src)
+
+        // No need to launch the app here: macOS starts the input method
+        // itself as soon as বাংলা (বিজয়) is selected.
+
+        var selected = false
+        for attempt in 1...max(1, waitSeconds * 2) {
+            for src in ours() where !isEnabled(src) {
+                TISEnableInputSource(src)
+            }
+            selected = select(modeID: InputMode.banglaID)
+            if selected {
+                print("Bijoy Bangla selected (attempt \(attempt))")
+                break
+            }
+            usleep(500_000)   // 0.5 s
         }
-        select(modeID: InputMode.banglaID)
-        print("Bijoy Bangla registered: \(ours().compactMap { string($0, kTISPropertyInputSourceID) })")
+        if !selected {
+            print("Bijoy Bangla registered; macOS needs a log out before it can be selected")
+        }
+        return selected
+    }
+
+    static func isEnabled(_ src: TISInputSource) -> Bool {
+        guard let ptr = TISGetInputSourceProperty(src, kTISPropertyInputSourceIsEnabled) else { return false }
+        return CFBooleanGetValue(Unmanaged<CFBoolean>.fromOpaque(ptr).takeUnretainedValue())
     }
 
     static func uninstall() {
         for src in ours() { TISDisableInputSource(src) }
     }
 
-    static func select(modeID: String) {
+    @discardableResult
+    static func select(modeID: String) -> Bool {
+        var ok = false
         for src in ours() where string(src, kTISPropertyInputModeID) == modeID {
-            TISSelectInputSource(src)
+            if TISSelectInputSource(src) == noErr { ok = true }
         }
+        return ok
     }
 }

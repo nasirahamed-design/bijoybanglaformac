@@ -10,8 +10,8 @@ mkdir -p "$DEST"
 pkill -x BijoyBangla 2>/dev/null || true
 rm -rf "$DEST/BijoyBangla.app"
 cp -R build/BijoyBangla.app "$DEST/"
-"$DEST/BijoyBangla.app/Contents/MacOS/BijoyBangla" --install
-
-echo
-echo "Installed. Pick 'বাংলা (বিজয়)' from the input menu in the top bar."
-echo "If it doesn't show up, log out and back in once."
+if "$DEST/BijoyBangla.app/Contents/MacOS/BijoyBangla" --install; then
+  echo; echo "Installed and switched to বাংলা (বিজয়). Start typing."
+else
+  echo; echo "Installed. Log out and back in once, then pick বাংলা (বিজয়) from the input menu."
+fi

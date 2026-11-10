@@ -1,15 +1,45 @@
 #!/bin/bash
-# Runs as root after the package is installed. Registers and enables the
-# input method for the person who is logged in, so it appears in the input
-# menu without a logout.
+# Runs as root after the package is installed.
+#
+# Installer scripts run outside the user's desktop session, and the installer
+# only finishes registering the app after this script returns. So instead of
+# activating here, start a one-off helper job inside the logged-in user's
+# desktop session. It waits a few seconds, then registers, enables and
+# selects বাংলা (বিজয়), so it works without a log out.
 APP="/Library/Input Methods/BijoyBangla.app"
 EXE="$APP/Contents/MacOS/BijoyBangla"
+LABEL="io.spsv.inputmethod.BijoyBangla.activate"
+PLIST="/tmp/$LABEL.plist"
+LOG="/tmp/BijoyBangla-activate.log"
 
 /usr/bin/pkill -x BijoyBangla 2>/dev/null || true
+/bin/rm -f "$LOG"
 
 login_user="$(/usr/bin/stat -f%Su /dev/console)"
-if [ -n "$login_user" ] && [ "$login_user" != "root" ] && [ "$login_user" != "loginwindow" ]; then
-  uid="$(/usr/bin/id -u "$login_user")"
-  /bin/launchctl asuser "$uid" /usr/bin/sudo -u "$login_user" "$EXE" --install || true
+if [ -z "$login_user" ] || [ "$login_user" = "root" ] || [ "$login_user" = "loginwindow" ]; then
+  exit 0   # nobody logged in; macOS picks it up at the next login
 fi
+uid="$(/usr/bin/id -u "$login_user")"
+
+cat > "$PLIST" <<PLISTEOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>$LABEL</string>
+  <key>ProgramArguments</key>
+  <array><string>$EXE</string><string>--install</string><string>--after-install</string></array>
+  <key>RunAtLoad</key><true/>
+  <key>LimitLoadToSessionType</key><string>Aqua</string>
+  <key>StandardOutPath</key><string>$LOG</string>
+  <key>StandardErrorPath</key><string>$LOG</string>
+</dict>
+</plist>
+PLISTEOF
+/usr/sbin/chown "$login_user" "$PLIST"
+/bin/chmod 644 "$PLIST"
+
+/bin/launchctl bootout "gui/$uid/$LABEL" 2>/dev/null || true
+/bin/launchctl bootstrap "gui/$uid" "$PLIST" || \
+  /bin/launchctl asuser "$uid" /usr/bin/sudo -u "$login_user" "$EXE" --install || true
 exit 0
