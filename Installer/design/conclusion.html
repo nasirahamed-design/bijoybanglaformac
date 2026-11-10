@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+:root { --ink:#16201b; --muted:#3d4a43; --green:#2e7d32; --green-deep:#0b5c37; --mint:#e3f1e5; --grey:#f1f2f1; --rule:#3d4a43; }
+html, body { margin:0; padding:0; background:#fff; }
+body { font:12px/1.4 -apple-system, "Helvetica Neue", sans-serif; color:var(--ink); padding:2px 6px 0; }
+.bn { font-family:"Kohinoor Bangla","Bangla Sangam MN",sans-serif; }
+h1 { font-size:20px; line-height:1.15; font-weight:800; color:var(--green-deep); margin:0 0 3px; }
+.lead { margin:0 0 6px; color:var(--muted); }
+.step { display:flex; align-items:center; gap:8px; background:var(--mint); border-radius:8px; padding:3px 9px; margin:0 0 3px; }
+.num { flex:none; width:18px; height:18px; border-radius:50%; background:var(--green-deep); color:#fff; font-weight:700; font-size:11px; display:flex; align-items:center; justify-content:center; }
+.step b { font-size:13px; }
+.body { margin:0 0 6px 10px; }
+ol { margin:0 0 6px; padding-left:26px; }
+ol li { margin:0 0 2px; }
+.chip { display:inline-block; background:var(--mint); border-radius:6px; padding:0 8px; font-weight:700; font-size:12.5px; }
+.keys { display:flex; align-items:center; gap:9px; margin:0 0 6px; }
+.pill { flex:none; border:1px solid var(--green); color:var(--green-deep); background:var(--mint); border-radius:6px; padding:1px 8px; font-weight:700; }
+.keys .bar, .tip .bar { flex:none; width:1px; align-self:stretch; background:var(--rule); opacity:.45; }
+.tip { display:flex; align-items:center; gap:10px; background:var(--grey); border-radius:8px; padding:5px 10px; margin:0 0 5px; font-size:11.5px; }
+.tip svg { flex:none; width:17px; height:17px; color:var(--muted); }
+.guide { margin:0; color:var(--green-deep); }
+</style></head>
+<body>
+<h1>You're almost ready</h1>
+<p class="lead">Installation is complete. Allow the input source if macOS asks, then log out and back in.</p>
+
+<div class="step"><span class="num">1</span><b>Allow the keyboard</b></div>
+<p class="body">If you see "Allow Bijoy Bangla to enable Bijoy Bangla?", click <b>Allow</b>.</p>
+
+<div class="step"><span class="num">2</span><b>Start typing</b></div>
+<ol>
+  <li>Click the input menu near the clock in the menu bar.</li>
+  <li>Choose <span class="chip bn">বিজয় ইউনিকোড</span></li>
+</ol>
+
+<div class="keys"><span class="pill">Control-Space</span><span class="bar"></span><span>Switch between Bangla and English.</span></div>
+
+<div class="tip">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7.2v.3" stroke-linecap="round"/></svg>
+  <span class="bar"></span>
+  <span>Input menu missing? Open <b>System Settings → Keyboard → Input Sources → Edit…</b> and turn on "Show Input menu in menu bar".</span>
+</div>
+
+<p class="guide">See <b><u>Activation Guide.pdf</u></b> in the download for the full walkthrough.</p>
+</body></html>

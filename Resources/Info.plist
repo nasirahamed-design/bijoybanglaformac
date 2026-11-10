@@ -78,16 +78,19 @@
 				<key>tsInputModePrimaryInScriptKey</key>
 				<true/>
 			</dict>
+			<!-- SutonnyMJ text is Latin-1 characters drawn as Bangla, so this mode
+			     reports Latin text: apps like Word then keep it, spaces included, in
+			     the MJ font instead of switching to a complex-script font. -->
 			<key>io.spsv.inputmethod.BijoyBangla.Classic</key>
 			<dict>
 				<key>TISInputSourceID</key>
 				<string>io.spsv.inputmethod.BijoyBangla.Classic</string>
 				<key>TISIntendedLanguage</key>
-				<string>bn</string>
+				<string>en</string>
 				<key>TISIconIsTemplate</key>
 				<true/>
 				<key>tsInputModeScriptKey</key>
-				<string>smUnicodeScript</string>
+				<string>smRoman</string>
 				<key>tsInputModeMenuIconFileKey</key>
 				<string>Classic.tiff</string>
 				<key>tsInputModeAlternateMenuIconFileKey</key>

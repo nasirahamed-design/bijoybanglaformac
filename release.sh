@@ -45,7 +45,7 @@ notarize() {
 
 echo "==> Building the installer package"
 ROOT=build/pkgroot
-rm -rf "$ROOT" build/component.pkg build/component.plist "$PKG"
+rm -rf "$ROOT" build/component.pkg build/component.plist build/plain.pkg "$PKG"
 mkdir -p "$ROOT/Library/Input Methods"
 ditto build/BijoyBangla.app "$ROOT/Library/Input Methods/BijoyBangla.app"
 chmod 755 Installer/scripts/preinstall Installer/scripts/postinstall
@@ -59,13 +59,29 @@ pkgbuild --root "$ROOT" --component-plist build/component.plist \
   --scripts Installer/scripts build/component.pkg
 
 sed "s/__VERSION__/$VERSION/" Installer/distribution.xml > build/distribution.xml
+productbuild --distribution build/distribution.xml --resources Installer/resources \
+  --package-path build build/plain.pkg
+
+# productbuild refuses RTFD pages, so swap them in afterwards: the welcome and
+# finish pages are designed pictures stored in RTFD (Installer/pages), which
+# the Installer app shows fine.
+echo "==> Adding the designed welcome and finish pages"
+rm -rf build/expanded build/designed.pkg
+pkgutil --expand build/plain.pkg build/expanded
+for page in welcome conclusion; do
+  rm -f "build/expanded/Resources/$page.html"
+  cp -R "Installer/pages/$page.rtfd" build/expanded/Resources/
+  sed -i '' "s|<$page file=\"$page.html\" mime-type=\"text/html\"/>|<$page file=\"$page.rtfd\"/>|" build/expanded/Distribution
+done
+grep -q 'welcome.rtfd' build/expanded/Distribution || { echo "Could not swap in the RTFD pages"; exit 1; }
+pkgutil --flatten build/expanded build/designed.pkg
+
 if [ "$MODE" = "public" ]; then
-  productbuild --distribution build/distribution.xml --resources Installer/resources \
-    --package-path build --sign "$DEV_ID_INSTALLER" "$PKG"
+  productsign --sign "$DEV_ID_INSTALLER" build/designed.pkg "$PKG"
+  pkgutil --check-signature "$PKG" | sed -n 1,3p
   notarize "$PKG"
 else
-  productbuild --distribution build/distribution.xml --resources Installer/resources \
-    --package-path build "$PKG"
+  cp build/designed.pkg "$PKG"
 fi
 
 echo "==> Building the DMG"
