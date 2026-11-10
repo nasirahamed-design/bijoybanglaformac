@@ -348,11 +348,12 @@ section.typing .lead { margin: 0 0 22px; max-width: 70ch; font-size: 17px; }
 /* About (SEO copy) */
 section.about { padding: 40px 0 8px; border-top: 1px solid var(--line); }
 section.about h2 { margin-bottom: 14px; }
-.about-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
-.about-cols p { margin: 0 0 12px; color: var(--muted); max-width: 62ch; }
+.about-cols { display: block; }
+/* Show only the selected language; the other stays in the page for search engines */
+html:not([lang="bn"]) .about-cols .bn-col, html[lang="bn"] .about-cols .en-col { display: none; }
+.about-cols p { margin: 0 0 12px; color: var(--muted); max-width: none; }
 .about-cols strong { color: var(--ink); }
 .bn-col { font-size: 17px; line-height: 1.7; }
-@media (max-width: 900px) { .about-cols { grid-template-columns: 1fr; gap: 8px; } }
 
 /* FAQ */
 section.faq { padding: 30px 0 48px; }
@@ -363,7 +364,7 @@ section.faq { padding: 30px 0 48px; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: "+"; color: var(--green); font-size: 26px; line-height: 1; }
 .faq details[open] summary::after { content: "−"; }
-.faq details p { margin: 6px 0 4px; color: var(--muted); max-width: 72ch; }
+.faq details p { margin: 6px 0 4px; color: var(--muted); max-width: none; padding-right: 32px; }
 
 footer.site { padding: 8px 0 44px; color: var(--ink); font-size: 14px; }
 footer.site .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
@@ -750,7 +751,7 @@ footer.site p { margin: 0 0 2px; }
   <div class="wrap">
     <h2 data-i18n="aboutTitle">A familiar Bijoy keyboard for Mac</h2>
     <div class="about-cols">
-      <div>
+      <div lang="en" class="en-col">
         <p><strong>Bijoy Bangla for Mac</strong> is a free, open-source Bangla input method for macOS, built around the familiar Bijoy layout. Type in Microsoft Word, Pages, Google Docs, Safari, Chrome, Facebook, WhatsApp, Messenger, Gmail and other Mac apps.</p>
         <p>Choose <strong>Bijoy Unicode</strong> for standard Unicode Bangla in websites, email, social media and documents you share. Choose <strong>Bijoy Classic</strong> for classic Bijoy text used with <strong>SutonnyMJ</strong> and other MJ fonts in print and desktop-publishing workflows, including Word, InDesign, Illustrator and QuarkXPress.</p>
         <p>Compatible with macOS 13 Ventura and later, including macOS 14 Sonoma, macOS 15 Sequoia and macOS 26 Tahoe, on Apple silicon (M1, M2, M3 and M4) and Intel Macs. The installer is signed with a Developer ID and notarized by Apple. The project is released under the MIT licence.</p>
