@@ -17,14 +17,15 @@ rm -rf build
 mkdir -p build
 
 echo "==> Engine tests"
-xcrun swiftc -O Sources/BijoyEngine.swift Tests/main.swift -o build/engine-tests
-build/engine-tests Tests/cases.json
+xcrun swiftc -O Sources/BijoyEngine.swift Sources/ClassicConverter.swift Tests/main.swift \
+  -framework JavaScriptCore -o build/engine-tests
+build/engine-tests Tests/cases.json Tests/classic-cases.json Resources/bijoy-classic.js
 
 echo "==> Compiling"
 for arch in arm64 x86_64; do
   xcrun swiftc -O -sdk "$SDK" -target "$arch-apple-macos$MIN_MACOS" \
     -module-name BijoyBangla \
-    -framework Cocoa -framework InputMethodKit -framework Carbon -framework SwiftUI \
+    -framework Cocoa -framework InputMethodKit -framework Carbon -framework SwiftUI -framework JavaScriptCore \
     Sources/*.swift -o "build/BijoyBangla-$arch"
 done
 
@@ -38,7 +39,8 @@ cp -R Resources/en.lproj "$APP/Contents/Resources/"
 
 echo "==> Icons"
 xcrun swift Scripts/make-icons.swift build/icons
-cp build/icons/Bangla.tiff build/icons/English.tiff "$APP/Contents/Resources/"
+cp build/icons/Bangla.tiff build/icons/English.tiff build/icons/Classic.tiff "$APP/Contents/Resources/"
+cp Resources/bijoy-classic.js "$APP/Contents/Resources/"
 iconutil -c icns build/icons/AppIcon.iconset -o "$APP/Contents/Resources/AppIcon.icns"
 
 echo "==> Signing ($SIGN_ID)"

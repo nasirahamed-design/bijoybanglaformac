@@ -11,7 +11,7 @@ pkill -x BijoyBangla 2>/dev/null || true
 rm -rf "$DEST/BijoyBangla.app"
 cp -R build/BijoyBangla.app "$DEST/"
 if "$DEST/BijoyBangla.app/Contents/MacOS/BijoyBangla" --install; then
-  echo; echo "Installed and switched to বাংলা (বিজয়). Start typing."
+  echo; echo "Installed and switched to বিজয় ইউনিকোড. Start typing."
 else
-  echo; echo "Installed. Log out and back in once, then pick বাংলা (বিজয়) from the input menu."
+  echo; echo "Installed. Log out and back in once, then pick বিজয় ইউনিকোড from the input menu."
 fi

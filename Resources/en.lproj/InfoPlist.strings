@@ -2,5 +2,6 @@
 "CFBundleName" = "Bijoy Bangla";
 "CFBundleDisplayName" = "Bijoy Bangla";
 "io.spsv.inputmethod.BijoyBangla" = "Bijoy Bangla";
-"io.spsv.inputmethod.BijoyBangla.Bangla" = "বাংলা (বিজয়)";
+"io.spsv.inputmethod.BijoyBangla.Bangla" = "বিজয় ইউনিকোড";
+"io.spsv.inputmethod.BijoyBangla.Classic" = "বিজয় ক্লাসিক";
 "io.spsv.inputmethod.BijoyBangla.English" = "English";

@@ -7,8 +7,9 @@
 A native macOS input method. Once installed, the input menu in the top bar
 lists two entries:
 
-- **বাংলা (বিজয়)** - type Unicode Bangla with the Bijoy key positions
-- **English (Bijoy Bangla)** - normal English typing
+- **বিজয় ইউনিকোড** - type Unicode Bangla with the Bijoy key positions
+- **বিজয় ক্লাসিক** - same keys, classic Bijoy (ANSI) output for SutonnyMJ and other MJ fonts, for print and DTP
+- **English** - normal English typing
 
 Switch with **Control-Space** (macOS toggles between the last two input
 sources) or by clicking the input menu. The same menu has
@@ -57,7 +58,7 @@ Needs Xcode or the Command Line Tools (`xcode-select --install`).
 ./install-dev.sh    # installs into ~/Library/Input Methods and enables it
 ```
 
-Then choose **বাংলা (বিজয়)** from the input menu. If it doesn't appear, log
+Then choose **বিজয় ইউনিকোড** from the input menu. If it doesn't appear, log
 out and back in once (macOS sometimes caches the input source list).
 
 After code changes, run `./build.sh && ./install-dev.sh` again.
@@ -84,6 +85,8 @@ Choose **Uninstall Bijoy Bangla…** from the input menu, or run `./uninstall.sh
 
 ```
 Sources/BijoyEngine.swift     key map + Bijoy-to-Unicode conversion (pure, tested)
+Sources/ClassicConverter.swift  Unicode to Bijoy ANSI for SutonnyMJ (runs bijoy-classic.js)
+Resources/bijoy-classic.js    Unicode to Bijoy ANSI table (MIT, see License)
 Sources/InputController.swift InputMethodKit controller, modes, input menu
 Sources/InputSources.swift    register / enable / select input sources
 Sources/LayoutWindow.swift    on-screen layout chart
@@ -105,5 +108,10 @@ To add a test, append `{"keys": "...", "expected": "..."}` to
 
 ## License
 
-MIT, see [LICENSE](LICENSE). Independent project, not affiliated with Ananda
+MIT, see [LICENSE](LICENSE).
+
+The Unicode to Bijoy (ANSI) table in `Resources/bijoy-classic.js` comes from
+[@abdalgolabs/ansi-unicode-converter](https://www.npmjs.com/package/@abdalgolabs/ansi-unicode-converter)
+1.0.5, MIT licence, copyright (c) 2026 abdnahid. Its licence text is kept in
+that file. Independent project, not affiliated with Ananda
 Computers. Bijoy is a trademark of its owner.

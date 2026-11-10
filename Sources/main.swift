@@ -30,6 +30,9 @@ guard let connectionName = Bundle.main.infoDictionary?["InputMethodConnectionNam
     exit(1)
 }
 
+// After an update that adds a mode (such as বিজয় ক্লাসিক), switch it on once.
+InputSources.enableNewModesOnce()
+
 // Keep the server alive for the life of the process.
 withExtendedLifetime(server) {
     let app = NSApplication.shared

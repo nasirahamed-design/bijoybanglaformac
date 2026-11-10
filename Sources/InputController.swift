@@ -1,20 +1,40 @@
 // InputController.swift
-// One instance per text field / client. Bangla mode keeps the keys of the
-// current word in `keys`, shows the converted text as marked (underlined)
-// text, and commits it at a word boundary. English mode passes every key
-// straight through.
+// One instance per text field / client. Bangla and Classic modes keep the
+// keys of the current word in `keys`, show the converted text as marked
+// (underlined) text, and commit it at a word boundary. Classic mode outputs
+// Bijoy ANSI for SutonnyMJ / MJ fonts instead of Unicode. English mode
+// passes every key straight through.
 
 import Cocoa
 import InputMethodKit
 import Carbon
 
 enum InputMode {
-    case bangla, english
+    case bangla, classic, english
 
     static let banglaID  = "io.spsv.inputmethod.BijoyBangla.Bangla"
+    static let classicID = "io.spsv.inputmethod.BijoyBangla.Classic"
     static let englishID = "io.spsv.inputmethod.BijoyBangla.English"
 
-    var modeID: String { self == .bangla ? InputMode.banglaID : InputMode.englishID }
+    var modeID: String {
+        switch self {
+        case .bangla:  return InputMode.banglaID
+        case .classic: return InputMode.classicID
+        case .english: return InputMode.englishID
+        }
+    }
+
+    /// Display order: English, বিজয় ইউনিকোড, বিজয় ক্লাসিক.
+    static let allIDs = [englishID, banglaID, classicID]
+
+    init?(modeID: String) {
+        switch modeID {
+        case InputMode.banglaID:  self = .bangla
+        case InputMode.classicID: self = .classic
+        case InputMode.englishID: self = .english
+        default: return nil
+        }
+    }
 
     /// Mode is system-wide, shared by every controller instance.
     static var current: InputMode = .bangla
@@ -23,9 +43,7 @@ enum InputMode {
         guard let src = TISCopyCurrentKeyboardInputSource()?.takeRetainedValue(),
               let ptr = TISGetInputSourceProperty(src, kTISPropertyInputModeID) else { return nil }
         let id = Unmanaged<CFString>.fromOpaque(ptr).takeUnretainedValue() as String
-        if id == banglaID { return .bangla }
-        if id == englishID { return .english }
-        return nil
+        return InputMode(modeID: id)
     }
 }
 
@@ -49,12 +67,9 @@ final class BijoyInputController: IMKInputController {
     }
 
     override func setValue(_ value: Any!, forTag tag: Int, client sender: Any!) {
-        if let id = value as? String {
-            if id == InputMode.banglaID { InputMode.current = .bangla }
-            else if id == InputMode.englishID {
-                commit(sender as? IMKTextInput)
-                InputMode.current = .english
-            }
+        if let id = value as? String, let mode = InputMode(modeID: id), mode != InputMode.current {
+            commit(sender as? IMKTextInput)   // finish the word in the old mode
+            InputMode.current = mode
         }
         super.setValue(value, forTag: tag, client: sender)
     }
@@ -118,9 +133,18 @@ final class BijoyInputController: IMKInputController {
 
     private var noRange: NSRange { NSRange(location: NSNotFound, length: NSNotFound) }
 
+    /// The current word as it should be typed in this mode.
+    private func output() -> String {
+        let unicode = BijoyEngine.render(keys)
+        if InputMode.current == .classic, let converter = ClassicConverter.shared {
+            return converter.convert(unicode)
+        }
+        return unicode
+    }
+
     private func showMarked(_ client: IMKTextInput?) {
         guard let client = client else { return }
-        let text = BijoyEngine.render(keys)
+        let text = output()
         let len = (text as NSString).length
         let attributed = NSAttributedString(string: text, attributes: [
             .underlineStyle: NSUnderlineStyle.single.rawValue,
@@ -132,7 +156,7 @@ final class BijoyInputController: IMKInputController {
 
     private func commit(_ client: IMKTextInput?) {
         guard !keys.isEmpty else { return }
-        let text = BijoyEngine.render(keys)
+        let text = output()
         keys.removeAll()
         client?.insertText(text, replacementRange: noRange)
     }
@@ -140,17 +164,24 @@ final class BijoyInputController: IMKInputController {
     // MARK: - Input menu (shown under the input source icon in the top bar)
 
     override func menu() -> NSMenu! {
+        // Tick whatever macOS really has selected.
+        if let m = InputMode.fromSystem() { InputMode.current = m }
         let menu = NSMenu()
-
-        let bangla = NSMenuItem(title: "বাংলা (বিজয়)", action: #selector(selectBangla(_:)), keyEquivalent: "")
-        bangla.target = self
-        bangla.state = InputMode.current == .bangla ? .on : .off
-        menu.addItem(bangla)
 
         let english = NSMenuItem(title: "English", action: #selector(selectEnglish(_:)), keyEquivalent: "")
         english.target = self
         english.state = InputMode.current == .english ? .on : .off
         menu.addItem(english)
+
+        let bangla = NSMenuItem(title: "বিজয় ইউনিকোড", action: #selector(selectBangla(_:)), keyEquivalent: "")
+        bangla.target = self
+        bangla.state = InputMode.current == .bangla ? .on : .off
+        menu.addItem(bangla)
+
+        let classic = NSMenuItem(title: "বিজয় ক্লাসিক", action: #selector(selectClassic(_:)), keyEquivalent: "")
+        classic.target = self
+        classic.state = InputMode.current == .classic ? .on : .off
+        menu.addItem(classic)
 
         menu.addItem(.separator())
 
@@ -172,12 +203,16 @@ final class BijoyInputController: IMKInputController {
     }
 
     private func switchMode(_ mode: InputMode) {
-        if mode == .english { commit(textClient) }
-        InputMode.current = mode
-        InputSources.select(modeID: mode.modeID)
+        commit(textClient)
+        // Only change mode if macOS actually switched; otherwise the tick and
+        // the typing would disagree with the menu bar.
+        if InputSources.enableAndSelect(modeID: mode.modeID) {
+            InputMode.current = mode
+        }
     }
 
     @objc func selectBangla(_ sender: Any?) { switchMode(.bangla) }
+    @objc func selectClassic(_ sender: Any?) { switchMode(.classic) }
     @objc func selectEnglish(_ sender: Any?) { switchMode(.english) }
 
     @objc func showLayout(_ sender: Any?) {

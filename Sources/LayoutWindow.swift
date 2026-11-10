@@ -216,6 +216,7 @@ private struct LayoutChart: View {
         Tip(label: Text("যুক্তাক্ষর"), detail: "g joins letters:  j g N = ক্ষ,   n g k = স্ত"),
         Tip(label: Text("রেফ, র-ফলা, য-ফলা"), detail: "m A = র্ম,   r z = প্র,   j Z = ক্য"),
         Tip(label: Text("Visible hasanta"), detail: "g g = ক্‌"),
+        Tip(label: Text("বিজয় ক্লাসিক"), detail: "For SutonnyMJ and other MJ fonts: choose it in the input menu"),
         Tip(label: Text("Switch language"), detail: "Control-Space, or the input menu in the top bar"),
     ]
 

@@ -21,13 +21,13 @@ enum InputSources {
         return Unmanaged<CFString>.fromOpaque(ptr).takeUnretainedValue() as String
     }
 
-    /// Register the bundle, enable both modes and switch to বাংলা (বিজয়),
+    /// Register the bundle, enable both modes and switch to বিজয় ইউনিকোড,
     /// so it works right after installing with no logout.
     ///
     /// On a fresh install macOS asks "Allow 'Bijoy Bangla' to enable ...?".
     /// Each enable request opens that prompt again, so we ask exactly once
     /// per mode and then only watch for the person's answer.
-    /// Returns true when বাংলা (বিজয়) ended up selected.
+    /// Returns true when বিজয় ইউনিকোড ended up selected.
     @discardableResult
     static func install(bundleURL: URL, waitSeconds: Int = 15) -> Bool {
         // Make sure Launch Services knows the app before the input source
@@ -42,23 +42,23 @@ enum InputSources {
             return false
         }
 
-        // 2. Enable বাংলা (বিজয়) once, then wait for the person to click Allow.
+        // 2. Enable বিজয় ইউনিকোড once, then wait for the person to click Allow.
         if !enabled(modeID: InputMode.banglaID) {
             if let src = source(modeID: InputMode.banglaID) { TISEnableInputSource(src) }
-            print("Asked macOS to enable বাংলা (বিজয়); waiting for Allow")
+            print("Asked macOS to enable বিজয় ইউনিকোড; waiting for Allow")
             guard waitUntil(seconds: waitSeconds, { enabled(modeID: InputMode.banglaID) }) else {
-                print("বাংলা (বিজয়) was not enabled (Allow not clicked, or a log out is needed)")
+                print("বিজয় ইউনিকোড was not enabled (Allow not clicked, or a log out is needed)")
                 return false
             }
         }
 
-        // 3. English mode: one request, short wait (usually no second prompt).
-        if !enabled(modeID: InputMode.englishID) {
-            if let src = source(modeID: InputMode.englishID) { TISEnableInputSource(src) }
-            _ = waitUntil(seconds: 5, { enabled(modeID: InputMode.englishID) })
+        // 3. Classic and English modes: one request each, short wait.
+        for modeID in [InputMode.classicID, InputMode.englishID] where !enabled(modeID: modeID) {
+            if let src = source(modeID: modeID) { TISEnableInputSource(src) }
+            _ = waitUntil(seconds: 5, { enabled(modeID: modeID) })
         }
 
-        // 4. Select বাংলা (বিজয়). Selecting never shows a prompt, so retrying is fine.
+        // 4. Select বিজয় ইউনিকোড. Selecting never shows a prompt, so retrying is fine.
         for attempt in 1...20 {
             if select(modeID: InputMode.banglaID) {
                 print("Bijoy Bangla selected (attempt \(attempt))")
@@ -73,17 +73,40 @@ enum InputSources {
 
     /// Used by the installer: register the app and switch both modes on
     /// once, with no waiting and no selecting. After the person logs out
-    /// and back in, বাংলা (বিজয়) is in the input menu ready to choose.
+    /// and back in, বিজয় ইউনিকোড is in the input menu ready to choose.
     static func register(bundleURL: URL) {
         LSRegisterURL(bundleURL as CFURL, true)
         let status = TISRegisterInputSource(bundleURL as CFURL)
         if status != noErr { print("TISRegisterInputSource failed: \(status)") }
-        for modeID in [InputMode.banglaID, InputMode.englishID] {
+        for modeID in InputMode.allIDs {
             if let src = source(modeID: modeID), !isEnabled(src) {
                 TISEnableInputSource(src)
             }
         }
         print("Bijoy Bangla registered and enabled; log out and back in to use it")
+    }
+
+    /// Switch on any of our modes that has never been switched on before -
+    /// for example বিজয় ক্লাসিক after updating from a version without it.
+    /// Each mode is handled once only, so a mode the person removes in
+    /// System Settings stays removed.
+    static func enableNewModesOnce() {
+        let defaults = UserDefaults.standard
+        for modeID in InputMode.allIDs {
+            let key = "enabledOnce.\(modeID)"
+            guard !defaults.bool(forKey: key), let src = source(modeID: modeID) else { continue }
+            if !isEnabled(src) { TISEnableInputSource(src) }
+            defaults.set(true, forKey: key)
+        }
+    }
+
+    /// Switch a mode on if needed, then select it. Returns true if selected.
+    @discardableResult
+    static func enableAndSelect(modeID: String) -> Bool {
+        if let src = source(modeID: modeID), !isEnabled(src) {
+            TISEnableInputSource(src)
+        }
+        return select(modeID: modeID)
     }
 
     /// Fresh lookup each time: a source's properties can be cached.

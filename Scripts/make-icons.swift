@@ -54,6 +54,7 @@ func menuIcon(_ text: String, bangla: Bool, name: String) throws {
 
 try menuIcon("বা", bangla: true, name: "Bangla.tiff")
 try menuIcon("EN", bangla: false, name: "English.tiff")
+try menuIcon("MJ", bangla: false, name: "Classic.tiff")
 
 // App icon (About panel, Finder, installer): the laptop with the flag on its
 // screen, on a light rounded square. Same drawing as Branding/laptop.svg.

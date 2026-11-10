@@ -283,7 +283,7 @@ footer.site p { margin: 0 0 2px; }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
           <span data-i18n="download">Download for Mac</span>
         </a>
-        <p class="meta" data-i18n="meta">Version 1.0.1 · About 1 MB · macOS 13 Ventura or later · Apple Silicon and Intel · <a href="#install">How to install</a></p>
+        <p class="meta" data-i18n="meta">Version <span class="ver">1.0.1</span> · About 1 MB · macOS 13 Ventura or later · Apple Silicon and Intel · <a href="#install">How to install</a></p>
       </div>
 
       <div class="demo">
@@ -336,7 +336,7 @@ footer.site p { margin: 0 0 2px; }
           <div class="body">
             <div class="side"><div class="on">Introduction</div><div>Destination</div><div>Installation</div><div>Summary</div></div>
             <div class="main"><b>Bijoy Bangla <span class="bn-mini">বিজয় বাংলা</span></b>Type Unicode Bangla on your Mac with the Bijoy keyboard layout, in every app.
-              <ul><li>Adds <span class="bn-mini">বাংলা (বিজয়)</span> and English to the input menu</li><li>Switch with Control-Space</li><li>macOS 13 or later</li></ul>
+              <ul><li>Adds <span class="bn-mini">বিজয় ইউনিকোড</span> and English to the input menu</li><li>Switch with Control-Space</li><li>macOS 13 or later</li></ul>
               <span class="dim">At the end you will be asked to log out.</span></div>
           </div>
           <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Continue</span></div>
@@ -382,11 +382,11 @@ footer.site p { margin: 0 0 2px; }
           <div class="body">
             <div class="side"><div>Introduction</div><div>Destination</div><div>Installation</div><div class="on">Summary</div></div>
             <div class="main"><b>Almost done</b>Click Log Out, then after you log back in:
-              <ol><li>Click the input menu near the clock.</li><li>Choose <span class="bn-mini">বাংলা (বিজয়)</span> and start typing.</li></ol></div>
+              <ol><li>Click the input menu near the clock.</li><li>Choose <span class="bn-mini">বিজয় ইউনিকোড</span> and start typing.</li></ol></div>
           </div>
           <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Log Out</span></div>
         </div>
-        <div class="step-head"><span class="num">5</span><div><strong data-i18n="s5t">Log out and choose বাংলা</strong><p data-i18n="s5d">Log out, log back in, then choose বাংলা (বিজয়) from the input menu.</p></div></div>
+        <div class="step-head"><span class="num">5</span><div><strong data-i18n="s5t">Log out and choose বাংলা</strong><p data-i18n="s5d">Log out, log back in, then choose বিজয় ইউনিকোড from the input menu.</p></div></div>
       </li>
     </ol>
 
@@ -418,7 +418,8 @@ footer.site p { margin: 0 0 2px; }
     <h2 data-i18n="faqTitle">Questions</h2>
     <div class="faq-card">
       <details><summary data-i18n="q1">Is it really free?</summary><p data-i18n="a1">Yes. No trial, no account, no ads. The source code is open on GitHub under the MIT licence.</p></details>
-      <details><summary data-i18n="q2">Will my text work on websites and Facebook?</summary><p data-i18n="a2">Yes. It types standard Unicode Bangla, so it shows correctly in browsers, Word, Pages, WordPress, Facebook and with any Bangla font. It does not use the old SutonnyMJ-style encoding.</p></details>
+      <details><summary data-i18n="q2">Will my text work on websites and Facebook?</summary><p data-i18n="a2">Yes. বিজয় ইউনিকোড types standard Unicode Bangla, so it shows correctly in browsers, Word, Pages, WordPress, Facebook and with any Bangla font.</p></details>
+      <details><summary data-i18n="q7">Can I type for printing with SutonnyMJ?</summary><p data-i18n="a7">Yes. Choose বিজয় ক্লাসিক from the input menu and set your document's font to SutonnyMJ or another MJ font. You type with the same Bijoy keys; the text comes out in the classic Bijoy encoding that MJ fonts and print shops expect. Use বিজয় ইউনিকোড for the web and email.</p></details>
       <details><summary data-i18n="q3">Why isn't it on the Mac App Store?</summary><p data-i18n="a3">Apple does not allow keyboards (input methods) in the Mac App Store. This download is signed with a Developer ID and checked by Apple (notarized), so it opens without security warnings.</p></details>
       <details><summary data-i18n="q6">Why is there no keyboard picture in System Settings?</summary><p data-i18n="a6">macOS only draws that picture for simple keyboard layouts. Bijoy Bangla is an input method, which is what lets it place ি before the letter and build যুক্তাক্ষর, so macOS shows a notice there instead. To see the keys, choose Show Bijoy Keyboard Layout from the input menu in the top bar.</p></details>
       <details><summary data-i18n="q4">How do I uninstall it?</summary><p data-i18n="a4">Click the input menu in the top bar, choose Uninstall Bijoy Bangla, enter your Mac password, then log out and back in.</p></details>
@@ -445,7 +446,7 @@ footer.site p { margin: 0 0 2px; }
     navInstall: "ইনস্টল", navTyping: "টাইপিং", navFaq: "প্রশ্ন",
     tagline: "ম্যাকের জন্য বিজয় কীবোর্ড। ফ্রি, ইউনিকোড, আর সব অ্যাপে কাজ করে।",
     download: "ম্যাকের জন্য ডাউনলোড করুন",
-    meta: 'ভার্সন ১.০.১ · প্রায় ১ MB · macOS 13 Ventura বা নতুন · Apple Silicon ও Intel · <a href="#install">কীভাবে ইনস্টল করবেন</a>',
+    meta: 'ভার্সন <span class="ver">১.০.১</span> · প্রায় ১ MB · macOS 13 Ventura বা নতুন · Apple Silicon ও Intel · <a href="#install">কীভাবে ইনস্টল করবেন</a>',
     demoBadge: "লাইভ টাইপিং ডেমো", demoLabel: "বিজয়ের কী চাপুন, যেমন",
     touchNote: "ফোন বা ট্যাবলেটে একটি শব্দে ট্যাপ করুন, টাইপ হতে দেখবেন।",
     hintEmpty: "আপনার চাপা কী-গুলো এখানে দেখাবে", hintSpace: "স্পেস চাপলে শব্দ শেষ হয়",
@@ -455,7 +456,7 @@ footer.site p { margin: 0 0 2px; }
     s2t: "জায়গা বেছে নিন", s2d: "কোথায় ইনস্টল হবে বেছে নিন।",
     s3t: "ইনস্টল", s3d: "সাধারণ ইনস্টলেশন নিশ্চিত করুন।",
     s4t: "ইনপুট সোর্সের অনুমতি", s4d: "macOS জিজ্ঞেস করলে বিজয় বাংলার জন্য Allow চাপুন।",
-    s5t: "লগ আউট করে বাংলা বেছে নিন", s5d: "লগ আউট করে আবার লগ ইন করুন, তারপর ইনপুট মেনু থেকে বাংলা (বিজয়) বেছে নিন।",
+    s5t: "লগ আউট করে বাংলা বেছে নিন", s5d: "লগ আউট করে আবার লগ ইন করুন, তারপর ইনপুট মেনু থেকে বিজয় ইউনিকোড বেছে নিন।",
     banner: 'ব্যবহারের আগে macOS-এ ইনপুট সোর্সের <b>অনুমতি দিতে হয়।</b> সমস্যা হলে দেখুন <a href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a>।',
     typingTitle: "বিজয়ের নিয়মেই টাইপ",
     typingLead: "যে কী-গুলো আপনি জানেন, সেগুলোই। Control-Space বা গ্লোব কী দিয়ে বাংলা ও ইংরেজির মধ্যে বদলান। পুরো কী-চার্ট পাবেন ইনপুট মেনুর Show Bijoy Keyboard Layout-এ।",
@@ -463,7 +464,8 @@ footer.site p { margin: 0 0 2px; }
     r4: "◌ো আর ◌ৌ", r5: "g দিয়ে যুক্তাক্ষর", r6: "র-ফলা আর য-ফলা",
     faqTitle: "প্রশ্ন ও উত্তর",
     q1: "এটা কি সত্যিই ফ্রি?", a1: "হ্যাঁ। কোনো ট্রায়াল, অ্যাকাউন্ট বা বিজ্ঞাপন নেই। সোর্স কোড GitHub-এ MIT লাইসেন্সে উন্মুক্ত।",
-    q2: "ওয়েবসাইট আর ফেসবুকে কি লেখা ঠিকমতো দেখাবে?", a2: "হ্যাঁ। এটি স্ট্যান্ডার্ড ইউনিকোড বাংলা লেখে, তাই ব্রাউজার, Word, Pages, WordPress, ফেসবুক আর যেকোনো বাংলা ফন্টে ঠিকমতো দেখায়। পুরোনো SutonnyMJ ধরনের এনকোডিং ব্যবহার করে না।",
+    q2: "ওয়েবসাইট আর ফেসবুকে কি লেখা ঠিকমতো দেখাবে?", a2: "হ্যাঁ। বিজয় ইউনিকোড স্ট্যান্ডার্ড ইউনিকোড বাংলা লেখে, তাই ব্রাউজার, Word, Pages, WordPress, ফেসবুক আর যেকোনো বাংলা ফন্টে ঠিকমতো দেখায়।",
+    q7: "SutonnyMJ দিয়ে ছাপার জন্য লেখা যাবে?", a7: "হ্যাঁ। ইনপুট মেনু থেকে বিজয় ক্লাসিক বেছে নিন আর ডকুমেন্টের ফন্ট SutonnyMJ বা অন্য কোনো MJ ফন্ট করুন। একই বিজয় কী দিয়ে লিখবেন; লেখা আসবে পুরোনো বিজয় এনকোডিংয়ে, যা MJ ফন্ট আর প্রেসগুলো চায়। ওয়েব আর ইমেইলের জন্য বিজয় ইউনিকোড ব্যবহার করুন।",
     q3: "Mac App Store-এ নেই কেন?", a3: "Apple, Mac App Store-এ কীবোর্ড (ইনপুট মেথড) রাখার অনুমতি দেয় না। এই ডাউনলোডটি Developer ID দিয়ে সাইন করা এবং Apple-এর যাচাই (notarized) করা, তাই নিরাপত্তা সতর্কবার্তা ছাড়াই খোলে।",
     q6: "System Settings-এ কীবোর্ডের ছবি দেখায় না কেন?", a6: "macOS শুধু সাধারণ কীবোর্ড লেআউটের ছবি দেখায়। বিজয় বাংলা একটি ইনপুট মেথড, যার কারণেই এটি ি অক্ষরের আগে বসাতে আর যুক্তাক্ষর তৈরি করতে পারে, তাই সেখানে ছবির বদলে একটি নোটিশ দেখায়। কী-গুলো দেখতে টপ বারের ইনপুট মেনু থেকে Show Bijoy Keyboard Layout বেছে নিন।",
     q4: "কীভাবে আনইনস্টল করব?", a4: "টপ বারের ইনপুট মেনুতে ক্লিক করে Uninstall Bijoy Bangla বেছে নিন, ম্যাকের পাসওয়ার্ড দিন, তারপর লগ আউট করে আবার লগ ইন করুন।",
@@ -484,6 +486,7 @@ footer.site p { margin: 0 0 2px; }
     document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
     document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === next)));
     try { localStorage.setItem("lang", next); } catch (e) {}
+    if (typeof showVersion === "function") showVersion();
     draw();
   }
   document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
@@ -548,6 +551,23 @@ footer.site p { margin: 0 0 2px; }
   }
   document.querySelectorAll(".tries button").forEach(b =>
     b.addEventListener("click", () => { play(b.dataset.keys); pad.focus({ preventScroll: true }); }));
+
+  /* ---------- Latest version from GitHub ---------- */
+  // The Download button always fetches the newest release; this keeps the
+  // version text beside it in step, with no page edit after each release.
+  let latest = null;
+  const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+  function showVersion() {
+    if (!latest) return;
+    const text = lang === "bn" ? latest.replace(/[0-9]/g, d => BN_DIGITS[d]) : latest;
+    document.querySelectorAll(".ver").forEach(el => { el.textContent = text; });
+  }
+  fetch("https://api.github.com/repos/nasirahamed-design/bijoybanglaformac/releases/latest")
+    .then(r => r.ok ? r.json() : null)
+    .then(rel => {
+      if (rel && rel.tag_name) { latest = rel.tag_name.replace(/^v/, ""); showVersion(); }
+    })
+    .catch(() => {});   // offline or rate-limited: keep the version written in the page
 
   let saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) {}
