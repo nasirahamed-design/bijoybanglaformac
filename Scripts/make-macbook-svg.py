@@ -112,7 +112,7 @@ key(sx + sw + 1.6 * U + 2 * G, y, 1.3 * U, label="option")
 # legend
 ly = WY + WH - 14
 a(f'<text x="{WX+WW/2}" y="{ly}" text-anchor="middle" font-family="{EN}" font-size="9" fill="#56645C">'
-  f'Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g then a kar = full vowel</tspan></text>')
+  f'Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g + vowel sign = independent vowel</tspan></text>')
 
 # subtle reflection on the screen
 a(f'<path d="M{SX} {SY} h{SW*0.55} l-{SW*0.35} {SH} h-{SW*0.2} z" fill="url(#mb-shine)"/>')
