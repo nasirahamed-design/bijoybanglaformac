@@ -213,6 +213,14 @@ nav.site a:hover { color: var(--green); }
 .hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; padding: 18px 0 110px; }
 .hero h1 { font: 700 clamp(40px, 5.2vw, 64px)/1.15 var(--sans); text-wrap: balance; margin: 0; color: var(--green-deep); }
 :root:not([data-theme="dark"]) .hero h1 { color: var(--green); }
+/* Typewriter headline: the hidden copy holds the space so nothing jumps */
+.tw { position: relative; }
+.tw-ghost { visibility: hidden; }
+.tw-text { position: absolute; inset: 0; }
+.tw-text::after { content: ""; display: inline-block; width: .06em; height: .9em; margin-left: .06em; vertical-align: -0.08em; background: var(--red); animation: tw-blink 1s steps(1) infinite; }
+@keyframes tw-blink { 50% { opacity: 0; } }
+.no-tw .tw-ghost { visibility: visible; }
+.no-tw .tw-text { display: none; }
 .hero .tag { font-size: 22px; line-height: 1.45; margin: 16px 0 26px; max-width: 30ch; }
 .download {
   display: inline-flex; align-items: center; gap: 14px; color: #fff;
@@ -366,7 +374,7 @@ footer.site p { margin: 0 0 2px; }
 <div class="top">
   <div class="wrap">
     <header class="site">
-      <a class="brand" href="#">
+      <a class="brand" href="/" aria-label="Bijoy Bangla for Mac home page">
         <svg class="logo" viewBox="0 0 400 248" role="img" aria-label="Bijoy Bangla for Mac">
   <title>Bijoy Bangla for Mac</title>
   <defs>
@@ -399,7 +407,7 @@ footer.site p { margin: 0 0 2px; }
 
     <main class="hero">
       <div>
-        <h1 lang="bn">ম্যাকে বিজয় লেআউটে<br>বাংলা লিখুন</h1>
+        <h1 lang="bn" class="tw" aria-label="ম্যাকে বিজয় লেআউটে বাংলা লিখুন"><span class="tw-ghost" aria-hidden="true">ম্যাকে বিজয় লেআউটে<br>বাংলা লিখুন</span><span class="tw-text" aria-hidden="true"></span></h1>
         <p class="tag" data-i18n="tagline">The Bijoy keyboard for Mac. Free, Unicode, and it works in every app.</p>
         <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
@@ -899,6 +907,51 @@ footer.site p { margin: 0 0 2px; }
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
   }, { threshold: 0.6 });
   arrows.forEach(function (a) { io.observe(a); });
+})();
+
+// Hero headline types itself, one Bangla letter (grapheme) at a time
+(function () {
+  var h = document.querySelector('h1.tw');
+  if (!h) return;
+  var out = h.querySelector('.tw-text');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !out) { h.classList.add('no-tw'); return; }
+  var lines = ['ম্যাকে বিজয় লেআউটে', 'বাংলা লিখুন'];
+  var split = function (t) {
+    if (window.Intl && Intl.Segmenter) {
+      return Array.from(new Intl.Segmenter('bn', { granularity: 'grapheme' }).segment(t), function (x) { return x.segment; });
+    }
+    return Array.from(t);
+  };
+  var steps = [];
+  lines.forEach(function (line, i) {
+    split(line).forEach(function (g) { steps.push(g); });
+    if (i < lines.length - 1) steps.push('\n');
+  });
+  var n = 0, dir = 1;
+  function render() {
+    out.textContent = '';
+    steps.slice(0, n).join('').split('\n').forEach(function (part, i) {
+      if (i) out.appendChild(document.createElement('br'));
+      out.appendChild(document.createTextNode(part));
+    });
+  }
+  // Type forward, hold, erase backwards, pause, and start again - forever
+  function tick() {
+    if (dir === 1) {
+      if (n >= steps.length) { dir = -1; h.classList.add('done'); return setTimeout(tick, 3000); }
+      var g = steps[n++];
+      render();
+      setTimeout(tick, g === ' ' ? 320 : g === '\n' ? 500 : 230 + Math.random() * 120);
+    } else {
+      h.classList.remove('done');
+      if (n <= 0) { dir = 1; return setTimeout(tick, 700); }
+      n--;
+      render();
+      setTimeout(tick, 55);
+    }
+  }
+  setTimeout(tick, 500);
 })();
 </script>
 </body>
