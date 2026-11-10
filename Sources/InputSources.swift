@@ -21,10 +21,12 @@ enum InputSources {
         return Unmanaged<CFString>.fromOpaque(ptr).takeUnretainedValue() as String
     }
 
-    /// Register the bundle, enable both modes and
-    /// switch to বাংলা (বিজয়), so it works right after installing with no
-    /// logout. macOS can take a moment to notice a newly installed input
-    /// method, so enabling and selecting are retried for a few seconds.
+    /// Register the bundle, enable both modes and switch to বাংলা (বিজয়),
+    /// so it works right after installing with no logout.
+    ///
+    /// On a fresh install macOS asks "Allow 'Bijoy Bangla' to enable ...?".
+    /// Each enable request opens that prompt again, so we ask exactly once
+    /// per mode and then only watch for the person's answer.
     /// Returns true when বাংলা (বিজয়) ended up selected.
     @discardableResult
     static func install(bundleURL: URL, waitSeconds: Int = 15) -> Bool {
@@ -34,25 +36,87 @@ enum InputSources {
         let status = TISRegisterInputSource(bundleURL as CFURL)
         if status != noErr { print("TISRegisterInputSource failed: \(status)") }
 
-        // No need to launch the app here: macOS starts the input method
-        // itself as soon as বাংলা (বিজয়) is selected.
+        // 1. Wait (up to 10 s) for macOS to list our modes.
+        guard waitUntil(seconds: 10, { source(modeID: InputMode.banglaID) != nil }) else {
+            print("Bijoy Bangla registered; macOS needs a log out before it can be selected")
+            return false
+        }
 
-        var selected = false
-        for attempt in 1...max(1, waitSeconds * 2) {
-            for src in ours() where !isEnabled(src) {
+        // 2. Enable বাংলা (বিজয়) once, then wait for the person to click Allow.
+        if !enabled(modeID: InputMode.banglaID) {
+            if let src = source(modeID: InputMode.banglaID) { TISEnableInputSource(src) }
+            print("Asked macOS to enable বাংলা (বিজয়); waiting for Allow")
+            guard waitUntil(seconds: waitSeconds, { enabled(modeID: InputMode.banglaID) }) else {
+                print("বাংলা (বিজয়) was not enabled (Allow not clicked, or a log out is needed)")
+                return false
+            }
+        }
+
+        // 3. English mode: one request, short wait (usually no second prompt).
+        if !enabled(modeID: InputMode.englishID) {
+            if let src = source(modeID: InputMode.englishID) { TISEnableInputSource(src) }
+            _ = waitUntil(seconds: 5, { enabled(modeID: InputMode.englishID) })
+        }
+
+        // 4. Select বাংলা (বিজয়). Selecting never shows a prompt, so retrying is fine.
+        for attempt in 1...20 {
+            if select(modeID: InputMode.banglaID) {
+                print("Bijoy Bangla selected (attempt \(attempt))")
+                refreshInputMenu()
+                return true
+            }
+            usleep(500_000)
+        }
+        print("Bijoy Bangla enabled but could not be selected; macOS needs a log out")
+        return false
+    }
+
+    /// Used by the installer: register the app and switch both modes on
+    /// once, with no waiting and no selecting. After the person logs out
+    /// and back in, বাংলা (বিজয়) is in the input menu ready to choose.
+    static func register(bundleURL: URL) {
+        LSRegisterURL(bundleURL as CFURL, true)
+        let status = TISRegisterInputSource(bundleURL as CFURL)
+        if status != noErr { print("TISRegisterInputSource failed: \(status)") }
+        for modeID in [InputMode.banglaID, InputMode.englishID] {
+            if let src = source(modeID: modeID), !isEnabled(src) {
                 TISEnableInputSource(src)
             }
-            selected = select(modeID: InputMode.banglaID)
-            if selected {
-                print("Bijoy Bangla selected (attempt \(attempt))")
-                break
-            }
-            usleep(500_000)   // 0.5 s
         }
-        if !selected {
-            print("Bijoy Bangla registered; macOS needs a log out before it can be selected")
+        print("Bijoy Bangla registered and enabled; log out and back in to use it")
+    }
+
+    /// Fresh lookup each time: a source's properties can be cached.
+    static func source(modeID: String) -> TISInputSource? {
+        ours().first { string($0, kTISPropertyInputModeID) == modeID }
+    }
+
+    static func enabled(modeID: String) -> Bool {
+        guard let src = source(modeID: modeID) else { return false }
+        return isEnabled(src)
+    }
+
+    /// Polls `condition` every 0.5 s for up to `seconds`.
+    static func waitUntil(seconds: Int, _ condition: () -> Bool) -> Bool {
+        for _ in 0..<max(1, seconds * 2) {
+            if condition() { return true }
+            usleep(500_000)
         }
-        return selected
+        return condition()
+    }
+
+    /// The input menu in the menu bar doesn't always redraw when the input
+    /// source is switched from a background process. Restarting the small
+    /// macOS helper that draws it (it relaunches by itself at once) makes
+    /// the বা icon appear straight away.
+    static func refreshInputMenu() {
+        let task = Process()
+        task.executableURL = URL(fileURLWithPath: "/usr/bin/killall")
+        task.arguments = ["TextInputMenuAgent"]
+        task.standardError = FileHandle.nullDevice
+        try? task.run()
+        task.waitUntilExit()
+        print("Input menu refreshed")
     }
 
     static func isEnabled(_ src: TISInputSource) -> Bool {

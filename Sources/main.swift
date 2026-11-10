@@ -3,12 +3,16 @@ import Cocoa
 import InputMethodKit
 
 let args = CommandLine.arguments
+if args.contains("--register") {
+    InputSources.register(bundleURL: Bundle.main.bundleURL)
+    exit(0)
+}
 if args.contains("--install") {
     // --after-install: started by the installer's helper job in the user's
     // session; give the installer a moment to finish, then keep trying longer.
     let afterInstall = args.contains("--after-install")
     if afterInstall { sleep(1) }
-    let ok = InputSources.install(bundleURL: Bundle.main.bundleURL, waitSeconds: afterInstall ? 30 : 15)
+    let ok = InputSources.install(bundleURL: Bundle.main.bundleURL, waitSeconds: afterInstall ? 90 : 60)
     if afterInstall {
         try? FileManager.default.removeItem(atPath: "/tmp/io.spsv.inputmethod.BijoyBangla.activate.plist")
     }
