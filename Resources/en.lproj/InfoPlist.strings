@@ -1,0 +1,6 @@
+/* Names shown in System Settings > Keyboard > Input Sources and in the top-bar input menu */
+"CFBundleName" = "Bijoy Bangla";
+"CFBundleDisplayName" = "Bijoy Bangla";
+"io.spsv.inputmethod.BijoyBangla" = "Bijoy Bangla";
+"io.spsv.inputmethod.BijoyBangla.Bangla" = "বাংলা (বিজয়)";
+"io.spsv.inputmethod.BijoyBangla.English" = "English (Bijoy Bangla)";

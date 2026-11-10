@@ -1,0 +1,394 @@
+[
+ {
+  "keys": "hfQVf",
+  "expected": "বাংলা"
+ },
+ {
+  "keys": "hfQVfclM",
+  "expected": "বাংলাদেশ"
+ },
+ {
+  "keys": "gfdm",
+  "expected": "আমি"
+ },
+ {
+  "keys": "dhuW",
+  "expected": "বিজয়"
+ },
+ {
+  "keys": "HfcVf",
+  "expected": "ভালো"
+ },
+ {
+  "keys": "cjmb",
+  "expected": "কেমন"
+ },
+ {
+  "keys": "clcM",
+  "expected": "দেশে"
+ },
+ {
+  "keys": "ChMfJ",
+  "expected": "বৈশাখ"
+ },
+ {
+  "keys": "nbgLZf",
+  "expected": "সন্ধ্যা"
+ },
+ {
+  "keys": "drzW",
+  "expected": "প্রিয়"
+ },
+ {
+  "keys": "djgVj",
+  "expected": "ক্লিক"
+ },
+ {
+  "keys": "vfNgtz",
+  "expected": "রাষ্ট্র"
+ },
+ {
+  "keys": "cjXksj",
+  "expected": "কৌতুক"
+ },
+ {
+  "keys": "ugIfb",
+  "expected": "জ্ঞান"
+ },
+ {
+  "keys": "jvgm",
+  "expected": "কর্ম"
+ },
+ {
+  "keys": "jmA",
+  "expected": "কর্ম"
+ },
+ {
+  "keys": "jmDA",
+  "expected": "কর্মী"
+ },
+ {
+  "keys": "gfcuAdbgtbf",
+  "expected": "আর্জেন্টিনা"
+ },
+ {
+  "keys": "djgk",
+  "expected": "ক্তি"
+ },
+ {
+  "keys": "cngkf",
+  "expected": "স্তো"
+ },
+ {
+  "keys": "gC",
+  "expected": "ঐ"
+ },
+ {
+  "keys": "gsT",
+  "expected": "উঠ"
+ },
+ {
+  "keys": "gX",
+  "expected": "ঔ"
+ },
+ {
+  "keys": "gaN",
+  "expected": "ঋষ"
+ },
+ {
+  "keys": "Fb",
+  "expected": "অন"
+ },
+ {
+  "keys": "xQ",
+  "expected": "ওং"
+ },
+ {
+  "keys": "jgN",
+  "expected": "ক্ষ"
+ },
+ {
+  "keys": "vZ",
+  "expected": "র‍্য"
+ },
+ {
+  "keys": "jZ",
+  "expected": "ক্য"
+ },
+ {
+  "keys": "jgg",
+  "expected": "ক্‌"
+ },
+ {
+  "keys": "d",
+  "expected": "ি"
+ },
+ {
+  "keys": "1971",
+  "expected": "১৯৭১"
+ },
+ {
+  "keys": "$500",
+  "expected": "৳৫০০"
+ },
+ {
+  "keys": "jfG",
+  "expected": "কা।"
+ },
+ {
+  "keys": "Rf&l",
+  "expected": "ফাঁদ"
+ },
+ {
+  "keys": "lp",
+  "expected": "দড়"
+ },
+ {
+  "keys": "rfP",
+  "expected": "পাঢ়"
+ },
+ {
+  "keys": "Zcj\\",
+  "expected": "্যকেৎ"
+ },
+ {
+  "keys": "iSM",
+  "expected": "হূশ"
+ },
+ {
+  "keys": "dhcnI",
+  "expected": "বিসেঞ"
+ },
+ {
+  "keys": "Jf|",
+  "expected": "খাঃ"
+ },
+ {
+  "keys": "hfdk",
+  "expected": "বাতি"
+ },
+ {
+  "keys": "Mdp",
+  "expected": "শড়ি"
+ },
+ {
+  "keys": "cjOfj",
+  "expected": "কেঘাক"
+ },
+ {
+  "keys": "Hfcnf",
+  "expected": "ভাসো"
+ },
+ {
+  "keys": "cvqgofb",
+  "expected": "রেঙ্গান"
+ },
+ {
+  "keys": "Mfnn",
+  "expected": "শাসস"
+ },
+ {
+  "keys": "dhA",
+  "expected": "র্বি"
+ },
+ {
+  "keys": "gdcmgdV",
+  "expected": "ইমেইল"
+ },
+ {
+  "keys": "jgd",
+  "expected": "কই"
+ },
+ {
+  "keys": "Hfgd",
+  "expected": "ভাই"
+ },
+ {
+  "keys": "hgd",
+  "expected": "বই"
+ },
+ {
+  "keys": "wfx",
+  "expected": "যাও"
+ },
+ {
+  "keys": "JfxWf",
+  "expected": "খাওয়া"
+ },
+ {
+  "keys": "gfmfv",
+  "expected": "আমার"
+ },
+ {
+  "keys": "ckfmfv",
+  "expected": "তোমার"
+ },
+ {
+  "keys": "gfcYb",
+  "expected": "আছেন"
+ },
+ {
+  "keys": "LbZhfl",
+  "expected": "ধন্যবাদ"
+ },
+ {
+  "keys": "MscHygYf",
+  "expected": "শুভেচ্ছা"
+ },
+ {
+  "keys": "nghfokm",
+  "expected": "স্বাগতম"
+ },
+ {
+  "keys": "nQhfl",
+  "expected": "সংবাদ"
+ },
+ {
+  "keys": "rdkzjf",
+  "expected": "পত্রিকা"
+ },
+ {
+  "keys": "jaNj",
+  "expected": "কৃষক"
+ },
+ {
+  "keys": "gaB",
+  "expected": "ঋণ"
+ },
+ {
+  "keys": "gCdkiZ",
+  "expected": "ঐতিহ্য"
+ },
+ {
+  "keys": "gXNL",
+  "expected": "ঔষধ"
+ },
+ {
+  "keys": "gsclZfo",
+  "expected": "উদ্যোগ"
+ },
+ {
+  "keys": "vfNgtzrdk",
+  "expected": "রাষ্ট্রপতি"
+ },
+ {
+  "keys": "nSvgw",
+  "expected": "সূর্য"
+ },
+ {
+  "keys": "radKhD",
+  "expected": "পৃথিবী"
+ },
+ {
+  "keys": "hadNgt",
+  "expected": "বৃষ্টি"
+ },
+ {
+  "keys": "ngjsV",
+  "expected": "স্কুল"
+ },
+ {
+  "keys": "cmXmfdY",
+  "expected": "মৌমাছি"
+ },
+ {
+  "keys": "yf&l",
+  "expected": "চাঁদ"
+ },
+ {
+  "keys": "gs\\nh",
+  "expected": "উৎসব"
+ },
+ {
+  "keys": "ls|J",
+  "expected": "দুঃখ"
+ },
+ {
+  "keys": "hfdp",
+  "expected": "বাড়ি"
+ },
+ {
+  "keys": "gfWbf",
+  "expected": "আয়না"
+ },
+ {
+  "keys": "jgNmf",
+  "expected": "ক্ষমা"
+ },
+ {
+  "keys": "VjgNgmD",
+  "expected": "লক্ষ্মী"
+ },
+ {
+  "keys": "gdQcvdu",
+  "expected": "ইংরেজি"
+ },
+ {
+  "keys": "hfQVfcldM",
+  "expected": "বাংলাদেশি"
+ },
+ {
+  "keys": "jdmgrgstfv",
+  "expected": "কম্পিউটার"
+ },
+ {
+  "keys": "cRnhsj",
+  "expected": "ফেসবুক"
+ },
+ {
+  "keys": "gdbgtfvcbt",
+  "expected": "ইন্টারনেট"
+ },
+ {
+  "keys": "cmfhfgdV",
+  "expected": "মোবাইল"
+ },
+ {
+  "keys": "dMjgNj",
+  "expected": "শিক্ষক"
+ },
+ {
+  "keys": "FZfr",
+  "expected": "অ্যাপ"
+ },
+ {
+  "keys": "vZfh",
+  "expected": "র‍্যাব"
+ },
+ {
+  "keys": "gcj",
+  "expected": "এক"
+ },
+ {
+  "keys": "gcjscM",
+  "expected": "একুশে"
+ },
+ {
+  "keys": "cRhzsWfdv",
+  "expected": "ফেব্রুয়ারি"
+ },
+ {
+  "keys": "ytgtozfm",
+  "expected": "চট্টগ্রাম"
+ },
+ {
+  "keys": "gfgd",
+  "expected": "আই"
+ },
+ {
+  "keys": "hfgsV",
+  "expected": "বাউল"
+ },
+ {
+  "keys": "cjgc",
+  "expected": "কেএ"
+ },
+ {
+  "keys": "dhMghdhlZfVW",
+  "expected": "বিশ্ববিদ্যালয়"
+ },
+ {
+  "keys": "Efjf",
+  "expected": "ঢাকা"
+ }
+]

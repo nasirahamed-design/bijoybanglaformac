@@ -1,0 +1,4 @@
+#!/bin/bash
+# Stop a running copy so the new version is picked up.
+/usr/bin/pkill -x BijoyBangla 2>/dev/null || true
+exit 0

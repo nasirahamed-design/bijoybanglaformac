@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>BijoyBangla</string>
+	<key>CFBundleIdentifier</key>
+	<string>io.spsv.inputmethod.BijoyBangla</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Bijoy Bangla</string>
+	<key>CFBundleDisplayName</key>
+	<string>Bijoy Bangla</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>__VERSION__</string>
+	<key>CFBundleVersion</key>
+	<string>__BUILD__</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>13.0</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2026 Nasir Ahamed</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+
+	<!-- InputMethodKit -->
+	<key>InputMethodConnectionName</key>
+	<string>io.spsv.inputmethod.BijoyBangla_Connection</string>
+	<key>InputMethodServerControllerClass</key>
+	<string>BijoyInputController</string>
+	<key>TISInputSourceID</key>
+	<string>io.spsv.inputmethod.BijoyBangla</string>
+	<key>TISIntendedLanguage</key>
+	<string>bn</string>
+	<key>TISIconIsTemplate</key>
+	<true/>
+	<key>tsInputMethodIconFileKey</key>
+	<string>Bangla.tiff</string>
+	<key>tsInputMethodCharacterRepertoireKey</key>
+	<array>
+		<string>Beng</string>
+		<string>Latn</string>
+	</array>
+
+	<!-- Two modes, both listed in the input menu in the top bar -->
+	<key>ComponentInputModeDict</key>
+	<dict>
+		<key>tsInputModeListKey</key>
+		<dict>
+			<key>io.spsv.inputmethod.BijoyBangla.Bangla</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>io.spsv.inputmethod.BijoyBangla.Bangla</string>
+				<key>TISIntendedLanguage</key>
+				<string>bn</string>
+				<key>TISIconIsTemplate</key>
+				<true/>
+				<key>tsInputModeScriptKey</key>
+				<string>smUnicodeScript</string>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>Bangla.tiff</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>Bangla.tiff</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>Bangla.tiff</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<true/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<true/>
+			</dict>
+			<key>io.spsv.inputmethod.BijoyBangla.English</key>
+			<dict>
+				<key>TISInputSourceID</key>
+				<string>io.spsv.inputmethod.BijoyBangla.English</string>
+				<key>TISIntendedLanguage</key>
+				<string>en</string>
+				<key>TISIconIsTemplate</key>
+				<true/>
+				<key>tsInputModeScriptKey</key>
+				<string>smRoman</string>
+				<key>tsInputModeMenuIconFileKey</key>
+				<string>English.tiff</string>
+				<key>tsInputModeAlternateMenuIconFileKey</key>
+				<string>English.tiff</string>
+				<key>tsInputModePaletteIconFileKey</key>
+				<string>English.tiff</string>
+				<key>tsInputModeDefaultStateKey</key>
+				<true/>
+				<key>tsInputModeIsVisibleKey</key>
+				<true/>
+				<key>tsInputModePrimaryInScriptKey</key>
+				<true/>
+			</dict>
+		</dict>
+		<key>tsVisibleInputModeOrderedArrayKey</key>
+		<array>
+			<string>io.spsv.inputmethod.BijoyBangla.Bangla</string>
+			<string>io.spsv.inputmethod.BijoyBangla.English</string>
+		</array>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bijoy Bangla for Mac - বিজয় কীবোর্ড, ফ্রি</title>
+<meta name="description" content="Free Bijoy Bangla keyboard for Mac. Type Unicode Bangla with the Bijoy layout in every app. macOS 13 or later, Apple Silicon and Intel.">
+<meta property="og:title" content="Bijoy Bangla for Mac">
+<meta property="og:description" content="ম্যাকে বিজয়ে লিখুন - free Unicode Bijoy keyboard for macOS.">
+<link rel="canonical" href="https://bijoybanglaformac.com/">
+<meta property="og:url" content="https://bijoybanglaformac.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #0B6B3F;
+  --green-2: #0E8A50;
+  --green-deep: #064B2C;
+  --mint: #E2F2E7;
+  --mint-2: #EEF7F1;
+  --red: #E0303F;
+  --amber: #F2B53C;
+  --paper: #F8F8F3;
+  --card: #FFFFFF;
+  --ink: #15201A;
+  --muted: #56645C;
+  --line: #DCE5DE;
+  --key: #FFFFFF;
+  --key-edge: #C8D2CB;
+  --shadow: 0 18px 40px -24px rgba(6, 75, 44, .35);
+  --sans: "Hind Siliguri", -apple-system, "Segoe UI", sans-serif;
+  --serif: "Noto Serif Bengali", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --green: #5CC896; --green-2: #7AD8AA; --green-deep: #A6E8C6; --mint: #183324; --mint-2: #13261B;
+    --paper: #0F1712; --card: #16211A; --ink: #E7EFEA; --muted: #9DB0A5; --line: #2A3A30;
+    --key: #223028; --key-edge: #0B110D; --shadow: 0 18px 40px -24px rgba(0, 0, 0, .7);
+  }
+}
+:root[data-theme="dark"] {
+  --green: #5CC896; --green-2: #7AD8AA; --green-deep: #A6E8C6; --mint: #183324; --mint-2: #13261B;
+  --paper: #0F1712; --card: #16211A; --ink: #E7EFEA; --muted: #9DB0A5; --line: #2A3A30;
+  --key: #223028; --key-edge: #0B110D; --shadow: 0 18px 40px -24px rgba(0, 0, 0, .7);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
+a { color: var(--green); }
+a:focus-visible, button:focus-visible, summary:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--red); outline-offset: 3px; border-radius: 6px;
+}
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero background wash */
+.top { position: relative; overflow: hidden; }
+.top::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(60% 50% at 75% 30%, var(--mint) 0%, transparent 70%),
+    radial-gradient(70% 40% at 10% 100%, var(--mint-2) 0%, transparent 70%);
+}
+.top svg.wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 90px; z-index: -1; }
+.top svg.wave path { fill: var(--mint-2); }
+
+/* Header */
+header.site { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px 28px; padding: 20px 0 6px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 21px; }
+.brand svg { width: 44px; height: 44px; flex: none; }
+nav.site { display: flex; justify-content: flex-end; gap: 26px; font-size: 16px; }
+nav.site a { color: var(--ink); text-decoration: none; }
+nav.site a:hover { color: var(--green); }
+.lang { display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+.lang button {
+  font: 600 15px var(--sans); border: 0; border-radius: 999px; padding: 4px 14px; cursor: pointer;
+  background: transparent; color: var(--green);
+}
+.lang button[aria-pressed="true"] { background: var(--green); color: var(--paper); }
+.lang i { width: 1px; height: 18px; background: var(--line); }
+.lang-note { grid-column: 1 / -1; justify-self: end; display: flex; align-items: center; gap: 8px; margin: -6px 0 0; font-size: 14px; color: var(--muted); }
+.lang-note svg { width: 16px; height: 16px; flex: none; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; padding: 18px 0 110px; }
+.hero h1 { font: 700 clamp(50px, 7vw, 84px)/1.12 var(--sans); margin: 0; color: var(--green-deep); }
+:root:not([data-theme="dark"]) .hero h1 { color: var(--green); }
+.hero .tag { font-size: 22px; line-height: 1.45; margin: 16px 0 26px; max-width: 30ch; }
+.download {
+  display: inline-flex; align-items: center; gap: 14px; color: #fff;
+  background: linear-gradient(180deg, var(--green-2), var(--green));
+  padding: 16px 30px; border-radius: 14px; font-weight: 600; font-size: 20px; text-decoration: none;
+  box-shadow: 0 10px 22px -12px rgba(6, 75, 44, .8), inset 0 1px 0 rgba(255,255,255,.18);
+}
+:root[data-theme="dark"] .download { color: #0F1712; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .download { color: #0F1712; } }
+.download:hover { filter: brightness(1.06); }
+.download svg { width: 22px; height: 22px; }
+.meta { color: var(--muted); font-size: 15px; margin-top: 14px; max-width: 46ch; }
+.meta a { color: var(--green); }
+
+/* Typing demo */
+.demo { background: var(--card); border-radius: 22px; padding: 18px 22px 22px; box-shadow: 0 0 0 1px var(--line), var(--shadow); }
+.demo-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.demo-bar i { width: 13px; height: 13px; border-radius: 50%; }
+.demo-bar i:nth-child(1) { background: #FF5F57; }
+.demo-bar i:nth-child(2) { background: #FEBC2E; }
+.demo-bar i:nth-child(3) { background: #28C840; }
+.badge { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; background: var(--mint); color: var(--green-deep); border-radius: 999px; padding: 4px 14px; font-weight: 600; font-size: 15px; }
+:root:not([data-theme="dark"]) .badge { color: var(--green-deep); }
+.badge svg { width: 18px; height: 18px; }
+.demo label { display: block; font-size: 16px; margin-bottom: 8px; }
+.demo label b { letter-spacing: 1px; }
+.demo textarea {
+  width: 100%; min-height: 120px; resize: vertical; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--paper); color: var(--ink); padding: 12px 16px;
+  font: 500 30px/1.45 var(--sans); caret-color: var(--green);
+}
+.strip { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 52px; margin: 16px 0 4px; }
+.cap {
+  min-width: 36px; height: 38px; padding: 0 10px; display: inline-grid; place-items: center;
+  background: var(--key); border: 1px solid var(--key-edge); border-bottom-width: 3px; border-radius: 8px;
+  font: 600 17px/1 var(--sans); color: var(--ink);
+}
+.cap.on { border-color: var(--green); color: var(--green); }
+.strip .eq { color: var(--green); padding: 0 4px; font-size: 22px; font-weight: 600; }
+.strip .result { font: 600 30px/1 var(--sans); color: var(--green); }
+.strip .hint { color: var(--muted); font-size: 15px; }
+.tries { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tries button {
+  font: 600 16px var(--sans); color: var(--green-deep); background: var(--mint); border: 0;
+  border-radius: 999px; padding: 6px 16px; cursor: pointer;
+}
+.tries button:hover { filter: brightness(.96); }
+.touch-note { display: none; font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+@media (hover: none) { .touch-note { display: block; } }
+
+/* Install */
+section.install { text-align: center; padding: 36px 0 56px; }
+.tile {
+  width: 60px; height: 60px; border-radius: 16px; margin: 0 auto 14px; display: grid; place-items: center;
+  background: linear-gradient(160deg, #9FD8B3 0%, var(--green) 45%, var(--green-deep) 100%);
+  color: #fff; font: 700 32px/1 var(--sans); box-shadow: var(--shadow);
+}
+h2 { font: 700 clamp(32px, 4.4vw, 44px)/1.2 var(--serif); margin: 0 0 8px; }
+.sub { color: var(--muted); font-size: 18px; margin: 0 auto 34px; max-width: 62ch; }
+ol.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; text-align: left; }
+ol.steps > li {
+  position: relative; background: var(--card); border-radius: 16px; padding: 12px 12px 18px;
+  box-shadow: 0 0 0 1px var(--line), 0 6px 18px -14px rgba(6, 75, 44, .4);
+}
+ol.steps > li:not(:last-child)::after {
+  content: ""; position: absolute; right: -19px; top: 110px; width: 16px; height: 16px;
+  background: no-repeat center/16px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11M9 4l4 4-4 4' fill='none' stroke='%230B6B3F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.step-head { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; }
+.num { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: var(--paper); display: grid; place-items: center; font-weight: 700; font-size: 16px; }
+.step-head strong { color: var(--green); font-size: 17px; line-height: 1.25; padding-top: 3px; display: block; }
+.step-head p { margin: 4px 0 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+
+/* Mini macOS installer windows (illustrations) */
+.mini { height: 210px; border-radius: 8px; background: #fff; box-shadow: 0 0 0 1px #D9DDDA, 0 4px 10px -6px rgba(0,0,0,.3); overflow: hidden; display: flex; flex-direction: column; font: 7.5px/1.35 -apple-system, "Helvetica Neue", sans-serif; color: #1d1d1f; }
+.mini .tb { display: flex; align-items: center; gap: 3px; height: 15px; padding: 0 6px; background: #F3F3F3; border-bottom: 1px solid #E1E1E1; font-weight: 600; font-size: 6.5px; }
+.mini .tb i { width: 5px; height: 5px; border-radius: 50%; background: #FF5F57; }
+.mini .tb i:nth-child(2) { background: #FEBC2E; }
+.mini .tb i:nth-child(3) { background: #28C840; margin-right: 4px; }
+.mini .body { flex: 1; display: flex; min-height: 0; }
+.mini .side { width: 52px; padding: 8px 0 0 6px; color: #8a8a8e; font-size: 6px; line-height: 1.9; background: #FAFAFA; border-right: 1px solid #EEE; }
+.mini .side .on { color: #1d1d1f; font-weight: 600; }
+.mini .side .on::before { content: "● "; color: #0A84FF; }
+.mini .main { flex: 1; padding: 7px 8px; overflow: hidden; }
+.mini .main b { display: block; font-size: 8px; margin-bottom: 4px; }
+.mini .main ul, .mini .main ol { margin: 3px 0; padding-left: 10px; }
+.mini .foot { display: flex; justify-content: flex-end; gap: 4px; padding: 5px 6px; border-top: 1px solid #EEE; }
+.mini .btn { padding: 1px 7px; border-radius: 3px; background: #EDEDED; font-size: 6.5px; }
+.mini .btn.blue { background: #0A84FF; color: #fff; }
+.mini .choice { margin: 4px 0; padding: 5px; border-radius: 3px; background: #0A84FF; color: #fff; }
+.mini .dim { color: #6e6e73; }
+.mini.settings { background: #ECECEC; position: relative; }
+.mini.settings .ghost { margin: 8px; height: 10px; border-radius: 3px; background: #DCDCDC; }
+.mini .alert {
+  position: absolute; left: 12%; right: 12%; top: 32px; background: #fff; border-radius: 8px; padding: 9px 9px 7px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.25); font-size: 6.6px;
+}
+.mini .alert b { font-size: 7.2px; margin-bottom: 3px; display: block; }
+.mini .alert .row { display: flex; justify-content: space-between; margin-top: 7px; }
+.bn-mini { font-family: "Kohinoor Bangla", "Hind Siliguri", sans-serif; }
+
+.note-banner {
+  display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  margin: 30px auto 0; padding: 12px 20px; border-radius: 12px; background: var(--mint); color: var(--ink); font-size: 17px;
+}
+.note-banner .i { width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: var(--paper); display: grid; place-items: center; font: 700 14px var(--serif); flex: none; }
+.note-banner .bar { width: 1px; height: 20px; background: var(--muted); opacity: .4; }
+
+/* Typing rules */
+section.typing { padding: 48px 0 24px; border-top: 1px solid var(--line); }
+section.typing h2 { margin-bottom: 6px; }
+section.typing .lead { margin: 0 0 22px; max-width: 70ch; font-size: 17px; }
+.rules { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.rule-card { background: var(--card); border-radius: 14px; padding: 4px 18px; box-shadow: 0 0 0 1px var(--line), 0 6px 18px -14px rgba(6, 75, 44, .4); }
+.rule { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.rule:last-child { border-bottom: 0; }
+.rule .what { font-size: 17px; }
+.rule .what b { font: 700 25px/1 var(--sans); color: var(--green); margin-right: 10px; }
+.rule kbd { font: 700 15px var(--sans); background: var(--key); border: 1px solid var(--key-edge); border-bottom-width: 2px; border-radius: 6px; padding: 2px 9px; white-space: nowrap; }
+
+/* FAQ */
+section.faq { padding: 30px 0 48px; }
+.faq-card { background: var(--card); border-radius: 14px; padding: 0 22px; box-shadow: 0 0 0 1px var(--line), 0 6px 18px -14px rgba(6, 75, 44, .4); }
+.faq details { border-bottom: 1px solid var(--line); padding: 10px 0; }
+.faq details:last-child { border-bottom: 0; }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--green); font-size: 26px; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 6px 0 4px; color: var(--muted); max-width: 72ch; }
+
+footer.site { padding: 8px 0 44px; color: var(--ink); font-size: 14px; }
+footer.site .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
+footer.site p { margin: 0 0 2px; }
+
+@media (max-width: 1020px) {
+  ol.steps { grid-template-columns: repeat(3, 1fr); }
+  ol.steps > li:nth-child(3)::after { display: none; }
+}
+@media (max-width: 900px) {
+  header.site { grid-template-columns: 1fr auto; }
+  nav.site { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; }
+  .lang-note { justify-self: start; margin: 0; }
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-bottom: 80px; }
+  .rules { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 16px; }
+  ol.steps { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  ol.steps > li::after { display: none; }
+  .demo { padding: 14px 14px 18px; }
+  .demo textarea { font-size: 26px; }
+  .badge { font-size: 13px; }
+  nav.site { gap: 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="#">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E8A50"/><stop offset="1" stop-color="#064B2C"/></linearGradient></defs>
+          <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#g)"/>
+          <circle cx="47" cy="16" r="6" fill="#E0303F"/>
+          <text x="30" y="45" text-anchor="middle" font-family="Hind Siliguri, Kohinoor Bangla, sans-serif" font-weight="700" font-size="34" fill="#fff">অ</text>
+        </svg>
+        Bijoy Bangla for Mac
+      </a>
+      <nav class="site" aria-label="Main">
+        <a href="#install" data-i18n="navInstall">Install</a>
+        <a href="#typing" data-i18n="navTyping">Typing</a>
+        <a href="#faq" data-i18n="navFaq">Questions</a>
+        <a href="https://github.com/nasirahamed-design/bijoybanglaformac">GitHub</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button><i></i><button type="button" data-lang="bn" aria-pressed="false" lang="bn">বাংলা</button>
+      </div>
+      <p class="lang-note">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 7v4.5M8 4.6v.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span data-i18n="langNote">You can switch the website to Bangla (বাংলা).</span>
+      </p>
+    </header>
+
+    <main class="hero">
+      <div>
+        <h1 lang="bn">ম্যাকে<br>বিজয়ে লিখুন</h1>
+        <p class="tag" data-i18n="tagline">The Bijoy keyboard for Mac. Free, Unicode, and it works in every app.</p>
+        <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
+          <span data-i18n="download">Download for Mac</span>
+        </a>
+        <p class="meta" data-i18n="meta">Version 1.0.0 · About 1 MB · macOS 13 Ventura or later · Apple Silicon and Intel · <a href="#install">How to install</a></p>
+      </div>
+
+      <div class="demo">
+        <div class="demo-bar">
+          <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+          <span class="badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M7 14h10" stroke-linecap="round"/></svg>
+            <span data-i18n="demoBadge">Live Typing Demo</span>
+          </span>
+        </div>
+        <label for="pad"><span data-i18n="demoLabel">Press Bijoy keys, for example</span> <b>h f Q V f</b></label>
+        <textarea id="pad" lang="bn" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="strip"></textarea>
+        <div class="strip" id="strip" aria-live="polite"></div>
+        <div class="tries" lang="bn">
+          <button type="button" data-keys="hfQVf">বাংলা</button>
+          <button type="button" data-keys="gfmfv">আমার</button>
+          <button type="button" data-keys="ckfmfv">তোমার</button>
+          <button type="button" data-keys="LbZhfl">ধন্যবাদ</button>
+          <button type="button" data-keys="dhMghdhlZfVW">বিশ্ববিদ্যালয়</button>
+          <button type="button" data-keys="hbgLsv">বন্ধুর</button>
+        </div>
+        <p class="touch-note" data-i18n="touchNote">On a phone or tablet, tap a word to watch it being typed.</p>
+      </div>
+    </main>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 C 300 10, 560 90, 860 50 S 1300 20, 1440 55 V90 H0 Z"/></svg>
+</div>
+
+<section class="install" id="install">
+  <div class="wrap">
+    <div class="tile" aria-hidden="true">ব</div>
+    <h2 data-i18n="installTitle">Install on your Mac</h2>
+    <p class="sub" data-i18n="installSub">Follow the installer, approve the input source, then sign out and back in.</p>
+
+    <ol class="steps">
+      <li>
+        <div class="mini" aria-hidden="true">
+          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
+          <div class="body">
+            <div class="side"><div class="on">Introduction</div><div>Destination</div><div>Installation</div><div>Summary</div></div>
+            <div class="main"><b>Bijoy Bangla <span class="bn-mini">বিজয় বাংলা</span></b>Type Unicode Bangla on your Mac with the Bijoy keyboard layout, in every app.
+              <ul><li>Adds <span class="bn-mini">বাংলা (বিজয়)</span> and English to the input menu</li><li>Switch with Control-Space</li><li>macOS 13 or later</li></ul>
+              <span class="dim">At the end you will be asked to log out.</span></div>
+          </div>
+          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Continue</span></div>
+        </div>
+        <div class="step-head"><span class="num">1</span><div><strong data-i18n="s1t">Welcome</strong><p data-i18n="s1d">Review what the keyboard adds.</p></div></div>
+      </li>
+      <li>
+        <div class="mini" aria-hidden="true">
+          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
+          <div class="body">
+            <div class="side"><div>Introduction</div><div class="on">Destination</div><div>Installation</div><div>Summary</div></div>
+            <div class="main"><b>Select a Destination</b>How do you want to install this software?
+              <div class="choice">Install for all users of this computer</div>
+              <span class="dim">Installing this software requires 1.1 MB of space.</span></div>
+          </div>
+          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Continue</span></div>
+        </div>
+        <div class="step-head"><span class="num">2</span><div><strong data-i18n="s2t">Choose destination</strong><p data-i18n="s2d">Select where to install.</p></div></div>
+      </li>
+      <li>
+        <div class="mini" aria-hidden="true">
+          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
+          <div class="body">
+            <div class="side"><div>Introduction</div><div>Destination</div><div class="on">Installation</div><div>Summary</div></div>
+            <div class="main"><b>Standard Install on "Macintosh HD"</b>This will take 1.1 MB of space on your computer.<br><br><span class="dim">Click Install to perform a standard installation of this software for all users of this computer.</span></div>
+          </div>
+          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Install</span></div>
+        </div>
+        <div class="step-head"><span class="num">3</span><div><strong data-i18n="s3t">Install</strong><p data-i18n="s3d">Confirm the standard installation.</p></div></div>
+      </li>
+      <li>
+        <div class="mini settings" aria-hidden="true">
+          <div class="tb"><i></i><i></i><i></i>Keyboard</div>
+          <div class="ghost"></div><div class="ghost" style="width:60%"></div><div class="ghost"></div><div class="ghost" style="width:75%"></div><div class="ghost"></div>
+          <div class="alert"><b>Allow "Bijoy Bangla" to be enabled?</b>The developer of this input source will be able to access anything you type while using it.
+            <div class="row"><span class="btn">Don't Allow</span><span class="btn blue">Allow</span></div></div>
+        </div>
+        <div class="step-head"><span class="num">4</span><div><strong data-i18n="s4t">Allow the input source</strong><p data-i18n="s4d">When macOS asks, click Allow for Bijoy Bangla.</p></div></div>
+      </li>
+      <li>
+        <div class="mini" aria-hidden="true">
+          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
+          <div class="body">
+            <div class="side"><div>Introduction</div><div>Destination</div><div>Installation</div><div class="on">Summary</div></div>
+            <div class="main"><b>Almost done</b>After you click Log Out and log back in:
+              <ol><li>Click the input menu near the clock.</li><li>Choose <span class="bn-mini">বাংলা (বিজয়)</span> and start typing.</li></ol>
+              <span class="dim">The full steps are in Activation Guide.pdf in the download.</span></div>
+          </div>
+          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Log Out</span></div>
+        </div>
+        <div class="step-head"><span class="num">5</span><div><strong data-i18n="s5t">Finish and activate</strong><p data-i18n="s5d">Log out, sign back in, then choose বাংলা (বিজয়) from the input menu.</p></div></div>
+      </li>
+    </ol>
+
+    <p class="note-banner"><span class="i" aria-hidden="true">i</span><span class="bar" aria-hidden="true"></span><span data-i18n="banner">macOS requires you to allow the input source <b>before using it.</b> Stuck? See the <a href="Activation-Guide.pdf">Activation Guide (PDF)</a>.</span></p>
+  </div>
+</section>
+
+<section class="typing" id="typing">
+  <div class="wrap">
+    <h2 data-i18n="typingTitle">Typing works the Bijoy way</h2>
+    <p class="lead" data-i18n="typingLead">Same keys you already know. Switch between Bangla and English with Control-Space or the Globe key. The full key chart is in the input menu under Show Bijoy Keyboard Layout.</p>
+    <div class="rules">
+      <div class="rule-card">
+        <div class="rule"><span class="what"><b lang="bn">কি</b><span data-i18n="r1">◌ি ◌ে ◌ৈ go before the letter</span></span><kbd>d j</kbd></div>
+        <div class="rule"><span class="what"><b lang="bn">আ ই এ</b><span data-i18n="r2">full vowels start with g</span></span><kbd>g f</kbd></div>
+        <div class="rule"><span class="what"><b lang="bn">কর্ম</b><span data-i18n="r3">reph after the letter</span></span><kbd>j m A</kbd></div>
+      </div>
+      <div class="rule-card">
+        <div class="rule"><span class="what"><b lang="bn">কো</b><span data-i18n="r4">◌ো and ◌ৌ</span></span><kbd>c j f</kbd></div>
+        <div class="rule"><span class="what"><b lang="bn">ক্ষ</b><span data-i18n="r5">g joins letters</span></span><kbd>j g N</kbd></div>
+        <div class="rule"><span class="what"><b lang="bn">প্র</b><span data-i18n="r6">র-ফলা and য-ফলা</span></span><kbd>r z</kbd></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2 data-i18n="faqTitle">Questions</h2>
+    <div class="faq-card">
+      <details><summary data-i18n="q1">Is it really free?</summary><p data-i18n="a1">Yes. No trial, no account, no ads. The source code is open on GitHub under the MIT licence.</p></details>
+      <details><summary data-i18n="q2">Will my text work on websites and Facebook?</summary><p data-i18n="a2">Yes. It types standard Unicode Bangla, so it shows correctly in browsers, Word, Pages, WordPress, Facebook and with any Bangla font. It does not use the old SutonnyMJ-style encoding.</p></details>
+      <details><summary data-i18n="q3">Why isn't it on the Mac App Store?</summary><p data-i18n="a3">Apple does not allow keyboards (input methods) in the Mac App Store. This download is signed with a Developer ID and checked by Apple (notarized), so it opens without security warnings.</p></details>
+      <details><summary data-i18n="q4">How do I uninstall it?</summary><p data-i18n="a4">Click the input menu in the top bar, choose Uninstall Bijoy Bangla, enter your Mac password, then log out and back in.</p></details>
+      <details><summary data-i18n="q5">Something typed wrong. How do I report it?</summary><p data-i18n="a5">Open an issue on <a href="https://github.com/nasirahamed-design/bijoybanglaformac/issues">GitHub</a> with the keys you pressed and the word you expected.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap row">
+    <div>
+      <p data-i18n="foot1">© 2026 Nasir Ahamed. Open source under the MIT licence.</p>
+      <p data-i18n="foot2">Independent project, not affiliated with Ananda Computers. Bijoy is a trademark of its owner.</p>
+    </div>
+    <div><a href="https://github.com/nasirahamed-design/bijoybanglaformac" data-i18n="footGit">Source on GitHub</a></div>
+  </div>
+</footer>
+
+<script src="bijoy-engine.js"></script>
+<script>
+(function () {
+  /* ---------- Language switch ---------- */
+  const BN = {
+    navInstall: "ইনস্টল", navTyping: "টাইপিং", navFaq: "প্রশ্ন",
+    langNote: "ওয়েবসাইটটি ইংরেজিতেও (English) দেখতে পারেন।",
+    tagline: "ম্যাকের জন্য বিজয় কীবোর্ড। ফ্রি, ইউনিকোড, আর সব অ্যাপে কাজ করে।",
+    download: "ম্যাকের জন্য ডাউনলোড করুন",
+    meta: 'ভার্সন ১.০.০ · প্রায় ১ MB · macOS 13 Ventura বা নতুন · Apple Silicon ও Intel · <a href="#install">কীভাবে ইনস্টল করবেন</a>',
+    demoBadge: "লাইভ টাইপিং ডেমো", demoLabel: "বিজয়ের কী চাপুন, যেমন",
+    touchNote: "ফোন বা ট্যাবলেটে একটি শব্দে ট্যাপ করুন, টাইপ হতে দেখবেন।",
+    hintEmpty: "আপনার চাপা কী-গুলো এখানে দেখাবে", hintSpace: "স্পেস চাপলে শব্দ শেষ হয়",
+    installTitle: "আপনার ম্যাকে ইনস্টল করুন",
+    installSub: "ইনস্টলার অনুসরণ করুন, ইনপুট সোর্সের অনুমতি দিন, তারপর লগ আউট করে আবার লগ ইন করুন।",
+    s1t: "স্বাগতম", s1d: "কীবোর্ডে কী কী যোগ হবে দেখে নিন।",
+    s2t: "জায়গা বেছে নিন", s2d: "কোথায় ইনস্টল হবে বেছে নিন।",
+    s3t: "ইনস্টল", s3d: "সাধারণ ইনস্টলেশন নিশ্চিত করুন।",
+    s4t: "ইনপুট সোর্সের অনুমতি", s4d: "macOS জিজ্ঞেস করলে বিজয় বাংলার জন্য Allow চাপুন।",
+    s5t: "শেষ করে চালু করুন", s5d: "লগ আউট করে আবার লগ ইন করুন, তারপর ইনপুট মেনু থেকে বাংলা (বিজয়) বেছে নিন।",
+    banner: 'ব্যবহারের আগে macOS-এ ইনপুট সোর্সের <b>অনুমতি দিতে হয়।</b> সমস্যা হলে দেখুন <a href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a>।',
+    typingTitle: "বিজয়ের নিয়মেই টাইপ",
+    typingLead: "যে কী-গুলো আপনি জানেন, সেগুলোই। Control-Space বা গ্লোব কী দিয়ে বাংলা ও ইংরেজির মধ্যে বদলান। পুরো কী-চার্ট পাবেন ইনপুট মেনুর Show Bijoy Keyboard Layout-এ।",
+    r1: "◌ি ◌ে ◌ৈ অক্ষরের আগে", r2: "স্বরবর্ণ শুরু হয় g দিয়ে", r3: "রেফ অক্ষরের পরে",
+    r4: "◌ো আর ◌ৌ", r5: "g দিয়ে যুক্তাক্ষর", r6: "র-ফলা আর য-ফলা",
+    faqTitle: "প্রশ্ন ও উত্তর",
+    q1: "এটা কি সত্যিই ফ্রি?", a1: "হ্যাঁ। কোনো ট্রায়াল, অ্যাকাউন্ট বা বিজ্ঞাপন নেই। সোর্স কোড GitHub-এ MIT লাইসেন্সে উন্মুক্ত।",
+    q2: "ওয়েবসাইট আর ফেসবুকে কি লেখা ঠিকমতো দেখাবে?", a2: "হ্যাঁ। এটি স্ট্যান্ডার্ড ইউনিকোড বাংলা লেখে, তাই ব্রাউজার, Word, Pages, WordPress, ফেসবুক আর যেকোনো বাংলা ফন্টে ঠিকমতো দেখায়। পুরোনো SutonnyMJ ধরনের এনকোডিং ব্যবহার করে না।",
+    q3: "Mac App Store-এ নেই কেন?", a3: "Apple, Mac App Store-এ কীবোর্ড (ইনপুট মেথড) রাখার অনুমতি দেয় না। এই ডাউনলোডটি Developer ID দিয়ে সাইন করা এবং Apple-এর যাচাই (notarized) করা, তাই নিরাপত্তা সতর্কবার্তা ছাড়াই খোলে।",
+    q4: "কীভাবে আনইনস্টল করব?", a4: "টপ বারের ইনপুট মেনুতে ক্লিক করে Uninstall Bijoy Bangla বেছে নিন, ম্যাকের পাসওয়ার্ড দিন, তারপর লগ আউট করে আবার লগ ইন করুন।",
+    q5: "ভুল টাইপ হলে কীভাবে জানাব?", a5: 'যে কী-গুলো চেপেছেন আর কোন শব্দ আশা করেছিলেন তা লিখে <a href="https://github.com/nasirahamed-design/bijoybanglaformac/issues">GitHub</a>-এ একটি issue খুলুন।',
+    foot1: "© ২০২৬ নাসির আহামেদ। MIT লাইসেন্সে ওপেন সোর্স।",
+    foot2: "স্বাধীন প্রকল্প, আনন্দ কম্পিউটার্সের সঙ্গে সম্পর্কিত নয়। বিজয় তার মালিকের ট্রেডমার্ক।",
+    footGit: "GitHub-এ সোর্স কোড",
+  };
+  const EN = { hintEmpty: "The keys you press show up here", hintSpace: "Space finishes a word" };
+  document.querySelectorAll("[data-i18n]").forEach(el => { EN[el.dataset.i18n] = el.innerHTML; });
+  let lang = "en";
+
+  function t(key) { return (lang === "bn" ? BN : EN)[key]; }
+
+  function setLang(next) {
+    lang = next;
+    document.documentElement.lang = next;
+    document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === next)));
+    try { localStorage.setItem("lang", next); } catch (e) {}
+    draw();
+  }
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+
+  /* ---------- Typing demo ---------- */
+  const pad = document.getElementById("pad");
+  const strip = document.getElementById("strip");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let committed = "", word = [], timer = null;
+
+  function draw() {
+    pad.value = committed + Bijoy.render(word);
+    if (document.activeElement === pad) pad.setSelectionRange(pad.value.length, pad.value.length);
+    strip.textContent = "";
+    if (!word.length) {
+      const hint = document.createElement("span");
+      hint.className = "hint";
+      hint.textContent = t(committed ? "hintSpace" : "hintEmpty");
+      strip.append(hint);
+      return;
+    }
+    word.forEach((k, i) => {
+      const cap = document.createElement("span");
+      cap.className = "cap" + (i === word.length - 1 ? " on" : "");
+      cap.textContent = k;
+      strip.append(cap);
+    });
+    const eq = document.createElement("span"); eq.className = "eq"; eq.textContent = "=";
+    const res = document.createElement("span"); res.className = "result"; res.lang = "bn"; res.textContent = Bijoy.render(word);
+    strip.append(eq, res);
+  }
+
+  function commit(extra) { committed += Bijoy.render(word) + (extra || ""); word = []; }
+  function stopAuto() { if (timer) { clearTimeout(timer); timer = null; } }
+
+  pad.addEventListener("keydown", e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    stopAuto();
+    if (e.key === "Backspace") {
+      e.preventDefault();
+      if (word.length) word.pop(); else committed = Array.from(committed).slice(0, -1).join("");
+      draw(); return;
+    }
+    const ch = Bijoy.usChar(e.code, e.shiftKey);
+    if (ch && Bijoy.isMapped(ch)) { e.preventDefault(); word.push(ch); draw(); return; }
+    if (e.key === " " || e.key === "Enter") { e.preventDefault(); commit(e.key === " " ? " " : "\n"); draw(); return; }
+    if (e.key.length === 1) { e.preventDefault(); commit(e.key); draw(); }
+  });
+  // Phone keyboards send no key codes; keep the box showing the demo text.
+  pad.addEventListener("input", () => { if (pad.value !== committed + Bijoy.render(word)) draw(); });
+
+  function play(keys) {
+    stopAuto();
+    commit(committed && !committed.endsWith(" ") ? " " : "");
+    if (reduce) { word = keys.split(""); draw(); return; }
+    let i = 0;
+    const step = () => {
+      if (i < keys.length) { word.push(keys[i++]); draw(); timer = setTimeout(step, 230); }
+      else timer = null;
+    };
+    step();
+  }
+  document.querySelectorAll(".tries button").forEach(b =>
+    b.addEventListener("click", () => { play(b.dataset.keys); pad.focus({ preventScroll: true }); }));
+
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (e) {}
+  setLang(saved || ((navigator.language || "").startsWith("bn") ? "bn" : "en"));
+  timer = setTimeout(() => play("hfQVf"), reduce ? 0 : 700);
+})();
+</script>
+</body>
+</html>

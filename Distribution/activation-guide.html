@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Bijoy Bangla - Activation Guide</title>
+<style>
+@page { size: A4; margin: 18mm 18mm 16mm; @bottom-center { content: "Bijoy Bangla Activation Guide  ·  page " counter(page); font: 8.5pt "Noto Sans", sans-serif; color: #7a7f85; } }
+body { font: 10.5pt/1.5 "Noto Sans", "Noto Sans Bengali", sans-serif; color: #1a1c1e; }
+.bn { font-family: "Noto Sans Bengali", "Noto Sans", sans-serif; }
+.hero { background: linear-gradient(90deg, #04583a, #0d8c55 55%, #04583a); color: #fff; border-radius: 10px; padding: 18px 22px; margin-bottom: 18px; position: relative; }
+.hero:after { content: ""; position: absolute; right: 22px; top: 18px; width: 14px; height: 14px; border-radius: 50%; background: #dc1f33; }
+.hero h1 { margin: 0; font-size: 22pt; }
+.hero p { margin: 4px 0 0; opacity: .9; }
+h2 { color: #0b5c37; font-size: 14pt; margin: 22px 0 6px; border-bottom: 1.5px solid #cfe9d6; padding-bottom: 3px; }
+ol.steps { padding-left: 0; list-style: none; counter-reset: s; }
+ol.steps > li { counter-increment: s; position: relative; padding-left: 34px; margin-bottom: 9px; }
+ol.steps > li:before { content: counter(s); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: #dff3e3; color: #0b5c37; font-weight: 700; text-align: center; line-height: 22px; font-size: 9.5pt; }
+b.ui { color: #0b5c37; }
+.note { background: #f3faf5; border: 1px solid #cfe9d6; border-radius: 8px; padding: 8px 12px; margin: 10px 0; }
+.warn { background: #fff4f4; border-color: #f2c4c8; }
+table { border-collapse: collapse; width: 100%; margin: 6px 0 4px; font-size: 10pt; }
+th { text-align: left; background: #dff3e3; color: #0b5c37; padding: 5px 8px; }
+td { border-bottom: 1px solid #e6e8ea; padding: 5px 8px; vertical-align: top; }
+td.k, code { font-family: "Noto Sans Mono", monospace; font-size: 9.5pt; }
+code { background: #f1f2f4; padding: 0 4px; border-radius: 3px; }
+.kb td { text-align: center; border: 1px solid #dfe2e5; padding: 3px 2px; width: 9%; }
+.kb .big { font-size: 13pt; font-weight: 700; display: block; }
+.kb .sm { font-size: 8pt; color: #6b7076; }
+.pb { page-break-before: always; }
+</style></head>
+<body>
+
+<div class="hero">
+  <h1>Bijoy Bangla <span class="bn">বিজয় বাংলা</span></h1>
+  <p>Activation Guide · Type Unicode Bangla on your Mac with the Bijoy keyboard layout</p>
+</div>
+
+<p>You need a Mac with <b>macOS 13 Ventura or later</b> (Apple Silicon or Intel) and your Mac login password. Installing takes about two minutes, including one log out.</p>
+
+<h2>1. Install</h2>
+<ol class="steps">
+  <li>Double-click <b class="ui">BijoyBangla-x.x.x.dmg</b> in your Downloads folder. A window opens with two files.</li>
+  <li>Double-click <b class="ui">Install Bijoy Bangla.pkg</b>.</li>
+  <li>Click <b class="ui">Continue</b>, then <b class="ui">Install</b>. Enter your Mac password when asked.</li>
+  <li>When the installer says it is finished, click <b class="ui">Log Out</b>. Save any open work first.</li>
+  <li>Log back in. macOS only loads a new keyboard after a fresh login.</li>
+</ol>
+
+<h2>2. Turn it on</h2>
+<ol class="steps">
+  <li>Look for the <b>input menu</b> in the top bar, near the clock (a small icon such as <b>A</b> or a flag). If you can see it, skip to step 5.</li>
+  <li>Otherwise open <b class="ui">Apple menu  &gt;  System Settings  &gt;  Keyboard</b>.</li>
+  <li>Under <b>Text Input</b>, click <b class="ui">Edit…</b> next to <b>Input Sources</b>.</li>
+  <li>Turn on <b class="ui">Show Input menu in menu bar</b>. Check that <b class="bn">বাংলা (বিজয়)</b> is in the list on the left. If it is missing, click <b class="ui">+</b>, choose <b>Bangla</b>, select <b>Bijoy Bangla</b> and click <b class="ui">Add</b>. Click <b class="ui">Done</b>.</li>
+  <li>Click the input menu and choose <b class="bn">বাংলা (বিজয়)</b>. The icon changes to <b class="bn">বা</b>.</li>
+  <li>Open TextEdit and type <code>hfQVf</code>. You should see <b class="bn">বাংলা</b>.</li>
+</ol>
+
+<h2>3. Switch between Bangla and English</h2>
+<table>
+  <tr><th>Way</th><th>How</th></tr>
+  <tr><td>Keyboard</td><td>Press <b>Control-Space</b> to flip between the last two input sources. On newer Macs the <b>🌐 (Globe)</b> key does the same.</td></tr>
+  <tr><td>Top bar</td><td>Click the input menu and choose <b class="bn">বাংলা (বিজয়)</b> or <b>English</b>.</td></tr>
+</table>
+<div class="note">If Control-Space does nothing, open <b>System Settings &gt; Keyboard &gt; Keyboard Shortcuts &gt; Input Sources</b> and tick <b>Select the previous input source</b>.</div>
+
+<h2 class="pb">4. Typing with Bijoy</h2>
+<p>The word you are typing appears underlined. It is finished when you press Space, Return, punctuation or click elsewhere. Backspace corrects the word you are still typing. For a full picture of the keys, choose <b class="ui">Show Bijoy Keyboard Layout…</b> from the input menu.</p>
+<table>
+  <tr><th style="width:34%">You want</th><th style="width:30%">Type</th><th>Result</th></tr>
+  <tr><td class="bn">ি ে ৈ (before the letter)</td><td class="k">d j  ·  c j  ·  C h</td><td class="bn">কি · কে · বৈ</td></tr>
+  <tr><td class="bn">ো ৌ</td><td class="k">c j f  ·  c j X</td><td class="bn">কো · কৌ</td></tr>
+  <tr><td class="bn">আ ই ঈ উ ঊ ঋ এ ঐ ঔ</td><td class="k">gf gd gD gs gS ga gc gC gX</td><td>g first, then the kar</td></tr>
+  <tr><td class="bn">অ  ও</td><td class="k">F  ·  x</td><td class="bn">অ · ও</td></tr>
+  <tr><td class="bn">যুক্তাক্ষর</td><td class="k">j g N  ·  n g k</td><td class="bn">ক্ষ · স্ত</td></tr>
+  <tr><td class="bn">রেফ, র-ফলা, য-ফলা</td><td class="k">j m A  ·  r z  ·  j Z</td><td class="bn">কর্ম · প্র · ক্য</td></tr>
+  <tr><td>Visible hasanta</td><td class="k">j g g</td><td class="bn">ক্‌</td></tr>
+  <tr><td class="bn">ং ঃ ঁ ৎ ৳ ।</td><td class="k">Q  |  &amp;  \  $  G</td><td>Shift where shown</td></tr>
+</table>
+
+<p style="margin-top:12px"><b>Key map</b> (top: with Shift · bottom: without Shift)</p>
+<table class="kb">
+  <tr><td><span class="sm">Q · ং</span><span class="big bn">ঙ</span></td><td><span class="sm">W · য়</span><span class="big bn">য</span></td><td><span class="sm">E · ঢ</span><span class="big bn">ড</span></td><td><span class="sm">R · ফ</span><span class="big bn">প</span></td><td><span class="sm">T · ঠ</span><span class="big bn">ট</span></td><td><span class="sm">Y · ছ</span><span class="big bn">চ</span></td><td><span class="sm">U · ঝ</span><span class="big bn">জ</span></td><td><span class="sm">I · ঞ</span><span class="big bn">হ</span></td><td><span class="sm">O · ঘ</span><span class="big bn">গ</span></td><td><span class="sm">P · ঢ়</span><span class="big bn">ড়</span></td></tr>
+  <tr><td><span class="sm">A · র্</span><span class="big bn">◌ৃ</span></td><td><span class="sm">S · ◌ূ</span><span class="big bn">◌ু</span></td><td><span class="sm">D · ◌ী</span><span class="big bn">◌ি</span></td><td><span class="sm">F · অ</span><span class="big bn">◌া</span></td><td><span class="sm">G · ।</span><span class="big bn">◌্</span></td><td><span class="sm">H · ভ</span><span class="big bn">ব</span></td><td><span class="sm">J · খ</span><span class="big bn">ক</span></td><td><span class="sm">K · থ</span><span class="big bn">ত</span></td><td><span class="sm">L · ধ</span><span class="big bn">দ</span></td><td></td></tr>
+  <tr><td><span class="sm">Z · ◌্য</span><span class="big bn">◌্র</span></td><td><span class="sm">X · ◌ৗ</span><span class="big bn">ও</span></td><td><span class="sm">C · ◌ৈ</span><span class="big bn">◌ে</span></td><td><span class="sm">V · ল</span><span class="big bn">র</span></td><td><span class="sm">B · ণ</span><span class="big bn">ন</span></td><td><span class="sm">N · ষ</span><span class="big bn">স</span></td><td><span class="sm">M · শ</span><span class="big bn">ম</span></td><td colspan="3" style="text-align:left;padding-left:8px"><span class="sm">1-0 = ১-০ · Shift-4 ৳ · Shift-7 ঁ · \ ৎ · Shift-\ ঃ</span></td></tr>
+</table>
+
+<h2>5. Troubleshooting</h2>
+<table>
+  <tr><th style="width:38%">Problem</th><th>Fix</th></tr>
+  <tr><td><span class="bn">বাংলা (বিজয়)</span> is not in the list</td><td>Log out and back in once more. Then repeat section 2.</td></tr>
+  <tr><td>No input menu in the top bar</td><td>Turn on <b>Show Input menu in menu bar</b> (section 2, step 4).</td></tr>
+  <tr><td>Letters come out wrong</td><td>Check the input menu shows <b class="bn">বা</b>, not English or ABC.</td></tr>
+  <tr><td>Text shows boxes or broken letters</td><td>The app's font has no Bangla. Choose a Bangla font such as Kohinoor Bangla or Noto Sans Bengali.</td></tr>
+  <tr><td>Installer says it can't be opened</td><td>Download the DMG again from the official website. Do not use copies from other sources.</td></tr>
+</table>
+
+<h2>6. Uninstall</h2>
+<p>Click the input menu and choose <b class="ui">Uninstall Bijoy Bangla…</b>, then enter your Mac password. Log out and back in to finish.</p>
+
+</body></html>
