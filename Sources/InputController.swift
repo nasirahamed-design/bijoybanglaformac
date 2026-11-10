@@ -59,6 +59,7 @@ final class BijoyInputController: IMKInputController {
     override func activateServer(_ sender: Any!) {
         super.activateServer(sender)
         if let m = InputMode.fromSystem() { InputMode.current = m }
+        InScriptGuard.apply()
     }
 
     override func deactivateServer(_ sender: Any!) {
@@ -193,6 +194,11 @@ final class BijoyInputController: IMKInputController {
         about.target = self
         menu.addItem(about)
 
+        let inscript = NSMenuItem(title: "Keep Bangla - InScript Off", action: #selector(toggleInScript(_:)), keyEquivalent: "")
+        inscript.target = self
+        inscript.state = InScriptGuard.isOn ? .on : .off
+        menu.addItem(inscript)
+
         menu.addItem(.separator())
 
         let uninstall = NSMenuItem(title: "Uninstall Bijoy Bangla…", action: #selector(uninstallApp(_:)), keyEquivalent: "")
@@ -214,6 +220,11 @@ final class BijoyInputController: IMKInputController {
     @objc func selectBangla(_ sender: Any?) { switchMode(.bangla) }
     @objc func selectClassic(_ sender: Any?) { switchMode(.classic) }
     @objc func selectEnglish(_ sender: Any?) { switchMode(.english) }
+
+    @objc func toggleInScript(_ sender: Any?) {
+        InScriptGuard.isOn.toggle()
+        InScriptGuard.apply()
+    }
 
     @objc func showLayout(_ sender: Any?) {
         LayoutWindow.shared.show()

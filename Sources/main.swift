@@ -33,6 +33,11 @@ guard let connectionName = Bundle.main.infoDictionary?["InputMethodConnectionNam
 // After an update that adds a mode (such as বিজয় ক্লাসিক), switch it on once.
 InputSources.enableNewModesOnce()
 
+// macOS re-adds Apple's "Bangla - InScript" at login; switch it off again
+// (now, and once more after login has settled) unless the user wants it.
+InScriptGuard.apply()
+DispatchQueue.main.asyncAfter(deadline: .now() + 15) { InScriptGuard.apply() }
+
 // Keep the server alive for the life of the process.
 withExtendedLifetime(server) {
     let app = NSApplication.shared
