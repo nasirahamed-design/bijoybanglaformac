@@ -156,7 +156,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --green: #0B6B3F;
@@ -239,17 +239,22 @@ nav.site a:hover { color: var(--green); }
 .no-tw .tw-text { display: none; }
 .hero .tag { font-size: 22px; line-height: 1.45; margin: 16px 0 26px; max-width: 30ch; }
 .download {
-  display: inline-flex; align-items: center; gap: 14px; color: #fff;
+  display: inline-flex; align-items: center; gap: 16px; color: #fff;
   background: linear-gradient(180deg, var(--green-2), var(--green));
-  padding: 16px 30px; border-radius: 14px; font-weight: 600; font-size: 20px; text-decoration: none;
-  box-shadow: 0 10px 22px -12px rgba(6, 75, 44, .8), inset 0 1px 0 rgba(255,255,255,.18);
+  padding: 18px 34px; border-radius: 14px; font-weight: 700; font-size: 21px; text-decoration: none;
+  box-shadow: 0 12px 24px -12px rgba(6, 75, 44, .8), inset 0 1px 0 rgba(255,255,255,.18);
 }
 :root[data-theme="dark"] .download { color: #0F1712; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .download { color: #0F1712; } }
 .download:hover { filter: brightness(1.06); }
-.download svg { width: 22px; height: 22px; }
-.meta { color: var(--muted); font-size: 15px; margin-top: 14px; max-width: 46ch; }
-.meta a { color: var(--green); }
+.download svg { width: 24px; height: 24px; flex: none; }
+.meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 22px; }
+.meta .m1 { font-size: 18px; color: var(--ink); opacity: .82; }
+.meta .m2 { font-size: 15.5px; color: var(--muted); }
+.meta .how { margin-top: 18px; color: var(--green); font-size: 18px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.meta .how:hover { color: var(--green-deep); }
+/* Bangla: Noto Sans Bengali reads better than Hind Siliguri at small sizes */
+html[lang="bn"] .meta .m1, html[lang="bn"] .meta .m2 { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
 
 /* Typing demo */
 .demo { background: var(--card); border-radius: 22px; padding: 18px 22px 22px; box-shadow: 0 0 0 1px var(--line), var(--shadow); }
@@ -430,11 +435,11 @@ footer.site p { margin: 0 0 2px; }
       <div>
         <h1 lang="bn" class="tw" aria-label="ম্যাকে বিজয় লেআউটে বাংলা লিখুন"><span class="tw-ghost" aria-hidden="true">ম্যাকে বিজয় লেআউটে<br>বাংলা লিখুন</span><span class="tw-text" aria-hidden="true"></span></h1>
         <p class="tag" data-i18n="tagline">Type Bangla on your Mac with the familiar Bijoy layout. Free, open source and ready for macOS.</p>
-        <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
-          <span data-i18n="download">Download for Mac</span>
-        </a>
-        <p class="meta" data-i18n="meta">Version <span class="ver">1.0.1</span> · About 1 MB · macOS 13 Ventura or later · Apple Silicon and Intel · <a href="#install">How to install</a></p>
+          <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
+            <span data-i18n="download">Download for Mac</span>
+          </a>
+          <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.3</span> · About 1 MB</span><span class="m2">Requires macOS 13 Ventura or later · Apple silicon and Intel</span><a class="how" href="#install">How to install <span aria-hidden="true">→</span></a></div>
       </div>
 
       <div class="demo">
@@ -790,7 +795,7 @@ footer.site p { margin: 0 0 2px; }
     navInstall: "ইনস্টলেশন", navTyping: "টাইপের নিয়ম", navAbout: "পরিচিতি", navFaq: "সাধারণ জিজ্ঞাসা", aboutTitle: "ম্যাকের জন্য পরিচিত বিজয় কীবোর্ড",
     tagline: "বিজয় লেআউটে ম্যাকে বাংলা লিখুন - সহজে, বিনামূল্যে।",
     download: "ম্যাকের জন্য ডাউনলোড",
-    meta: 'সংস্করণ <span class="ver">১.০.১</span> · প্রায় ১ MB · macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel · <a href="#install">ইনস্টল করার নিয়ম</a>',
+    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span> · প্রায় ১ MB</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel</span><a class="how" href="#install">ইনস্টল করার নির্দেশিকা <span aria-hidden="true">→</span></a>',
     demoBadge: "টাইপ করে দেখুন", demoLabel: "বিজয় লেআউটে টাইপ করুন, যেমন",
     touchNote: "ফোন বা ট্যাবলেটে একটি নমুনা শব্দে ট্যাপ করে টাইপের ধাপ দেখুন।",
     hintEmpty: "আপনার চাপা কী-গুলো এখানে দেখা যাবে", hintSpace: "স্পেস চাপলে শব্দটি সম্পূর্ণ হবে",
