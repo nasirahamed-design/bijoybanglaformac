@@ -31,30 +31,52 @@ func centered(_ text: String, font: NSFont, color: NSColor, in size: CGFloat, yN
     s.draw(at: NSPoint(x: (size - b.width) / 2, y: (size - b.height) / 2 + yNudge * size))
 }
 
-/// Template menu icon: black glyph inside a rounded outline, 16pt @1x and @2x.
-func menuIcon(_ text: String, bangla: Bool, name: String) throws {
-    let image = NSImage(size: NSSize(width: 16, height: 16))
-    for px in [16, 32] {
-        let r = rep(pixels: px) { s in
-            let inset = s * 0.06
-            let box = NSBezierPath(roundedRect: NSRect(x: inset, y: inset, width: s - 2 * inset, height: s - 2 * inset),
-                                   xRadius: s * 0.2, yRadius: s * 0.2)
-            NSColor.black.setStroke()
-            box.lineWidth = s / 16
-            box.stroke()
-            let font = bangla ? banglaFont(s * 0.62, bold: true) : NSFont.systemFont(ofSize: s * 0.5, weight: .bold)
-            centered(text, font: font, color: .black, in: s, yNudge: bangla ? 0.02 : 0)
-        }
-        r.size = NSSize(width: 16, height: 16)
+/// Template menu icon in the style of Apple's own layout badges (like the
+/// Irish "A"): a solid rounded badge, wider than tall (22 x 15 pt on a
+/// 22 x 16 pt canvas, matching Apple's), with the letter cut out of it.
+/// macOS tints template images, so it looks right in light and dark menus.
+func menuIcon(_ letter: String, name: String) throws {
+    let w: CGFloat = 22, h: CGFloat = 16
+    let image = NSImage(size: NSSize(width: w, height: h))
+    for scale in [1, 2] {
+        let k = CGFloat(scale)
+        let r = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(w * k), pixelsHigh: Int(h * k),
+                                 bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+                                 colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0)!
+        NSGraphicsContext.saveGraphicsState()
+        NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: r)
+
+        let badge = NSBezierPath(roundedRect: NSRect(x: 0, y: 0.5 * k, width: w * k, height: 15 * k),
+                                 xRadius: 4 * k, yRadius: 4 * k)
+        NSColor.black.setFill()
+        badge.fill()
+
+        // Cut the letter out of the badge.
+        NSGraphicsContext.current?.compositingOperation = .destinationOut
+        NSGraphicsContext.current?.cgContext.setBlendMode(.destinationOut)   // text drawing follows the CG blend mode
+        let font = NSFont.systemFont(ofSize: 12.5 * k, weight: .bold)
+        let attrs: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: NSColor.black]
+        let str = NSAttributedString(string: letter, attributes: attrs)
+        let size = str.size()
+        // Centre the capital letter in the badge (its middle is at 8 pt):
+        // the baseline goes half a cap height below that, and draw(at:)
+        // takes the bottom of the line box, one descender below the baseline.
+        let baseline = 8 * k - font.capHeight / 2
+        str.draw(at: NSPoint(x: (w * k - size.width) / 2, y: baseline + font.descender))
+        NSGraphicsContext.current?.cgContext.setBlendMode(.normal)
+        NSGraphicsContext.current?.compositingOperation = .sourceOver
+
+        NSGraphicsContext.restoreGraphicsState()
+        r.size = NSSize(width: w, height: h)
         image.addRepresentation(r)
     }
     guard let tiff = image.tiffRepresentation(using: .lzw, factor: 0) else { fatalError("tiff") }
     try tiff.write(to: out.appendingPathComponent(name))
 }
 
-try menuIcon("বা", bangla: true, name: "Bangla.tiff")
-try menuIcon("EN", bangla: false, name: "English.tiff")
-try menuIcon("MJ", bangla: false, name: "Classic.tiff")
+try menuIcon("E", name: "English.tiff")
+try menuIcon("U", name: "Bangla.tiff")
+try menuIcon("C", name: "Classic.tiff")
 
 // App icon (About panel, Finder, installer): the laptop with the flag on its
 // screen, on a light rounded square. Same drawing as Branding/laptop.svg.
