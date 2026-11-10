@@ -55,8 +55,8 @@ def laptop(screen_text=True):
         parts.insert(3, f'<circle cx="178" cy="84" r="44" fill="{RED}"/>')
     else:
         parts.insert(3, f'<circle cx="334" cy="36" r="10" fill="{RED}"/>')
-        d, w = text_path("Bijoy Bangla", 44)
-        parts.append(f'<path transform="translate({200 - w / 2:.2f} 101)" d="{d}" fill="#fff"/>')
+        d, w = text_path("BIJOY BANGLA", 36, tracking=1.5)
+        parts.append(f'<path transform="translate({200 - w / 2:.2f} 97)" d="{d}" fill="#fff"/>')
     return "\n  ".join(parts)
 
 

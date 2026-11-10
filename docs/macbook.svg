@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" class="macbook" viewBox="0 0 800 480" role="img" aria-labelledby="mbTitle">
+<title id="mbTitle">MacBook showing the Bijoy Bangla keyboard layout</title>
+<defs>
+  <linearGradient id="mb-wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E7A49"/><stop offset=".55" stop-color="#075233"/><stop offset="1" stop-color="#03301D"/></linearGradient>
+  <radialGradient id="mb-glow" cx=".78" cy=".2" r=".6"><stop offset="0" stop-color="#E0303F" stop-opacity=".55"/><stop offset="1" stop-color="#E0303F" stop-opacity="0"/></radialGradient>
+  <linearGradient id="mb-deck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9ECEE"/><stop offset=".45" stop-color="#C9CED2"/><stop offset="1" stop-color="#8E959B"/></linearGradient>
+  <linearGradient id="mb-lid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDD2D6"/><stop offset="1" stop-color="#A9B0B5"/></linearGradient>
+  <linearGradient id="mb-shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".10"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <linearGradient id="mb-key" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF2EF"/></linearGradient>
+</defs>
+<ellipse cx="400" cy="466" rx="380" ry="10" fill="#000" opacity=".18"/>
+<rect x="78" y="6" width="644" height="428" rx="22" fill="url(#mb-lid)"/>
+<rect x="81" y="9" width="638" height="422" rx="19" fill="#0B0D0E"/>
+<rect x="93" y="21" width="614" height="404" rx="9" fill="url(#mb-wall)"/>
+<rect x="93" y="21" width="614" height="404" rx="9" fill="url(#mb-glow)"/>
+<rect x="93" y="21" width="614" height="17" fill="#000" opacity=".28"/>
+<circle cx="108" cy="29.5" r="3.4" fill="#fff" opacity=".9"/>
+<rect x="122" y="27.5" width="22" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="154" y="27.5" width="18" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="182" y="27.5" width="20" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="212" y="27.5" width="26" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="606" y="23.5" width="18" height="12" rx="3" fill="#fff"/>
+<text x="615" y="33" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" font-weight="700" fill="#075233">U</text>
+<rect x="632" y="27.5" width="18" height="4" rx="2" fill="#fff" opacity=".6"/><rect x="658" y="27.5" width="36" height="4" rx="2" fill="#fff" opacity=".6"/>
+<path d="M368 21 h64 v8 q0 6 -6 6 h-52 q-6 0 -6 -6 z" fill="#0B0D0E"/>
+<rect x="110" y="106" width="580" height="262" rx="12" fill="#000" opacity=".25"/>
+<rect x="110" y="100" width="580" height="262" rx="12" fill="#F8F8F3"/>
+<circle cx="128" cy="116" r="5" fill="#FF5F57"/>
+<circle cx="144" cy="116" r="5" fill="#FEBC2E"/>
+<circle cx="160" cy="116" r="5" fill="#28C840"/>
+<text x="400.0" y="120" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#15201A">Bijoy Bangla Keyboard Layout</text>
+<rect x="130.0" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="147.0" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">`</text>
+<rect x="167.6" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="184.6" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">১</text>
+<text x="171.6" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">1</text>
+<rect x="205.2" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="222.2" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">২</text>
+<text x="209.2" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">2</text>
+<rect x="242.8" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="259.8" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৩</text>
+<text x="246.8" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">3</text>
+<rect x="280.4" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="297.4" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৪</text>
+<text x="310.4" y="147.0" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">৳</text>
+<text x="284.4" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">4</text>
+<rect x="318.0" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="335.0" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৫</text>
+<text x="322.0" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">5</text>
+<rect x="355.6" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="372.6" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৬</text>
+<text x="359.6" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">6</text>
+<rect x="393.2" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="410.2" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৭</text>
+<text x="423.2" y="147.0" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঁ</text>
+<text x="397.2" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">7</text>
+<rect x="430.8" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="447.8" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৮</text>
+<text x="434.8" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">8</text>
+<rect x="468.4" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="485.4" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৯</text>
+<text x="472.4" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">9</text>
+<rect x="506.0" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="523.0" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">০</text>
+<text x="510.0" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">0</text>
+<rect x="543.6" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="560.6" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">-</text>
+<rect x="581.2" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="598.2" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">=</text>
+<rect x="618.8" y="136.0" width="51.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="624.8" y="163.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">delete</text>
+<rect x="130.0" y="173.6" width="51.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="200.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">tab</text>
+<rect x="184.6" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="201.6" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ঙ</text>
+<text x="214.6" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ং</text>
+<text x="188.6" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Q</text>
+<rect x="222.2" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="239.2" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">য</text>
+<text x="252.2" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">য়</text>
+<text x="226.2" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">W</text>
+<rect x="259.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="276.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ড</text>
+<text x="289.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঢ</text>
+<text x="263.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">E</text>
+<rect x="297.4" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="314.4" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">প</text>
+<text x="327.4" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ফ</text>
+<text x="301.4" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">R</text>
+<rect x="335.0" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="352.0" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ট</text>
+<text x="365.0" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঠ</text>
+<text x="339.0" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">T</text>
+<rect x="372.6" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="389.6" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">চ</text>
+<text x="402.6" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ছ</text>
+<text x="376.6" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Y</text>
+<rect x="410.2" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="427.2" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">জ</text>
+<text x="440.2" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঝ</text>
+<text x="414.2" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">U</text>
+<rect x="447.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="464.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">হ</text>
+<text x="477.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঞ</text>
+<text x="451.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">I</text>
+<rect x="485.4" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="502.4" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">গ</text>
+<text x="515.4" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঘ</text>
+<text x="489.4" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">O</text>
+<rect x="523.0" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="540.0" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ড়</text>
+<text x="553.0" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঢ়</text>
+<text x="527.0" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">P</text>
+<rect x="560.6" y="173.6" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="577.6" y="194.6" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">[</text>
+<rect x="598.2" y="173.6" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="615.2" y="194.6" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">]</text>
+<rect x="635.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="652.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ৎ</text>
+<text x="665.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঃ</text>
+<text x="639.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">\</text>
+<rect x="130.0" y="211.2" width="61.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="238.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">caps</text>
+<rect x="194.8" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="211.8" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ৃ</text>
+<text x="224.8" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">র্</text>
+<text x="198.8" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">A</text>
+<rect x="232.4" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="249.4" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ু</text>
+<text x="262.4" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ূ</text>
+<text x="236.4" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">S</text>
+<rect x="270.0" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="287.0" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ি</text>
+<text x="300.0" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ী</text>
+<text x="274.0" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">D</text>
+<rect x="307.6" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="324.6" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌া</text>
+<text x="337.6" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">অ</text>
+<text x="311.6" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">F</text>
+<rect x="345.2" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="362.2" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌্</text>
+<text x="375.2" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">।</text>
+<text x="349.2" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">G</text>
+<rect x="382.8" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="399.8" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ব</text>
+<text x="412.8" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ভ</text>
+<text x="386.8" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">H</text>
+<rect x="420.4" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="437.4" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ক</text>
+<text x="450.4" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">খ</text>
+<text x="424.4" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">J</text>
+<rect x="458.0" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="475.0" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ত</text>
+<text x="488.0" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">থ</text>
+<text x="462.0" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">K</text>
+<rect x="495.6" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="512.6" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">দ</text>
+<text x="525.6" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ধ</text>
+<text x="499.6" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">L</text>
+<rect x="533.2" y="211.2" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="550.2" y="232.2" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">;</text>
+<rect x="570.8" y="211.2" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="587.8" y="232.2" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">'</text>
+<rect x="608.4" y="211.2" width="57.8" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="614.4" y="238.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">return</text>
+<rect x="130.0" y="248.8" width="78.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="275.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">shift</text>
+<rect x="211.8" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="228.8" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌্র</text>
+<text x="241.8" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌্য</text>
+<text x="215.8" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Z</text>
+<rect x="249.4" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="266.4" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ও</text>
+<text x="279.4" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ৗ</text>
+<text x="253.4" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">X</text>
+<rect x="287.0" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="304.0" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ে</text>
+<text x="317.0" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ৈ</text>
+<text x="291.0" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">C</text>
+<rect x="324.6" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="341.6" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">র</text>
+<text x="354.6" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ল</text>
+<text x="328.6" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">V</text>
+<rect x="362.2" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="379.2" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ন</text>
+<text x="392.2" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ণ</text>
+<text x="366.2" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">B</text>
+<rect x="399.8" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="416.8" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">স</text>
+<text x="429.8" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ষ</text>
+<text x="403.8" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">N</text>
+<rect x="437.4" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="454.4" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ম</text>
+<text x="467.4" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">শ</text>
+<text x="441.4" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">M</text>
+<rect x="475.0" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="492.0" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">,</text>
+<rect x="512.6" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="529.6" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">.</text>
+<rect x="550.2" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="567.2" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">/</text>
+<rect x="587.8" y="248.8" width="74.8" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="593.8" y="275.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">shift</text>
+<rect x="130.0" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">fn</text>
+<rect x="177.8" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="183.8" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">control</text>
+<rect x="225.6" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="231.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">option</text>
+<rect x="273.4" y="286.4" width="54.4" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="279.4" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">command</text>
+<rect x="331.4" y="286.4" width="183.6" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="423.2" y="307.4" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">space</text>
+<rect x="518.6" y="286.4" width="54.4" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="524.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">command</text>
+<rect x="576.6" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="582.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">option</text>
+<text x="400.0" y="348" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" fill="#56645C">Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g then a kar = full vowel</tspan></text>
+<path d="M93 21 h337.70000000000005 l-214.89999999999998 404 h-122.80000000000001 z" fill="url(#mb-shine)"/>
+<path d="M14 434 H786 V440 Q786 446 778 448 L740 458 Q730 461 716 461 H84 Q70 461 60 458 L22 448 Q14 446 14 440 Z" fill="url(#mb-deck)"/>
+<rect x="14" y="434" width="772" height="3" fill="#F4F6F7"/>
+<path d="M346 434 h108 v2 q0 5 -6 5 h-96 q-6 0 -6 -5 z" fill="#A3AAAF"/>
+</svg>

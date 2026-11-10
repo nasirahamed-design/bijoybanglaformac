@@ -267,48 +267,32 @@ nav.site a:hover { color: var(--green); }
 section.install { text-align: center; padding: 36px 0 56px; }
 .tile { width: 96px; margin: 0 auto 16px; }
 .tile svg { width: 100%; height: auto; display: block; }
+.mac-hero { width: min(100%, 640px); margin: 0 auto 28px; }
+.mac-hero svg { width: 100%; height: auto; display: block; }
 h2 { font: 700 clamp(32px, 4.4vw, 44px)/1.2 var(--serif); margin: 0 0 8px; }
 .sub { color: var(--muted); font-size: 18px; margin: 0 auto 34px; max-width: 62ch; }
-ol.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; text-align: left; }
-ol.steps > li {
-  position: relative; background: var(--card); border-radius: 16px; padding: 12px 12px 18px;
-  box-shadow: 0 0 0 1px var(--line), 0 6px 18px -14px rgba(6, 75, 44, .4);
-}
-ol.steps > li:not(:last-child)::after {
-  content: ""; position: absolute; right: -19px; top: 110px; width: 16px; height: 16px;
-  background: no-repeat center/16px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11M9 4l4 4-4 4' fill='none' stroke='%230B6B3F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
-.step-head { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; }
-.num { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: var(--paper); display: grid; place-items: center; font-weight: 700; font-size: 16px; }
-.step-head strong { color: var(--green); font-size: 17px; line-height: 1.25; padding-top: 3px; display: block; }
-.step-head p { margin: 4px 0 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
-
-/* Mini macOS installer windows (illustrations) */
-.mini { height: 210px; border-radius: 8px; background: #fff; box-shadow: 0 0 0 1px #D9DDDA, 0 4px 10px -6px rgba(0,0,0,.3); overflow: hidden; display: flex; flex-direction: column; font: 7.5px/1.35 -apple-system, "Helvetica Neue", sans-serif; color: #1d1d1f; }
-.mini .tb { display: flex; align-items: center; gap: 3px; height: 15px; padding: 0 6px; background: #F3F3F3; border-bottom: 1px solid #E1E1E1; font-weight: 600; font-size: 6.5px; }
-.mini .tb i { width: 5px; height: 5px; border-radius: 50%; background: #FF5F57; }
-.mini .tb i:nth-child(2) { background: #FEBC2E; }
-.mini .tb i:nth-child(3) { background: #28C840; margin-right: 4px; }
-.mini .body { flex: 1; display: flex; min-height: 0; }
-.mini .side { width: 52px; padding: 8px 0 0 6px; color: #8a8a8e; font-size: 6px; line-height: 1.9; background: #FAFAFA; border-right: 1px solid #EEE; }
-.mini .side .on { color: #1d1d1f; font-weight: 600; }
-.mini .side .on::before { content: "● "; color: #0A84FF; }
-.mini .main { flex: 1; padding: 7px 8px; overflow: hidden; }
-.mini .main b { display: block; font-size: 8px; margin-bottom: 4px; }
-.mini .main ul, .mini .main ol { margin: 3px 0; padding-left: 10px; }
-.mini .foot { display: flex; justify-content: flex-end; gap: 4px; padding: 5px 6px; border-top: 1px solid #EEE; }
-.mini .btn { padding: 1px 7px; border-radius: 3px; background: #EDEDED; font-size: 6.5px; }
-.mini .btn.blue { background: #0A84FF; color: #fff; }
-.mini .choice { margin: 4px 0; padding: 5px; border-radius: 3px; background: #0A84FF; color: #fff; }
-.mini .dim { color: #6e6e73; }
-.mini.settings { background: #ECECEC; position: relative; }
-.mini.settings .ghost { margin: 8px; height: 10px; border-radius: 3px; background: #DCDCDC; }
-.mini .alert {
-  position: absolute; left: 12%; right: 12%; top: 32px; background: #fff; border-radius: 8px; padding: 9px 9px 7px;
-  box-shadow: 0 8px 18px rgba(0,0,0,.25); font-size: 6.6px;
-}
-.mini .alert b { font-size: 7.2px; margin-bottom: 3px; display: block; }
-.mini .alert .row { display: flex; justify-content: space-between; margin-top: 7px; }
+ol.steps { list-style: none; margin: 0 auto; padding: 0; max-width: 1000px; display: grid; grid-template-columns: 1fr 56px 1fr; align-items: start; text-align: left; }
+ol.steps .shot figure { margin: 0 0 14px; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), var(--shadow); background: #fff; }
+ol.steps .shot img { display: block; width: 100%; height: auto; aspect-ratio: 880 / 633; object-fit: cover; object-position: top left; }
+ol.steps .arrow { align-self: center; margin-top: -60px; display: flex; justify-content: center; }
+ol.steps .arrow svg { width: 64px; height: 40px; overflow: visible; }
+.hand path { fill: none; stroke: var(--red); stroke-linecap: round; stroke-linejoin: round; }
+.hand .ink { stroke-width: 3; }
+.hand .ink2 { stroke-width: 1.2; opacity: .35; }
+.hand .tip { stroke-width: 3; }
+.js .hand .ink, .js .hand .tip { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.js .hand .ink2 { opacity: 0; transition: opacity .3s .6s; }
+.js .hand.drawn .ink { stroke-dashoffset: 0; transition: stroke-dashoffset .7s cubic-bezier(.5,0,.3,1); }
+.js .hand.drawn .tip { stroke-dashoffset: 0; transition: stroke-dashoffset .25s .65s ease-out; }
+.js .hand.drawn .ink2 { opacity: .35; }
+@media (prefers-reduced-motion: reduce) { .js .hand .ink, .js .hand .tip { stroke-dashoffset: 0; transition: none; } .js .hand .ink2 { opacity: .35; } }
+ol.steps .step-head { display: flex; gap: 12px; align-items: flex-start; padding: 0 4px; }
+ol.steps .num { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 15px; }
+ol.steps .step-head strong { display: block; font-size: 17px; line-height: 1.3; }
+ol.steps .step-head p { margin: 3px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+ol.steps .turn { grid-column: 1 / -1; margin: 0 0 6px; }
+ol.steps .turn svg.wide { display: block; width: 100%; height: auto; overflow: visible; }
+ol.steps .turn svg.narrow { display: none; }
 .bn-mini { font-family: "Kohinoor Bangla", "Hind Siliguri", sans-serif; }
 
 .note-banner {
@@ -355,8 +339,6 @@ footer.site .row { display: flex; flex-wrap: wrap; justify-content: space-betwee
 footer.site p { margin: 0 0 2px; }
 
 @media (max-width: 1020px) {
-  ol.steps { grid-template-columns: repeat(3, 1fr); }
-  ol.steps > li:nth-child(3)::after { display: none; }
 }
 @media (max-width: 900px) {
   header.site { grid-template-columns: 1fr auto; }
@@ -368,8 +350,10 @@ footer.site p { margin: 0 0 2px; }
   .brand .logo { width: 130px; }
   body { font-size: 16px; }
   .wrap { padding: 0 16px; }
-  ol.steps { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
-  ol.steps > li::after { display: none; }
+  ol.steps { grid-template-columns: 1fr; max-width: 460px; }
+  ol.steps .arrow, ol.steps .turn { grid-column: auto; height: 56px; margin: 6px 0 10px; display: flex; justify-content: center; align-items: center; }
+  ol.steps .arrow svg, ol.steps .turn svg.narrow { display: block; width: 48px; height: 30px; overflow: visible; transform: rotate(80deg); }
+  ol.steps .turn svg.wide { display: none; }
   .demo { padding: 14px 14px 18px; }
   .demo textarea { font-size: 26px; }
   .badge { font-size: 13px; }
@@ -384,6 +368,7 @@ footer.site p { margin: 0 0 2px; }
     <header class="site">
       <a class="brand" href="#">
         <svg class="logo" viewBox="0 0 400 248" role="img" aria-label="Bijoy Bangla for Mac">
+  <title>Bijoy Bangla for Mac</title>
   <defs>
     <linearGradient id="bbm-scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11975A"/><stop offset="1" stop-color="#075233"/></linearGradient>
     <linearGradient id="bbm-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D3DAD6"/><stop offset="1" stop-color="#8F9A94"/></linearGradient>
@@ -394,7 +379,7 @@ footer.site p { margin: 0 0 2px; }
   <circle cx="334" cy="36" r="10" fill="#E0303F"/>
   <path d="M2 168 H398 L392 181 Q389 187 380 187 H20 Q11 187 8 181 Z" fill="url(#bbm-base)"/>
   <rect x="168" y="168" width="64" height="6" rx="3" fill="#7D8882"/>
-  <path transform="translate(63.49 101)" d="M13.728 -31.415999999999997Q20.02 -31.415999999999997 23.232 -29.656Q26.444 -27.895999999999997 26.444 -23.451999999999998Q26.444 -20.767999999999997 25.189999999999998 -18.919999999999998Q23.936 -17.072 21.604 -16.676V-16.456Q23.188 -16.148 24.464 -15.355999999999998Q25.74 -14.563999999999998 26.488 -13.067999999999998Q27.235999999999997 -11.572 27.235999999999997 -9.107999999999999Q27.235999999999997 -4.84 24.156 -2.42Q21.076 0.0 15.707999999999998 0.0H3.96V-31.415999999999997ZM14.475999999999999 -18.964Q17.38 -18.964 18.502 -19.887999999999998Q19.624 -20.811999999999998 19.624 -22.572Q19.624 -24.375999999999998 18.304 -25.168Q16.983999999999998 -25.959999999999997 14.123999999999999 -25.959999999999997H10.604V-18.964ZM10.604 -13.684V-5.5H14.959999999999999Q17.951999999999998 -5.5 19.14 -6.666Q20.328 -7.832 20.328 -9.767999999999999Q20.328 -11.527999999999999 19.118 -12.605999999999998Q17.907999999999998 -13.684 14.739999999999998 -13.684ZM36.3 -33.44Q37.751999999999995 -33.44 38.80799999999999 -32.757999999999996Q39.864 -32.076 39.864 -30.227999999999998Q39.864 -28.424 38.80799999999999 -27.72Q37.751999999999995 -27.016 36.3 -27.016Q34.803999999999995 -27.016 33.769999999999996 -27.72Q32.736 -28.424 32.736 -30.227999999999998Q32.736 -32.076 33.769999999999996 -32.757999999999996Q34.803999999999995 -33.44 36.3 -33.44ZM39.556 -24.023999999999997V0.0H33.0V-24.023999999999997ZM46.156 -30.227999999999998Q46.156 -32.076 47.19 -32.757999999999996Q48.224 -33.44 49.72 -33.44Q51.172 -33.44 52.227999999999994 -32.757999999999996Q53.284 -32.076 53.284 -30.227999999999998Q53.284 -28.424 52.227999999999994 -27.72Q51.172 -27.016 49.72 -27.016Q48.224 -27.016 47.19 -27.72Q46.156 -28.424 46.156 -30.227999999999998ZM44.484 10.559999999999999Q43.384 10.559999999999999 42.174 10.405999999999999Q40.964 10.251999999999999 40.172 10.032V4.8839999999999995Q40.964 5.06 41.668 5.17Q42.372 5.279999999999999 43.252 5.279999999999999Q44.572 5.279999999999999 45.496 4.532Q46.42 3.784 46.42 1.628V-24.023999999999997H52.976V2.5959999999999996Q52.976 4.795999999999999 52.14 6.6Q51.304 8.404 49.434 9.482Q47.564 10.559999999999999 44.484 10.559999999999999ZM81.664 -12.056Q81.664 -6.072 78.518 -2.816Q75.372 0.43999999999999995 69.96000000000001 0.43999999999999995Q66.616 0.43999999999999995 63.998000000000005 -1.012Q61.38 -2.464 59.884 -5.258Q58.388 -8.052 58.388 -12.056Q58.388 -18.04 61.512 -21.252Q64.636 -24.464 70.092 -24.464Q73.48 -24.464 76.076 -23.012Q78.672 -21.56 80.168 -18.81Q81.664 -16.06 81.664 -12.056ZM65.076 -12.056Q65.076 -8.491999999999999 66.24199999999999 -6.6659999999999995Q67.408 -4.84 70.048 -4.84Q72.644 -4.84 73.81 -6.6659999999999995Q74.976 -8.491999999999999 74.976 -12.056Q74.976 -15.62 73.81 -17.401999999999997Q72.644 -19.183999999999997 70.004 -19.183999999999997Q67.408 -19.183999999999997 66.24199999999999 -17.401999999999997Q65.076 -15.62 65.076 -12.056ZM83.644 -24.023999999999997H90.816L95.348 -10.516Q95.7 -9.548 95.876 -8.514Q96.052 -7.4799999999999995 96.14 -6.335999999999999H96.272Q96.40400000000001 -7.4799999999999995 96.64600000000002 -8.514Q96.888 -9.548 97.196 -10.516L101.64 -24.023999999999997H108.68L98.516 3.0799999999999996Q97.152 6.819999999999999 94.534 8.69Q91.91600000000001 10.559999999999999 88.48400000000001 10.559999999999999Q87.384 10.559999999999999 86.57 10.45Q85.756 10.34 85.14 10.208V5.016Q85.62400000000001 5.104 86.30600000000001 5.192Q86.988 5.279999999999999 87.736 5.279999999999999Q89.804 5.279999999999999 91.01400000000001 4.026Q92.224 2.772 92.796 1.012L93.19200000000001 -0.176ZM133.848 -31.415999999999997Q140.14000000000001 -31.415999999999997 143.352 -29.656Q146.564 -27.895999999999997 146.564 -23.451999999999998Q146.564 -20.767999999999997 145.31 -18.919999999999998Q144.056 -17.072 141.724 -16.676V-16.456Q143.308 -16.148 144.584 -15.355999999999998Q145.86 -14.563999999999998 146.608 -13.067999999999998Q147.356 -11.572 147.356 -9.107999999999999Q147.356 -4.84 144.276 -2.42Q141.196 0.0 135.828 0.0H124.08V-31.415999999999997ZM134.596 -18.964Q137.5 -18.964 138.622 -19.887999999999998Q139.744 -20.811999999999998 139.744 -22.572Q139.744 -24.375999999999998 138.424 -25.168Q137.104 -25.959999999999997 134.244 -25.959999999999997H130.724V-18.964ZM130.724 -13.684V-5.5H135.08Q138.072 -5.5 139.26 -6.666Q140.448 -7.832 140.448 -9.767999999999999Q140.448 -11.527999999999999 139.238 -12.605999999999998Q138.028 -13.684 134.86 -13.684ZM162.976 -24.508Q167.81599999999997 -24.508 170.39 -22.418Q172.964 -20.328 172.964 -16.016V0.0H168.38799999999998L167.112 -3.256H166.93599999999998Q165.396 -1.3199999999999998 163.68 -0.43999999999999995Q161.964 0.43999999999999995 158.97199999999998 0.43999999999999995Q155.76 0.43999999999999995 153.648 -1.43Q151.536 -3.3 151.536 -7.172Q151.536 -11.0 154.22 -12.826Q156.904 -14.652 162.272 -14.828L166.452 -14.959999999999999V-16.016Q166.452 -17.907999999999998 165.462 -18.787999999999997Q164.47199999999998 -19.668 162.712 -19.668Q160.952 -19.668 159.27999999999997 -19.162Q157.60799999999998 -18.656 155.93599999999998 -17.907999999999998L153.78 -22.352Q155.71599999999998 -23.363999999999997 158.07 -23.936Q160.42399999999998 -24.508 162.976 -24.508ZM163.89999999999998 -11.043999999999999Q160.732 -10.956 159.5 -9.899999999999999Q158.268 -8.844 158.268 -7.127999999999999Q158.268 -5.632 159.148 -4.994Q160.028 -4.356 161.43599999999998 -4.356Q163.548 -4.356 165.0 -5.609999999999999Q166.452 -6.864 166.452 -9.152V-11.132ZM193.33599999999998 -24.464Q197.20799999999997 -24.464 199.53999999999996 -22.374Q201.87199999999999 -20.284 201.87199999999999 -15.664V0.0H195.31599999999997V-14.036Q195.31599999999997 -16.631999999999998 194.392 -17.93Q193.468 -19.227999999999998 191.444 -19.227999999999998Q188.45199999999997 -19.227999999999998 187.35199999999998 -17.182Q186.25199999999998 -15.136 186.25199999999998 -11.308V0.0H179.69599999999997V-24.023999999999997H184.712L185.59199999999998 -20.944H185.944Q187.088 -22.791999999999998 189.08999999999997 -23.628Q191.09199999999998 -24.464 193.33599999999998 -24.464ZM216.39199999999997 -24.464Q220.83599999999996 -24.464 223.34399999999997 -20.944H223.51999999999998L224.04799999999997 -24.023999999999997H229.59199999999996V0.044Q229.59199999999996 5.191999999999999 226.55599999999998 7.8759999999999994Q223.51999999999998 10.559999999999999 217.57999999999996 10.559999999999999Q215.02799999999996 10.559999999999999 212.84999999999997 10.251999999999999Q210.67199999999997 9.943999999999999 208.60399999999996 9.152V3.916Q213.04799999999997 5.763999999999999 217.97599999999997 5.763999999999999Q223.03599999999997 5.763999999999999 223.03599999999997 0.308V-0.176Q223.03599999999997 -0.9239999999999999 223.10199999999998 -1.716Q223.16799999999998 -2.508 223.21199999999996 -3.1239999999999997H223.03599999999997Q221.80399999999997 -1.232 220.08799999999997 -0.396Q218.37199999999996 0.43999999999999995 216.21599999999998 0.43999999999999995Q211.94799999999998 0.43999999999999995 209.54999999999995 -2.838Q207.15199999999996 -6.116 207.15199999999996 -11.968Q207.15199999999996 -17.863999999999997 209.61599999999996 -21.163999999999998Q212.07999999999996 -24.464 216.39199999999997 -24.464ZM218.45999999999998 -19.14Q213.83999999999997 -19.14 213.83999999999997 -11.879999999999999Q213.83999999999997 -4.707999999999999 218.54799999999997 -4.707999999999999Q221.05599999999995 -4.707999999999999 222.26599999999996 -6.138Q223.47599999999997 -7.568 223.47599999999997 -11.132V-11.924Q223.47599999999997 -15.796 222.28799999999995 -17.468Q221.09999999999997 -19.14 218.45999999999998 -19.14ZM243.01199999999997 0.0H236.45599999999996V-33.44H243.01199999999997ZM259.73199999999997 -24.508Q264.57199999999995 -24.508 267.14599999999996 -22.418Q269.71999999999997 -20.328 269.71999999999997 -16.016V0.0H265.14399999999995L263.86799999999994 -3.256H263.69199999999995Q262.15199999999993 -1.3199999999999998 260.4359999999999 -0.43999999999999995Q258.71999999999997 0.43999999999999995 255.72799999999995 0.43999999999999995Q252.51599999999996 0.43999999999999995 250.40399999999997 -1.43Q248.29199999999997 -3.3 248.29199999999997 -7.172Q248.29199999999997 -11.0 250.97599999999997 -12.826Q253.65999999999997 -14.652 259.02799999999996 -14.828L263.20799999999997 -14.959999999999999V-16.016Q263.20799999999997 -17.907999999999998 262.21799999999996 -18.787999999999997Q261.22799999999995 -19.668 259.46799999999996 -19.668Q257.70799999999997 -19.668 256.03599999999994 -19.162Q254.36399999999995 -18.656 252.69199999999995 -17.907999999999998L250.53599999999997 -22.352Q252.47199999999995 -23.363999999999997 254.82599999999996 -23.936Q257.17999999999995 -24.508 259.73199999999997 -24.508ZM260.65599999999995 -11.043999999999999Q257.48799999999994 -10.956 256.256 -9.899999999999999Q255.02399999999997 -8.844 255.02399999999997 -7.127999999999999Q255.02399999999997 -5.632 255.90399999999994 -4.994Q256.78399999999993 -4.356 258.19199999999995 -4.356Q260.304 -4.356 261.756 -5.609999999999999Q263.20799999999997 -6.864 263.20799999999997 -9.152V-11.132Z" fill="#fff"/>
+  <path transform="translate(61.68 97)" d="M11.232 -25.703999999999997Q16.38 -25.703999999999997 19.008 -24.263999999999996Q21.636 -22.823999999999998 21.636 -19.188Q21.636 -16.991999999999997 20.61 -15.479999999999997Q19.584 -13.967999999999998 17.676 -13.643999999999998V-13.463999999999999Q18.971999999999998 -13.212 20.016 -12.564Q21.06 -11.915999999999999 21.671999999999997 -10.692Q22.284 -9.468 22.284 -7.451999999999999Q22.284 -3.9599999999999995 19.764 -1.9799999999999998Q17.244 0.0 12.851999999999999 0.0H3.2399999999999998V-25.703999999999997ZM11.844 -15.515999999999998Q14.219999999999999 -15.515999999999998 15.137999999999998 -16.272Q16.055999999999997 -17.028 16.055999999999997 -18.468Q16.055999999999997 -19.944 14.975999999999999 -20.592Q13.895999999999999 -21.24 11.556 -21.24H8.676V-15.515999999999998ZM8.676 -11.196V-4.5H12.239999999999998Q14.687999999999999 -4.5 15.659999999999998 -5.454Q16.631999999999998 -6.4079999999999995 16.631999999999998 -7.991999999999999Q16.631999999999998 -9.431999999999999 15.642 -10.314Q14.652 -11.196 12.059999999999999 -11.196ZM38.544 0.0H26.843999999999998V-3.0959999999999996L29.975999999999996 -4.536V-21.168L26.843999999999998 -22.607999999999997V-25.703999999999997H38.544V-22.607999999999997L35.41199999999999 -21.168V-4.536L38.544 -3.0959999999999996ZM41.736 7.56Q40.692 7.56 39.9 7.433999999999999Q39.108 7.308 38.532 7.164V2.6279999999999997Q39.108 2.772 39.738 2.88Q40.367999999999995 2.988 41.088 2.988Q42.024 2.988 42.798 2.628Q43.571999999999996 2.268 44.004 1.2599999999999998Q44.436 0.252 44.436 -1.6199999999999999V-25.703999999999997H49.872V-1.656Q49.872 1.656 48.846000000000004 3.6899999999999995Q47.82 5.723999999999999 45.983999999999995 6.6419999999999995Q44.147999999999996 7.56 41.736 7.56ZM81.17999999999999 -12.888Q81.17999999999999 -8.892 79.86599999999999 -5.922Q78.55199999999999 -2.952 75.85199999999999 -1.296Q73.15199999999999 0.36 68.94 0.36Q64.764 0.36 62.04599999999999 -1.296Q59.327999999999996 -2.952 58.013999999999996 -5.9399999999999995Q56.699999999999996 -8.927999999999999 56.699999999999996 -12.924Q56.699999999999996 -16.919999999999998 58.013999999999996 -19.872Q59.327999999999996 -22.823999999999998 62.04599999999999 -24.461999999999996Q64.764 -26.099999999999998 68.976 -26.099999999999998Q73.15199999999999 -26.099999999999998 75.85199999999999 -24.461999999999996Q78.55199999999999 -22.823999999999998 79.86599999999999 -19.854Q81.17999999999999 -16.884 81.17999999999999 -12.888ZM62.42399999999999 -12.888Q62.42399999999999 -8.856 63.971999999999994 -6.534Q65.52 -4.212 68.94 -4.212Q72.43199999999999 -4.212 73.94399999999999 -6.534Q75.45599999999999 -8.856 75.45599999999999 -12.888Q75.45599999999999 -16.956 73.94399999999999 -19.259999999999998Q72.43199999999999 -21.564 68.976 -21.564Q65.52 -21.564 63.971999999999994 -19.259999999999998Q62.42399999999999 -16.956 62.42399999999999 -12.888ZM96.0 -15.12 101.364 -25.703999999999997H107.232L98.7 -10.008V0.0H93.3V-9.828L84.768 -25.703999999999997H90.672ZM130.824 -25.703999999999997Q135.972 -25.703999999999997 138.60000000000002 -24.263999999999996Q141.228 -22.823999999999998 141.228 -19.188Q141.228 -16.991999999999997 140.202 -15.479999999999997Q139.176 -13.967999999999998 137.268 -13.643999999999998V-13.463999999999999Q138.564 -13.212 139.608 -12.564Q140.652 -11.915999999999999 141.264 -10.692Q141.876 -9.468 141.876 -7.451999999999999Q141.876 -3.9599999999999995 139.356 -1.9799999999999998Q136.836 0.0 132.444 0.0H122.832V-25.703999999999997ZM131.436 -15.515999999999998Q133.812 -15.515999999999998 134.73000000000002 -16.272Q135.648 -17.028 135.648 -18.468Q135.648 -19.944 134.56799999999998 -20.592Q133.488 -21.24 131.148 -21.24H128.268V-15.515999999999998ZM128.268 -11.196V-4.5H131.832Q134.28 -4.5 135.252 -5.454Q136.224 -6.4079999999999995 136.224 -7.991999999999999Q136.224 -9.431999999999999 135.23399999999998 -10.314Q134.244 -11.196 131.652 -11.196ZM164.256 0.0 162.384 -6.119999999999999H153.024L151.152 0.0H145.284L154.356 -25.811999999999998H161.016L170.124 0.0ZM159.21599999999998 -16.668Q159.036 -17.279999999999998 158.748 -18.215999999999998Q158.45999999999998 -19.151999999999997 158.17199999999997 -20.124Q157.884 -21.096 157.70399999999998 -21.816Q157.524 -21.096 157.218 -20.034Q156.91199999999998 -18.971999999999998 156.642 -18.018Q156.37199999999999 -17.064 156.22799999999998 -16.668L154.392 -10.691999999999998H161.088ZM197.652 0.0H190.74L179.54399999999998 -19.439999999999998H179.4Q179.47199999999998 -17.604 179.56199999999998 -15.767999999999999Q179.652 -13.931999999999999 179.724 -12.095999999999998V0.0H174.864V-25.703999999999997H181.74L192.9 -6.444H193.00799999999998Q192.97199999999998 -8.244 192.89999999999998 -10.008Q192.828 -11.771999999999998 192.756 -13.536V-25.703999999999997H197.652ZM215.388 -14.435999999999998H225.576V-1.1159999999999999Q223.56 -0.43199999999999994 221.382 -0.035999999999999976Q219.204 0.36 216.432 0.36Q210.672 0.36 207.576 -3.0239999999999996Q204.48 -6.4079999999999995 204.48 -12.888Q204.48 -16.919999999999998 206.046 -19.872Q207.612 -22.823999999999998 210.6 -24.443999999999996Q213.588 -26.063999999999997 217.908 -26.063999999999997Q219.95999999999998 -26.063999999999997 221.94 -25.631999999999998Q223.92 -25.2 225.54 -24.479999999999997L223.74 -20.124Q222.552 -20.735999999999997 221.04 -21.131999999999998Q219.528 -21.528 217.87199999999999 -21.528Q215.49599999999998 -21.528 213.75 -20.448Q212.004 -19.368 211.05 -17.406Q210.096 -15.443999999999999 210.096 -12.78Q210.096 -10.26 210.78 -8.315999999999999Q211.464 -6.372 212.94 -5.273999999999999Q214.416 -4.175999999999999 216.792 -4.175999999999999Q217.944 -4.175999999999999 218.754 -4.283999999999999Q219.564 -4.3919999999999995 220.248 -4.536V-9.899999999999999H215.388ZM233.196 0.0V-25.703999999999997H238.63199999999998V-4.5H249.072V0.0ZM270.768 0.0 268.896 -6.119999999999999H259.536L257.664 0.0H251.796L260.868 -25.811999999999998H267.528L276.63599999999997 0.0ZM265.728 -16.668Q265.548 -17.279999999999998 265.26 -18.215999999999998Q264.972 -19.151999999999997 264.68399999999997 -20.124Q264.396 -21.096 264.216 -21.816Q264.036 -21.096 263.73 -20.034Q263.424 -18.971999999999998 263.154 -18.018Q262.884 -17.064 262.74 -16.668L260.904 -10.691999999999998H267.59999999999997Z" fill="#fff"/>
   <rect x="6" y="224.5" width="92.04" height="3" rx="1.5" fill="#E0303F"/>
   <rect x="301.96" y="224.5" width="92.04" height="3" rx="1.5" fill="#E0303F"/>
   <path transform="translate(114.04 235.5)" d="M6.2139999999999995 0.0H2.34V-18.564H12.974V-15.34H6.2139999999999995V-10.556H12.506V-7.332H6.2139999999999995ZM42.462 -9.308Q42.462 -6.422 41.513000000000005 -4.277Q40.564 -2.132 38.614000000000004 -0.936Q36.664 0.26 33.622 0.26Q30.606 0.26 28.643 -0.936Q26.68 -2.132 25.731 -4.29Q24.782 -6.4479999999999995 24.782 -9.334Q24.782 -12.219999999999999 25.731 -14.351999999999999Q26.68 -16.483999999999998 28.643 -17.666999999999998Q30.606 -18.849999999999998 33.647999999999996 -18.849999999999998Q36.664 -18.849999999999998 38.614000000000004 -17.666999999999998Q40.564 -16.483999999999998 41.513000000000005 -14.338999999999999Q42.462 -12.193999999999999 42.462 -9.308ZM28.916 -9.308Q28.916 -6.396 30.034 -4.718999999999999Q31.152 -3.042 33.622 -3.042Q36.144 -3.042 37.236000000000004 -4.718999999999999Q38.328 -6.396 38.328 -9.308Q38.328 -12.245999999999999 37.236000000000004 -13.91Q36.144 -15.574 33.647999999999996 -15.574Q31.152 -15.574 30.034 -13.91Q28.916 -12.245999999999999 28.916 -9.308ZM60.717999999999996 -18.564Q64.514 -18.564 66.321 -17.186Q68.128 -15.808 68.128 -13.0Q68.128 -11.725999999999999 67.64699999999999 -10.777Q67.166 -9.828 66.37299999999999 -9.165Q65.58 -8.501999999999999 64.67 -8.086L70.13 0.0H65.762L61.342 -7.124H59.236V0.0H55.31V-18.564ZM60.432 -15.34H59.236V-10.322H60.51Q62.46 -10.322 63.30500000000001 -10.972Q64.15 -11.622 64.15 -12.895999999999999Q64.15 -14.222 63.253 -14.780999999999999Q62.355999999999995 -15.34 60.432 -15.34ZM105.082 0.0 100.61 -14.559999999999999H100.506Q100.532 -14.04 100.584 -13.0Q100.636 -11.959999999999999 100.68799999999999 -10.777Q100.74 -9.594 100.74 -8.632V0.0H97.23V-18.564H102.586L106.98 -4.367999999999999H107.05799999999999L111.712 -18.564H117.068V0.0H113.402V-8.788Q113.402 -9.671999999999999 113.441 -10.815999999999999Q113.48 -11.959999999999999 113.519 -12.986999999999998Q113.55799999999999 -14.014 113.584 -14.533999999999999H113.48L108.696 0.0ZM142.11 0.0 140.758 -4.42H133.99800000000002L132.64600000000002 0.0H128.40800000000002L134.96 -18.642H139.77L146.348 0.0ZM138.47000000000003 -12.038Q138.34 -12.479999999999999 138.132 -13.155999999999999Q137.924 -13.831999999999999 137.716 -14.533999999999999Q137.508 -15.235999999999999 137.37800000000001 -15.755999999999998Q137.24800000000002 -15.235999999999999 137.02700000000002 -14.469Q136.806 -13.702 136.61100000000002 -13.013Q136.41600000000003 -12.324 136.312 -12.038L134.98600000000002 -7.7219999999999995H139.822ZM165.566 -15.548Q163.304 -15.548 162.108 -13.858Q160.912 -12.168 160.912 -9.23Q160.912 -6.266 162.017 -4.641Q163.122 -3.016 165.566 -3.016Q166.71 -3.016 167.841 -3.276Q168.972 -3.536 170.298 -4.004V-0.702Q169.07600000000002 -0.208 167.88000000000002 0.02600000000000001Q166.68400000000003 0.26 165.202 0.26Q162.342 0.26 160.483 -0.9229999999999999Q158.62400000000002 -2.106 157.74 -4.2509999999999994Q156.85600000000002 -6.396 156.85600000000002 -9.256Q156.85600000000002 -12.064 157.87 -14.222Q158.88400000000001 -16.38 160.82100000000003 -17.601999999999997Q162.758 -18.823999999999998 165.566 -18.823999999999998Q166.94400000000002 -18.823999999999998 168.335 -18.473Q169.726 -18.122 171.0 -17.524L169.726 -14.325999999999999Q168.686 -14.819999999999999 167.633 -15.184Q166.58 -15.548 165.566 -15.548Z" fill="currentColor"/>
@@ -451,79 +436,253 @@ footer.site p { margin: 0 0 2px; }
 
 <section class="install" id="install">
   <div class="wrap">
-    <div class="tile"><svg viewBox="0 0 400 190" aria-hidden="true">
-  <defs>
-    <linearGradient id="bbm-scr2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11975A"/><stop offset="1" stop-color="#075233"/></linearGradient>
-    <linearGradient id="bbm-base2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D3DAD6"/><stop offset="1" stop-color="#8F9A94"/></linearGradient>
-  </defs>
-  <rect x="30" y="2" width="340" height="164" rx="12" fill="#26302B"/>
-  <rect x="40" y="12" width="320" height="144" rx="4" fill="url(#bbm-scr2)"/>
-  <rect x="196" y="5" width="8" height="3" rx="1.5" fill="#0F1712"/>
-  <circle cx="178" cy="84" r="44" fill="#E0303F"/>
-  <path d="M2 168 H398 L392 181 Q389 187 380 187 H20 Q11 187 8 181 Z" fill="url(#bbm-base2)"/>
-  <rect x="168" y="168" width="64" height="6" rx="3" fill="#7D8882"/>
-</svg></div>
+    <div class="mac-hero"><!-- MACBOOK -->
+<svg class="macbook" viewBox="0 0 800 480" role="img" aria-labelledby="mbTitle">
+<title id="mbTitle">MacBook showing the Bijoy Bangla keyboard layout</title>
+<defs>
+  <linearGradient id="mb-wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E7A49"/><stop offset=".55" stop-color="#075233"/><stop offset="1" stop-color="#03301D"/></linearGradient>
+  <radialGradient id="mb-glow" cx=".78" cy=".2" r=".6"><stop offset="0" stop-color="#E0303F" stop-opacity=".55"/><stop offset="1" stop-color="#E0303F" stop-opacity="0"/></radialGradient>
+  <linearGradient id="mb-deck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9ECEE"/><stop offset=".45" stop-color="#C9CED2"/><stop offset="1" stop-color="#8E959B"/></linearGradient>
+  <linearGradient id="mb-lid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDD2D6"/><stop offset="1" stop-color="#A9B0B5"/></linearGradient>
+  <linearGradient id="mb-shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".10"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <linearGradient id="mb-key" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF2EF"/></linearGradient>
+</defs>
+<ellipse cx="400" cy="466" rx="380" ry="10" fill="#000" opacity=".18"/>
+<rect x="78" y="6" width="644" height="428" rx="22" fill="url(#mb-lid)"/>
+<rect x="81" y="9" width="638" height="422" rx="19" fill="#0B0D0E"/>
+<rect x="93" y="21" width="614" height="404" rx="9" fill="url(#mb-wall)"/>
+<rect x="93" y="21" width="614" height="404" rx="9" fill="url(#mb-glow)"/>
+<rect x="93" y="21" width="614" height="17" fill="#000" opacity=".28"/>
+<circle cx="108" cy="29.5" r="3.4" fill="#fff" opacity=".9"/>
+<rect x="122" y="27.5" width="22" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="154" y="27.5" width="18" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="182" y="27.5" width="20" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="212" y="27.5" width="26" height="4" rx="2" fill="#fff" opacity=".6"/>
+<rect x="606" y="23.5" width="18" height="12" rx="3" fill="#fff"/>
+<text x="615" y="33" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" font-weight="700" fill="#075233">U</text>
+<rect x="632" y="27.5" width="18" height="4" rx="2" fill="#fff" opacity=".6"/><rect x="658" y="27.5" width="36" height="4" rx="2" fill="#fff" opacity=".6"/>
+<path d="M368 21 h64 v8 q0 6 -6 6 h-52 q-6 0 -6 -6 z" fill="#0B0D0E"/>
+<rect x="110" y="106" width="580" height="262" rx="12" fill="#000" opacity=".25"/>
+<rect x="110" y="100" width="580" height="262" rx="12" fill="#F8F8F3"/>
+<circle cx="128" cy="116" r="5" fill="#FF5F57"/>
+<circle cx="144" cy="116" r="5" fill="#FEBC2E"/>
+<circle cx="160" cy="116" r="5" fill="#28C840"/>
+<text x="400.0" y="120" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#15201A">Bijoy Bangla Keyboard Layout</text>
+<rect x="130.0" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="147.0" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">`</text>
+<rect x="167.6" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="184.6" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">১</text>
+<text x="171.6" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">1</text>
+<rect x="205.2" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="222.2" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">২</text>
+<text x="209.2" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">2</text>
+<rect x="242.8" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="259.8" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৩</text>
+<text x="246.8" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">3</text>
+<rect x="280.4" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="297.4" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৪</text>
+<text x="310.4" y="147.0" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">৳</text>
+<text x="284.4" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">4</text>
+<rect x="318.0" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="335.0" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৫</text>
+<text x="322.0" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">5</text>
+<rect x="355.6" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="372.6" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৬</text>
+<text x="359.6" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">6</text>
+<rect x="393.2" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="410.2" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৭</text>
+<text x="423.2" y="147.0" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঁ</text>
+<text x="397.2" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">7</text>
+<rect x="430.8" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="447.8" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৮</text>
+<text x="434.8" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">8</text>
+<rect x="468.4" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="485.4" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৯</text>
+<text x="472.4" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">9</text>
+<rect x="506.0" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="523.0" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">০</text>
+<text x="510.0" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">0</text>
+<rect x="543.6" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="560.6" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">-</text>
+<rect x="581.2" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="598.2" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">=</text>
+<rect x="618.8" y="136.0" width="51.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="624.8" y="163.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">delete</text>
+<rect x="130.0" y="173.6" width="51.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="200.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">tab</text>
+<rect x="184.6" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="201.6" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ঙ</text>
+<text x="214.6" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ং</text>
+<text x="188.6" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Q</text>
+<rect x="222.2" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="239.2" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">য</text>
+<text x="252.2" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">য়</text>
+<text x="226.2" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">W</text>
+<rect x="259.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="276.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ড</text>
+<text x="289.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঢ</text>
+<text x="263.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">E</text>
+<rect x="297.4" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="314.4" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">প</text>
+<text x="327.4" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ফ</text>
+<text x="301.4" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">R</text>
+<rect x="335.0" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="352.0" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ট</text>
+<text x="365.0" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঠ</text>
+<text x="339.0" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">T</text>
+<rect x="372.6" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="389.6" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">চ</text>
+<text x="402.6" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ছ</text>
+<text x="376.6" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Y</text>
+<rect x="410.2" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="427.2" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">জ</text>
+<text x="440.2" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঝ</text>
+<text x="414.2" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">U</text>
+<rect x="447.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="464.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">হ</text>
+<text x="477.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঞ</text>
+<text x="451.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">I</text>
+<rect x="485.4" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="502.4" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">গ</text>
+<text x="515.4" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঘ</text>
+<text x="489.4" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">O</text>
+<rect x="523.0" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="540.0" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ড়</text>
+<text x="553.0" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঢ়</text>
+<text x="527.0" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">P</text>
+<rect x="560.6" y="173.6" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="577.6" y="194.6" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">[</text>
+<rect x="598.2" y="173.6" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="615.2" y="194.6" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">]</text>
+<rect x="635.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="652.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ৎ</text>
+<text x="665.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঃ</text>
+<text x="639.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">\</text>
+<rect x="130.0" y="211.2" width="61.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="238.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">caps</text>
+<rect x="194.8" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="211.8" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ৃ</text>
+<text x="224.8" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">র্</text>
+<text x="198.8" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">A</text>
+<rect x="232.4" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="249.4" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ু</text>
+<text x="262.4" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ূ</text>
+<text x="236.4" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">S</text>
+<rect x="270.0" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="287.0" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ি</text>
+<text x="300.0" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ী</text>
+<text x="274.0" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">D</text>
+<rect x="307.6" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="324.6" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌া</text>
+<text x="337.6" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">অ</text>
+<text x="311.6" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">F</text>
+<rect x="345.2" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="362.2" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌্</text>
+<text x="375.2" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">।</text>
+<text x="349.2" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">G</text>
+<rect x="382.8" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="399.8" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ব</text>
+<text x="412.8" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ভ</text>
+<text x="386.8" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">H</text>
+<rect x="420.4" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="437.4" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ক</text>
+<text x="450.4" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">খ</text>
+<text x="424.4" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">J</text>
+<rect x="458.0" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="475.0" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ত</text>
+<text x="488.0" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">থ</text>
+<text x="462.0" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">K</text>
+<rect x="495.6" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="512.6" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">দ</text>
+<text x="525.6" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ধ</text>
+<text x="499.6" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">L</text>
+<rect x="533.2" y="211.2" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="550.2" y="232.2" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">;</text>
+<rect x="570.8" y="211.2" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="587.8" y="232.2" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">'</text>
+<rect x="608.4" y="211.2" width="57.8" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="614.4" y="238.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">return</text>
+<rect x="130.0" y="248.8" width="78.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="275.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">shift</text>
+<rect x="211.8" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="228.8" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌্র</text>
+<text x="241.8" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌্য</text>
+<text x="215.8" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Z</text>
+<rect x="249.4" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="266.4" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ও</text>
+<text x="279.4" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ৗ</text>
+<text x="253.4" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">X</text>
+<rect x="287.0" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="304.0" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ে</text>
+<text x="317.0" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ৈ</text>
+<text x="291.0" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">C</text>
+<rect x="324.6" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="341.6" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">র</text>
+<text x="354.6" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ল</text>
+<text x="328.6" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">V</text>
+<rect x="362.2" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="379.2" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ন</text>
+<text x="392.2" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ণ</text>
+<text x="366.2" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">B</text>
+<rect x="399.8" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="416.8" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">স</text>
+<text x="429.8" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ষ</text>
+<text x="403.8" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">N</text>
+<rect x="437.4" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="454.4" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ম</text>
+<text x="467.4" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">শ</text>
+<text x="441.4" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">M</text>
+<rect x="475.0" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="492.0" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">,</text>
+<rect x="512.6" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="529.6" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">.</text>
+<rect x="550.2" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="567.2" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">/</text>
+<rect x="587.8" y="248.8" width="74.8" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="593.8" y="275.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">shift</text>
+<rect x="130.0" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="136.0" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">fn</text>
+<rect x="177.8" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="183.8" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">control</text>
+<rect x="225.6" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="231.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">option</text>
+<rect x="273.4" y="286.4" width="54.4" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="279.4" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">command</text>
+<rect x="331.4" y="286.4" width="183.6" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="423.2" y="307.4" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">space</text>
+<rect x="518.6" y="286.4" width="54.4" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="524.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">command</text>
+<rect x="576.6" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
+<text x="582.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">option</text>
+<text x="400.0" y="348" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" fill="#56645C">Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g then a kar = full vowel</tspan></text>
+<path d="M93 21 h337.70000000000005 l-214.89999999999998 404 h-122.80000000000001 z" fill="url(#mb-shine)"/>
+<path d="M14 434 H786 V440 Q786 446 778 448 L740 458 Q730 461 716 461 H84 Q70 461 60 458 L22 448 Q14 446 14 440 Z" fill="url(#mb-deck)"/>
+<rect x="14" y="434" width="772" height="3" fill="#F4F6F7"/>
+<path d="M346 434 h108 v2 q0 5 -6 5 h-96 q-6 0 -6 -5 z" fill="#A3AAAF"/>
+</svg>
+<!-- /MACBOOK --></div>
     <h2 data-i18n="installTitle">Install on your Mac</h2>
     <p class="sub" data-i18n="installSub">Follow the installer, approve the input source, then log out and back in.</p>
 
     <ol class="steps">
-      <li>
-        <div class="mini" aria-hidden="true">
-          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
-          <div class="body">
-            <div class="side"><div class="on">Introduction</div><div>Destination</div><div>Installation</div><div>Summary</div></div>
-            <div class="main"><b>Bijoy Bangla <span class="bn-mini">বিজয় বাংলা</span></b>Type Unicode Bangla on your Mac with the Bijoy keyboard layout, in every app.
-              <ul><li>Adds <span class="bn-mini">বিজয় ইউনিকোড</span> and English to the input menu</li><li>Switch with Control-Space</li><li>macOS 13 or later</li></ul>
-              <span class="dim">At the end you will be asked to log out.</span></div>
-          </div>
-          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Continue</span></div>
-        </div>
-        <div class="step-head"><span class="num">1</span><div><strong data-i18n="s1t">Welcome</strong><p data-i18n="s1d">Review what the keyboard adds.</p></div></div>
+      <li class="shot">
+        <figure><img src="img/install-1-welcome.webp" width="880" height="633" loading="lazy" alt="Bijoy Bangla installer welcome page"></figure>
+        <div class="step-head"><span class="num">1</span><div><strong data-i18n="s1t">Welcome</strong><p data-i18n="s1d">Open the installer and click Continue.</p></div></div>
       </li>
-      <li>
-        <div class="mini" aria-hidden="true">
-          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
-          <div class="body">
-            <div class="side"><div>Introduction</div><div class="on">Destination</div><div>Installation</div><div>Summary</div></div>
-            <div class="main"><b>Select a Destination</b>How do you want to install this software?
-              <div class="choice">Install for all users of this computer</div>
-              <span class="dim">Installing this software requires 1.1 MB of space.</span></div>
-          </div>
-          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Continue</span></div>
-        </div>
-        <div class="step-head"><span class="num">2</span><div><strong data-i18n="s2t">Choose destination</strong><p data-i18n="s2d">Select where to install.</p></div></div>
+      <li class="arrow" aria-hidden="true"><svg class="hand" viewBox="0 0 80 50"><path class="ink" pathLength="1" d="M6 34 C 20 16, 46 10, 70 22"/><path class="ink2" d="M7 36 C 22 19, 45 13, 69 24"/><path class="tip" pathLength="1" d="M57 23.5 Q64 22.5 70 22 Q66 16 62.5 11"/></svg></li>
+      <li class="shot">
+        <figure><img src="img/install-2-destination.webp" width="880" height="633" loading="lazy" alt="Installer destination page: install for all users"></figure>
+        <div class="step-head"><span class="num">2</span><div><strong data-i18n="s2t">Choose destination</strong><p data-i18n="s2d">Keep "Install for all users" and click Continue.</p></div></div>
       </li>
-      <li>
-        <div class="mini" aria-hidden="true">
-          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
-          <div class="body">
-            <div class="side"><div>Introduction</div><div>Destination</div><div class="on">Installation</div><div>Summary</div></div>
-            <div class="main"><b>Standard Install on "Macintosh HD"</b>This will take 1.1 MB of space on your computer.<br><br><span class="dim">Click Install to perform a standard installation of this software for all users of this computer.</span></div>
-          </div>
-          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Install</span></div>
-        </div>
-        <div class="step-head"><span class="num">3</span><div><strong data-i18n="s3t">Install</strong><p data-i18n="s3d">Confirm the standard installation.</p></div></div>
+      <li class="turn" aria-hidden="true"><svg class="hand wide" viewBox="0 0 1000 130"><path class="ink" pathLength="1" d="M770 8 C 792 70, 624 94, 500 76 C 378 58, 252 42, 240 118"/><path class="ink2" d="M773 10 C 795 74, 622 98, 499 80 C 381 62, 256 46, 243 116"/><path class="tip" pathLength="1" d="M253 101 Q246 110 240 118 Q236 109 231 100"/></svg><svg class="hand narrow" viewBox="0 0 80 50"><path class="ink" pathLength="1" d="M6 34 C 20 16, 46 10, 70 22"/><path class="ink2" d="M7 36 C 22 19, 45 13, 69 24"/><path class="tip" pathLength="1" d="M57 23.5 Q64 22.5 70 22 Q66 16 62.5 11"/></svg></li>
+      <li class="shot">
+        <figure><img src="img/install-3-type.webp" width="880" height="633" loading="lazy" alt="Installer standard install page with the Install button"></figure>
+        <div class="step-head"><span class="num">3</span><div><strong data-i18n="s3t">Install</strong><p data-i18n="s3d">Click Install and enter your Mac password.</p></div></div>
       </li>
-      <li>
-        <div class="mini settings" aria-hidden="true">
-          <div class="tb"><i></i><i></i><i></i>Keyboard</div>
-          <div class="ghost"></div><div class="ghost" style="width:60%"></div><div class="ghost"></div><div class="ghost" style="width:75%"></div><div class="ghost"></div>
-          <div class="alert"><b>Allow "Bijoy Bangla" to be enabled?</b>The developer of this input source will be able to access anything you type while using it.
-            <div class="row"><span class="btn">Don't Allow</span><span class="btn blue">Allow</span></div></div>
-        </div>
-        <div class="step-head"><span class="num">4</span><div><strong data-i18n="s4t">Allow the input source</strong><p data-i18n="s4d">When macOS asks, click Allow for Bijoy Bangla.</p></div></div>
-      </li>
-      <li>
-        <div class="mini" aria-hidden="true">
-          <div class="tb"><i></i><i></i><i></i>Install Bijoy Bangla</div>
-          <div class="body">
-            <div class="side"><div>Introduction</div><div>Destination</div><div>Installation</div><div class="on">Summary</div></div>
-            <div class="main"><b>Almost done</b>Click Log Out, then after you log back in:
-              <ol><li>Click the input menu near the clock.</li><li>Choose <span class="bn-mini">বিজয় ইউনিকোড</span> and start typing.</li></ol></div>
-          </div>
-          <div class="foot"><span class="btn">Go Back</span><span class="btn blue">Log Out</span></div>
-        </div>
-        <div class="step-head"><span class="num">5</span><div><strong data-i18n="s5t">Log out and choose বাংলা</strong><p data-i18n="s5d">Log out, log back in, then choose বিজয় ইউনিকোড from the input menu.</p></div></div>
+      <li class="arrow" aria-hidden="true"><svg class="hand" viewBox="0 0 80 50"><path class="ink" pathLength="1" d="M6 34 C 20 16, 46 10, 70 22"/><path class="ink2" d="M7 36 C 22 19, 45 13, 69 24"/><path class="tip" pathLength="1" d="M57 23.5 Q64 22.5 70 22 Q66 16 62.5 11"/></svg></li>
+      <li class="shot">
+        <figure><img src="img/install-4-finish.webp" width="880" height="633" loading="lazy" alt="Installer finish page: allow the keyboard, then log out"></figure>
+        <div class="step-head"><span class="num">4</span><div><strong data-i18n="s5t">Log out and choose বাংলা</strong><p data-i18n="s5d">Click Allow if asked, then Log Out. After you log back in, choose বিজয় ইউনিকোড from the input menu.</p></div></div>
       </li>
     </ol>
 
@@ -608,11 +767,10 @@ footer.site p { margin: 0 0 2px; }
     hintEmpty: "আপনার চাপা কী-গুলো এখানে দেখাবে", hintSpace: "স্পেস চাপলে শব্দ শেষ হয়",
     installTitle: "আপনার ম্যাকে ইনস্টল করুন",
     installSub: "ইনস্টলার অনুসরণ করুন, ইনপুট সোর্সের অনুমতি দিন, তারপর লগ আউট করে আবার লগ ইন করুন।",
-    s1t: "স্বাগতম", s1d: "কীবোর্ডে কী কী যোগ হবে দেখে নিন।",
-    s2t: "জায়গা বেছে নিন", s2d: "কোথায় ইনস্টল হবে বেছে নিন।",
-    s3t: "ইনস্টল", s3d: "সাধারণ ইনস্টলেশন নিশ্চিত করুন।",
-    s4t: "ইনপুট সোর্সের অনুমতি", s4d: "macOS জিজ্ঞেস করলে বিজয় বাংলার জন্য Allow চাপুন।",
-    s5t: "লগ আউট করে বাংলা বেছে নিন", s5d: "লগ আউট করে আবার লগ ইন করুন, তারপর ইনপুট মেনু থেকে বিজয় ইউনিকোড বেছে নিন।",
+    s1t: "স্বাগতম", s1d: "ইনস্টলার খুলে Continue চাপুন।",
+    s2t: "জায়গা বেছে নিন", s2d: "\"Install for all users\" রেখে Continue চাপুন।",
+    s3t: "ইনস্টল", s3d: "Install চাপুন এবং আপনার ম্যাকের পাসওয়ার্ড দিন।",
+    s5t: "লগ আউট করে বাংলা বেছে নিন", s5d: "জিজ্ঞেস করলে Allow চাপুন, তারপর Log Out। আবার লগ ইন করে ইনপুট মেনু থেকে বিজয় ইউনিকোড বেছে নিন।",
     banner: 'ব্যবহারের আগে macOS-এ ইনপুট সোর্সের <b>অনুমতি দিতে হয়।</b> সমস্যা হলে দেখুন <a href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a>।',
     typingTitle: "বিজয়ের নিয়মেই টাইপ",
     typingLead: "যে কী-গুলো আপনি জানেন, সেগুলোই। Control-Space বা গ্লোব কী দিয়ে বাংলা ও ইংরেজির মধ্যে বদলান। পুরো কী-চার্ট পাবেন ইনপুট মেনুর Show Bijoy Keyboard Layout-এ।",
@@ -730,6 +888,17 @@ footer.site p { margin: 0 0 2px; }
   try { saved = localStorage.getItem("lang"); } catch (e) {}
   setLang(saved || ((navigator.language || "").startsWith("bn") ? "bn" : "en"));
   timer = setTimeout(() => play("hfQVf"), reduce ? 0 : 700);
+})();
+
+// Hand-drawn step arrows: draw each one as it scrolls into view
+(function () {
+  var arrows = document.querySelectorAll('.hand');
+  if (!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  arrows.forEach(function (a) { io.observe(a); });
 })();
 </script>
 </body>
