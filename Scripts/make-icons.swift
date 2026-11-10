@@ -55,20 +55,54 @@ func menuIcon(_ text: String, bangla: Bool, name: String) throws {
 try menuIcon("বা", bangla: true, name: "Bangla.tiff")
 try menuIcon("EN", bangla: false, name: "English.tiff")
 
-// App icon (About panel, Finder)
+// App icon (About panel, Finder, installer): the laptop with the flag on its
+// screen, on a light rounded square. Same drawing as Branding/laptop.svg.
+func drawLaptop(in s: CGFloat) {
+    // Light tile
+    let tile = NSRect(x: s * 0.1, y: s * 0.1, width: s * 0.8, height: s * 0.8)
+    let tilePath = NSBezierPath(roundedRect: tile, xRadius: s * 0.18, yRadius: s * 0.18)
+    NSGradient(colors: [NSColor(red: 0.98, green: 0.99, blue: 0.98, alpha: 1),
+                        NSColor(red: 0.90, green: 0.94, blue: 0.91, alpha: 1)])!.draw(in: tilePath, angle: -90)
+    NSColor(red: 0.80, green: 0.87, blue: 0.82, alpha: 1).setStroke()
+    tilePath.lineWidth = max(1, s / 256)
+    tilePath.stroke()
+
+    // Laptop is 400 x 190 units, drawn 0.68 of the icon wide, centred.
+    let w = s * 0.68
+    let k = w / 400
+    let ox = (s - w) / 2
+    let oy = (s - 190 * k) / 2
+    // SVG y runs down; flip into AppKit coordinates.
+    func r(_ x: CGFloat, _ y: CGFloat, _ rw: CGFloat, _ rh: CGFloat) -> NSRect {
+        NSRect(x: ox + x * k, y: oy + (190 - y - rh) * k, width: rw * k, height: rh * k)
+    }
+    NSColor(red: 0.15, green: 0.19, blue: 0.17, alpha: 1).setFill()
+    NSBezierPath(roundedRect: r(30, 2, 340, 164), xRadius: 12 * k, yRadius: 12 * k).fill()
+    let screen = NSBezierPath(roundedRect: r(40, 12, 320, 144), xRadius: 4 * k, yRadius: 4 * k)
+    NSGradient(colors: [NSColor(red: 0.067, green: 0.592, blue: 0.353, alpha: 1),
+                        NSColor(red: 0.027, green: 0.322, blue: 0.2, alpha: 1)])!.draw(in: screen, angle: -90)
+    NSColor(red: 0.878, green: 0.188, blue: 0.247, alpha: 1).setFill()
+    NSBezierPath(ovalIn: r(178 - 44, 84 - 44, 88, 88)).fill()
+
+    // Base
+    let base = NSBezierPath()
+    func pt(_ x: CGFloat, _ y: CGFloat) -> NSPoint { NSPoint(x: ox + x * k, y: oy + (190 - y) * k) }
+    base.move(to: pt(2, 168)); base.line(to: pt(398, 168)); base.line(to: pt(392, 181))
+    base.curve(to: pt(380, 187), controlPoint1: pt(390, 185), controlPoint2: pt(386, 187))
+    base.line(to: pt(20, 187))
+    base.curve(to: pt(8, 181), controlPoint1: pt(14, 187), controlPoint2: pt(10, 185))
+    base.close()
+    NSGradient(colors: [NSColor(red: 0.83, green: 0.85, blue: 0.84, alpha: 1),
+                        NSColor(red: 0.56, green: 0.60, blue: 0.58, alpha: 1)])!.draw(in: base, angle: -90)
+    NSColor(red: 0.49, green: 0.53, blue: 0.51, alpha: 1).setFill()
+    NSBezierPath(roundedRect: r(168, 168, 64, 6), xRadius: 3 * k, yRadius: 3 * k).fill()
+}
+
 let iconset = out.appendingPathComponent("AppIcon.iconset")
 try FileManager.default.createDirectory(at: iconset, withIntermediateDirectories: true)
 for (pt, scale) in [(16, 1), (16, 2), (32, 1), (32, 2), (128, 1), (128, 2), (256, 1), (256, 2), (512, 1), (512, 2)] {
     let px = pt * scale
-    let r = rep(pixels: px) { s in
-        let rect = NSRect(x: s * 0.1, y: s * 0.1, width: s * 0.8, height: s * 0.8)
-        let path = NSBezierPath(roundedRect: rect, xRadius: s * 0.18, yRadius: s * 0.18)
-        NSGradient(colors: [NSColor(red: 0.0, green: 0.42, blue: 0.31, alpha: 1),
-                            NSColor(red: 0.0, green: 0.30, blue: 0.22, alpha: 1)])!.draw(in: path, angle: -90)
-        NSColor(red: 0.86, green: 0.12, blue: 0.20, alpha: 1).setFill()
-        NSBezierPath(ovalIn: NSRect(x: s * 0.62, y: s * 0.62, width: s * 0.16, height: s * 0.16)).fill()
-        centered("অ", font: banglaFont(s * 0.46, bold: true), color: .white, in: s, yNudge: -0.02)
-    }
+    let r = rep(pixels: px) { s in drawLaptop(in: s) }
     let suffix = scale == 2 ? "@2x" : ""
     try r.representation(using: .png, properties: [:])!
         .write(to: iconset.appendingPathComponent("icon_\(pt)x\(pt)\(suffix).png"))

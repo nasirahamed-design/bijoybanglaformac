@@ -1,3 +1,5 @@
+<p align="center"><img src="Branding/logo.svg" width="360" alt="Bijoy Bangla for Mac"></p>
+
 # Bijoy Bangla for macOS
 
 **Download:** [bijoybanglaformac.com](https://bijoybanglaformac.com) - free and open source (MIT)
@@ -91,6 +93,8 @@ Sources/main.swift            IMK server, --install / --uninstall
 Resources/Info.plist          input method + two-mode definition
 Tests/cases.json              engine test words (keys -> expected Unicode)
 Scripts/make-icons.swift      draws the menu bar and app icons
+Scripts/make-logo.py          generates the logo files in Branding/
+Branding/                     logo (SVG + PNG, light and dark), laptop icon, favicon
 docs/                         website (GitHub Pages, bijoybanglaformac.com) + JS engine for the demo
 Installer/                    pkg scripts, installer screens, distribution.xml
 Distribution/                 Activation Guide (HTML source + PDF)
