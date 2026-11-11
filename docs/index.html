@@ -369,6 +369,11 @@ section.faq { padding: 30px 0 48px; }
 footer.site { padding: 8px 0 44px; color: var(--ink); font-size: 14px; }
 footer.site .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
 footer.site p { margin: 0 0 2px; }
+footer.site .stats { flex-basis: 100%; color: var(--muted); font-size: 13.5px; }
+.dl-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.dl-count { color: var(--muted); font-size: 16px; }
+.dl-count strong { color: var(--ink); font-size: 20px; font-weight: 700; }
+html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
 
 @media (max-width: 1020px) {
 }
@@ -438,10 +443,13 @@ footer.site p { margin: 0 0 2px; }
       <div>
         <h1 lang="bn" class="tw" aria-label="ম্যাকে বিজয় লেআউটে বাংলা লিখুন"><span class="tw-ghost" aria-hidden="true">ম্যাকে বিজয় লেআউটে<br>বাংলা লিখুন</span><span class="tw-text" aria-hidden="true"></span></h1>
         <p class="tag" data-i18n="tagline">Type Bangla on your Mac with the familiar Bijoy layout. Free, open source and ready for macOS.</p>
+          <div class="dl-row">
           <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
             <span data-i18n="download">Download for Mac</span>
           </a>
+          <span class="dl-count" hidden></span>
+          </div>
           <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.3</span> · About 1 MB</span><span class="m2">Requires macOS 13 Ventura or later · Apple silicon and Intel</span><a class="how" href="#install">How to install <span aria-hidden="true">→</span></a></div>
       </div>
 
@@ -787,6 +795,7 @@ footer.site p { margin: 0 0 2px; }
       <p data-i18n="foot2">An independent project, not affiliated with Ananda Computers. Bijoy is a trademark of its respective owner.</p>
     </div>
     <div><a href="https://github.com/nasirahamed-design/bijoybanglaformac" data-i18n="footGit">Source on GitHub</a></div>
+    <p class="stats" hidden></p>
   </div>
 </footer>
 
@@ -838,6 +847,7 @@ footer.site p { margin: 0 0 2px; }
     document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === next)));
     try { localStorage.setItem("lang", next); } catch (e) {}
     if (typeof showVersion === "function") showVersion();
+    if (typeof showCounts === "function") showCounts();
     draw();
   }
   document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
@@ -921,6 +931,47 @@ footer.site p { margin: 0 0 2px; }
       if (rel && rel.tag_name) { latest = rel.tag_name.replace(/^v/, ""); showVersion(); }
     })
     .catch(() => {});   // offline or rate-limited: keep the version written in the page
+
+  /* ---------- Download count and visitor numbers ---------- */
+  // Downloads: GitHub counts every download of the DMG, across all releases.
+  // Visitors and bots: worked out on the web server from its access log
+  // (Scripts/site-stats.py) and published as /stats.json. A visitor counts as a
+  // person when their browser runs this script and fetches /beacon.txt; bots
+  // usually don't run scripts or say they are bots.
+  let downloads = null, stats = null;
+  const num = n => { const s = Number(n).toLocaleString("en-US"); return lang === "bn" ? s.replace(/[0-9]/g, d => BN_DIGITS[d]) : s; };
+  function showCounts() {
+    const dl = document.querySelector(".dl-count");
+    if (dl && downloads !== null) {
+      dl.hidden = false;
+      dl.innerHTML = "<strong>" + num(downloads) + "</strong> " + (lang === "bn" ? "বার ডাউনলোড" : (downloads === 1 ? "download" : "downloads"));
+    }
+    const st = document.querySelector("footer.site .stats");
+    if (st && stats) {
+      st.hidden = false;
+      st.textContent = lang === "bn"
+        ? "ভিজিটর " + num(stats.visitors) + " · বট " + num(stats.bots)
+        : "Visitors " + num(stats.visitors) + " · Bots " + num(stats.bots);
+    }
+  }
+  fetch("https://api.github.com/repos/nasirahamed-design/bijoybanglaformac/releases?per_page=100")
+    .then(r => r.ok ? r.json() : null)
+    .then(list => {
+      if (!Array.isArray(list)) return;
+      downloads = list.reduce((sum, rel) => sum + (rel.assets || [])
+        .filter(a => /\.dmg$/i.test(a.name))
+        .reduce((s, a) => s + a.download_count, 0), 0);
+      showCounts();
+    })
+    .catch(() => {});
+  fetch("/stats.json", { cache: "no-store" })
+    .then(r => r.ok ? r.json() : null)
+    .then(j => { if (j && typeof j.visitors === "number") { stats = j; showCounts(); } })
+    .catch(() => {});
+  if (/(^|\.)bijoybanglaformac\.com$/.test(location.hostname)) {
+    fetch("/beacon.txt?" + Date.now(), { cache: "no-store", keepalive: true }).catch(() => {});
+  }
+
 
   let saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) {}
