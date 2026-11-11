@@ -4,7 +4,11 @@
 Runs on the web server every 10 minutes (cron) and writes a small JSON file
 that the website shows in its footer:
 
-    {"visitors": 1234, "bots": 5678, "since": "2026-11-11", "updated": "..."}
+    {"unique": 900, "visitors": 1234, "bots": 5678, "since": "2026-11-11", ...}
+
+  unique    different people since counting began (each person once, ever)
+  visitors  visits by people, counting each person once per day
+  bots      visits by bots, counting each bot once per day
 
 How a visit is classified, per day and per (IP address + browser) pair:
   - person: the browser fetched /beacon.txt, which only happens when the page's
@@ -17,7 +21,7 @@ kept in a state file and only the days still in the logs are recounted.
 
 Usage:  site-stats.py [--log PATH] [--state PATH] [--out PATH]
 """
-import argparse, datetime as dt, glob, gzip, json, os, re, tempfile
+import argparse, datetime as dt, glob, gzip, hashlib, json, os, re, tempfile
 
 LINE = re.compile(
     r'^(?P<ip>\S+) \S+ \S+ \[(?P<day>\d{2}/\w{3}/\d{4}):[^\]]+\] '
@@ -54,12 +58,18 @@ def count(log_pattern):
             beacons.setdefault(day, set()).add(who)
         elif PAGE.match(m["path"]) and m["status"].startswith(("2", "3")):
             pages.setdefault(day, set()).add(who)
-    days = {}
+    days, seen = {}, set()
     for day in set(pages) | set(beacons):
         people = {w for w in beacons.get(day, set()) if not BOT_UA.search(w[1])}
         everyone = pages.get(day, set()) | beacons.get(day, set())
         days[day] = {"visitors": len(people), "bots": len(everyone - people)}
-    return days
+        seen |= {fingerprint(w) for w in people}
+    return days, seen
+
+
+def fingerprint(who):
+    # Only a short one-way hash of IP + browser is kept, never the IP itself
+    return hashlib.sha256(("bijoy|" + who[0] + "|" + who[1]).encode()).hexdigest()[:16]
 
 
 def write_json(path, data):
@@ -76,6 +86,7 @@ def main():
     ap.add_argument("--log", default="/var/log/nginx/bijoybanglaformac.access.log*")
     ap.add_argument("--state", default="/var/lib/bijoy-stats/days.json")
     ap.add_argument("--out", default="/var/lib/bijoy-stats/stats.json")
+    ap.add_argument("--seen", default="/var/lib/bijoy-stats/seen.json")
     a = ap.parse_args()
 
     try:
@@ -84,7 +95,15 @@ def main():
     except (OSError, ValueError):
         saved = {}
 
-    fresh = count(a.log)
+    try:
+        with open(a.seen) as f:
+            seen = set(json.load(f))
+    except (OSError, ValueError):
+        seen = set()
+
+    fresh, people = count(a.log)
+    seen |= people
+    write_json(a.seen, sorted(seen))
     if len(fresh) > 1:
         # The oldest day still in the logs may be cut off by log rotation, so
         # trust the saved figure for it when there is one.
@@ -95,6 +114,7 @@ def main():
     write_json(a.state, saved)
 
     write_json(a.out, {
+        "unique": len(seen),
         "visitors": sum(d["visitors"] for d in saved.values()),
         "bots": sum(d["bots"] for d in saved.values()),
         "since": min(saved) if saved else None,

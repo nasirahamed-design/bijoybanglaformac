@@ -235,10 +235,14 @@ nav.site a:hover { color: var(--green); }
 .tw { position: relative; }
 .tw-ghost { visibility: hidden; }
 .tw-text { position: absolute; inset: 0; }
-.tw-text::after { content: ""; display: inline-block; width: .06em; height: .9em; margin-left: .06em; vertical-align: -0.08em; background: var(--red); animation: tw-blink 1s steps(1) infinite; }
+.tw-text.typing::after { content: ""; display: inline-block; width: .06em; height: .9em; margin-left: .06em; vertical-align: -0.08em; background: var(--red); animation: tw-blink 1s steps(1) infinite; }
 @keyframes tw-blink { 50% { opacity: 0; } }
 .no-tw .tw-ghost { visibility: visible; }
 .no-tw .tw-text { display: none; }
+.hero .trust { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 0; max-width: 34em; color: var(--green); font-size: 17px; line-height: 1.5; font-weight: 500; }
+.hero .trust svg { flex: none; width: 22px; height: 22px; margin-top: 1px; }
+.hero .trust .tw { flex: 1; }
+html[lang="bn"] .hero .trust { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
 .hero .tag { font-size: 22px; line-height: 1.45; margin: 16px 0 26px; max-width: 30ch; }
 .download {
   display: inline-flex; align-items: center; gap: 16px; color: #fff;
@@ -441,7 +445,8 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
 
     <main class="hero">
       <div>
-        <h1 lang="bn" class="tw" aria-label="ম্যাকে বিজয় লেআউটে বাংলা লিখুন"><span class="tw-ghost" aria-hidden="true">ম্যাকে বিজয় লেআউটে<br>বাংলা লিখুন</span><span class="tw-text" aria-hidden="true"></span></h1>
+        <h1 class="tw" id="twHead" aria-label="Type Bangla on your Mac, the Bijoy way"><span class="tw-ghost" aria-hidden="true">Type Bangla<br>on your Mac,<br>the Bijoy way</span><span class="tw-text" aria-hidden="true"></span></h1>
+        <p class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="tw" id="twTrust" aria-label="Signed with an Apple Developer ID and notarized by Apple. Your Mac checks the installer before it runs."><span class="tw-ghost" aria-hidden="true">Signed with an Apple Developer ID and notarized by Apple. Your Mac checks the installer before it runs.</span><span class="tw-text" aria-hidden="true"></span></span></p>
         <p class="tag" data-i18n="tagline">Type Bangla on your Mac with the familiar Bijoy layout. Free, open source and ready for macOS.</p>
           <div class="dl-row">
           <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
@@ -949,9 +954,10 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
     const st = document.querySelector("footer.site .stats");
     if (st && stats) {
       st.hidden = false;
+      const u = typeof stats.unique === "number" ? stats.unique : null;
       st.textContent = lang === "bn"
-        ? "ভিজিটর " + num(stats.visitors) + " · বট " + num(stats.bots)
-        : "Visitors " + num(stats.visitors) + " · Bots " + num(stats.bots);
+        ? (u !== null ? "ইউনিক ভিজিটর " + num(u) + " · " : "") + "ভিজিট " + num(stats.visitors) + " · বট " + num(stats.bots)
+        : (u !== null ? "Unique visitors " + num(u) + " · " : "") + "Visits " + num(stats.visitors) + " · Bots " + num(stats.bots);
     }
   }
   fetch("https://api.github.com/repos/nasirahamed-design/bijoybanglaformac/releases?per_page=100")
@@ -990,49 +996,86 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
   arrows.forEach(function (a) { io.observe(a); });
 })();
 
-// Hero headline types itself, one Bangla letter (grapheme) at a time
+// Hero: the headline types itself, then the trust line, in the selected
+// language; both erase and the loop starts again. Letters are whole graphemes,
+// so Bangla never shows half a letter.
 (function () {
-  var h = document.querySelector('h1.tw');
-  if (!h) return;
-  var out = h.querySelector('.tw-text');
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !out) { h.classList.add('no-tw'); return; }
-  var lines = ['ম্যাকে বিজয় লেআউটে', 'বাংলা লিখুন'];
-  var split = function (t) {
-    if (window.Intl && Intl.Segmenter) {
-      return Array.from(new Intl.Segmenter('bn', { granularity: 'grapheme' }).segment(t), function (x) { return x.segment; });
+  var TEXT = {
+    en: {
+      head: ['Type Bangla', 'on your Mac,', 'the Bijoy way'],
+      trust: 'Signed with an Apple Developer ID and notarized by Apple. Your Mac checks the installer before it runs.'
+    },
+    bn: {
+      head: ['ম্যাকে বিজয় লেআউটে', 'বাংলা লিখুন'],
+      trust: 'Apple Developer ID দিয়ে সাইন করা এবং Apple-এর নোটারাইজেশনে যাচাই করা। চালানোর আগে আপনার ম্যাক নিজেই ইনস্টলারটি পরীক্ষা করে।'
     }
-    return Array.from(t);
   };
-  var steps = [];
-  lines.forEach(function (line, i) {
-    split(line).forEach(function (g) { steps.push(g); });
-    if (i < lines.length - 1) steps.push('\n');
-  });
-  var n = 0, dir = 1;
-  function render() {
+  var head = document.getElementById('twHead'), trust = document.getElementById('twTrust');
+  if (!head || !trust) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seg = window.Intl && Intl.Segmenter ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+  var split = function (t) { return seg ? Array.from(seg.segment(t), function (x) { return x.segment; }) : Array.from(t); };
+  var toSteps = function (lines) {
+    var out = [];
+    lines.forEach(function (line, i) { out = out.concat(split(line)); if (i < lines.length - 1) out.push('\n'); });
+    return out;
+  };
+  function paint(el, steps, n) {
+    var out = el.querySelector('.tw-text');
     out.textContent = '';
     steps.slice(0, n).join('').split('\n').forEach(function (part, i) {
       if (i) out.appendChild(document.createElement('br'));
       out.appendChild(document.createTextNode(part));
     });
   }
-  // Type forward, hold, erase backwards, pause, and start again - forever
-  function tick() {
-    if (dir === 1) {
-      if (n >= steps.length) { dir = -1; h.classList.add('done'); return setTimeout(tick, 3000); }
-      var g = steps[n++];
-      render();
-      setTimeout(tick, g === ' ' ? 320 : g === '\n' ? 500 : 230 + Math.random() * 120);
-    } else {
-      h.classList.remove('done');
-      if (n <= 0) { dir = 1; return setTimeout(tick, 700); }
-      n--;
-      render();
-      setTimeout(tick, 55);
-    }
+  function setGhost(el, lines) {
+    var g = el.querySelector('.tw-ghost');
+    g.textContent = '';
+    lines.forEach(function (line, i) { if (i) g.appendChild(document.createElement('br')); g.appendChild(document.createTextNode(line)); });
+    el.setAttribute('aria-label', lines.join(' '));
   }
-  setTimeout(tick, 500);
+  function cursor(el, on) { el.querySelector('.tw-text').classList.toggle('typing', on); }
+
+  var run = 0;   // bumped on every language change, which stops the old loop
+  function start() {
+    var lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
+    var t = TEXT[lang], my = ++run;
+    head.lang = lang; trust.lang = lang;
+    setGhost(head, t.head); setGhost(trust, [t.trust]);
+    if (reduce) { head.classList.add('no-tw'); trust.classList.add('no-tw'); return; }
+    var hs = toSteps(t.head), ts = toSteps([t.trust]);
+    var hn = 0, tn = 0;
+    paint(head, hs, 0); paint(trust, ts, 0);
+    var later = function (fn, ms) { setTimeout(function () { if (my === run) fn(); }, ms); };
+    function typeHead() {
+      cursor(head, true);
+      if (hn >= hs.length) { cursor(head, false); return later(typeTrust, 500); }
+      var g = hs[hn++]; paint(head, hs, hn);
+      // Bangla graphemes carry more per step than Latin letters, so English types faster
+      var base = lang === 'bn' ? 170 : 75, jitter = lang === 'bn' ? 110 : 60;
+      later(typeHead, g === ' ' ? base + 90 : g === '\n' ? 450 : base + Math.random() * jitter);
+    }
+    function typeTrust() {
+      cursor(trust, true);
+      if (tn >= ts.length) return later(eraseTrust, 4000);
+      var g = ts[tn++]; paint(trust, ts, tn);
+      later(typeTrust, g === ' ' ? 60 : (lang === 'bn' ? 45 : 28) + Math.random() * 25);
+    }
+    function eraseTrust() {
+      if (tn <= 0) { cursor(trust, false); return later(eraseHead, 150); }
+      tn = Math.max(0, tn - 2); paint(trust, ts, tn);
+      later(eraseTrust, 14);
+    }
+    function eraseHead() {
+      cursor(head, true);
+      if (hn <= 0) return later(typeHead, 700);
+      hn--; paint(head, hs, hn);
+      later(eraseHead, 45);
+    }
+    later(typeHead, 400);
+  }
+  new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  start();
 })();
 </script>
 </body>
