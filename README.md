@@ -116,3 +116,13 @@ The Unicode to Bijoy (ANSI) table in `Resources/bijoy-classic.js` comes from
 1.0.5, MIT licence, copyright (c) 2026 abdnahid. Its licence text is kept in
 that file. Independent project, not affiliated with Ananda
 Computers. Bijoy is a trademark of its owner.
+
+## Updating the website
+
+The site lives in `docs/` (English at `/`, Bangla at `/bn/`). After editing
+`docs/index.html`, rebuild the Bangla page and, if the layout changed, the PDF:
+
+```
+python3 Scripts/make-bn.py          # writes docs/bn/index.html from the BN strings
+python3 Scripts/make-layout-pdf.py  # writes docs/Bijoy-Keyboard-Layout.pdf (needs weasyprint)
+```

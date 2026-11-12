@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#0B6B3F">
 <link rel="canonical" href="https://bijoybanglaformac.com/">
 <link rel="alternate" hreflang="en" href="https://bijoybanglaformac.com/">
-<link rel="alternate" hreflang="bn" href="https://bijoybanglaformac.com/">
+<link rel="alternate" hreflang="bn" href="https://bijoybanglaformac.com/bn/">
 <link rel="alternate" hreflang="x-default" href="https://bijoybanglaformac.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bijoy Bangla for Mac">
@@ -327,6 +327,9 @@ section.install { text-align: center; padding: 36px 0 56px; }
 .tile { width: 96px; margin: 0 auto 16px; }
 .tile svg { width: 100%; height: auto; display: block; }
 .mac-hero { width: min(100%, 640px); margin: 0 auto 28px; }
+.mac-video { position: relative; width: min(100%, 980px); margin: 0 auto; }
+/* The video sits on the MacBook screen like an open window (positions match the 800 x 480 drawing) */
+.mac-video .on-screen { position: absolute; left: 13.75%; top: 11.35%; width: 72.5%; height: auto; aspect-ratio: 1280 / 782; border-radius: 1.2%; box-shadow: 0 12px 30px -12px rgba(0, 0, 0, .55); background: #fff; }
 .mac-hero svg { width: 100%; height: auto; display: block; }
 h2 { font: 700 clamp(32px, 4.4vw, 44px)/1.2 var(--serif); margin: 0 0 8px; }
 .sub { color: var(--muted); font-size: 18px; margin: 0 auto 34px; max-width: 62ch; }
@@ -443,9 +446,129 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
   nav.site a { flex: none; scroll-snap-align: start; padding: 7px 14px; border-radius: 999px; background: var(--card); box-shadow: 0 0 0 1px var(--line); line-height: 1.3; }
   nav.site a:last-child { margin-right: 20px; }
 }
+
+/* ---------- See it in Word ---------- */
+section.see { padding: 8px 0 40px; text-align: center; }
+section.see .lead, section.layout .lead, section.modes .lead { color: var(--muted); font-size: 17px; margin: 0 auto 22px; max-width: 62ch; }
+.video { margin: 0 auto; max-width: 900px; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 30px 60px -30px rgba(6, 75, 44, .45); }
+.video video { display: block; width: 100%; height: auto; }
+
+/* ---------- Interactive keyboard ---------- */
+section.layout { padding: 48px 0 24px; border-top: 1px solid var(--line); }
+section.layout .lead, section.modes .lead { margin-left: 0; }
+.kb-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin: 0 0 16px; }
+.shift-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--card); color: var(--ink); font: 600 15px var(--sans); box-shadow: 0 0 0 1px var(--key-edge), 0 2px 0 var(--key-edge); }
+.shift-toggle svg { width: 18px; height: 18px; }
+.shift-toggle[aria-pressed="true"] { background: var(--green); color: #fff; box-shadow: 0 0 0 1px var(--green), 0 2px 0 var(--green-deep); }
+.kb-out { min-height: 1.6em; font-size: 17px; color: var(--muted); }
+.kb-out b { color: var(--ink); font-size: 24px; margin-left: 6px; }
+.kb-pdf { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 600; }
+.kb-pdf svg { width: 20px; height: 20px; }
+.kb-pad { display: block; width: 100%; box-sizing: border-box; margin: 0 0 12px; padding: 14px 16px; border-radius: 14px; border: 0; resize: vertical;
+  background: var(--card); color: var(--ink); font: 500 24px/1.5 "Noto Sans Bengali", var(--sans); box-shadow: 0 0 0 1px var(--line), inset 0 2px 4px rgba(0,0,0,.03); }
+.kb-pad:focus { outline: none; box-shadow: 0 0 0 2px var(--green); }
+.kb-pad::placeholder { color: var(--muted); font-size: 16px; font-weight: 400; }
+.kb { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 14px; border-radius: 16px; background: var(--mint-2); box-shadow: inset 0 0 0 1px var(--line); }
+.kb-row { display: flex; gap: 6px; }
+.kb-key { position: relative; flex: 1 1 0; min-width: 0; aspect-ratio: 1 / 1; border: 0; border-radius: 9px; padding: 0; cursor: pointer;
+  background: var(--key); color: var(--ink); box-shadow: 0 0 0 1px var(--key-edge), 0 3px 0 var(--key-edge); transition: transform .08s, background .15s; }
+.kb-key.wide { aspect-ratio: auto; }
+.kb-key .en { position: absolute; left: 7px; top: 5px; font: 500 11px var(--sans); color: var(--muted); }
+.kb-key .bn { display: block; font: 600 clamp(15px, 2.2vw, 26px)/1 "Noto Sans Bengali", var(--sans); color: var(--green-deep); margin-top: 10%; }
+.kb-key .alt { position: absolute; right: 6px; top: 5px; font: 500 12px "Noto Sans Bengali", var(--sans); color: var(--red); }
+.kb.shifted .kb-key .alt { display: none; }
+.kb-key.pu { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font: 500 clamp(12px, 1.4vw, 16px)/1 -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--ink); }
+.kb-key.pu .top { color: var(--muted); }
+.kb.shifted .kb-key.pu .top { color: var(--green); font-weight: 700; }
+.kb.shifted .kb-key.pu .bot { color: var(--muted); }
+.kb-key.lbl { cursor: default; background: var(--key); box-shadow: 0 0 0 1px var(--key-edge), 0 3px 0 var(--key-edge); font: 500 12px var(--sans); color: var(--muted); }
+.kb-key.lbl .sym { position: absolute; top: 7px; font: 400 17px/1 -apple-system, "SF Pro Text", "Segoe UI Symbol", "Noto Sans Symbols 2", "Apple Symbols", sans-serif; color: var(--ink); }
+.kb-key.lbl .sym svg { width: 16px; height: 16px; display: block; }
+.kb-key.lbl .word { position: absolute; bottom: 7px; font: 500 11.5px var(--sans); color: var(--muted); white-space: nowrap; }
+.kb-key.side-l .sym, .kb-key.side-l .word { left: 9px; }
+.kb-key.side-r .sym, .kb-key.side-r .word { right: 9px; }
+.kb-key.side-c { cursor: default; }
+.kb-mods .kb-key { aspect-ratio: auto; height: clamp(40px, 5.2vw, 62px); }
+.kb-key.mod-shift { cursor: pointer; }
+.kb-key.mod-shift.down { background: var(--green); box-shadow: 0 0 0 1px var(--green), 0 1px 0 var(--green-deep); transform: translateY(2px); }
+.kb-key.mod-shift.down .sym, .kb-key.mod-shift.down .word { color: #fff; }
+.kb-key:not(.lbl):hover, .kb-key.mod-shift:not(.down):hover { background: var(--mint); }
+.kb-key.hit { transform: translateY(2px); box-shadow: 0 0 0 1px var(--green), 0 1px 0 var(--green); background: var(--mint); }
+@media (max-width: 640px) {
+  .kb { gap: 4px; padding: 8px; } .kb-row { gap: 4px; }
+  .kb-key { border-radius: 6px; } .kb-key .en, .kb-key .alt { font-size: 8.5px; left: 3px; right: 3px; top: 2px; }
+  .kb-key.lbl, .kb-mods { display: none; } .kb-pdf { margin-left: 0; }
+  .kb-key .bn { font-size: 15px; } .kb-key .alt { display: none; }
+}
+
+/* ---------- Unicode or Classic ---------- */
+section.modes { padding: 40px 0 24px; border-top: 1px solid var(--line); }
+.mode-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mode { padding: 24px; border-radius: 18px; background: var(--card); box-shadow: 0 0 0 1px var(--line), var(--shadow); }
+.mode-head { display: flex; align-items: center; gap: 12px; }
+.mode-badge { display: grid; place-items: center; width: 30px; height: 22px; border-radius: 6px; background: #111; color: #fff; font: 700 14px -apple-system, "Helvetica Neue", Arial, sans-serif; }
+.mode h3 { margin: 0; font: 700 24px "Noto Sans Bengali", var(--sans); }
+.mode .sample { margin: 18px 0 12px; padding: 14px 16px; border-radius: 12px; background: var(--mint-2); font: 600 28px/1.35 "Noto Sans Bengali", var(--sans); color: var(--ink); }
+/* Uses SutonnyMJ when the visitor has it installed (it is not served from this site) */
+.mode .sample.ansi { font: 500 24px/1.45 "SutonnyMJ", "SutonnyOMJ", Georgia, "Times New Roman", serif; letter-spacing: .01em; }
+.mode .sample.ansi.mj { font-size: 30px; font-weight: 400; letter-spacing: 0; }
+.ansi-note { margin: -4px 0 12px; font-size: 13.5px; color: var(--muted); }
+.ansi-note b { color: var(--green); }
+.mode .mode-note { margin: 0 0 12px; color: var(--muted); }
+.mode ul { margin: 0; padding-left: 20px; }
+.mode li { margin: 4px 0; }
+@media (max-width: 760px) { .mode-cards { grid-template-columns: 1fr; } }
+
+/* ---------- What's new ---------- */
+section.news { padding: 40px 0 8px; border-top: 1px solid var(--line); }
+.releases { list-style: none; margin: 18px 0 14px; padding: 0; display: grid; gap: 14px; }
+.releases li { display: grid; grid-template-columns: 150px 1fr; gap: 6px 24px; padding: 16px 20px; border-radius: 14px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+.releases .rel-tag { font: 700 18px var(--sans); color: var(--green); }
+.releases .rel-date { display: block; font-size: 13.5px; color: var(--muted); }
+.releases ul { margin: 0; padding-left: 18px; }
+.releases ul li { display: list-item; padding: 0; background: none; box-shadow: none; border-radius: 0; margin: 2px 0; }
+.all-rel { color: var(--green); font-weight: 600; }
+@media (max-width: 640px) { .releases li { grid-template-columns: 1fr; } }
+
+/* ---------- Sticky download bar ---------- */
+.stick { position: fixed; inset: 0 0 auto 0; z-index: 50; transform: translateY(-110%); transition: transform .3s ease;
+  background: color-mix(in srgb, var(--paper) 88%, transparent); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px);
+  box-shadow: 0 1px 0 var(--line), 0 10px 30px -20px rgba(0, 0, 0, .35); }
+.stick.on { transform: none; }
+.stick .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 58px; }
+.stick-brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; font: 700 15px var(--sans); letter-spacing: .08em; }
+.stick-brand img { display: block; height: 44px; width: auto; }
+.stick-dl { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 10px; color: #fff; text-decoration: none; font: 700 15px var(--sans);
+  background: linear-gradient(180deg, var(--green-2), var(--green)); }
+:root[data-theme="dark"] .stick-dl { color: #0F1712; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stick-dl { color: #0F1712; } }
+.stick-dl svg { width: 18px; height: 18px; }
+@media (max-width: 480px) { .stick-brand span { display: none; } }
+@media (prefers-reduced-motion: reduce) { .stick { transition: none; } }
+
+/* ---------- Back to top ---------- */
+.to-top { position: fixed; right: 20px; bottom: 20px; z-index: 40; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--green); color: #fff; box-shadow: 0 10px 24px -10px rgba(6, 75, 44, .7); opacity: 0; transform: translateY(12px); transition: opacity .25s, transform .25s; }
+.to-top.on { opacity: 1; transform: none; }
+.to-top:hover { background: var(--green-deep); }
+.to-top svg { width: 22px; height: 22px; }
+:root[data-theme="dark"] .to-top { color: #0F1712; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .to-top { color: #0F1712; } }
+@media (max-width: 640px) { .to-top { right: 14px; bottom: 14px; width: 44px; height: 44px; } }
+
+/* ---------- Footer links ---------- */
+.foot-links { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode li, html[lang="bn"] .releases .rel-date { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
 </style>
 </head>
 <body>
+<div class="stick" aria-hidden="true" inert>
+  <div class="wrap">
+    <a class="stick-brand" href="#"><picture><source srcset="logo-dark.svg" media="(prefers-color-scheme: dark)"><img src="logo.svg" width="71" height="44" alt=""></picture><span>BIJOY BANGLA FOR MAC</span></a>
+    <a class="stick-dl" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.pkg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg><span data-i18n="download">Download for Mac</span></a>
+  </div>
+</div>
 
 <div class="top">
   <div class="wrap">
@@ -472,6 +595,7 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
       <nav class="site" aria-label="Main">
         <a href="#install" data-i18n="navInstall">Install</a>
         <a href="#typing" data-i18n="navTyping">Typing</a>
+        <a href="#layout" data-i18n="navLayout">Layout</a>
         <a href="#about" class="hide-sm" data-i18n="navAbout">About</a>
         <a href="#faq" data-i18n="navFaq">Questions</a>
         <a href="https://github.com/nasirahamed-design/bijoybanglaformac">GitHub</a>
@@ -492,7 +616,7 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
           </a>
           <span class="dl-count" hidden></span>
           </div>
-          <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.3</span> · About 1 MB</span><span class="m2">Requires macOS 13 Ventura or later · Apple silicon and Intel</span><span class="links"><a class="how" href="#install">How to install <span aria-hidden="true">→</span></a><a class="how" href="Activation-Guide.pdf">Activation Guide (PDF)</a></span></div>
+          <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.3</span> · About 1 MB</span><span class="m2">Requires macOS 13 Ventura or later · Apple silicon and Intel</span><span class="links"><a class="how" href="#install">How to install <span aria-hidden="true">→</span></a><a class="how" href="/Activation-Guide.pdf">Activation Guide (PDF)</a></span></div>
       </div>
 
       <div class="demo">
@@ -522,11 +646,13 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
   <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 C 300 10, 560 90, 860 50 S 1300 20, 1440 55 V90 H0 Z"/></svg>
 </div>
 
-<section class="install" id="install">
+<section class="see" id="see">
   <div class="wrap">
-    <div class="mac-hero"><!-- MACBOOK -->
+    <h2 data-i18n="seeTitle">See it in Microsoft Word</h2>
+    <p class="lead" data-i18n="seeLead">Typing a Bangla sentence with বিজয় ইউনিকোড, in real time.</p>
+    <div class="mac-hero mac-video"><!-- MACBOOK -->
 <svg class="macbook" viewBox="0 0 800 480" role="img" aria-labelledby="mbTitle">
-<title id="mbTitle">MacBook showing the Bijoy Bangla keyboard layout</title>
+<title id="mbTitle">MacBook</title>
 <defs>
   <linearGradient id="mb-wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E7A49"/><stop offset=".55" stop-color="#075233"/><stop offset="1" stop-color="#03301D"/></linearGradient>
   <radialGradient id="mb-glow" cx=".78" cy=".2" r=".6"><stop offset="0" stop-color="#E0303F" stop-opacity=".55"/><stop offset="1" stop-color="#E0303F" stop-opacity="0"/></radialGradient>
@@ -550,205 +676,19 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
 <text x="615" y="33" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" font-weight="700" fill="#075233">U</text>
 <rect x="632" y="27.5" width="18" height="4" rx="2" fill="#fff" opacity=".6"/><rect x="658" y="27.5" width="36" height="4" rx="2" fill="#fff" opacity=".6"/>
 <path d="M368 21 h64 v8 q0 6 -6 6 h-52 q-6 0 -6 -6 z" fill="#0B0D0E"/>
-<rect x="110" y="106" width="580" height="262" rx="12" fill="#000" opacity=".25"/>
-<rect x="110" y="100" width="580" height="262" rx="12" fill="#F8F8F3"/>
-<circle cx="128" cy="116" r="5" fill="#FF5F57"/>
-<circle cx="144" cy="116" r="5" fill="#FEBC2E"/>
-<circle cx="160" cy="116" r="5" fill="#28C840"/>
-<text x="400.0" y="120" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#15201A">Bijoy Bangla Keyboard Layout</text>
-<rect x="130.0" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="147.0" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">`</text>
-<rect x="167.6" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="184.6" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">১</text>
-<text x="171.6" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">1</text>
-<rect x="205.2" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="222.2" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">২</text>
-<text x="209.2" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">2</text>
-<rect x="242.8" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="259.8" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৩</text>
-<text x="246.8" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">3</text>
-<rect x="280.4" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="297.4" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৪</text>
-<text x="310.4" y="147.0" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">৳</text>
-<text x="284.4" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">4</text>
-<rect x="318.0" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="335.0" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৫</text>
-<text x="322.0" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">5</text>
-<rect x="355.6" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="372.6" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৬</text>
-<text x="359.6" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">6</text>
-<rect x="393.2" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="410.2" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৭</text>
-<text x="423.2" y="147.0" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঁ</text>
-<text x="397.2" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">7</text>
-<rect x="430.8" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="447.8" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৮</text>
-<text x="434.8" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">8</text>
-<rect x="468.4" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="485.4" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">৯</text>
-<text x="472.4" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">9</text>
-<rect x="506.0" y="136.0" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="523.0" y="161.0" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">০</text>
-<text x="510.0" y="146.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">0</text>
-<rect x="543.6" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="560.6" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">-</text>
-<rect x="581.2" y="136.0" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="598.2" y="157.0" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">=</text>
-<rect x="618.8" y="136.0" width="51.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="624.8" y="163.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">delete</text>
-<rect x="130.0" y="173.6" width="51.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="136.0" y="200.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">tab</text>
-<rect x="184.6" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="201.6" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ঙ</text>
-<text x="214.6" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ং</text>
-<text x="188.6" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Q</text>
-<rect x="222.2" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="239.2" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">য</text>
-<text x="252.2" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">য়</text>
-<text x="226.2" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">W</text>
-<rect x="259.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="276.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ড</text>
-<text x="289.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঢ</text>
-<text x="263.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">E</text>
-<rect x="297.4" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="314.4" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">প</text>
-<text x="327.4" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ফ</text>
-<text x="301.4" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">R</text>
-<rect x="335.0" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="352.0" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ট</text>
-<text x="365.0" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঠ</text>
-<text x="339.0" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">T</text>
-<rect x="372.6" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="389.6" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">চ</text>
-<text x="402.6" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ছ</text>
-<text x="376.6" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Y</text>
-<rect x="410.2" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="427.2" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">জ</text>
-<text x="440.2" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঝ</text>
-<text x="414.2" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">U</text>
-<rect x="447.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="464.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">হ</text>
-<text x="477.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঞ</text>
-<text x="451.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">I</text>
-<rect x="485.4" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="502.4" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">গ</text>
-<text x="515.4" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঘ</text>
-<text x="489.4" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">O</text>
-<rect x="523.0" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="540.0" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ড়</text>
-<text x="553.0" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঢ়</text>
-<text x="527.0" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">P</text>
-<rect x="560.6" y="173.6" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="577.6" y="194.6" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">[</text>
-<rect x="598.2" y="173.6" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="615.2" y="194.6" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">]</text>
-<rect x="635.8" y="173.6" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="652.8" y="198.6" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ৎ</text>
-<text x="665.8" y="184.6" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ঃ</text>
-<text x="639.8" y="183.6" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">\</text>
-<rect x="130.0" y="211.2" width="61.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="136.0" y="238.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">caps</text>
-<rect x="194.8" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="211.8" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ৃ</text>
-<text x="224.8" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">র্</text>
-<text x="198.8" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">A</text>
-<rect x="232.4" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="249.4" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ু</text>
-<text x="262.4" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ূ</text>
-<text x="236.4" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">S</text>
-<rect x="270.0" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="287.0" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ি</text>
-<text x="300.0" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ী</text>
-<text x="274.0" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">D</text>
-<rect x="307.6" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="324.6" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌া</text>
-<text x="337.6" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">অ</text>
-<text x="311.6" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">F</text>
-<rect x="345.2" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="362.2" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌্</text>
-<text x="375.2" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">।</text>
-<text x="349.2" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">G</text>
-<rect x="382.8" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="399.8" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ব</text>
-<text x="412.8" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ভ</text>
-<text x="386.8" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">H</text>
-<rect x="420.4" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="437.4" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ক</text>
-<text x="450.4" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">খ</text>
-<text x="424.4" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">J</text>
-<rect x="458.0" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="475.0" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ত</text>
-<text x="488.0" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">থ</text>
-<text x="462.0" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">K</text>
-<rect x="495.6" y="211.2" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="512.6" y="236.2" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">দ</text>
-<text x="525.6" y="222.2" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ধ</text>
-<text x="499.6" y="221.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">L</text>
-<rect x="533.2" y="211.2" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="550.2" y="232.2" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">;</text>
-<rect x="570.8" y="211.2" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="587.8" y="232.2" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">'</text>
-<rect x="608.4" y="211.2" width="57.8" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="614.4" y="238.2" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">return</text>
-<rect x="130.0" y="248.8" width="78.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="136.0" y="275.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">shift</text>
-<rect x="211.8" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="228.8" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌্র</text>
-<text x="241.8" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌্য</text>
-<text x="215.8" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">Z</text>
-<rect x="249.4" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="266.4" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ও</text>
-<text x="279.4" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ৗ</text>
-<text x="253.4" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">X</text>
-<rect x="287.0" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="304.0" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">◌ে</text>
-<text x="317.0" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">◌ৈ</text>
-<text x="291.0" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">C</text>
-<rect x="324.6" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="341.6" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">র</text>
-<text x="354.6" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ল</text>
-<text x="328.6" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">V</text>
-<rect x="362.2" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="379.2" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ন</text>
-<text x="392.2" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ণ</text>
-<text x="366.2" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">B</text>
-<rect x="399.8" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="416.8" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">স</text>
-<text x="429.8" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">ষ</text>
-<text x="403.8" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">N</text>
-<rect x="437.4" y="248.8" width="34.0" height="34.0" rx="5" fill="url(#mb-key)" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="454.4" y="273.8" text-anchor="middle" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="15" font-weight="600" fill="#064B2C">ম</text>
-<text x="467.4" y="259.8" text-anchor="end" font-family="'Hind Siliguri','Kohinoor Bangla','Noto Sans Bengali',sans-serif" font-size="9" fill="#E0303F">শ</text>
-<text x="441.4" y="258.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="7" fill="#8A968F">M</text>
-<rect x="475.0" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="492.0" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">,</text>
-<rect x="512.6" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="529.6" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">.</text>
-<rect x="550.2" y="248.8" width="34.0" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="567.2" y="269.8" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#8A968F">/</text>
-<rect x="587.8" y="248.8" width="74.8" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="593.8" y="275.8" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">shift</text>
-<rect x="130.0" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="136.0" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">fn</text>
-<rect x="177.8" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="183.8" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">control</text>
-<rect x="225.6" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="231.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">option</text>
-<rect x="273.4" y="286.4" width="54.4" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="279.4" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">command</text>
-<rect x="331.4" y="286.4" width="183.6" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="423.2" y="307.4" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">space</text>
-<rect x="518.6" y="286.4" width="54.4" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="524.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">command</text>
-<rect x="576.6" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
-<text x="582.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">option</text>
-<text x="400.0" y="348" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" fill="#56645C">Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g + vowel sign = independent vowel</tspan></text>
 <path d="M93 21 h337.70000000000005 l-214.89999999999998 404 h-122.80000000000001 z" fill="url(#mb-shine)"/>
 <path d="M14 434 H786 V440 Q786 446 778 448 L740 458 Q730 461 716 461 H84 Q70 461 60 458 L22 448 Q14 446 14 440 Z" fill="url(#mb-deck)"/>
 <rect x="14" y="434" width="772" height="3" fill="#F4F6F7"/>
 <path d="M346 434 h108 v2 q0 5 -6 5 h-96 q-6 0 -6 -5 z" fill="#A3AAAF"/>
 </svg>
-<!-- /MACBOOK --></div>
+<!-- /MACBOOK -->
+      <video class="on-screen" src="video/word-demo.mp4" poster="video/word-demo-poster.jpg" width="1280" height="783" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: typing Bangla in Microsoft Word on a Mac with Bijoy Unicode"></video>
+    </div>
+  </div>
+</section>
+
+<section class="install" id="install">
+  <div class="wrap">
     <h2 data-i18n="installTitle">Install Bijoy Bangla on your Mac</h2>
     <p class="sub" data-i18n="installSub">Complete the installer, allow the input source when prompted, then log out and sign back in.</p>
 
@@ -774,7 +714,7 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
       </li>
     </ol>
 
-    <p class="note-banner"><span class="i" aria-hidden="true">i</span><span class="bar" aria-hidden="true"></span><span data-i18n="banner">Before first use, macOS may ask you to allow the input source in System Settings. For help, see the <a href="Activation-Guide.pdf">Activation Guide (PDF)</a>.</span></p>
+    <p class="note-banner"><span class="i" aria-hidden="true">i</span><span class="bar" aria-hidden="true"></span><span data-i18n="banner">Before first use, macOS may ask you to allow the input source in System Settings. For help, see the <a href="/Activation-Guide.pdf">Activation Guide (PDF)</a>.</span></p>
   </div>
 </section>
 
@@ -797,6 +737,42 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
   </div>
 </section>
 
+<section class="layout" id="layout">
+  <div class="wrap">
+    <h2 data-i18n="layoutTitle">The Bijoy keyboard layout</h2>
+    <p class="lead" data-i18n="layoutLead">Hold Shift, or press the Shift button, to see the second letter on each key. Tap a key to see what it types.</p>
+    <div class="kb-tools">
+      <button type="button" class="shift-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 3.5 12.5H8V20h8v-7.5h4.5z"/></svg><span>Shift</span></button>
+      <output class="kb-out" aria-live="polite"></output>
+      <a class="kb-pdf" href="/Bijoy-Keyboard-Layout.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg><span data-i18n="layoutPdf">Printable layout (PDF)</span></a>
+    </div>
+    <textarea class="kb-pad" lang="bn" rows="2" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Type with the Bijoy keys"></textarea>
+    <div class="kb" lang="bn" role="group" aria-label="Bijoy keyboard layout"></div>
+  </div>
+</section>
+
+<section class="modes" id="modes">
+  <div class="wrap">
+    <h2 data-i18n="modesTitle">Bijoy Unicode or Bijoy Classic?</h2>
+    <p class="lead" data-i18n="modesLead">The same keys, two kinds of text. Choose the mode that suits where your text is going.</p>
+    <div class="mode-cards">
+      <article class="mode">
+        <div class="mode-head"><span class="mode-badge" aria-hidden="true">U</span><h3 lang="bn">বিজয় ইউনিকোড</h3></div>
+        <p class="sample" lang="bn">আমার সোনার বাংলা</p>
+        <p class="mode-note" data-i18n="uniCap">Standard Unicode Bangla. It reads correctly everywhere, in any Bangla font.</p>
+        <ul data-i18n="uniList"><li>Facebook, WhatsApp and Messenger</li><li>Email and websites</li><li>Word, Pages and Google Docs files you share</li></ul>
+      </article>
+      <article class="mode">
+        <div class="mode-head"><span class="mode-badge" aria-hidden="true">C</span><h3 lang="bn">বিজয় ক্লাসিক</h3></div>
+        <p class="sample ansi" translate="no">Avgvi ‡mvbvi evsjv</p>
+        <p class="ansi-note" hidden></p>
+        <p class="mode-note" data-i18n="clsCap">Classic Bijoy text. In SutonnyMJ and other MJ fonts it shows as <span lang="bn">আমার সোনার বাংলা</span>; in other fonts it looks like the line above.</p>
+        <ul data-i18n="clsList"><li>Printing and desktop publishing</li><li>SutonnyMJ and other MJ fonts</li><li>Word, InDesign, Illustrator and QuarkXPress</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="about" id="about">
   <div class="wrap">
     <h2 data-i18n="aboutTitle">A familiar Bijoy keyboard for Mac</h2>
@@ -812,6 +788,14 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
         <p>এটি macOS 13 Ventura ও পরবর্তী সংস্করণে Apple silicon (M1, M2, M3 ও M4) এবং Intel Mac-এ ব্যবহার করা যায়। কোনো অ্যাকাউন্ট বা বিজ্ঞাপনের প্রয়োজন নেই।</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="news" id="news" hidden>
+  <div class="wrap">
+    <h2 data-i18n="newsTitle">What's new</h2>
+    <ol class="releases" lang="en"></ol>
+    <a class="all-rel" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases" data-i18n="newsAll">All releases on GitHub</a>
   </div>
 </section>
 
@@ -836,20 +820,37 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
     <div>
       <p data-i18n="foot2">An independent project, not affiliated with Ananda Computers. Bijoy is a trademark of its respective owner.</p>
     </div>
-    <div><a href="https://github.com/nasirahamed-design/bijoybanglaformac" data-i18n="footGit">Source on GitHub</a></div>
+    <div class="foot-links"><a href="https://github.com/nasirahamed-design/bijoybanglaformac/issues/new" data-i18n="footReport">Report a problem</a><a href="https://github.com/nasirahamed-design/bijoybanglaformac" data-i18n="footGit">Source on GitHub</a></div>
     <ul class="stats" hidden></ul>
   </div>
 </footer>
+
+<a class="to-top" href="#" aria-label="Back to top" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
 
 <script src="bijoy-engine.js"></script>
 <script>
 (function () {
   /* ---------- Language switch ---------- */
   const BN = {
+    navLayout: "লেআউট",
+    seeTitle: "Microsoft Word-এ দেখুন",
+    seeLead: "বিজয় ইউনিকোড দিয়ে একটি বাংলা বাক্য টাইপ করা হচ্ছে, একেবারে বাস্তব সময়ে।",
+    layoutTitle: "বিজয় কীবোর্ড লেআউট",
+    layoutLead: "প্রতিটি কী-র দ্বিতীয় অক্ষর দেখতে Shift চেপে ধরুন বা Shift বোতামে চাপুন। কোনো কী-তে চাপলে দেখবেন সেটি কী লেখে।",
+    layoutPdf: "প্রিন্ট করার লেআউট (PDF)",
+    modesTitle: "বিজয় ইউনিকোড নাকি বিজয় ক্লাসিক?",
+    modesLead: "একই কী, দুই ধরনের লেখা। লেখাটি কোথায় ব্যবহার হবে, সেই অনুযায়ী মোড বেছে নিন।",
+    uniCap: "স্ট্যান্ডার্ড Unicode বাংলা। যেকোনো বাংলা ফন্টে, সব জায়গায় ঠিকভাবে পড়া যায়।",
+    uniList: "<li>Facebook, WhatsApp ও Messenger</li><li>ইমেইল ও ওয়েবসাইট</li><li>শেয়ার করার Word, Pages ও Google Docs ফাইল</li>",
+    clsCap: "ক্লাসিক বিজয় লেখা। SutonnyMJ ও অন্যান্য MJ ফন্টে এটি <span lang=\"bn\">আমার সোনার বাংলা</span> হিসেবে দেখা যায়; অন্য ফন্টে দেখতে ওপরের লাইনের মতো।",
+    clsList: "<li>ছাপা ও ডেস্কটপ পাবলিশিং</li><li>SutonnyMJ ও অন্যান্য MJ ফন্ট</li><li>Word, InDesign, Illustrator ও QuarkXPress</li>",
+    newsTitle: "নতুন যা এসেছে",
+    newsAll: "GitHub-এ সব রিলিজ দেখুন",
+    footReport: "সমস্যা জানান",
     navInstall: "ইনস্টলেশন", navTyping: "টাইপের নিয়ম", navAbout: "পরিচিতি", navFaq: "সাধারণ জিজ্ঞাসা", aboutTitle: "ম্যাকের জন্য পরিচিত বিজয় কীবোর্ড",
     seal: "সাইন ও নোটারাইজ করা",
     download: "ম্যাকের জন্য ডাউনলোড",
-    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span> · প্রায় ১ মেগাবাইট</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel</span><span class="links"><a class="how" href="#install">ইনস্টল করার নির্দেশিকা <span aria-hidden="true">→</span></a><a class="how" href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a></span>',
+    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span> · প্রায় ১ মেগাবাইট</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel</span><span class="links"><a class="how" href="#install">ইনস্টল করার নির্দেশিকা <span aria-hidden="true">→</span></a><a class="how" href="/Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a></span>',
     demoBadge: "টাইপ করে দেখুন", demoLabel: "বিজয় লেআউটে টাইপ করুন, যেমন",
     touchNote: "ফোন বা ট্যাবলেটে একটি নমুনা শব্দে ট্যাপ করে টাইপের ধাপ দেখুন।",
     hintEmpty: "আপনার চাপা কী-গুলো এখানে দেখা যাবে", hintSpace: "স্পেস চাপলে শব্দটি সম্পূর্ণ হবে",
@@ -859,7 +860,7 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
     s2t: "ইনস্টলেশনের স্থান নির্বাচন করুন", s2d: "“Install for all users” নির্বাচনটি অপরিবর্তিত রেখে Continue নির্বাচন করুন।",
     s3t: "ইনস্টল করুন", s3d: "Install নির্বাচন করুন। অনুরোধ এলে আপনার Mac এর পাসওয়ার্ড দিন।",
     s5t: "ইনপুট সোর্স চালু করে বাংলা নির্বাচন করুন", s5d: "অনুরোধ এলে Allow নির্বাচন করে Log Out করুন। আবার সাইন ইন করার পর ইনপুট মেনু থেকে বিজয় ইউনিকোড নির্বাচন করুন।",
-    banner: 'প্রথমবার ব্যবহারের আগে macOS এর System Settings-এ ইনপুট সোর্স ব্যবহারের অনুমতি দিতে হতে পারে। সহায়তার জন্য দেখুন <a href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a>।',
+    banner: 'প্রথমবার ব্যবহারের আগে macOS এর System Settings-এ ইনপুট সোর্স ব্যবহারের অনুমতি দিতে হতে পারে। সহায়তার জন্য দেখুন <a href="/Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a>।',
     typingTitle: "পরিচিত বিজয় লেআউটে টাইপ করুন",
     typingLead: "পরিচিত বিজয় কী-গুলোই ব্যবহার করুন। Control-Space বা Globe কী দিয়ে বাংলা ও ইংরেজির মধ্যে বদলান। সম্পূর্ণ কী-চার্ট দেখতে ইনপুট মেনু থেকে “Show Bijoy Keyboard Layout” নির্বাচন করুন।",
     r1: "ব্যঞ্জনবর্ণের আগে বসে ◌ি, ◌ে ও ◌ৈ", r2: "স্বতন্ত্র স্বরবর্ণ লিখতে g আগে চাপুন", r3: "ব্যঞ্জনবর্ণের পরে লিখুন রেফ",
@@ -887,12 +888,17 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
     document.documentElement.lang = next;
     document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
     document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === next)));
-    try { localStorage.setItem("lang", next); } catch (e) {}
     if (typeof showVersion === "function") showVersion();
     if (typeof showCounts === "function") showCounts();
     draw();
   }
-  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+  // English lives at /, Bangla at /bn/ (its own page, so search engines can index it).
+  const PAGE = document.documentElement.dataset.page === "bn" ? "bn" : "en";
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+    const next = b.dataset.lang;
+    try { localStorage.setItem("lang", next); } catch (e) {}
+    if (next !== PAGE) location.href = next === "bn" ? "bn/" : "../";
+  }));
 
   /* ---------- Typing demo ---------- */
   const pad = document.getElementById("pad");
@@ -981,7 +987,22 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
   // (Scripts/site-stats.py) and published as /stats.json. A visitor counts as a
   // person when their browser runs this script and fetches /beacon.txt; bots
   // usually don't run scripts or say they are bots.
-  let downloads = null, stats = null;
+  let downloads = null, stats = null, releases = null;
+  // "What's new": the latest three GitHub releases, with their bullet-point notes
+  function showNews() {
+    const box = document.getElementById("news");
+    if (!box || !releases || !releases.length) return;
+    const ol = box.querySelector(".releases");
+    const esc = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const linkify = t => esc(t).replace(/https?:\/\/[^\s)]+/g, u => '<a href="' + u + '">' + u.replace(/^https?:\/\//, "") + "</a>");
+    ol.innerHTML = releases.map(r => {
+      const notes = (r.body || "").split(/\r?\n/).map(l => l.trim()).filter(l => /^[-*] /.test(l)).map(l => "<li>" + linkify(l.slice(2)) + "</li>").join("");
+      const d = new Date(r.published_at);
+      const date = isNaN(d) ? "" : d.toLocaleDateString(lang === "bn" ? "bn-BD" : "en-IE", { day: "numeric", month: "long", year: "numeric" });
+      return '<li><div><span class="rel-tag">' + esc(r.tag_name) + '</span><span class="rel-date">' + date + "</span></div>" + (notes ? "<ul>" + notes + "</ul>" : "<div></div>") + "</li>";
+    }).join("");
+    box.hidden = false;
+  }
   const num = n => { const s = Number(n).toLocaleString("en-US"); return lang === "bn" ? s.replace(/[0-9]/g, d => BN_DIGITS[d]) : s; };
   function showCounts() {
     const dl = document.querySelector(".dl-count");
@@ -1015,6 +1036,8 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
         .filter(a => /\.(dmg|pkg)$/i.test(a.name))
         .reduce((s, a) => s + a.download_count, 0), 0);
       showCounts();
+      releases = list.filter(r => !r.draft && !r.prerelease).slice(0, 3);
+      showNews();
     })
     .catch(() => {});
   fetch("/stats.json", { cache: "no-store" })
@@ -1028,8 +1051,188 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
 
   let saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) {}
-  setLang(saved || ((navigator.language || "").startsWith("bn") ? "bn" : "en"));
+  // On the English page, send people who chose Bangla (or whose browser is in Bangla) to /bn/
+  if (PAGE === "en" && (saved === "bn" || (!saved && (navigator.language || "").toLowerCase().startsWith("bn")))) {
+    location.replace("bn/");
+  }
+  setLang(PAGE);
   timer = setTimeout(() => play("hfQVf"), reduce ? 0 : 700);
+})();
+
+// Interactive Bijoy keyboard: tap a key, or press it on a real keyboard
+(function () {
+  var kb = document.querySelector('.kb');
+  if (!kb) return;
+  var D = '◌';
+  var MAP = {
+    '1': ['১', ''], '2': ['২', ''], '3': ['৩', ''], '4': ['৪', '৳'], '5': ['৫', ''], '6': ['৬', ''], '7': ['৭', 'ঁ'], '8': ['৮', ''], '9': ['৯', ''], '0': ['০', ''],
+    q: ['ঙ', 'ং'], w: ['য', 'য়'], e: ['ড', 'ঢ'], r: ['প', 'ফ'], t: ['ট', 'ঠ'], y: ['চ', 'ছ'], u: ['জ', 'ঝ'], i: ['হ', 'ঞ'], o: ['গ', 'ঘ'], p: ['ড়', 'ঢ়'],
+    a: [D + 'ৃ', 'র্'], s: [D + 'ু', D + 'ূ'], d: [D + 'ি', D + 'ী'], f: [D + 'া', 'অ'], g: [D + '্', '।'], h: ['ব', 'ভ'], j: ['ক', 'খ'], k: ['ত', 'থ'], l: ['দ', 'ধ'],
+    z: [D + '্র', D + '্য'], x: ['ও', D + 'ৗ'], c: [D + 'ে', D + 'ৈ'], v: ['র', 'ল'], b: ['ন', 'ণ'], n: ['স', 'ষ'], m: ['ম', 'শ'], '\\': ['ৎ', 'ঃ']
+  };
+  var CODE = { Backquote: '`', Minus: '-', Equal: '=', BracketLeft: '[', BracketRight: ']', Backslash: '\\', Semicolon: ';', Quote: "'", Comma: ',', Period: '.', Slash: '/' };
+  var CODE_OF = {}; Object.keys(CODE).forEach(function (c) { CODE_OF[CODE[c]] = c; });
+  var SHIFTSYM = { '`': '~', '-': '_', '=': '+', '[': '{', ']': '}', ';': ':', "'": '"', ',': '<', '.': '>', '/': '?', '\\': '|' };
+  function codeOf(k) { return /[a-z]/.test(k) ? 'Key' + k.toUpperCase() : /\d/.test(k) ? 'Digit' + k : CODE_OF[k]; }
+  // Special keys as on a Mac keyboard: [word, width, symbol, which corner the word sits in]
+  var ROWS = [
+    { keys: '`1234567890-='.split(''), tail: ['delete', 1.6, '⌫', 'r'] },
+    { lead: ['tab', 1.6, '⇥', 'l'], keys: 'qwertyuiop[]\\'.split('') },
+    { lead: ['caps lock', 1.9, '⇪', 'l'], keys: "asdfghjkl;'".split(''), tail: ['return', 1.9, '↩', 'r'] },
+    { lead: ['shift', 2.4, '⇧', 'l', 'shift'], keys: 'zxcvbnm,./'.split(''), tail: ['shift', 2.4, '⇧', 'r', 'shift'] },
+    { only: [['fn', 1.25, 'globe', 'l'], ['control', 1.25, '⌃', 'l'], ['option', 1.25, '⌥', 'l'], ['command', 1.6, '⌘', 'l'],
+             ['', 5.5, '', 'c'], ['command', 1.6, '⌘', 'r'], ['option', 2.15, '⌥', 'r']] }
+  ];
+  var out = document.querySelector('.kb-out'), toggle = document.querySelector('.shift-toggle');
+  var shifted = false, keys = {};
+  var GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg>';
+  function label(spec) {
+    var b = document.createElement(spec[4] === 'shift' ? 'button' : 'span');
+    b.className = 'kb-key lbl wide side-' + spec[3] + (spec[4] === 'shift' ? ' mod-shift' : '');
+    b.style.flexGrow = spec[1];
+    if (spec[4] === 'shift') { b.type = 'button'; b.setAttribute('aria-label', 'Shift'); b.addEventListener('click', function () { shifted = !shifted; paint(); }); }
+    b.innerHTML = (spec[2] ? '<span class="sym">' + (spec[2] === 'globe' ? GLOBE : spec[2]) + '</span>' : '') + '<span class="word">' + spec[0] + '</span>';
+    return b;
+  }
+  ROWS.forEach(function (row) {
+    var r = document.createElement('div'); r.className = 'kb-row' + (row.only ? ' kb-mods' : '');
+    if (row.only) { row.only.forEach(function (spec) { r.appendChild(label(spec)); }); kb.appendChild(r); return; }
+    if (row.lead) r.appendChild(label(row.lead));
+    row.keys.forEach(function (k) {
+      var m = MAP[k], el = document.createElement('button');
+      el.type = 'button';
+      if (m) {
+        el.className = 'kb-key';
+        el.innerHTML = '<span class="en">' + (/[a-z]/.test(k) ? k.toUpperCase() : k) + '</span><span class="bn"></span><span class="alt"></span>';
+      } else {
+        // Punctuation keys look like a real keyboard: Shift symbol above, plain symbol below
+        el.className = 'kb-key pu';
+        el.innerHTML = '<span class="top">' + SHIFTSYM[k].replace('<', '&lt;').replace('>', '&gt;') + '</span><span class="bot">' + k + '</span>';
+        el.setAttribute('aria-label', k + ', Shift: ' + SHIFTSYM[k]);
+      }
+      el.addEventListener('click', function () { press(k); typeKey(k, shifted); });
+      keys[k] = el; r.appendChild(el);
+    });
+    if (row.tail) r.appendChild(label(row.tail));
+    kb.appendChild(r);
+  });
+  function paint() {
+    kb.classList.toggle('shifted', shifted);
+    kb.querySelectorAll('.mod-shift').forEach(function (b) { b.classList.toggle('down', shifted); });
+    toggle.setAttribute('aria-pressed', String(shifted));
+    Object.keys(MAP).forEach(function (k) {
+      var el = keys[k]; if (!el) return;
+      el.querySelector('.bn').textContent = (shifted ? MAP[k][1] : MAP[k][0]) || '';
+      el.querySelector('.alt').textContent = MAP[k][1];
+      el.setAttribute('aria-label', k.toUpperCase() + ': ' + MAP[k][0] + (MAP[k][1] ? ', Shift: ' + MAP[k][1] : ''));
+    });
+  }
+  function press(k) {
+    var el = keys[k]; if (!el) return;
+    el.classList.add('hit'); setTimeout(function () { el.classList.remove('hit'); }, 160);
+    var m = MAP[k];
+    var ch = m ? (shifted ? m[1] : m[0]) : (shifted ? SHIFTSYM[k] : k);
+    if (!ch) return;
+    var keyName = (shifted ? 'Shift + ' : '') + (/[a-z]/.test(k) ? k.toUpperCase() : k);
+    out.innerHTML = keyName.replace('<', '&lt;') + ' →<b lang="bn">' + ch.replace('<', '&lt;').replace('>', '&gt;') + '</b>';
+  }
+
+  // The typing box: type with the Bijoy keys (physical keyboard or the keys below)
+  var pad = document.querySelector('.kb-pad'), done = '', word = [];
+  var bn = document.documentElement.lang === 'bn';
+  if (pad) pad.placeholder = bn ? 'এখানে ক্লিক করে বিজয় কী দিয়ে টাইপ করুন - নিচের কীবোর্ডে চাপা কী দেখা যাবে' : 'Click here and type with the Bijoy keys - the keyboard below shows each key you press';
+  function drawPad() { if (pad) { pad.value = done + Bijoy.render(word); pad.scrollTop = pad.scrollHeight; } }
+  function commitPad(extra) { done += Bijoy.render(word) + extra; word = []; }
+  function typeKey(k, shift) {
+    if (!pad || typeof Bijoy === 'undefined') return;
+    var ch = Bijoy.usChar(codeOf(k), shift);
+    if (ch && Bijoy.isMapped(ch)) word.push(ch); else commitPad(shift ? (SHIFTSYM[k] || k) : k);
+    drawPad();
+  }
+  if (pad) {
+    pad.addEventListener('keydown', function (e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === 'Shift') { shifted = true; paint(); return; }
+      if (e.key === 'Backspace') {
+        e.preventDefault();
+        if (word.length) word.pop(); else done = Array.from(done).slice(0, -1).join('');
+        drawPad(); return;
+      }
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); commitPad(e.key === ' ' ? ' ' : '\n'); drawPad(); return; }
+      var k = /^Key[A-Z]$/.test(e.code) ? e.code.slice(3).toLowerCase() : /^Digit\d$/.test(e.code) ? e.code.slice(5) : CODE[e.code];
+      if (k) { e.preventDefault(); press(k); typeKey(k, e.shiftKey); }
+    });
+    pad.addEventListener('keyup', function (e) { if (e.key === 'Shift') { shifted = false; paint(); } });
+    // Phone keyboards send no key codes: keep whatever they typed
+    pad.addEventListener('input', function () { if (pad.value !== done + Bijoy.render(word)) { done = pad.value; word = []; } });
+  }
+  toggle.addEventListener('click', function () { shifted = !shifted; paint(); });
+  function typingElsewhere(e) { var t = e.target; return t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT' || t.isContentEditable); }
+  document.addEventListener('keydown', function (e) {
+    if (typingElsewhere(e) || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'Shift') { shifted = true; paint(); return; }
+    var k = /^Key[A-Z]$/.test(e.code) ? e.code.slice(3).toLowerCase() : /^Digit\d$/.test(e.code) ? e.code.slice(5) : CODE[e.code];
+    if (k && keys[k] && kb.getBoundingClientRect().top < innerHeight && kb.getBoundingClientRect().bottom > 0) press(k);
+  });
+  document.addEventListener('keyup', function (e) { if (e.key === 'Shift') { shifted = false; paint(); } });
+  paint();
+})();
+
+// Back-to-top button, bottom right, once the page has scrolled a screen down
+(function () {
+  var btn = document.querySelector('.to-top');
+  if (!btn) return;
+  if (document.documentElement.lang === 'bn') btn.setAttribute('aria-label', 'ওপরে যান');
+  btn.hidden = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function update() { btn.classList.toggle('on', window.scrollY > window.innerHeight); btn.tabIndex = window.scrollY > window.innerHeight ? 0 : -1; }
+  window.addEventListener('scroll', update, { passive: true });
+  btn.addEventListener('click', function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+  update();
+})();
+
+// Classic sample: show it in SutonnyMJ when the visitor has the font installed
+(function () {
+  var sample = document.querySelector('.sample.ansi'), note = document.querySelector('.ansi-note');
+  if (!sample || !note) return;
+  function has(font) {
+    var c = document.createElement('canvas').getContext('2d'), t = 'Avgvi ‡mvbvi evsjv';
+    return ['monospace', 'serif'].some(function (base) {
+      c.font = '40px ' + base; var w0 = c.measureText(t).width;
+      c.font = '40px "' + font + '", ' + base; return c.measureText(t).width !== w0;
+    });
+  }
+  var bn = document.documentElement.lang === 'bn', mj = has('SutonnyMJ') || has('SutonnyOMJ');
+  sample.classList.toggle('mj', mj);
+  note.innerHTML = mj
+    ? (bn ? 'আপনার ডিভাইসে থাকা <b>SutonnyMJ</b> ফন্টে দেখানো হচ্ছে।' : 'Shown in <b>SutonnyMJ</b>, the font on your device.')
+    : (bn ? 'এই ডিভাইসে SutonnyMJ ফন্ট নেই, তাই মূল ক্লাসিক লেখাটি দেখা যাচ্ছে।' : 'SutonnyMJ is not installed on this device, so you see the raw classic text.');
+  note.hidden = false;
+})();
+
+// Slim download bar once the main Download button has scrolled away
+(function () {
+  var bar = document.querySelector('.stick'), btn = document.querySelector('main .download');
+  if (!bar || !btn || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (es) {
+    var show = !es[0].isIntersecting && es[0].boundingClientRect.top < 0;
+    bar.classList.toggle('on', show);
+    bar.toggleAttribute('inert', !show);
+    bar.setAttribute('aria-hidden', String(!show));
+  }).observe(btn);
+})();
+
+// The Word demo video plays only when on screen, and not at all for reduced motion
+(function () {
+  var v = document.querySelector('.mac-video video');
+  if (!v) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.removeAttribute('autoplay'); v.pause(); v.controls = true; return;
+  }
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (es) {
+    if (es[0].isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
+  }, { threshold: 0.25 }).observe(v);
 })();
 
 // Hand-drawn step arrows: draw each one as it scrolls into view

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Draw the website's MacBook illustration: a MacBook Air-style laptop whose
 screen shows the Bijoy keyboard layout. Writes docs/macbook.svg (inlined into
-docs/index.html between the MACBOOK markers)."""
+docs/index.html between the MACBOOK markers, without the layout window,
+so the Word demo video can play on its screen)."""
 import pathlib, re
 
 D = "◌"  # dotted circle, shows where a kar sits
@@ -56,6 +57,7 @@ a('<rect x="632" y="27.5" width="18" height="4" rx="2" fill="#fff" opacity=".6"/
 # notch
 a('<path d="M368 21 h64 v8 q0 6 -6 6 h-52 q-6 0 -6 -6 z" fill="#0B0D0E"/>')
 
+WIN_START = len(out)
 # layout window
 WX, WY, WW, WH = 110, 100, 580, 262
 a(f'<rect x="{WX}" y="{WY+6}" width="{WW}" height="{WH}" rx="12" fill="#000" opacity=".25"/>')
@@ -114,6 +116,7 @@ ly = WY + WH - 14
 a(f'<text x="{WX+WW/2}" y="{ly}" text-anchor="middle" font-family="{EN}" font-size="9" fill="#56645C">'
   f'Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g + vowel sign = independent vowel</tspan></text>')
 
+WIN_END = len(out)
 # subtle reflection on the screen
 a(f'<path d="M{SX} {SY} h{SW*0.55} l-{SW*0.35} {SH} h-{SW*0.2} z" fill="url(#mb-shine)"/>')
 # base: deck + front lip + thumb notch
@@ -123,11 +126,14 @@ a('<path d="M346 434 h108 v2 q0 5 -6 5 h-96 q-6 0 -6 -5 z" fill="#A3AAAF"/>')
 a('</svg>')
 
 svg = "\n".join(out)
+# The website shows the Word demo video on this screen, so its copy leaves the
+# layout window out (docs/macbook.svg keeps the full picture with the layout).
+screen = "\n".join(out[:WIN_START] + out[WIN_END:]).replace("MacBook showing the Bijoy Bangla keyboard layout", "MacBook")
 root = pathlib.Path(__file__).resolve().parent.parent
 (root / "docs/macbook.svg").write_text('<?xml version="1.0" encoding="utf-8"?>\n' + svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ', 1))
 idx = root / "docs/index.html"
 html = idx.read_text()
-new = "<!-- MACBOOK -->\n" + svg + "\n<!-- /MACBOOK -->"
+new = "<!-- MACBOOK -->\n" + screen + "\n<!-- /MACBOOK -->"
 if "<!-- MACBOOK -->" in html:
     html = re.sub(r"<!-- MACBOOK -->.*?<!-- /MACBOOK -->", lambda m: new, html, flags=re.S)
 else:

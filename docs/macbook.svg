@@ -216,7 +216,7 @@
 <text x="524.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">command</text>
 <rect x="576.6" y="286.4" width="44.2" height="34.0" rx="5" fill="#E3E9E5" stroke="#C8D2CB" stroke-width=".8"/>
 <text x="582.6" y="313.4" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#56645C">option</text>
-<text x="400.0" y="348" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" fill="#56645C">Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g then a kar = full vowel</tspan></text>
+<text x="400.0" y="348" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="9" fill="#56645C">Big letter: normal key<tspan dx="18" fill="#E0303F">Small red letter: with Shift</tspan><tspan dx="18">g + vowel sign = independent vowel</tspan></text>
 <path d="M93 21 h337.70000000000005 l-214.89999999999998 404 h-122.80000000000001 z" fill="url(#mb-shine)"/>
 <path d="M14 434 H786 V440 Q786 446 778 448 L740 458 Q730 461 716 461 H84 Q70 461 60 458 L22 448 Q14 446 14 440 Z" fill="url(#mb-deck)"/>
 <rect x="14" y="434" width="772" height="3" fill="#F4F6F7"/>
