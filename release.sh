@@ -1,5 +1,6 @@
 #!/bin/bash
-# Build the downloadable DMG:  build/BijoyBangla-<version>.dmg
+# Build the downloadable installer:  build/BijoyBangla-<version>.pkg
+# (plus build/BijoyBangla.pkg, the fixed name the website links to)
 #
 #   ./release.sh --backup      personal backup copy, no Developer ID needed
 #   ./release.sh               public release: Developer ID signed + notarized
@@ -20,7 +21,7 @@ VERSION="${VERSION:-1.0.0}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-bijoy-notary}"
 PKG_ID="io.spsv.inputmethod.BijoyBangla.pkg"
 PKG="build/Install Bijoy Bangla.pkg"
-DMG="build/BijoyBangla-$VERSION.dmg"
+OUT="build/BijoyBangla-$VERSION.pkg"
 
 if [ "$MODE" = "public" ]; then
   : "${DEV_ID_APP:?Set DEV_ID_APP (or use ./release.sh --backup)}"
@@ -84,25 +85,15 @@ else
   cp build/designed.pkg "$PKG"
 fi
 
-echo "==> Building the DMG"
-STAGE=build/dmg
-rm -rf "$STAGE" "$DMG"
-mkdir -p "$STAGE"
-cp "$PKG" "$STAGE/"
-cp "Distribution/Activation Guide.pdf" "$STAGE/"
-hdiutil create -volname "Bijoy Bangla $VERSION" -srcfolder "$STAGE" \
-  -fs HFS+ -format UDZO -imagekey zlib-level=9 -ov "$DMG"
+# The pkg is the download itself (no DMG): after installing, macOS can then
+# move it to the Bin cleanly. The Activation Guide lives on the website.
+cp "$PKG" "$OUT"
+[ "$MODE" = "public" ] && spctl --assess --type install --verbose "$OUT"
 
-if [ "$MODE" = "public" ]; then
-  codesign --force --timestamp --sign "$DEV_ID_APP" "$DMG"
-  notarize "$DMG"
-  spctl --assess --type open --context context:primary-signature --verbose "$DMG"
-fi
-
-shasum -a 256 "$DMG" | tee "$DMG.sha256"
+shasum -a 256 "$OUT" | tee "$OUT.sha256"
 # Same file under a fixed name, so the website's "latest" download link never changes
-cp "$DMG" build/BijoyBangla.dmg
+cp "$OUT" build/BijoyBangla.pkg
 echo
-echo "==> Done ($MODE): $DMG"
+echo "==> Done ($MODE): $OUT"
 [ "$MODE" = "backup" ] && echo "    Backup build: opens on your Macs only. Use ./release.sh for the website."
 exit 0

@@ -63,15 +63,16 @@ out and back in once (macOS sometimes caches the input source list).
 
 After code changes, run `./build.sh && ./install-dev.sh` again.
 
-## Making the DMG
+## Making the installer
 
 ```bash
 ./release.sh --backup      # personal backup copy, no Developer ID needed
 ./release.sh               # public release: signed + notarized
 ```
 
-Both write `build/BijoyBangla-<version>.dmg` containing
-`Install Bijoy Bangla.pkg` and `Activation Guide.pdf`. The public release
+Both write `build/BijoyBangla-<version>.pkg` and a copy named
+`build/BijoyBangla.pkg` (the name the website's download button links to).
+The Activation Guide is published on the website as `docs/Activation-Guide.pdf`. The public release
 needs `DEV_ID_APP`, `DEV_ID_INSTALLER` and a stored notarytool profile; see
 the manual for the one-time setup.
 

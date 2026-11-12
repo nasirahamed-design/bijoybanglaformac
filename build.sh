@@ -41,6 +41,7 @@ echo "==> Icons"
 xcrun swift Scripts/make-icons.swift build/icons
 cp build/icons/Bangla.tiff build/icons/English.tiff build/icons/Classic.tiff "$APP/Contents/Resources/"
 cp Resources/bijoy-classic.js "$APP/Contents/Resources/"
+cp Branding/logo.png Branding/logo-dark.png "$APP/Contents/Resources/"   # logo for the uninstall dialogs
 iconutil -c icns build/icons/AppIcon.iconset -o "$APP/Contents/Resources/AppIcon.icns"
 
 echo "==> Signing ($SIGN_ID)"

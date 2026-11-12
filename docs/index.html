@@ -50,7 +50,7 @@
   "isAccessibleForFree": true,
   "license": "https://opensource.org/licenses/MIT",
   "url": "https://bijoybanglaformac.com/",
-  "downloadUrl": "https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg",
+  "downloadUrl": "https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.pkg",
   "image": "https://bijoybanglaformac.com/logo.png",
   "featureList": [
    "Bijoy keyboard layout for Mac",
@@ -265,7 +265,8 @@ html[lang="bn"] .hero .trust { font-family: "Noto Sans Bengali", "Kohinoor Bangl
 .meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 22px; }
 .meta .m1 { font-size: 18px; color: var(--ink); opacity: .82; }
 .meta .m2 { font-size: 15.5px; color: var(--muted); }
-.meta .how { margin-top: 18px; color: var(--green); font-size: 18px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.meta .links { display: flex; flex-wrap: wrap; gap: 6px 26px; margin-top: 18px; }
+.meta .how { margin-top: 0; color: var(--green); font-size: 18px; font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .meta .how:hover { color: var(--green-deep); }
 /* Bangla: Noto Sans Bengali reads better than Hind Siliguri at small sizes */
 html[lang="bn"] .meta .m1, html[lang="bn"] .meta .m2 { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
@@ -470,13 +471,13 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
         <h1 class="tw" id="twHead" aria-label="Type Bangla on your Mac, the Bijoy way"><span class="tw-ghost" aria-hidden="true">Type Bangla<br>on your Mac,<br>the Bijoy way</span><span class="tw-text" aria-hidden="true"></span></h1>
         <p class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="tw" id="twTrust" aria-label="The software is signed with an Apple Developer ID and has been verified through Apple’s notarisation process. Before installation begins, your Mac will automatically check the installer."><span class="tw-ghost" aria-hidden="true">The software is signed with an Apple Developer ID and has been verified through Apple’s notarisation process. Before installation begins, your Mac will automatically check the installer.</span><span class="tw-text" aria-hidden="true"></span></span></p>
           <div class="dl-row">
-          <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
+          <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.pkg">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
             <span data-i18n="download">Download for Mac</span>
           </a>
           <span class="dl-count" hidden></span>
           </div>
-          <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.3</span> · About 1 MB</span><span class="m2">Requires macOS 13 Ventura or later · Apple silicon and Intel</span><a class="how" href="#install">How to install <span aria-hidden="true">→</span></a></div>
+          <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.3</span> · About 1 MB</span><span class="m2">Requires macOS 13 Ventura or later · Apple silicon and Intel</span><span class="links"><a class="how" href="#install">How to install <span aria-hidden="true">→</span></a><a class="how" href="Activation-Guide.pdf">Activation Guide (PDF)</a></span></div>
       </div>
 
       <div class="demo">
@@ -833,7 +834,7 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
     navInstall: "ইনস্টলেশন", navTyping: "টাইপের নিয়ম", navAbout: "পরিচিতি", navFaq: "সাধারণ জিজ্ঞাসা", aboutTitle: "ম্যাকের জন্য পরিচিত বিজয় কীবোর্ড",
     seal: "সাইন ও নোটারাইজ করা",
     download: "ম্যাকের জন্য ডাউনলোড",
-    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span> · প্রায় ১ মেগাবাইট</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel</span><a class="how" href="#install">ইনস্টল করার নির্দেশিকা <span aria-hidden="true">→</span></a>',
+    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span> · প্রায় ১ মেগাবাইট</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel</span><span class="links"><a class="how" href="#install">ইনস্টল করার নির্দেশিকা <span aria-hidden="true">→</span></a><a class="how" href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a></span>',
     demoBadge: "টাইপ করে দেখুন", demoLabel: "বিজয় লেআউটে টাইপ করুন, যেমন",
     touchNote: "ফোন বা ট্যাবলেটে একটি নমুনা শব্দে ট্যাপ করে টাইপের ধাপ দেখুন।",
     hintEmpty: "আপনার চাপা কী-গুলো এখানে দেখা যাবে", hintSpace: "স্পেস চাপলে শব্দটি সম্পূর্ণ হবে",
@@ -959,7 +960,8 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
     .catch(() => {});   // offline or rate-limited: keep the version written in the page
 
   /* ---------- Download count and visitor numbers ---------- */
-  // Downloads: GitHub counts every download of the DMG, across all releases.
+  // Downloads: GitHub counts every download of the installer (.pkg, or .dmg
+  // for releases up to 1.1.3), across all releases.
   // Visitors and bots: worked out on the web server from its access log
   // (Scripts/site-stats.py) and published as /stats.json. A visitor counts as a
   // person when their browser runs this script and fetches /beacon.txt; bots
@@ -995,7 +997,7 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
     .then(list => {
       if (!Array.isArray(list)) return;
       downloads = list.reduce((sum, rel) => sum + (rel.assets || [])
-        .filter(a => /\.dmg$/i.test(a.name))
+        .filter(a => /\.(dmg|pkg)$/i.test(a.name))
         .reduce((s, a) => s + a.download_count, 0), 0);
       showCounts();
     })

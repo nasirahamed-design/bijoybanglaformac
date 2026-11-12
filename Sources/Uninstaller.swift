@@ -8,14 +8,11 @@ import Carbon
 
 enum Uninstaller {
     static func confirmAndRemove() {
-        NSApp.activate(ignoringOtherApps: true)
-        let alert = NSAlert()
-        alert.messageText = "Uninstall Bijoy Bangla?"
-        alert.informativeText = "The Bijoy Bangla keyboard will be removed from this Mac. Log out and back in afterwards to clear it from the input menu."
-        alert.addButton(withTitle: "Uninstall")
-        alert.addButton(withTitle: "Cancel")
-        alert.alertStyle = .warning
-        guard alert.runModal() == .alertFirstButtonReturn else { return }
+        let answer = BrandAlert.run(
+            title: "Uninstall Bijoy Bangla?",
+            message: "The Bijoy Bangla keyboard will be removed from this Mac. Log out and back in afterwards to clear it from the input menu.",
+            buttons: ["Cancel", "Uninstall"], defaultIndex: 1)
+        guard answer == 1 else { return }
 
         // Delete the app FIRST. Only once it is really gone do we switch the
         // input sources off, so cancelling the password prompt changes nothing.
@@ -36,20 +33,18 @@ enum Uninstaller {
         case .cancelled:
             return
         case .failed:
-            NSApp.activate(ignoringOtherApps: true)
-            let failed = NSAlert()
-            failed.messageText = "Bijoy Bangla could not be removed"
-            failed.informativeText = "Delete BijoyBangla.app from /Library/Input Methods in Finder, then log out and back in."
-            failed.runModal()
+            BrandAlert.run(
+                title: "Bijoy Bangla could not be removed",
+                message: "Delete BijoyBangla.app from /Library/Input Methods in Finder, then log out and back in.",
+                buttons: ["OK"])
         case .removed:
             // Move typing back to another source before ours disappears.
             selectFallbackSource()
             InputSources.uninstall()
-            NSApp.activate(ignoringOtherApps: true)
-            let done = NSAlert()
-            done.messageText = "Bijoy Bangla has been removed"
-            done.informativeText = "It will disappear from the input menu after you log out and back in."
-            done.runModal()
+            BrandAlert.run(
+                title: "Bijoy Bangla has been removed",
+                message: "It will disappear from the input menu after you log out and back in.",
+                buttons: ["OK"])
             exit(0)
         }
     }
