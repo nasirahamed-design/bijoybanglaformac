@@ -86,6 +86,14 @@
   "mainEntity": [
    {
     "@type": "Question",
+    "name": "Which Bangla Unicode font should I use in Microsoft Word?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Noto Sans Bengali is the best choice for Microsoft Word, Pages and Google Docs. Other good Unicode Bangla fonts are Noto Serif Bengali, Tiro Bangla, Hind Siliguri, Anek Bangla, Baloo Da 2, SolaimanLipi, Kalpurush and Nikosh, and every Mac already has Kohinoor Bangla, Bangla Sangam MN and Bangla MN. SutonnyMJ and other MJ fonts are only for Bijoy Classic."
+    }
+   },
+   {
+    "@type": "Question",
     "name": "Is Bijoy Bangla for Mac really free?",
     "acceptedAnswer": {
      "@type": "Answer",
@@ -404,6 +412,10 @@ section.faq { padding: 30px 0 28px; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: "+"; color: var(--green); font-size: 26px; line-height: 1; }
 .faq details[open] summary::after { content: "−"; }
+.faq .answer ul.font-list { margin: 6px 0 8px; padding-left: 20px; color: var(--muted); }
+.faq .answer ul.font-list li { margin: 4px 0; }
+.faq .answer ul.font-list b { color: var(--ink); font-weight: 600; }
+.faq .answer a { color: var(--green); }
 .faq details p { margin: 6px 0 4px; color: var(--muted); max-width: none; padding-right: 32px; }
 
 footer.site { padding: 20px 0 44px; border-top: 1px solid var(--line); color: var(--ink); font-family: var(--serif); font-size: 14.5px; }
@@ -840,6 +852,7 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
     <div class="faq-card">
       <details><summary data-i18n="q1">Is it really free?</summary><p data-i18n="a1">Yes. It is free to use, with no trial, account or ads. Its source code is available on GitHub under the MIT licence.</p></details>
       <details><summary data-i18n="q2">Will Bangla text display correctly online?</summary><p data-i18n="a2">Yes. বিজয় ইউনিকোড produces standard Unicode Bangla, which is supported by browsers, Word, Pages, WordPress, Facebook and other apps that display Bangla text.</p></details>
+      <details><summary data-i18n="q9">Which Bangla font should I use in Word?</summary><div class="answer" data-i18n="a9"><p>For Microsoft Word, Pages and Google Docs, <strong>Noto Sans Bengali</strong> is the best choice. It is free from Google, clear at every size and shows যুক্তাক্ষর correctly. Install a font once, then select your Bangla text and pick the font.</p><ul class="font-list"><li><b>Best for documents:</b> <a href="https://fonts.google.com/noto/specimen/Noto+Sans+Bengali">Noto Sans Bengali</a></li><li><b>Book or print look:</b> <a href="https://fonts.google.com/noto/specimen/Noto+Serif+Bengali">Noto Serif Bengali</a>, <a href="https://fonts.google.com/specimen/Tiro+Bangla">Tiro Bangla</a></li><li><b>Clean and modern:</b> <a href="https://fonts.google.com/specimen/Hind+Siliguri">Hind Siliguri</a>, <a href="https://fonts.google.com/specimen/Anek+Bangla">Anek Bangla</a>, <a href="https://fonts.google.com/specimen/Baloo+Da+2">Baloo Da 2</a></li><li><b>Already on every Mac:</b> Kohinoor Bangla, Bangla Sangam MN, Bangla MN</li><li><b>Also widely used:</b> SolaimanLipi, Kalpurush, Nikosh</li></ul><p>SutonnyMJ and other MJ fonts are for বিজয় ক্লাসিক only. With বিজয় ইউনিকোড they show the wrong letters.</p></div></details>
       <details><summary data-i18n="q7">Can I use SutonnyMJ for print work?</summary><p data-i18n="a7">Yes. Select বিজয় ক্লাসিক from the input menu and set your document to SutonnyMJ or another MJ font. Type with the familiar Bijoy keys to produce classic Bijoy text for compatible fonts and print workflows. For websites and email, use বিজয় ইউনিকোড.</p></details>
       <details><summary data-i18n="q8">Which Macs and macOS versions are supported?</summary><p data-i18n="a8">macOS 13 Ventura or later, including macOS 14 Sonoma, macOS 15 Sequoia and macOS 26 Tahoe, on Apple Silicon (M1, M2, M3, M4) and Intel Macs.</p></details>
       <details><summary data-i18n="q3">Why is it distributed outside the Mac App Store?</summary><p data-i18n="a3">Bijoy Bangla for Mac is distributed directly from this website. Its installer is signed with a Developer ID and notarized by Apple. macOS verifies the installer when you open it.</p></details>
@@ -919,6 +932,7 @@ window.phoneEdit = function (now, was, fixedLen) {
     faqTitle: "সাধারণ জিজ্ঞাসা",
     q1: "এই সফটওয়্যারটি কি সম্পূর্ণ বিনামূল্যে?", a1: "হ্যাঁ। ব্যবহার করতে কোনো ফি, ট্রায়াল, অ্যাকাউন্ট বা বিজ্ঞাপনের প্রয়োজন নেই। সোর্স কোড GitHub-এ MIT লাইসেন্সের অধীনে উন্মুক্ত।",
     q2: "ওয়েবসাইটে বাংলা লেখা কি ঠিকভাবে দেখা যাবে?", a2: "হ্যাঁ। বিজয় ইউনিকোডে লেখা বাংলা স্ট্যান্ডার্ড Unicode-এ সংরক্ষিত হয়। তাই বাংলা সমর্থিত ব্রাউজার, Word, Pages, WordPress, Facebook এবং অন্যান্য অ্যাপে তা দেখা যায়।",
+    q9: "Word-এ কোন বাংলা ফন্ট ব্যবহার করব?", a9: '<p>Microsoft Word, Pages ও Google Docs-এর জন্য সবচেয়ে ভালো ফন্ট <strong>Noto Sans Bengali</strong>। এটি Google-এর বিনামূল্যের ফন্ট, যেকোনো আকারে পরিষ্কার এবং যুক্তাক্ষর সঠিকভাবে দেখায়। ফন্টটি একবার ইনস্টল করুন, তারপর বাংলা লেখা সিলেক্ট করে ফন্টটি বেছে নিন।</p><ul class="font-list"><li><b>ডকুমেন্টের জন্য সেরা:</b> <a href="https://fonts.google.com/noto/specimen/Noto+Sans+Bengali">Noto Sans Bengali</a></li><li><b>বই বা ছাপার মতো:</b> <a href="https://fonts.google.com/noto/specimen/Noto+Serif+Bengali">Noto Serif Bengali</a>, <a href="https://fonts.google.com/specimen/Tiro+Bangla">Tiro Bangla</a></li><li><b>পরিচ্ছন্ন ও আধুনিক:</b> <a href="https://fonts.google.com/specimen/Hind+Siliguri">Hind Siliguri</a>, <a href="https://fonts.google.com/specimen/Anek+Bangla">Anek Bangla</a>, <a href="https://fonts.google.com/specimen/Baloo+Da+2">Baloo Da 2</a></li><li><b>সব ম্যাকে আগে থেকেই আছে:</b> Kohinoor Bangla, Bangla Sangam MN, Bangla MN</li><li><b>আরও জনপ্রিয় ফন্ট:</b> SolaimanLipi, Kalpurush, Nikosh</li></ul><p>SutonnyMJ ও অন্যান্য MJ ফন্ট শুধু বিজয় ক্লাসিকের জন্য। বিজয় ইউনিকোডে লিখলে এগুলোতে ভুল অক্ষর দেখাবে।</p>',
     q7: "ছাপার কাজে কি SutonnyMJ ব্যবহার করা যাবে?", a7: "হ্যাঁ। ইনপুট মেনু থেকে বিজয় ক্লাসিক নির্বাচন করে ডকুমেন্টে SutonnyMJ বা অন্য MJ ফন্ট ব্যবহার করুন। পরিচিত বিজয় কী-তে টাইপ করলে MJ ফন্ট ও ছাপার কাজে ব্যবহৃত ক্লাসিক বিজয় এনকোডিংয়ে লেখা তৈরি হবে। ওয়েবসাইট ও ইমেইলের জন্য বিজয় ইউনিকোড ব্যবহার করুন।",
     q8: "কোন Mac ও macOS সংস্করণে এটি চলে?", a8: "macOS 13 Ventura ও পরবর্তী সংস্করণে, যার মধ্যে macOS 14 Sonoma, macOS 15 Sequoia এবং macOS 26 Tahoe রয়েছে। Apple silicon (M1, M2, M3 ও M4) এবং Intel Mac সমর্থিত।",
     q3: "Mac App Store এর বাইরে থেকে ইনস্টল করতে হয় কেন?", a3: "Mac App Store-এ এই ইনপুট মেথডটি বিতরণ করা হয় না; তাই এটি এই ওয়েবসাইট থেকে সরাসরি ডাউনলোড করতে হবে। ইনস্টলারটি Developer ID দিয়ে সাইন করা এবং Apple এর notarisation প্রক্রিয়ায় যাচাই করা। খোলার সময় macOS ইনস্টলারটি পরীক্ষা করে।",
