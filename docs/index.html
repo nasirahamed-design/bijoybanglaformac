@@ -385,7 +385,17 @@ section.faq { padding: 30px 0 28px; }
 footer.site { padding: 20px 0 44px; border-top: 1px solid var(--line); color: var(--ink); font-family: var(--serif); font-size: 14.5px; }
 footer.site .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
 footer.site p { margin: 0 0 2px; }
-footer.site .stats { flex-basis: 100%; color: var(--muted); font-size: 13.5px; }
+footer.site .stats { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 0; padding: 0; list-style: none; }
+footer.site .stats li { display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 10px; border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 4%, transparent); box-shadow: inset 0 0 0 1px var(--line); }
+footer.site .stats svg { flex: none; width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: color-mix(in srgb, var(--green) 12%, transparent); color: var(--green); }
+footer.site .stats li.bots svg { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--muted); }
+footer.site .stats b { display: block; font-size: 17px; line-height: 1.2; color: var(--ink); }
+footer.site .stats span { display: block; font-size: 12.5px; line-height: 1.3; color: var(--muted); }
+@media (max-width: 640px) {
+  footer.site .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  footer.site .stats li { flex-direction: column; text-align: center; gap: 6px; padding: 10px 6px; }
+}
 .dl-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .dl-count { color: var(--muted); font-size: 16px; }
 .dl-count strong { color: var(--ink); font-size: 20px; font-weight: 700; }
@@ -811,7 +821,7 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
       <p data-i18n="foot2">An independent project, not affiliated with Ananda Computers. Bijoy is a trademark of its respective owner.</p>
     </div>
     <div><a href="https://github.com/nasirahamed-design/bijoybanglaformac" data-i18n="footGit">Source on GitHub</a></div>
-    <p class="stats" hidden></p>
+    <ul class="stats" hidden></ul>
   </div>
 </footer>
 
@@ -965,10 +975,19 @@ html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla",
     const st = document.querySelector("footer.site .stats");
     if (st && stats) {
       st.hidden = false;
+      const bn = lang === "bn";
+      const ICON = {
+        people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.8c1.7.8 2.8 2.5 3 5.2"/></svg>',
+        visits: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+        bots: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4.5M9 13h.01M15 13h.01M9.5 16.5h5"/><circle cx="12" cy="3.5" r="1"/></svg>'
+      };
+      const item = (cls, icon, value, unit, label) =>
+        '<li class="' + cls + '">' + ICON[icon] + '<div><b>' + num(value) + (unit ? " " + unit : "") + '</b><span>' + label + '</span></div></li>';
       const u = typeof stats.unique === "number" ? stats.unique : null;
-      st.textContent = lang === "bn"
-        ? (u !== null ? "ইউনিক ভিজিটর " + num(u) + " · " : "") + "ভিজিট " + num(stats.visitors) + " · বট " + num(stats.bots)
-        : (u !== null ? "Unique visitors " + num(u) + " · " : "") + "Visits " + num(stats.visitors) + " · Bots " + num(stats.bots);
+      st.innerHTML =
+        (u !== null ? item("people", "people", u, bn ? "জন" : "", bn ? "ইউনিক ভিজিটর" : "Unique visitors") : "") +
+        item("visits", "visits", stats.visitors, bn ? "জন" : "", bn ? "বর্তমান ভিজিট" : "Current visits") +
+        item("bots", "bots", stats.bots, "", bn ? "বট" : "Bots");
     }
   }
   fetch("https://api.github.com/repos/nasirahamed-design/bijoybanglaformac/releases?per_page=100")
