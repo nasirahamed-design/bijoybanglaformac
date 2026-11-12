@@ -42,7 +42,7 @@
    "বিজয় বাংলা ফর ম্যাক",
    "বিজয় বাংলা"
   ],
-  "softwareVersion": "1.1.5",
+  "softwareVersion": "1.1.4",
   "fileSize": "1 MB",
   "datePublished": "2026-11-09",
   "dateModified": "2026-11-12",
@@ -554,6 +554,7 @@ section.news { padding: 40px 0 8px; border-top: 1px solid var(--line); }
   background: color-mix(in srgb, var(--paper) 88%, transparent); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px);
   box-shadow: 0 1px 0 var(--line), 0 10px 30px -20px rgba(0, 0, 0, .35); }
 .stick.on { transform: none; }
+section[id] { scroll-margin-top: 66px; }   /* menu links land below the floating bar */
 .stick .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 58px; }
 .stick-brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; font: 700 15px var(--sans); letter-spacing: .08em; }
 .stick-brand img { display: block; height: 44px; width: auto; }
@@ -563,6 +564,14 @@ section.news { padding: 40px 0 8px; border-top: 1px solid var(--line); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stick-dl { color: #0F1712; } }
 .stick-dl svg { width: 18px; height: 18px; }
 @media (max-width: 480px) { .stick-brand span { display: none; } }
+/* Section menu in the floating bar: computers and tablets only, phones keep logo + Download */
+.stick-nav { display: flex; gap: 4px; margin: 0 auto; }
+.stick-nav a { padding: 7px 13px; border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; white-space: nowrap; transition: background .2s, color .2s; }
+.stick-nav a:hover { color: var(--green); }
+.stick-nav a.here { background: var(--mint); color: var(--green-deep); font-weight: 600; }
+html[lang="bn"] .stick-nav a { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
+@media (max-width: 1080px) { .stick-brand span { display: none; } }
+@media (max-width: 760px) { .stick-nav { display: none; } }
 @media (prefers-reduced-motion: reduce) { .stick { transition: none; } }
 
 /* ---------- Back to top ---------- */
@@ -584,6 +593,13 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
 <div class="stick" aria-hidden="true" inert>
   <div class="wrap">
     <a class="stick-brand" href="#"><picture><source srcset="logo-dark.svg" media="(prefers-color-scheme: dark)"><img src="../logo.svg" width="71" height="44" alt=""></picture><span>BIJOY BANGLA FOR MAC</span></a>
+    <nav class="stick-nav" aria-label="Sections">
+      <a href="#install" data-i18n="navInstall">ইনস্টলেশন</a>
+      <a href="#typing" data-i18n="navTyping">টাইপের নিয়ম</a>
+      <a href="#layout" data-i18n="navLayout">লেআউট</a>
+      <a href="#about" data-i18n="navAbout">পরিচিতি</a>
+      <a href="#faq" data-i18n="navFaq">সাধারণ জিজ্ঞাসা</a>
+    </nav>
     <a class="stick-dl" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.pkg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg><span data-i18n="download">ম্যাকের জন্য ডাউনলোড</span></a>
   </div>
 </div>
@@ -1328,6 +1344,18 @@ window.phoneEdit = function (now, was, fixedLen) {
     bar.toggleAttribute('inert', !show);
     bar.setAttribute('aria-hidden', String(!show));
   }).observe(btn);
+  // Highlight the menu item for the part of the page being read
+  var links = {};
+  bar.querySelectorAll('.stick-nav a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var parts = ['install', 'typing', 'layout', 'modes', 'about', 'news', 'faq'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var owner = { modes: 'layout', news: 'about' };   // sections without their own menu item
+  function mark() {
+    var line = innerHeight * 0.35, cur = null;
+    parts.forEach(function (sec) { if (!sec.hidden && sec.getBoundingClientRect().top <= line) cur = sec.id; });
+    if (cur && owner[cur]) cur = owner[cur];
+    Object.keys(links).forEach(function (id) { links[id].classList.toggle('here', id === cur); });
+  }
+  addEventListener('scroll', mark, { passive: true }); mark();
 })();
 
 // The Word demo video plays only when on screen, and not at all for reduced motion
