@@ -91,6 +91,14 @@ final class BijoyInputController: IMKInputController {
             return false
         }
 
+        // macOS does not always tell us when the user picks another of our
+        // modes in the input menu (e.g. English, then straight to বিজয় ইউনিকোড
+        // without typing), so check which mode is really selected each time.
+        if let m = InputMode.fromSystem(), m != InputMode.current {
+            commit(target)
+            InputMode.current = m
+        }
+
         if InputMode.current == .english { return false }
 
         let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)

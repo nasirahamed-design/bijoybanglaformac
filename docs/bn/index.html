@@ -42,7 +42,7 @@
    "বিজয় বাংলা ফর ম্যাক",
    "বিজয় বাংলা"
   ],
-  "softwareVersion": "1.1.4",
+  "softwareVersion": "1.1.5",
   "fileSize": "1 MB",
   "datePublished": "2026-11-09",
   "dateModified": "2026-11-12",
@@ -202,7 +202,7 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; touch-action: manipulation; }  /* no double-tap zoom when tapping keys fast; pinch zoom still works */
 body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
 a { color: var(--green); }
 a:focus-visible, button:focus-visible, summary:focus-visible, textarea:focus-visible {
@@ -262,6 +262,7 @@ nav.site a:hover { color: var(--green); }
 /* The trust box stays invisible (but keeps its space) until the headline has typed */
 .hero .trust { max-height: 0; margin-top: 0; padding-top: 0; padding-bottom: 0; opacity: 0; overflow: hidden;
   transition: max-height .45s ease, margin .45s ease, padding .45s ease, opacity .3s ease; }
+.hero .trust.instant { transition: none !important; }
 .hero .trust.show { max-height: 12em; margin-top: 18px; padding-top: 12px; padding-bottom: 12px; opacity: 1; transition: max-height .45s ease, margin .45s ease, padding .45s ease, opacity .3s ease .2s; }
 @media (prefers-reduced-motion: reduce) { .hero .trust { max-height: none; margin-top: 18px; padding-top: 12px; padding-bottom: 12px; opacity: 1; transition: none; } }
 .hero .dl-row { margin-top: 30px; }
@@ -383,6 +384,10 @@ section.typing .lead { margin: 0 0 22px; max-width: 70ch; font-size: 17px; }
 /* About (SEO copy) */
 section.about { padding: 40px 0 8px; border-top: 1px solid var(--line); }
 section.about h2 { margin-bottom: 14px; }
+/* Phones: these two longer headings stay on one line */
+@media (max-width: 640px) {
+  section.modes h2, section.about h2 { font-size: clamp(17px, 5.6vw, 26px); white-space: nowrap; }
+}
 .about-cols { display: block; }
 /* Show only the selected language; the other stays in the page for search engines */
 html:not([lang="bn"]) .about-cols .bn-col, html[lang="bn"] .about-cols .en-col { display: none; }
@@ -461,6 +466,10 @@ section.layout .lead, section.modes .lead { margin-left: 0; }
   background: var(--card); color: var(--ink); font: 600 15px var(--sans); box-shadow: 0 0 0 1px var(--key-edge), 0 2px 0 var(--key-edge); }
 .shift-toggle svg { width: 18px; height: 18px; }
 .shift-toggle[aria-pressed="true"] { background: var(--green); color: #fff; box-shadow: 0 0 0 1px var(--green), 0 2px 0 var(--green-deep); }
+.kb-lang { display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--card); color: var(--ink); font: 600 15px "Noto Sans Bengali", var(--sans); box-shadow: 0 0 0 1px var(--key-edge), 0 2px 0 var(--key-edge); }
+.kb-lang kbd { font: 600 11px var(--sans); color: var(--muted); padding: 2px 6px; border-radius: 5px; box-shadow: inset 0 0 0 1px var(--key-edge); }
+.kb-lang[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .kb-out { min-height: 1.6em; font-size: 17px; color: var(--muted); }
 .kb-out b { color: var(--ink); font-size: 24px; margin-left: 6px; }
 .kb-pdf { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 600; }
@@ -490,15 +499,22 @@ section.layout .lead, section.modes .lead { margin-left: 0; }
 .kb-key.side-r .sym, .kb-key.side-r .word { right: 9px; }
 .kb-key.side-c { cursor: default; }
 .kb-mods .kb-key { aspect-ratio: auto; height: clamp(40px, 5.2vw, 62px); }
-.kb-key.mod-shift { cursor: pointer; }
-.kb-key.mod-shift.down { background: var(--green); box-shadow: 0 0 0 1px var(--green), 0 1px 0 var(--green-deep); transform: translateY(2px); }
-.kb-key.mod-shift.down .sym, .kb-key.mod-shift.down .word { color: #fff; }
-.kb-key:not(.lbl):hover, .kb-key.mod-shift:not(.down):hover { background: var(--mint); }
+.kb-key.act { cursor: pointer; }
+.kb-key.act:hover { background: var(--mint); }
+.kb-phone { display: none; }
+.kb-phone .kb-key { aspect-ratio: auto; height: 42px; }
+.kb-phone .kb-key .sym { position: static; display: grid; place-items: center; height: 100%; font-size: 18px; }
+.kb-phone .act-space .word { position: static; display: grid; place-items: center; height: 100%; }
+.kb.english .kb-key .bn { font: 500 clamp(15px, 2vw, 24px)/1 -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--ink); margin-top: 0; }
+.kb-key.act-shift.down { background: var(--green); box-shadow: 0 0 0 1px var(--green), 0 1px 0 var(--green-deep); transform: translateY(2px); }
+.kb-key.act-shift.down .sym, .kb-key.act-shift.down .word { color: #fff; }
+.kb-key:not(.lbl):hover { background: var(--mint); }
 .kb-key.hit { transform: translateY(2px); box-shadow: 0 0 0 1px var(--green), 0 1px 0 var(--green); background: var(--mint); }
 @media (max-width: 640px) {
   .kb { gap: 4px; padding: 8px; } .kb-row { gap: 4px; }
   .kb-key { border-radius: 6px; } .kb-key .en, .kb-key .alt { font-size: 8.5px; left: 3px; right: 3px; top: 2px; }
-  .kb-key.lbl, .kb-mods { display: none; } .kb-pdf { margin-left: 0; }
+  .kb-row > .kb-key.lbl, .kb-mods { display: none; } .kb-pdf { margin-left: 0; }
+  .kb-phone { display: flex; } .kb-phone > .kb-key.lbl { display: block; }
   .kb-key .bn { font-size: 15px; } .kb-key .alt { display: none; }
 }
 
@@ -515,6 +531,8 @@ section.modes { padding: 40px 0 24px; border-top: 1px solid var(--line); }
 .mode .sample.ansi.mj { font-size: 30px; font-weight: 400; letter-spacing: 0; }
 .ansi-note { margin: -4px 0 12px; font-size: 13.5px; color: var(--muted); }
 .ansi-note b { color: var(--green); }
+.ansi-note code { font: 13px Georgia, serif; }
+.mode .sample img.mj-pic { display: block; height: 1.3em; width: auto; }
 .mode .mode-note { margin: 0 0 12px; color: var(--muted); }
 .mode ul { margin: 0; padding-left: 20px; }
 .mode li { margin: 4px 0; }
@@ -628,7 +646,7 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
           </span>
         </div>
         <label for="pad"><span data-i18n="demoLabel">বিজয় লেআউটে টাইপ করুন, যেমন</span> <b>h f Q V f</b></label>
-        <textarea id="pad" lang="bn" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="strip"></textarea>
+        <textarea id="pad" lang="bn" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" inputmode="text" aria-describedby="strip"></textarea>
         <div class="strip" id="strip" aria-live="polite"></div>
         <div class="tries" lang="bn">
           <button type="button" data-keys="dhMghdhlZfVW">বিশ্ববিদ্যালয়</button>
@@ -740,13 +758,14 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
 <section class="layout" id="layout">
   <div class="wrap">
     <h2 data-i18n="layoutTitle">বিজয় কীবোর্ড লেআউট</h2>
-    <p class="lead" data-i18n="layoutLead">প্রতিটি কী-র দ্বিতীয় অক্ষর দেখতে Shift চেপে ধরুন বা Shift বোতামে চাপুন। কোনো কী-তে চাপলে দেখবেন সেটি কী লেখে।</p>
+    <p class="lead" data-i18n="layoutLead">কীবোর্ড দিয়ে বক্সে টাইপ করুন, অথবা কী-তে চাপুন। প্রতিটি কী-র দ্বিতীয় অক্ষর দেখতে Shift চেপে ধরুন, আর বাংলা ও ইংরেজির মধ্যে বদলাতে Esc চাপুন।</p>
     <div class="kb-tools">
       <button type="button" class="shift-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 3.5 12.5H8V20h8v-7.5h4.5z"/></svg><span>Shift</span></button>
+      <button type="button" class="kb-lang" aria-pressed="false" title="Esc"><span class="cur">বাংলা</span><kbd>Esc</kbd></button>
       <output class="kb-out" aria-live="polite"></output>
       <a class="kb-pdf" href="/Bijoy-Keyboard-Layout.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg><span data-i18n="layoutPdf">প্রিন্ট করার লেআউট (PDF)</span></a>
     </div>
-    <textarea class="kb-pad" lang="bn" rows="2" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Type with the Bijoy keys"></textarea>
+    <textarea class="kb-pad" lang="bn" rows="2" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" inputmode="text" aria-label="Type with the Bijoy keys"></textarea>
     <div class="kb" lang="bn" role="group" aria-label="Bijoy keyboard layout"></div>
   </div>
 </section>
@@ -829,6 +848,22 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
 
 <script src="../bijoy-engine.js"></script>
 <script>
+// Android touch keyboards (Gboard, Samsung) send no key codes, only the text
+// they insert. Work out what changed in the box since we last drew it.
+//   { at: 'end', text } - letters typed at the end
+//   { at: 'back' }      - one character deleted at the end
+//   null                - some other edit (paste, cursor moved...): keep the box as it is
+window.phoneEdit = function (now, was, fixedLen) {
+  if (now === was) return { at: 'none' };
+  var p = 0; while (p < now.length && p < was.length && now[p] === was[p]) p++;
+  var s = 0; while (s < now.length - p && s < was.length - p && now[now.length - 1 - s] === was[was.length - 1 - s]) s++;
+  var added = now.slice(p, now.length - s), removed = was.length - s - p;
+  if (s === 0 && !removed && added && p === was.length) return { at: 'end', text: added };
+  if (s === 0 && !added && removed && p >= fixedLen) return { at: 'back' };
+  return null;
+};
+</script>
+<script>
 (function () {
   /* ---------- Language switch ---------- */
   const BN = {
@@ -836,7 +871,7 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
     seeTitle: "Microsoft Word-এ দেখুন",
     seeLead: "বিজয় ইউনিকোড দিয়ে একটি বাংলা বাক্য টাইপ করা হচ্ছে, একেবারে বাস্তব সময়ে।",
     layoutTitle: "বিজয় কীবোর্ড লেআউট",
-    layoutLead: "প্রতিটি কী-র দ্বিতীয় অক্ষর দেখতে Shift চেপে ধরুন বা Shift বোতামে চাপুন। কোনো কী-তে চাপলে দেখবেন সেটি কী লেখে।",
+    layoutLead: "কীবোর্ড দিয়ে বক্সে টাইপ করুন, অথবা কী-তে চাপুন। প্রতিটি কী-র দ্বিতীয় অক্ষর দেখতে Shift চেপে ধরুন, আর বাংলা ও ইংরেজির মধ্যে বদলাতে Esc চাপুন।",
     layoutPdf: "প্রিন্ট করার লেআউট (PDF)",
     modesTitle: "বিজয় ইউনিকোড নাকি বিজয় ক্লাসিক?",
     modesLead: "একই কী, দুই ধরনের লেখা। লেখাটি কোথায় ব্যবহার হবে, সেই অনুযায়ী মোড বেছে নিন।",
@@ -953,7 +988,17 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
   });
   // Phone keyboards send no key codes; keep the box showing the demo text.
   // Cut, paste or a phone keyboard changed the text: keep what is there now
-  pad.addEventListener("input", () => { if (pad.value !== committed + Bijoy.render(word)) { committed = pad.value; word = []; } });
+  pad.addEventListener("input", () => {
+    const e = phoneEdit(pad.value, committed + Bijoy.render(word), committed.length);
+    if (e && e.at === "none") return;
+    if (e && e.at === "end") {
+      stopAuto();
+      for (const c of e.text) { if (Bijoy.isMapped(c)) word.push(c); else commit(c); }
+      draw(); return;
+    }
+    if (e && e.at === "back" && word.length) { word.pop(); draw(); return; }
+    committed = pad.value; word = [];
+  });
 
   function play(keys) {
     stopAuto();
@@ -1067,7 +1112,8 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
   timer = setTimeout(() => play("hfQVf"), reduce ? 0 : 700);
 })();
 
-// Interactive Bijoy keyboard: tap a key, or press it on a real keyboard
+// Interactive Bijoy keyboard: type in the box with a real keyboard or by tapping
+// the keys. Esc (or the globe key / language button) switches Bangla and English.
 (function () {
   var kb = document.querySelector('.kb');
   if (!kb) return;
@@ -1080,130 +1126,165 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
   };
   var CODE = { Backquote: '`', Minus: '-', Equal: '=', BracketLeft: '[', BracketRight: ']', Backslash: '\\', Semicolon: ';', Quote: "'", Comma: ',', Period: '.', Slash: '/' };
   var CODE_OF = {}; Object.keys(CODE).forEach(function (c) { CODE_OF[CODE[c]] = c; });
-  var SHIFTSYM = { '`': '~', '-': '_', '=': '+', '[': '{', ']': '}', ';': ':', "'": '"', ',': '<', '.': '>', '/': '?', '\\': '|' };
+  var SHIFTSYM = { '`': '~', '-': '_', '=': '+', '[': '{', ']': '}', ';': ':', "'": '"', ',': '<', '.': '>', '/': '?', '\\': '|',
+    '1': '!', '2': '@', '3': '#', '4': '$', '5': '%', '6': '^', '7': '&', '8': '*', '9': '(', '0': ')' };
   function codeOf(k) { return /[a-z]/.test(k) ? 'Key' + k.toUpperCase() : /\d/.test(k) ? 'Digit' + k : CODE_OF[k]; }
-  // Special keys as on a Mac keyboard: [word, width, symbol, which corner the word sits in]
-  var ROWS = [
-    { keys: '`1234567890-='.split(''), tail: ['delete', 1.6, '⌫', 'r'] },
-    { lead: ['tab', 1.6, '⇥', 'l'], keys: 'qwertyuiop[]\\'.split('') },
-    { lead: ['caps lock', 1.9, '⇪', 'l'], keys: "asdfghjkl;'".split(''), tail: ['return', 1.9, '↩', 'r'] },
-    { lead: ['shift', 2.4, '⇧', 'l', 'shift'], keys: 'zxcvbnm,./'.split(''), tail: ['shift', 2.4, '⇧', 'r', 'shift'] },
-    { only: [['fn', 1.25, 'globe', 'l'], ['control', 1.25, '⌃', 'l'], ['option', 1.25, '⌥', 'l'], ['command', 1.6, '⌘', 'l'],
-             ['', 5.5, '', 'c'], ['command', 1.6, '⌘', 'r'], ['option', 2.15, '⌥', 'r']] }
-  ];
-  var out = document.querySelector('.kb-out'), toggle = document.querySelector('.shift-toggle');
-  var shifted = false, keys = {};
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   var GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg>';
-  function label(spec) {
-    var b = document.createElement(spec[4] === 'shift' ? 'button' : 'span');
-    b.className = 'kb-key lbl wide side-' + spec[3] + (spec[4] === 'shift' ? ' mod-shift' : '');
+
+  // Special keys as on a Mac: [word, width, symbol, corner, action]
+  var ROWS = [
+    { keys: '`1234567890-='.split(''), tail: ['delete', 1.6, '⌫', 'r', 'back'] },
+    { lead: ['tab', 1.6, '⇥', 'l', 'tab'], keys: 'qwertyuiop[]\\'.split('') },
+    { lead: ['caps lock', 1.9, '⇪', 'l', 'caps'], keys: "asdfghjkl;'".split(''), tail: ['return', 1.9, '↩', 'r', 'enter'] },
+    { lead: ['shift', 2.4, '⇧', 'l', 'shift'], keys: 'zxcvbnm,./'.split(''), tail: ['shift', 2.4, '⇧', 'r', 'shift'] },
+    { only: [['fn', 1.25, 'globe', 'l', 'lang'], ['control', 1.25, '⌃', 'l'], ['option', 1.25, '⌥', 'l'], ['command', 1.6, '⌘', 'l'],
+             ['', 5.5, '', 'c', 'space'], ['command', 1.6, '⌘', 'r'], ['option', 2.15, '⌥', 'r']] }
+  ];
+  // Phones get their own last row, since the Mac special keys are hidden there
+  var PHONE = [['', 1.4, 'globe', 'c', 'lang'], ['', 1.4, '⇧', 'c', 'shift'], ['space', 5, '', 'c', 'space'], ['', 1.4, '⌫', 'c', 'back'], ['', 1.4, '↩', 'c', 'enter']];
+
+  var out = document.querySelector('.kb-out'), toggle = document.querySelector('.shift-toggle'), langBtn = document.querySelector('.kb-lang');
+  var pad = document.querySelector('.kb-pad');
+  var pageBn = document.documentElement.lang === 'bn';
+  var shifted = false, english = false, keys = {}, done = '', word = [];
+
+  function special(spec) {
+    var act = spec[4], b = document.createElement(act ? 'button' : 'span');
+    b.className = 'kb-key lbl wide side-' + spec[3] + (act ? ' act act-' + act : '');
     b.style.flexGrow = spec[1];
-    if (spec[4] === 'shift') { b.type = 'button'; b.setAttribute('aria-label', 'Shift'); b.addEventListener('click', function () { shifted = !shifted; paint(); }); }
-    b.innerHTML = (spec[2] ? '<span class="sym">' + (spec[2] === 'globe' ? GLOBE : spec[2]) + '</span>' : '') + '<span class="word">' + spec[0] + '</span>';
+    if (act) {
+      b.type = 'button';
+      b.setAttribute('aria-label', { back: 'Delete', enter: 'Return', space: 'Space', shift: 'Shift', caps: 'Caps Lock', tab: 'Tab', lang: 'Switch Bangla / English' }[act]);
+      b.addEventListener('click', function () { action(act); });
+    }
+    b.innerHTML = (spec[2] ? '<span class="sym">' + (spec[2] === 'globe' ? GLOBE : spec[2]) + '</span>' : '') + (spec[0] ? '<span class="word">' + spec[0] + '</span>' : '');
     return b;
   }
   ROWS.forEach(function (row) {
     var r = document.createElement('div'); r.className = 'kb-row' + (row.only ? ' kb-mods' : '');
-    if (row.only) { row.only.forEach(function (spec) { r.appendChild(label(spec)); }); kb.appendChild(r); return; }
-    if (row.lead) r.appendChild(label(row.lead));
+    if (row.only) { row.only.forEach(function (spec) { r.appendChild(special(spec)); }); kb.appendChild(r); return; }
+    if (row.lead) r.appendChild(special(row.lead));
     row.keys.forEach(function (k) {
-      var m = MAP[k], el = document.createElement('button');
+      var el = document.createElement('button');
       el.type = 'button';
-      if (m) {
-        el.className = 'kb-key';
-        el.innerHTML = '<span class="en">' + (/[a-z]/.test(k) ? k.toUpperCase() : k) + '</span><span class="bn"></span><span class="alt"></span>';
-      } else {
-        // Punctuation keys look like a real keyboard: Shift symbol above, plain symbol below
-        el.className = 'kb-key pu';
-        el.innerHTML = '<span class="top">' + SHIFTSYM[k].replace('<', '&lt;').replace('>', '&gt;') + '</span><span class="bot">' + k + '</span>';
-        el.setAttribute('aria-label', k + ', Shift: ' + SHIFTSYM[k]);
-      }
+      el.className = 'kb-key' + (MAP[k] ? '' : ' pu');
+      el.innerHTML = MAP[k] ? '<span class="en"></span><span class="bn"></span><span class="alt"></span>'
+                            : '<span class="top">' + esc(SHIFTSYM[k]) + '</span><span class="bot">' + esc(k) + '</span>';
       el.addEventListener('click', function () { press(k); typeKey(k, shifted); });
       keys[k] = el; r.appendChild(el);
     });
-    if (row.tail) r.appendChild(label(row.tail));
+    if (row.tail) r.appendChild(special(row.tail));
     kb.appendChild(r);
   });
+  var pr = document.createElement('div'); pr.className = 'kb-row kb-phone';
+  PHONE.forEach(function (spec) { pr.appendChild(special(spec)); });
+  kb.appendChild(pr);
+
+  function label(k) { return /[a-z]/.test(k) ? k.toUpperCase() : k; }
   function paint() {
     kb.classList.toggle('shifted', shifted);
-    kb.querySelectorAll('.mod-shift').forEach(function (b) { b.classList.toggle('down', shifted); });
+    kb.classList.toggle('english', english);
+    kb.lang = english ? 'en' : 'bn';
     toggle.setAttribute('aria-pressed', String(shifted));
+    kb.querySelectorAll('.act-shift').forEach(function (b) { b.classList.toggle('down', shifted); });
+    if (langBtn) {
+      langBtn.querySelector('.cur').textContent = english ? 'English' : 'বাংলা';
+      langBtn.setAttribute('aria-pressed', String(english));
+    }
     Object.keys(MAP).forEach(function (k) {
       var el = keys[k]; if (!el) return;
-      el.querySelector('.bn').textContent = (shifted ? MAP[k][1] : MAP[k][0]) || '';
-      el.querySelector('.alt').textContent = MAP[k][1];
-      el.setAttribute('aria-label', k.toUpperCase() + ': ' + MAP[k][0] + (MAP[k][1] ? ', Shift: ' + MAP[k][1] : ''));
+      var en = /[a-z]/.test(k) ? (shifted ? k.toUpperCase() : k) : (shifted ? SHIFTSYM[k] || k : k);
+      el.querySelector('.en').textContent = english ? '' : label(k);
+      el.querySelector('.bn').textContent = english ? en : ((shifted ? MAP[k][1] : MAP[k][0]) || '');
+      el.querySelector('.alt').textContent = english ? '' : MAP[k][1];
+      el.setAttribute('aria-label', english ? en : label(k) + ': ' + MAP[k][0] + (MAP[k][1] ? ', Shift: ' + MAP[k][1] : ''));
     });
+    if (pad) pad.placeholder = english
+      ? (pageBn ? 'ইংরেজিতে টাইপ করুন - বাংলায় ফিরতে Esc চাপুন' : 'Type in English - press Esc to switch back to Bangla')
+      : (pageBn ? 'এখানে ক্লিক করে বিজয় কী দিয়ে টাইপ করুন - ইংরেজির জন্য Esc চাপুন' : 'Click here and type with the Bijoy keys - press Esc for English');
   }
+  function show(name, ch) { out.innerHTML = esc(name) + (ch ? ' →<b lang="' + (english ? 'en' : 'bn') + '">' + esc(ch) + '</b>' : ''); }
+  function flash(el) { if (!el) return; el.classList.add('hit'); setTimeout(function () { el.classList.remove('hit'); }, 160); }
   function press(k) {
-    var el = keys[k]; if (!el) return;
-    el.classList.add('hit'); setTimeout(function () { el.classList.remove('hit'); }, 160);
-    var m = MAP[k];
-    var ch = m ? (shifted ? m[1] : m[0]) : (shifted ? SHIFTSYM[k] : k);
-    if (!ch) return;
-    var keyName = (shifted ? 'Shift + ' : '') + (/[a-z]/.test(k) ? k.toUpperCase() : k);
-    out.innerHTML = keyName.replace('<', '&lt;') + ' →<b lang="bn">' + ch.replace('<', '&lt;').replace('>', '&gt;') + '</b>';
+    flash(keys[k]);
+    var m = MAP[k], shiftedEn = /[a-z]/.test(k) ? k.toUpperCase() : (SHIFTSYM[k] || k);
+    var ch = english ? (shifted ? shiftedEn : k) : m ? (shifted ? m[1] : m[0]) : (shifted ? SHIFTSYM[k] : k);
+    show((shifted ? 'Shift + ' : '') + label(k), ch);
   }
 
-  // The typing box: type with the Bijoy keys (physical keyboard or the keys below)
-  var pad = document.querySelector('.kb-pad'), done = '', word = [];
-  var bn = document.documentElement.lang === 'bn';
-  if (pad) pad.placeholder = bn ? 'এখানে ক্লিক করে বিজয় কী দিয়ে টাইপ করুন - নিচের কীবোর্ডে চাপা কী দেখা যাবে' : 'Click here and type with the Bijoy keys - the keyboard below shows each key you press';
+  // The typing box keeps finished text plus the Bijoy keys of the word being typed
   function drawPad() { if (pad) { pad.value = done + Bijoy.render(word); pad.scrollTop = pad.scrollHeight; } }
   function commitPad(extra) { done += Bijoy.render(word) + extra; word = []; }
   function typeKey(k, shift) {
     if (!pad || typeof Bijoy === 'undefined') return;
+    if (english) { commitPad(/[a-z]/.test(k) ? (shift ? k.toUpperCase() : k) : (shift ? SHIFTSYM[k] || k : k)); drawPad(); return; }
     var ch = Bijoy.usChar(codeOf(k), shift);
     if (ch && Bijoy.isMapped(ch)) word.push(ch); else commitPad(shift ? (SHIFTSYM[k] || k) : k);
     drawPad();
   }
+  function backspace() {
+    if (pad && pad.selectionStart !== pad.selectionEnd && document.activeElement === pad) { dropSelection(); }
+    else if (word.length) word.pop(); else done = Array.from(done).slice(0, -1).join('');
+    drawPad();
+  }
+  function dropSelection() { var v = pad.value; done = v.slice(0, pad.selectionStart) + v.slice(pad.selectionEnd); word = []; }
+  function switchLang() { commitPad(''); english = !english; paint(); show(english ? 'English' : 'বাংলা (Bijoy)'); }
+  function action(act) {
+    flash(kb.querySelector('.act-' + act));
+    if (act === 'back') { backspace(); show('delete'); }
+    else if (act === 'enter') { commitPad('\n'); drawPad(); show('return'); }
+    else if (act === 'space') { commitPad(' '); drawPad(); show('space'); }
+    else if (act === 'tab') { commitPad('\t'); drawPad(); show('tab'); }
+    else if (act === 'shift' || act === 'caps') { shifted = !shifted; paint(); }
+    else if (act === 'lang') switchLang();
+  }
+  toggle.addEventListener('click', function () { shifted = !shifted; paint(); });
+  if (langBtn) langBtn.addEventListener('click', switchLang);
+
+  function keyOf(e) { return /^Key[A-Z]$/.test(e.code) ? e.code.slice(3).toLowerCase() : /^Digit\d$/.test(e.code) ? e.code.slice(5) : CODE[e.code]; }
   if (pad) {
     pad.addEventListener('keydown', function (e) {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.key === 'Shift') { shifted = true; paint(); return; }
-      // Selected text: Backspace/Delete removes it, any other key types over it
+      if (e.key === 'Escape') { e.preventDefault(); switchLang(); return; }
       if (pad.selectionStart !== pad.selectionEnd) {
-        var v = pad.value;
-        done = v.slice(0, pad.selectionStart) + v.slice(pad.selectionEnd); word = [];
+        dropSelection();
         if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); drawPad(); return; }
       }
       if (e.key === 'Delete') { e.preventDefault(); return; }
-      if (e.key === 'Backspace') {
-        e.preventDefault();
-        if (word.length) word.pop(); else done = Array.from(done).slice(0, -1).join('');
-        drawPad(); return;
+      if (e.key === 'Backspace') { e.preventDefault(); backspace(); flash(kb.querySelector('.act-back')); return; }
+      if (e.key === ' ' || e.key === 'Enter' || e.key === 'Tab') {
+        e.preventDefault(); action(e.key === ' ' ? 'space' : e.key === 'Enter' ? 'enter' : 'tab'); return;
       }
-      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); commitPad(e.key === ' ' ? ' ' : '\n'); drawPad(); return; }
-      var k = /^Key[A-Z]$/.test(e.code) ? e.code.slice(3).toLowerCase() : /^Digit\d$/.test(e.code) ? e.code.slice(5) : CODE[e.code];
+      var k = keyOf(e);
       if (k) { e.preventDefault(); press(k); typeKey(k, e.shiftKey); }
     });
     pad.addEventListener('keyup', function (e) { if (e.key === 'Shift') { shifted = false; paint(); } });
-    // Phone keyboards send no key codes: keep whatever they typed
-    pad.addEventListener('input', function () { if (pad.value !== done + Bijoy.render(word)) { done = pad.value; word = []; } });
+    // Cut, paste or a phone keyboard changed the text: keep what is there now
+    pad.addEventListener('input', function () {
+      var e = phoneEdit(pad.value, done + Bijoy.render(word), done.length);
+      if (e && e.at === 'none') return;
+      if (e && e.at === 'end') {
+        Array.from(e.text).forEach(function (c) { if (!english && Bijoy.isMapped(c)) word.push(c); else commitPad(c); });
+        drawPad(); return;
+      }
+      if (e && e.at === 'back' && word.length) { word.pop(); drawPad(); return; }
+      done = pad.value; word = [];
+    });
   }
-  toggle.addEventListener('click', function () { shifted = !shifted; paint(); });
+  // Outside the box: keys still light up while the keyboard is on screen, and Esc switches language
   function typingElsewhere(e) { var t = e.target; return t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT' || t.isContentEditable); }
+  function onScreen() { var r = kb.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }
   document.addEventListener('keydown', function (e) {
-    if (typingElsewhere(e) || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (typingElsewhere(e) || e.metaKey || e.ctrlKey || e.altKey || !onScreen()) return;
     if (e.key === 'Shift') { shifted = true; paint(); return; }
-    var k = /^Key[A-Z]$/.test(e.code) ? e.code.slice(3).toLowerCase() : /^Digit\d$/.test(e.code) ? e.code.slice(5) : CODE[e.code];
-    if (k && keys[k] && kb.getBoundingClientRect().top < innerHeight && kb.getBoundingClientRect().bottom > 0) press(k);
+    if (e.key === 'Escape') { switchLang(); return; }
+    var k = keyOf(e);
+    if (k && keys[k]) press(k);
   });
-  document.addEventListener('keyup', function (e) { if (e.key === 'Shift') { shifted = false; paint(); } });
+  document.addEventListener('keyup', function (e) { if (e.key === 'Shift' && !typingElsewhere(e)) { shifted = false; paint(); } });
   paint();
-})();
-
-// Back-to-top button, bottom right, once the page has scrolled a screen down
-(function () {
-  var btn = document.querySelector('.to-top');
-  if (!btn) return;
-  if (document.documentElement.lang === 'bn') btn.setAttribute('aria-label', 'ওপরে যান');
-  btn.hidden = false;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function update() { btn.classList.toggle('on', window.scrollY > window.innerHeight); btn.tabIndex = window.scrollY > window.innerHeight ? 0 : -1; }
-  window.addEventListener('scroll', update, { passive: true });
-  btn.addEventListener('click', function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
-  update();
 })();
 
 // Classic sample: show it in SutonnyMJ when the visitor has the font installed
@@ -1219,6 +1300,18 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
   }
   var bn = document.documentElement.lang === 'bn', mj = has('SutonnyMJ') || has('SutonnyOMJ');
   sample.classList.toggle('mj', mj);
+  if (!mj) {
+    // No SutonnyMJ here (most phones): show a picture of the line in SutonnyMJ instead
+    var raw = sample.textContent, img = new Image();
+    img.src = '/img/classic-sutonnymj.png';
+    img.alt = 'আমার সোনার বাংলা in SutonnyMJ';
+    img.className = 'mj-pic';
+    img.onload = function () {
+      sample.textContent = ''; sample.appendChild(img);
+      note.innerHTML = bn ? 'SutonnyMJ ফন্টে যেমন দেখায় (ছবি)। মূল ক্লাসিক লেখা: <code>' + raw + '</code>'
+                          : 'How it looks in SutonnyMJ (picture). The raw classic text is <code>' + raw + '</code>';
+    };
+  }
   note.innerHTML = mj
     ? (bn ? 'আপনার ডিভাইসে থাকা <b>SutonnyMJ</b> ফন্টে দেখানো হচ্ছে।' : 'Shown in <b>SutonnyMJ</b>, the font on your device.')
     : (bn ? 'এই ডিভাইসে SutonnyMJ ফন্ট নেই, তাই মূল ক্লাসিক লেখাটি দেখা যাচ্ছে।' : 'SutonnyMJ is not installed on this device, so you see the raw classic text.');
@@ -1303,17 +1396,23 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
   }
   function cursor(el, on) { el.querySelector('.tw-text').classList.toggle('typing', on); }
 
-  var run = 0;   // bumped on every language change, which stops the old loop
-  function start() {
+  var run = 0;   // bumped on every language change or pause, which stops the old loop
+  var paused = false;
+  // full: show the finished headline and trust box straight away (no animation);
+  // paused: and do not schedule anything (the hero is off screen)
+  function start(full) {
     var lang = document.documentElement.lang === 'bn' ? 'bn' : 'en';
     var t = TEXT[lang], my = ++run;
     head.lang = lang; trust.lang = lang;
     setGhost(head, t.head); setGhost(trust, [t.trust]);
     if (reduce) { head.classList.add('no-tw'); trust.classList.add('no-tw'); return; }
-    box.classList.remove('show');
     var hs = toSteps(t.head), ts = toSteps([t.trust]);
-    var hn = 0, tn = 0;
-    paint(head, hs, 0); paint(trust, ts, 0);
+    var hn = full ? hs.length : 0, tn = full ? ts.length : 0;
+    box.classList.add('instant');
+    box.classList.toggle('show', !!full);
+    paint(head, hs, hn); paint(trust, ts, tn);
+    cursor(head, false); cursor(trust, false);
+    void box.offsetHeight; box.classList.remove('instant');
     var later = function (fn, ms) { setTimeout(function () { if (my === run) fn(); }, ms); };
     function typeHead() {
       cursor(head, true);
@@ -1340,9 +1439,25 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
       hn--; paint(head, hs, hn);
       later(eraseHead, 45);
     }
-    later(typeHead, 400);
+    if (paused) return;
+    if (full) later(eraseTrust, 2500); else later(typeHead, 400);
   }
-  new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  // While the hero is off screen (e.g. someone is typing further down on a phone),
+  // stop the loop and hold the finished headline, so nothing below moves.
+  var hero = head.closest('section') || head.parentNode, anchor = document.querySelector('#see') || hero.nextElementSibling;
+  function holdStill(fn) {
+    var before = anchor ? anchor.getBoundingClientRect().top : 0;
+    fn();
+    if (anchor) { var shift = anchor.getBoundingClientRect().top - before; if (shift) window.scrollBy(0, shift); }
+  }
+  if ('IntersectionObserver' in window && !reduce) {
+    new IntersectionObserver(function (es) {
+      var visible = es[0].isIntersecting;
+      if (!visible && !paused) { paused = true; holdStill(function () { start(true); }); }
+      else if (visible && paused) { paused = false; start(true); }
+    }).observe(hero);
+  }
+  new MutationObserver(function () { start(paused); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   start();
 })();
 </script>
