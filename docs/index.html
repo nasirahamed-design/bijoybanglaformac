@@ -158,7 +158,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --green: #0B6B3F;
@@ -239,9 +239,17 @@ nav.site a:hover { color: var(--green); }
 @keyframes tw-blink { 50% { opacity: 0; } }
 .no-tw .tw-ghost { visibility: visible; }
 .no-tw .tw-text { display: none; }
-.hero .trust { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 0; max-width: 34em; color: var(--green); font-size: 17px; line-height: 1.5; font-weight: 500; }
-.hero .trust svg { flex: none; width: 22px; height: 22px; margin-top: 1px; }
+.hero .trust { display: flex; gap: 12px; align-items: center; margin: 18px 0 0; max-width: 34em; padding: 12px 16px 12px 12px; border-radius: 14px;
+  background: color-mix(in srgb, var(--green) 7%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--green) 16%, transparent);
+  color: var(--ink); font-size: 16px; line-height: 1.5; }
+.hero .trust svg { flex: none; width: 36px; height: 36px; padding: 7px; border-radius: 50%; background: var(--green); color: #fff; }
 .hero .trust .tw { flex: 1; }
+/* The trust box stays invisible (but keeps its space) until the headline has typed */
+.hero .trust { max-height: 0; margin-top: 0; padding-top: 0; padding-bottom: 0; opacity: 0; overflow: hidden;
+  transition: max-height .45s ease, margin .45s ease, padding .45s ease, opacity .3s ease; }
+.hero .trust.show { max-height: 12em; margin-top: 18px; padding-top: 12px; padding-bottom: 12px; opacity: 1; transition: max-height .45s ease, margin .45s ease, padding .45s ease, opacity .3s ease .2s; }
+@media (prefers-reduced-motion: reduce) { .hero .trust { max-height: none; margin-top: 18px; padding-top: 12px; padding-bottom: 12px; opacity: 1; transition: none; } }
+.hero .dl-row { margin-top: 30px; }
 html[lang="bn"] .hero .trust { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
 .hero .tag { font-size: 22px; line-height: 1.45; margin: 16px 0 26px; max-width: 30ch; }
 .download {
@@ -307,7 +315,11 @@ section.install { text-align: center; padding: 36px 0 56px; }
 h2 { font: 700 clamp(32px, 4.4vw, 44px)/1.2 var(--serif); margin: 0 0 8px; }
 .sub { color: var(--muted); font-size: 18px; margin: 0 auto 34px; max-width: 62ch; }
 ol.steps { list-style: none; margin: 0 auto; padding: 0; max-width: 1000px; display: grid; grid-template-columns: 1fr 56px 1fr; align-items: start; text-align: left; }
-ol.steps .shot figure { margin: 0 0 14px; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), var(--shadow); background: #fff; }
+ol.steps .shot figure { position: relative; margin: 0 0 14px; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), var(--shadow); background: #fff; }
+ol.steps .seal { position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 8px; border-radius: 999px;
+  background: var(--green); color: #fff; font-size: 13.5px; font-weight: 600; box-shadow: 0 6px 16px -6px rgba(6, 75, 44, .6); }
+ol.steps .seal svg { width: 18px; height: 18px; }
+html[lang="bn"] ol.steps .seal { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; font-weight: 500; }
 ol.steps .shot img { display: block; width: 100%; height: auto; aspect-ratio: 880 / 633; object-fit: cover; object-position: top left; }
 ol.steps .arrow { align-self: center; margin-top: -60px; display: flex; justify-content: center; }
 ol.steps .arrow svg { width: 64px; height: 40px; overflow: visible; }
@@ -360,7 +372,7 @@ html:not([lang="bn"]) .about-cols .bn-col, html[lang="bn"] .about-cols .en-col {
 .bn-col { font-size: 17px; line-height: 1.7; }
 
 /* FAQ */
-section.faq { padding: 30px 0 48px; }
+section.faq { padding: 30px 0 28px; }
 .faq-card { background: var(--card); border-radius: 14px; padding: 0 22px; box-shadow: 0 0 0 1px var(--line), 0 6px 18px -14px rgba(6, 75, 44, .4); }
 .faq details { border-bottom: 1px solid var(--line); padding: 10px 0; }
 .faq details:last-child { border-bottom: 0; }
@@ -370,14 +382,14 @@ section.faq { padding: 30px 0 48px; }
 .faq details[open] summary::after { content: "−"; }
 .faq details p { margin: 6px 0 4px; color: var(--muted); max-width: none; padding-right: 32px; }
 
-footer.site { padding: 8px 0 44px; color: var(--ink); font-size: 14px; }
+footer.site { padding: 20px 0 44px; border-top: 1px solid var(--line); color: var(--ink); font-family: var(--serif); font-size: 14.5px; }
 footer.site .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
 footer.site p { margin: 0 0 2px; }
 footer.site .stats { flex-basis: 100%; color: var(--muted); font-size: 13.5px; }
 .dl-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .dl-count { color: var(--muted); font-size: 16px; }
 .dl-count strong { color: var(--ink); font-size: 20px; font-weight: 700; }
-html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
+html[lang="bn"] .dl-count { font-family: "Noto Sans Bengali", "Kohinoor Bangla", -apple-system, sans-serif; }
 
 @media (max-width: 1020px) {
 }
@@ -446,8 +458,7 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
     <main class="hero">
       <div>
         <h1 class="tw" id="twHead" aria-label="Type Bangla on your Mac, the Bijoy way"><span class="tw-ghost" aria-hidden="true">Type Bangla<br>on your Mac,<br>the Bijoy way</span><span class="tw-text" aria-hidden="true"></span></h1>
-        <p class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="tw" id="twTrust" aria-label="Signed with an Apple Developer ID and notarized by Apple. Your Mac checks the installer before it runs."><span class="tw-ghost" aria-hidden="true">Signed with an Apple Developer ID and notarized by Apple. Your Mac checks the installer before it runs.</span><span class="tw-text" aria-hidden="true"></span></span></p>
-        <p class="tag" data-i18n="tagline">Type Bangla on your Mac with the familiar Bijoy layout. Free, open source and ready for macOS.</p>
+        <p class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="tw" id="twTrust" aria-label="The software is signed with an Apple Developer ID and has been verified through Apple’s notarisation process. Before installation begins, your Mac will automatically check the installer."><span class="tw-ghost" aria-hidden="true">The software is signed with an Apple Developer ID and has been verified through Apple’s notarisation process. Before installation begins, your Mac will automatically check the installer.</span><span class="tw-text" aria-hidden="true"></span></span></p>
           <div class="dl-row">
           <a class="download" href="https://github.com/nasirahamed-design/bijoybanglaformac/releases/latest/download/BijoyBangla.dmg">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg>
@@ -717,7 +728,7 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
 
     <ol class="steps">
       <li class="shot">
-        <figure><img src="img/install-1-welcome.webp" width="880" height="633" loading="lazy" alt="Bijoy Bangla installer welcome page"></figure>
+        <figure class="signed"><span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span data-i18n="seal">Signed and notarized</span></span><img src="img/install-1-welcome.webp" width="880" height="633" loading="lazy" alt="Bijoy Bangla installer welcome page"></figure>
         <div class="step-head"><span class="num">1</span><div><strong data-i18n="s1t">Welcome</strong><p data-i18n="s1d">Open the installer, then select Continue.</p></div></div>
       </li>
       <li class="arrow" aria-hidden="true"><svg class="hand" viewBox="0 0 80 50"><path class="ink" pathLength="1" d="M6 34 C 20 16, 46 10, 70 22"/><path class="ink2" d="M7 36 C 22 19, 45 13, 69 24"/><path class="tip" pathLength="1" d="M57 23.5 Q64 22.5 70 22 Q66 16 62.5 11"/></svg></li>
@@ -770,7 +781,7 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
         <p>Compatible with macOS 13 Ventura and later, including macOS 14 Sonoma, macOS 15 Sequoia and macOS 26 Tahoe, on Apple silicon (M1, M2, M3 and M4) and Intel Macs. The installer is signed with a Developer ID and notarized by Apple. The project is released under the MIT licence.</p>
       </div>
       <div lang="bn" class="bn-col">
-        <p><strong>বিজয় বাংলা ফর ম্যাক</strong> হলো macOS-এর জন্য একটি বিনামূল্যের, ওপেন-সোর্স বাংলা ইনপুট মেথড। এতে রয়েছে পরিচিত বিজয় লেআউট। MacBook, iMac বা Mac mini-তে Microsoft Word, Pages, Google Docs, Safari, Chrome, Facebook, WhatsApp, Messenger ও Gmail-সহ বিভিন্ন অ্যাপে বাংলায় লিখুন।</p>
+        <p><strong>বিজয় বাংলা ফর ম্যাক</strong> হলো macOS এর জন্য একটি বিনামূল্যের, ওপেন-সোর্স বাংলা ইনপুট মেথড। এতে রয়েছে পরিচিত বিজয় লেআউট। MacBook, iMac বা Mac mini-তে Microsoft Word, Pages, Google Docs, Safari, Chrome, Facebook, WhatsApp, Messenger ও Gmail-সহ বিভিন্ন অ্যাপে বাংলায় লিখুন।</p>
         <p>ওয়েবসাইট, ইমেইল, সামাজিক যোগাযোগমাধ্যম এবং শেয়ার করা নথিতে বাংলা লেখার জন্য <strong>বিজয় ইউনিকোড</strong> ব্যবহার করুন। <strong>SutonnyMJ</strong> ও অন্যান্য MJ ফন্টে ছাপা বা ডেস্কটপ পাবলিশিংয়ের কাজের জন্য বেছে নিন <strong>বিজয় ক্লাসিক</strong>।</p>
         <p>এটি macOS 13 Ventura ও পরবর্তী সংস্করণে Apple silicon (M1, M2, M3 ও M4) এবং Intel Mac-এ ব্যবহার করা যায়। কোনো অ্যাকাউন্ট বা বিজ্ঞাপনের প্রয়োজন নেই।</p>
       </div>
@@ -810,9 +821,9 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
   /* ---------- Language switch ---------- */
   const BN = {
     navInstall: "ইনস্টলেশন", navTyping: "টাইপের নিয়ম", navAbout: "পরিচিতি", navFaq: "সাধারণ জিজ্ঞাসা", aboutTitle: "ম্যাকের জন্য পরিচিত বিজয় কীবোর্ড",
-    tagline: "বিজয় লেআউটে ম্যাকে বাংলা লিখুন - সহজে, বিনামূল্যে।",
+    seal: "সাইন ও নোটারাইজ করা",
     download: "ম্যাকের জন্য ডাউনলোড",
-    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span> · প্রায় ১ MB</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel</span><a class="how" href="#install">ইনস্টল করার নির্দেশিকা <span aria-hidden="true">→</span></a>',
+    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span> · প্রায় ১ মেগাবাইট</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ · Apple silicon ও Intel</span><a class="how" href="#install">ইনস্টল করার নির্দেশিকা <span aria-hidden="true">→</span></a>',
     demoBadge: "টাইপ করে দেখুন", demoLabel: "বিজয় লেআউটে টাইপ করুন, যেমন",
     touchNote: "ফোন বা ট্যাবলেটে একটি নমুনা শব্দে ট্যাপ করে টাইপের ধাপ দেখুন।",
     hintEmpty: "আপনার চাপা কী-গুলো এখানে দেখা যাবে", hintSpace: "স্পেস চাপলে শব্দটি সম্পূর্ণ হবে",
@@ -820,9 +831,9 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
     installSub: "ইনস্টলারের ধাপগুলো সম্পন্ন করুন। অনুরোধ এলে ইনপুট সোর্স ব্যবহারের অনুমতি দিন, তারপর লগ আউট করে আবার সাইন ইন করুন।",
     s1t: "স্বাগতম", s1d: "ইনস্টলারটি খুলে Continue নির্বাচন করুন।",
     s2t: "ইনস্টলেশনের স্থান নির্বাচন করুন", s2d: "“Install for all users” নির্বাচনটি অপরিবর্তিত রেখে Continue নির্বাচন করুন।",
-    s3t: "ইনস্টল করুন", s3d: "Install নির্বাচন করুন। অনুরোধ এলে আপনার Mac-এর পাসওয়ার্ড দিন।",
+    s3t: "ইনস্টল করুন", s3d: "Install নির্বাচন করুন। অনুরোধ এলে আপনার Mac এর পাসওয়ার্ড দিন।",
     s5t: "ইনপুট সোর্স চালু করে বাংলা নির্বাচন করুন", s5d: "অনুরোধ এলে Allow নির্বাচন করে Log Out করুন। আবার সাইন ইন করার পর ইনপুট মেনু থেকে বিজয় ইউনিকোড নির্বাচন করুন।",
-    banner: 'প্রথমবার ব্যবহারের আগে macOS-এর System Settings-এ ইনপুট সোর্স ব্যবহারের অনুমতি দিতে হতে পারে। সহায়তার জন্য দেখুন <a href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a>।',
+    banner: 'প্রথমবার ব্যবহারের আগে macOS এর System Settings-এ ইনপুট সোর্স ব্যবহারের অনুমতি দিতে হতে পারে। সহায়তার জন্য দেখুন <a href="Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a>।',
     typingTitle: "পরিচিত বিজয় লেআউটে টাইপ করুন",
     typingLead: "পরিচিত বিজয় কী-গুলোই ব্যবহার করুন। Control-Space বা Globe কী দিয়ে বাংলা ও ইংরেজির মধ্যে বদলান। সম্পূর্ণ কী-চার্ট দেখতে ইনপুট মেনু থেকে “Show Bijoy Keyboard Layout” নির্বাচন করুন।",
     r1: "ব্যঞ্জনবর্ণের আগে বসে ◌ি, ◌ে ও ◌ৈ", r2: "স্বতন্ত্র স্বরবর্ণ লিখতে g আগে চাপুন", r3: "ব্যঞ্জনবর্ণের পরে লিখুন রেফ",
@@ -832,9 +843,9 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
     q2: "ওয়েবসাইটে বাংলা লেখা কি ঠিকভাবে দেখা যাবে?", a2: "হ্যাঁ। বিজয় ইউনিকোডে লেখা বাংলা স্ট্যান্ডার্ড Unicode-এ সংরক্ষিত হয়। তাই বাংলা সমর্থিত ব্রাউজার, Word, Pages, WordPress, Facebook এবং অন্যান্য অ্যাপে তা দেখা যায়।",
     q7: "ছাপার কাজে কি SutonnyMJ ব্যবহার করা যাবে?", a7: "হ্যাঁ। ইনপুট মেনু থেকে বিজয় ক্লাসিক নির্বাচন করে ডকুমেন্টে SutonnyMJ বা অন্য MJ ফন্ট ব্যবহার করুন। পরিচিত বিজয় কী-তে টাইপ করলে MJ ফন্ট ও ছাপার কাজে ব্যবহৃত ক্লাসিক বিজয় এনকোডিংয়ে লেখা তৈরি হবে। ওয়েবসাইট ও ইমেইলের জন্য বিজয় ইউনিকোড ব্যবহার করুন।",
     q8: "কোন Mac ও macOS সংস্করণে এটি চলে?", a8: "macOS 13 Ventura ও পরবর্তী সংস্করণে, যার মধ্যে macOS 14 Sonoma, macOS 15 Sequoia এবং macOS 26 Tahoe রয়েছে। Apple silicon (M1, M2, M3 ও M4) এবং Intel Mac সমর্থিত।",
-    q3: "Mac App Store-এর বাইরে থেকে ইনস্টল করতে হয় কেন?", a3: "Mac App Store-এ এই ইনপুট মেথডটি বিতরণ করা হয় না; তাই এটি এই ওয়েবসাইট থেকে সরাসরি ডাউনলোড করতে হবে। ইনস্টলারটি Developer ID দিয়ে সাইন করা এবং Apple-এর notarisation প্রক্রিয়ায় যাচাই করা। খোলার সময় macOS ইনস্টলারটি পরীক্ষা করে।",
+    q3: "Mac App Store এর বাইরে থেকে ইনস্টল করতে হয় কেন?", a3: "Mac App Store-এ এই ইনপুট মেথডটি বিতরণ করা হয় না; তাই এটি এই ওয়েবসাইট থেকে সরাসরি ডাউনলোড করতে হবে। ইনস্টলারটি Developer ID দিয়ে সাইন করা এবং Apple এর notarisation প্রক্রিয়ায় যাচাই করা। খোলার সময় macOS ইনস্টলারটি পরীক্ষা করে।",
     q6: "System Settings-এ কীবোর্ডের চিত্র দেখা যায় না কেন?", a6: "System Settings-এ সাধারণ কীবোর্ড লেআউটের চিত্র দেখানো হয়। বিজয় বাংলা একটি ইনপুট মেথড, যা স্বরচিহ্নের সঠিক অবস্থান ও যুক্তাক্ষর তৈরির কাজ পরিচালনা করে। তাই সেখানে কীবোর্ডের চিত্রের বদলে তথ্যবার্তা দেখা যেতে পারে। কী-চার্ট দেখতে মেনু বারের ইনপুট মেনু থেকে “Show Bijoy Keyboard Layout” নির্বাচন করুন।",
-    q4: "বিজয় বাংলা কীভাবে আনইনস্টল করব?", a4: "মেনু বারের ইনপুট মেনু খুলে “Uninstall Bijoy Bangla” নির্বাচন করুন। অনুরোধ এলে Mac-এর পাসওয়ার্ড দিন, তারপর লগ আউট করে আবার সাইন ইন করুন।",
+    q4: "বিজয় বাংলা কীভাবে আনইনস্টল করব?", a4: "মেনু বারের ইনপুট মেনু খুলে “Uninstall Bijoy Bangla” নির্বাচন করুন। অনুরোধ এলে Mac এর পাসওয়ার্ড দিন, তারপর লগ আউট করে আবার সাইন ইন করুন।",
     q5: "টাইপিং-সংক্রান্ত সমস্যা কীভাবে জানাব?", a5: 'চাপা কী-গুলো এবং আপনি যে বাংলা লেখা আশা করেছিলেন, তা উল্লেখ করে <a href="https://github.com/nasirahamed-design/bijoybanglaformac/issues">GitHub</a>-এ একটি issue জমা দিন।',
     foot2: "এটি একটি স্বতন্ত্র প্রকল্প; আনন্দ কম্পিউটার্সের সঙ্গে এর কোনো সম্পৃক্ততা নেই। বিজয় সংশ্লিষ্ট মালিকের ট্রেডমার্ক।",
     footGit: "GitHub-এ সোর্স কোড দেখুন",
@@ -1003,15 +1014,16 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
   var TEXT = {
     en: {
       head: ['Type Bangla', 'on your Mac,', 'the Bijoy way'],
-      trust: 'Signed with an Apple Developer ID and notarized by Apple. Your Mac checks the installer before it runs.'
+      trust: 'The software is signed with an Apple Developer ID and has been verified through Apple’s notarisation process. Before installation begins, your Mac will automatically check the installer.'
     },
     bn: {
       head: ['ম্যাকে বিজয় লেআউটে', 'বাংলা লিখুন'],
-      trust: 'Apple Developer ID দিয়ে সাইন করা এবং Apple-এর নোটারাইজেশনে যাচাই করা। চালানোর আগে আপনার ম্যাক নিজেই ইনস্টলারটি পরীক্ষা করে।'
+      trust: 'সফটওয়্যারটি Apple Developer ID দিয়ে সাইন করা হয়েছে এবং Apple এর নোটারাইজেশন প্রক্রিয়ায় যাচাই করা হয়েছে। ইনস্টলেশন শুরুর আগে আপনার Mac স্বয়ংক্রিয়ভাবে ইনস্টলারটি পরীক্ষা করবে।'
     }
   };
   var head = document.getElementById('twHead'), trust = document.getElementById('twTrust');
   if (!head || !trust) return;
+  var box = trust.closest('.trust');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var seg = window.Intl && Intl.Segmenter ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
   var split = function (t) { return seg ? Array.from(seg.segment(t), function (x) { return x.segment; }) : Array.from(t); };
@@ -1043,13 +1055,14 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
     head.lang = lang; trust.lang = lang;
     setGhost(head, t.head); setGhost(trust, [t.trust]);
     if (reduce) { head.classList.add('no-tw'); trust.classList.add('no-tw'); return; }
+    box.classList.remove('show');
     var hs = toSteps(t.head), ts = toSteps([t.trust]);
     var hn = 0, tn = 0;
     paint(head, hs, 0); paint(trust, ts, 0);
     var later = function (fn, ms) { setTimeout(function () { if (my === run) fn(); }, ms); };
     function typeHead() {
       cursor(head, true);
-      if (hn >= hs.length) { cursor(head, false); return later(typeTrust, 500); }
+      if (hn >= hs.length) { cursor(head, false); box.classList.add('show'); return later(typeTrust, 650); }
       var g = hs[hn++]; paint(head, hs, hn);
       // Bangla graphemes carry more per step than Latin letters, so English types faster
       var base = lang === 'bn' ? 170 : 75, jitter = lang === 'bn' ? 110 : 60;
@@ -1062,7 +1075,7 @@ html[lang="bn"] .dl-count, html[lang="bn"] footer.site .stats { font-family: "No
       later(typeTrust, g === ' ' ? 60 : (lang === 'bn' ? 45 : 28) + Math.random() * 25);
     }
     function eraseTrust() {
-      if (tn <= 0) { cursor(trust, false); return later(eraseHead, 150); }
+      if (tn <= 0) { cursor(trust, false); box.classList.remove('show'); return later(eraseHead, 500); }
       tn = Math.max(0, tn - 2); paint(trust, ts, tn);
       later(eraseTrust, 14);
     }
