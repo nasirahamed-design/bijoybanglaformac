@@ -934,6 +934,13 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
   pad.addEventListener("keydown", e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     stopAuto();
+    // Selected text: Backspace/Delete removes it, any other key types over it
+    if (pad.selectionStart !== pad.selectionEnd) {
+      const v = pad.value;
+      committed = v.slice(0, pad.selectionStart) + v.slice(pad.selectionEnd); word = [];
+      if (e.key === "Backspace" || e.key === "Delete") { e.preventDefault(); draw(); return; }
+    }
+    if (e.key === "Delete") { e.preventDefault(); return; }
     if (e.key === "Backspace") {
       e.preventDefault();
       if (word.length) word.pop(); else committed = Array.from(committed).slice(0, -1).join("");
@@ -945,7 +952,8 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
     if (e.key.length === 1) { e.preventDefault(); commit(e.key); draw(); }
   });
   // Phone keyboards send no key codes; keep the box showing the demo text.
-  pad.addEventListener("input", () => { if (pad.value !== committed + Bijoy.render(word)) draw(); });
+  // Cut, paste or a phone keyboard changed the text: keep what is there now
+  pad.addEventListener("input", () => { if (pad.value !== committed + Bijoy.render(word)) { committed = pad.value; word = []; } });
 
   function play(keys) {
     stopAuto();
@@ -1153,6 +1161,13 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
     pad.addEventListener('keydown', function (e) {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.key === 'Shift') { shifted = true; paint(); return; }
+      // Selected text: Backspace/Delete removes it, any other key types over it
+      if (pad.selectionStart !== pad.selectionEnd) {
+        var v = pad.value;
+        done = v.slice(0, pad.selectionStart) + v.slice(pad.selectionEnd); word = [];
+        if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); drawPad(); return; }
+      }
+      if (e.key === 'Delete') { e.preventDefault(); return; }
       if (e.key === 'Backspace') {
         e.preventDefault();
         if (word.length) word.pop(); else done = Array.from(done).slice(0, -1).join('');
