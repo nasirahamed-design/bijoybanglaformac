@@ -482,6 +482,61 @@ section.layout .lead, section.modes .lead { margin-left: 0; }
   background: var(--card); color: var(--ink); font: 600 15px "Noto Sans Bengali", var(--sans); box-shadow: 0 0 0 1px var(--key-edge), 0 2px 0 var(--key-edge); }
 .kb-lang kbd { font: 600 11px var(--sans); color: var(--muted); padding: 2px 6px; border-radius: 5px; box-shadow: inset 0 0 0 1px var(--key-edge); }
 .kb-lang[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.kb-lang[aria-pressed="true"] kbd { color: var(--paper); box-shadow: inset 0 0 0 1.5px var(--paper); }
+.kb-sound { display: inline-grid; place-items: center; width: 42px; height: 40px; padding: 0; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--card); color: var(--muted); box-shadow: 0 0 0 1px var(--key-edge), 0 2px 0 var(--key-edge); }
+.kb-sound svg { width: 22px; height: 22px; }
+.kb-sound .wave { display: none; }
+.kb-sound[aria-pressed="true"] { color: var(--green-deep); background: var(--mint); }
+.kb-sound[aria-pressed="true"] .wave { display: inline; } .kb-sound[aria-pressed="true"] .mute { display: none; }
+/* Full screen typing: a phone-only button opens the box and keyboard over the whole screen */
+.kb-save { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--green); color: #fff; font: 600 15px var(--sans); box-shadow: 0 0 0 1px var(--green), 0 2px 0 var(--green-deep); }
+:root[data-theme="dark"] .kb-save { color: #0F1712; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kb-save { color: #0F1712; } }
+html[lang="bn"] .kb-save { font-family: "Noto Sans Bengali", "Kohinoor Bangla", var(--sans); }
+.kb-save svg { width: 18px; height: 18px; }
+.kb-save.done { background: var(--mint); color: var(--green-deep); box-shadow: 0 0 0 1px var(--key-edge), 0 2px 0 var(--key-edge); }
+/* Small phones in full screen: Save and Close become icons so the top row fits */
+@media (max-width: 420px) { .kb-stage.full .kb-save > span, .kb-stage.full .kb-close > span { display: none; } .kb-stage.full .kb-save, .kb-stage.full .kb-close { padding: 9px 12px; } }
+.kb-full, .kb-screen, .kb-close { display: none; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--card); color: var(--green-deep); font: 600 15px var(--sans); box-shadow: 0 0 0 1px var(--key-edge), 0 2px 0 var(--key-edge); }
+html[lang="bn"] .kb-full, html[lang="bn"] .kb-screen, html[lang="bn"] .kb-close { font-family: "Noto Sans Bengali", "Kohinoor Bangla", var(--sans); }
+.kb-full svg, .kb-screen svg, .kb-close svg { width: 18px; height: 18px; }
+/* Computers get two choices: fill the browser window, or the whole screen (no tabs, address bar or Dock).
+   Phones get one, which fills the screen as far as the phone allows. */
+.kb-full, .kb-screen { display: inline-flex; }
+.kb-full .on-phone { display: none; }
+@media (max-width: 640px), (hover: none) and (pointer: coarse) {
+  .kb-screen { display: none; }
+  .kb-full .on-phone { display: inline; } .kb-full .on-computer { display: none; }
+}
+.kb-stage.full { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; height: 100vh; height: 100dvh; background: var(--paper);
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); overflow: hidden; }
+.kb-stage.full .kb-tools { flex: none; flex-wrap: nowrap; margin: 0; padding: 10px 12px; gap: 10px; }
+.kb-stage.full .shift-toggle, .kb-stage.full .kb-out, .kb-stage.full .kb-pdf, .kb-stage.full .kb-full, .kb-stage.full .kb-screen { display: none; }
+.kb-stage.full .kb-close { display: inline-flex; margin-left: auto; }
+.kb-stage.full .kb-pad { flex: 1 1 auto; min-height: 0; width: auto; margin: 0 12px 10px; resize: none; }
+/* Computer: box and Mac keyboard centred, the keyboard as wide as the window height allows */
+/* Computer: box and Mac keyboard use the full width; the keys stretch sideways and their
+   height follows the window height, so the keyboard always fits */
+.kb-stage.full { --kbw: calc(100vw - 32px); }
+.kb-stage.full .kb-row:not(.kb-phone) .kb-key { aspect-ratio: auto; height: clamp(40px, 8.4dvh, 96px); }
+.kb-stage.full .kb-row:not(.kb-phone) .kb-key .bn { font-size: clamp(18px, 3.5dvh, 38px); margin-top: 4%; }
+.kb-stage.full .kb-row:not(.kb-phone) .kb-key .en { font-size: clamp(11px, 1.4dvh, 15px); }
+.kb-stage.full .kb-row:not(.kb-phone) .kb-key .alt { font-size: clamp(12px, 1.6dvh, 17px); }
+.kb-stage.full .kb-pad { font-size: clamp(24px, 3.2dvh, 34px); }
+.kb-stage.full .kb-tools, .kb-stage.full .kb-pad, .kb-stage.full .kb { width: var(--kbw); margin-left: auto; margin-right: auto; box-sizing: border-box; }
+.kb-stage.full .kb-tools { padding: 14px 0; }
+.kb-stage.full .kb-pad { margin-bottom: 14px; }
+.kb-stage.full .kb { flex: none; margin-bottom: 18px; }
+@media (max-width: 640px) {
+  .kb-stage.full .kb-tools, .kb-stage.full .kb { width: auto; margin: 0; }
+  .kb-stage.full .kb-tools { padding: 10px 12px; }
+  .kb-stage.full .kb-pad { width: auto; margin: 0 12px 10px; }
+}
+.kb-stage.full .kb-phone .kb-key { height: clamp(40px, 7.4dvh, 60px); }
+html.kb-full-on, html.kb-full-on body { overflow: hidden; }
 .kb-out { min-height: 1.6em; font-size: 17px; color: var(--muted); }
 .kb-out b { color: var(--ink); font-size: 24px; margin-left: 6px; }
 .kb-pdf { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 600; }
@@ -514,7 +569,7 @@ section.layout .lead, section.modes .lead { margin-left: 0; }
 .kb-key.act { cursor: pointer; }
 .kb-key.act:hover { background: var(--mint); }
 .kb-phone { display: none; }
-.kb-phone .kb-key { aspect-ratio: auto; height: 42px; }
+.kb-phone .kb-key.lbl { aspect-ratio: auto; }
 .kb-phone .kb-key .sym { position: static; display: grid; place-items: center; height: 100%; font-size: 18px; }
 .kb-phone .act-space .word { position: static; display: grid; place-items: center; height: 100%; }
 .kb.english .kb-key .bn { font: 500 clamp(15px, 2vw, 24px)/1 -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--ink); margin-top: 0; }
@@ -523,11 +578,26 @@ section.layout .lead, section.modes .lead { margin-left: 0; }
 .kb-key:not(.lbl):hover { background: var(--mint); }
 .kb-key.hit { transform: translateY(2px); box-shadow: 0 0 0 1px var(--green), 0 1px 0 var(--green); background: var(--mint); }
 @media (max-width: 640px) {
-  .kb { gap: 4px; padding: 8px; } .kb-row { gap: 4px; }
-  .kb-key { border-radius: 6px; } .kb-key .en, .kb-key .alt { font-size: 8.5px; left: 3px; right: 3px; top: 2px; }
-  .kb-row > .kb-key.lbl, .kb-mods { display: none; } .kb-pdf { margin-left: 0; }
-  .kb-phone { display: flex; } .kb-phone > .kb-key.lbl { display: block; }
-  .kb-key .bn { font-size: 15px; } .kb-key .alt { display: none; }
+  /* Phone: edge to edge, with big keys like the phone's own keyboard */
+  .kb { margin-inline: calc(50% - 50vw); border-radius: 0; gap: 9px; padding: 10px 3px 12px; box-shadow: inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line); }
+  .kb-row { gap: 5px; }
+  .kb-row:not(.kb-phone) { display: none; }
+  .kb-phone { display: flex; }
+  .kb-phone .kb-key { aspect-ratio: auto; height: 50px; border-radius: 7px; }
+  .kb-phone .kb-key.lbl { display: block; background: var(--mint); }
+  .kb-phone .kb-key .en { font-size: 9.5px; left: 4px; top: 3px; }
+  .kb-phone .kb-key .bn { font-size: 22px; margin-top: 4px; }
+  .kb-phone .kb-key .alt { display: none; }
+  .kb.english .kb-phone .kb-key .bn { font-size: 21px; }
+  .kb-phone .kb-key.pu { font-size: 19px; }
+  .kb-phone .kb-key.pu .top { display: none; }
+  .kb.shifted .kb-phone .kb-key.pu .top { display: block; } .kb.shifted .kb-phone .kb-key.pu .bot { display: none; }
+  .kb-phone .kb-key .sym { font-size: 20px; }
+  .kb-phone .act-space .word { font-size: 14px; }
+  .kb-pdf { margin-left: 0; }
+  /* Shift is clearly on: solid green key with a white arrow; double tap locks it (⇪) */
+  .kb-phone .kb-key.act-shift.down { background: var(--green); box-shadow: 0 0 0 1px var(--green), 0 2px 0 var(--green-deep); transform: none; }
+  .kb-phone .kb-key.act-shift.down .sym { color: #fff; font-weight: 700; font-size: 24px; }
 }
 
 /* ---------- Unicode or Classic ---------- */
@@ -787,14 +857,21 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
   <div class="wrap">
     <h2 data-i18n="layoutTitle">বিজয় কীবোর্ড লেআউট</h2>
     <p class="lead" data-i18n="layoutLead">কীবোর্ড দিয়ে বক্সে টাইপ করুন, অথবা কী-তে চাপুন। প্রতিটি কী-র দ্বিতীয় অক্ষর দেখতে Shift চেপে ধরুন, আর বাংলা ও ইংরেজির মধ্যে বদলাতে Esc চাপুন।</p>
+    <div class="kb-stage">
     <div class="kb-tools">
       <button type="button" class="shift-toggle" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 3.5 12.5H8V20h8v-7.5h4.5z"/></svg><span>Shift</span></button>
       <button type="button" class="kb-lang" aria-pressed="false" title="Esc"><span class="cur">বাংলা</span><kbd>Esc</kbd></button>
       <output class="kb-out" aria-live="polite"></output>
       <a class="kb-pdf" href="/Bijoy-Keyboard-Layout.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg><span data-i18n="layoutPdf">প্রিন্ট করার লেআউট (PDF)</span></a>
+      <button type="button" class="kb-sound" aria-pressed="false" aria-label="Key sound" title="Key sound"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="wave" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="mute" d="M16 9.5l5 5M21 9.5l-5 5"/></svg></button>
+      <button type="button" class="kb-save" aria-label="Save as a text file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg><span class="lbl-save" data-i18n="kbSave">সেভ করুন</span><span class="lbl-saved" data-i18n="kbSaved" hidden>সেভ হয়েছে</span></button>
+      <button type="button" class="kb-full"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span class="on-computer" data-i18n="kbWindow">পূর্ণ উইন্ডো</span><span class="on-phone" data-i18n="kbFull">পূর্ণ স্ক্রিন</span></button>
+      <button type="button" class="kb-screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M8 21h8M7 9V7.5h2.5M17 9V7.5h-2.5M7 13v1.5h2.5M17 13v1.5h-2.5"/></svg><span data-i18n="kbScreen">পূর্ণ স্ক্রিন</span></button>
+      <button type="button" class="kb-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span data-i18n="kbClose">বন্ধ করুন</span></button>
     </div>
     <textarea class="kb-pad" lang="bn" rows="2" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" inputmode="text" aria-label="Type with the Bijoy keys"></textarea>
     <div class="kb" lang="bn" role="group" aria-label="Bijoy keyboard layout"></div>
+    </div>
   </div>
 </section>
 
@@ -902,6 +979,7 @@ window.phoneEdit = function (now, was, fixedLen) {
     layoutTitle: "বিজয় কীবোর্ড লেআউট",
     layoutLead: "কীবোর্ড দিয়ে বক্সে টাইপ করুন, অথবা কী-তে চাপুন। প্রতিটি কী-র দ্বিতীয় অক্ষর দেখতে Shift চেপে ধরুন, আর বাংলা ও ইংরেজির মধ্যে বদলাতে Esc চাপুন।",
     layoutPdf: "প্রিন্ট করার লেআউট (PDF)",
+    kbFull: "পূর্ণ স্ক্রিন", kbClose: "বন্ধ করুন", kbWindow: "পূর্ণ উইন্ডো", kbScreen: "পূর্ণ স্ক্রিন", kbSave: "সেভ করুন", kbSaved: "সেভ হয়েছে",
     modesTitle: "বিজয় ইউনিকোড নাকি বিজয় ক্লাসিক?",
     modesLead: "একই কী, দুই ধরনের লেখা। লেখাটি কোথায় ব্যবহার হবে, সেই অনুযায়ী মোড বেছে নিন।",
     uniCap: "স্ট্যান্ডার্ড Unicode বাংলা। যেকোনো বাংলা ফন্টে, সব জায়গায় ঠিকভাবে পড়া যায়।",
@@ -1171,13 +1249,20 @@ window.phoneEdit = function (now, was, fixedLen) {
     { only: [['fn', 1.25, 'globe', 'l', 'lang'], ['control', 1.25, '⌃', 'l'], ['option', 1.25, '⌥', 'l'], ['command', 1.6, '⌘', 'l'],
              ['', 5.5, '', 'c', 'space'], ['command', 1.6, '⌘', 'r'], ['option', 2.15, '⌥', 'r']] }
   ];
-  // Phones get their own last row, since the Mac special keys are hidden there
-  var PHONE = [['', 1.4, 'globe', 'c', 'lang'], ['', 1.4, '⇧', 'c', 'shift'], ['space', 5, '', 'c', 'space'], ['', 1.4, '⌫', 'c', 'back'], ['', 1.4, '↩', 'c', 'enter']];
+  // Phones get their own full-width layout with bigger keys, like the phone's own keyboard:
+  // the Bijoy letter keys in their usual rows, with ৎ at the end of the home row
+  var PHONE = [
+    { keys: '1234567890'.split('') },
+    { keys: 'qwertyuiop'.split('') },
+    { keys: 'asdfghjkl\\'.split('') },
+    { lead: ['', 1.45, '⇧', 'c', 'shift'], keys: 'zxcvbnm'.split(''), tail: ['', 1.45, '⌫', 'c', 'back'] },
+    { lead: ['', 1.3, 'globe', 'c', 'lang'], keys: [','], mid: ['space', 4.4, '', 'c', 'space'], after: ['.'], tail: ['', 1.6, '↩', 'c', 'enter'] }
+  ];
 
   var out = document.querySelector('.kb-out'), toggle = document.querySelector('.shift-toggle'), langBtn = document.querySelector('.kb-lang');
   var pad = document.querySelector('.kb-pad');
   var pageBn = document.documentElement.lang === 'bn';
-  var shifted = false, english = false, keys = {}, done = '', word = [];
+  var shifted = false, english = false, keys = {}, done = '', word = [], after = '';
 
   function special(spec) {
     var act = spec[4], b = document.createElement(act ? 'button' : 'span');
@@ -1186,7 +1271,7 @@ window.phoneEdit = function (now, was, fixedLen) {
     if (act) {
       b.type = 'button';
       b.setAttribute('aria-label', { back: 'Delete', enter: 'Return', space: 'Space', shift: 'Shift', caps: 'Caps Lock', tab: 'Tab', lang: 'Switch Bangla / English' }[act]);
-      b.addEventListener('click', function () { action(act); });
+      b.addEventListener('click', function () { click(act); action(act); });
     }
     b.innerHTML = (spec[2] ? '<span class="sym">' + (spec[2] === 'globe' ? GLOBE : spec[2]) + '</span>' : '') + (spec[0] ? '<span class="word">' + spec[0] + '</span>' : '');
     return b;
@@ -1195,21 +1280,30 @@ window.phoneEdit = function (now, was, fixedLen) {
     var r = document.createElement('div'); r.className = 'kb-row' + (row.only ? ' kb-mods' : '');
     if (row.only) { row.only.forEach(function (spec) { r.appendChild(special(spec)); }); kb.appendChild(r); return; }
     if (row.lead) r.appendChild(special(row.lead));
-    row.keys.forEach(function (k) {
-      var el = document.createElement('button');
-      el.type = 'button';
-      el.className = 'kb-key' + (MAP[k] ? '' : ' pu');
-      el.innerHTML = MAP[k] ? '<span class="en"></span><span class="bn"></span><span class="alt"></span>'
-                            : '<span class="top">' + esc(SHIFTSYM[k]) + '</span><span class="bot">' + esc(k) + '</span>';
-      el.addEventListener('click', function () { press(k); typeKey(k, shifted); });
-      keys[k] = el; r.appendChild(el);
-    });
+    row.keys.forEach(function (k) { r.appendChild(makeKey(k)); });
     if (row.tail) r.appendChild(special(row.tail));
     kb.appendChild(r);
   });
-  var pr = document.createElement('div'); pr.className = 'kb-row kb-phone';
-  PHONE.forEach(function (spec) { pr.appendChild(special(spec)); });
-  kb.appendChild(pr);
+  PHONE.forEach(function (row) {
+    var r = document.createElement('div'); r.className = 'kb-row kb-phone';
+    if (row.lead) r.appendChild(special(row.lead));
+    row.keys.forEach(function (k) { r.appendChild(makeKey(k)); });
+    if (row.mid) r.appendChild(special(row.mid));
+    (row.after || []).forEach(function (k) { r.appendChild(makeKey(k)); });
+    if (row.tail) r.appendChild(special(row.tail));
+    kb.appendChild(r);
+  });
+  // Each key can appear twice (computer and phone layout), so keys[k] is a list
+  function makeKey(k) {
+    var el = document.createElement('button');
+    el.type = 'button';
+    el.className = 'kb-key' + (MAP[k] ? '' : ' pu');
+    el.innerHTML = MAP[k] ? '<span class="en"></span><span class="bn"></span><span class="alt"></span>'
+                          : '<span class="top">' + esc(SHIFTSYM[k]) + '</span><span class="bot">' + esc(k) + '</span>';
+    el.addEventListener('click', function () { click(''); press(k); typeKey(k, shifted); afterTap(); });
+    (keys[k] = keys[k] || []).push(el);
+    return el;
+  }
 
   function label(k) { return /[a-z]/.test(k) ? k.toUpperCase() : k; }
   function paint() {
@@ -1217,25 +1311,33 @@ window.phoneEdit = function (now, was, fixedLen) {
     kb.classList.toggle('english', english);
     kb.lang = english ? 'en' : 'bn';
     toggle.setAttribute('aria-pressed', String(shifted));
-    kb.querySelectorAll('.act-shift').forEach(function (b) { b.classList.toggle('down', shifted); });
+    kb.querySelectorAll('.act-shift').forEach(function (b) {
+      b.classList.toggle('down', shifted); b.classList.toggle('lock', locked);
+      var sym = b.querySelector('.sym'); if (sym) sym.textContent = locked ? '⇪' : '⇧';
+    });
+    kb.querySelectorAll('.act-caps').forEach(function (b) { b.classList.toggle('down', locked); });
     if (langBtn) {
       langBtn.querySelector('.cur').textContent = english ? 'English' : 'বাংলা';
       langBtn.setAttribute('aria-pressed', String(english));
     }
     Object.keys(MAP).forEach(function (k) {
-      var el = keys[k]; if (!el) return;
+      (keys[k] || []).forEach(function (el) {
       var en = /[a-z]/.test(k) ? (shifted ? k.toUpperCase() : k) : (shifted ? SHIFTSYM[k] || k : k);
       el.querySelector('.en').textContent = english ? '' : label(k);
-      el.querySelector('.bn').textContent = english ? en : ((shifted ? MAP[k][1] : MAP[k][0]) || '');
+      el.querySelector('.bn').textContent = english ? en : ((shifted ? MAP[k][1] || SHIFTSYM[k] : MAP[k][0]) || '');
       el.querySelector('.alt').textContent = english ? '' : MAP[k][1];
       el.setAttribute('aria-label', english ? en : label(k) + ': ' + MAP[k][0] + (MAP[k][1] ? ', Shift: ' + MAP[k][1] : ''));
+      });
     });
     if (pad) pad.placeholder = english
       ? (pageBn ? 'ইংরেজিতে টাইপ করুন - বাংলায় ফিরতে Esc চাপুন' : 'Type in English - press Esc to switch back to Bangla')
       : (pageBn ? 'এখানে ক্লিক করে বিজয় কী দিয়ে টাইপ করুন - ইংরেজির জন্য Esc চাপুন' : 'Click here and type with the Bijoy keys - press Esc for English');
   }
   function show(name, ch) { out.innerHTML = esc(name) + (ch ? ' →<b lang="' + (english ? 'en' : 'bn') + '">' + esc(ch) + '</b>' : ''); }
-  function flash(el) { if (!el) return; el.classList.add('hit'); setTimeout(function () { el.classList.remove('hit'); }, 160); }
+  function flash(el) {
+    if (!el) return;
+    (el.forEach ? el : [el]).forEach(function (e) { e.classList.add('hit'); setTimeout(function () { e.classList.remove('hit'); }, 160); });
+  }
   function press(k) {
     flash(keys[k]);
     var m = MAP[k], shiftedEn = /[a-z]/.test(k) ? k.toUpperCase() : (SHIFTSYM[k] || k);
@@ -1243,46 +1345,109 @@ window.phoneEdit = function (now, was, fixedLen) {
     show((shifted ? 'Shift + ' : '') + label(k), ch);
   }
 
-  // The typing box keeps finished text plus the Bijoy keys of the word being typed
-  function drawPad() { if (pad) { pad.value = done + Bijoy.render(word); pad.scrollTop = pad.scrollHeight; } }
+  // The typing box is: text before the cursor (done), the Bijoy keys of the word
+  // being typed at the cursor (word), and the text after the cursor (after).
+  function caret() { return done.length + Bijoy.render(word).length; }
+  function drawPad() {
+    if (!pad) return;
+    pad.value = done + Bijoy.render(word) + after;
+    var c = caret();
+    try { pad.setSelectionRange(c, c); } catch (e) {}
+    if (!after) pad.scrollTop = pad.scrollHeight;
+  }
   function commitPad(extra) { done += Bijoy.render(word) + extra; word = []; }
+  // Before each edit: if the person moved the cursor or selected text, the next
+  // letters go where the cursor is now (a selection is replaced). Returns true
+  // when a selection was removed.
+  function sync() {
+    if (!pad) return false;
+    var v = pad.value, a = pad.selectionStart, b = pad.selectionEnd, c = caret();
+    if (v === done + Bijoy.render(word) + after && a === c && b === c) return false;
+    done = v.slice(0, a); after = v.slice(b); word = [];
+    return a !== b;
+  }
   function typeKey(k, shift) {
     if (!pad || typeof Bijoy === 'undefined') return;
+    sync();
     if (english) { commitPad(/[a-z]/.test(k) ? (shift ? k.toUpperCase() : k) : (shift ? SHIFTSYM[k] || k : k)); drawPad(); return; }
     var ch = Bijoy.usChar(codeOf(k), shift);
     if (ch && Bijoy.isMapped(ch)) word.push(ch); else commitPad(shift ? (SHIFTSYM[k] || k) : k);
     drawPad();
   }
   function backspace() {
-    if (pad && pad.selectionStart !== pad.selectionEnd && document.activeElement === pad) { dropSelection(); }
-    else if (word.length) word.pop(); else done = Array.from(done).slice(0, -1).join('');
+    if (sync()) { drawPad(); return; }          // selected text: delete just that
+    if (word.length) word.pop(); else done = Array.from(done).slice(0, -1).join('');
     drawPad();
   }
-  function dropSelection() { var v = pad.value; done = v.slice(0, pad.selectionStart) + v.slice(pad.selectionEnd); word = []; }
-  function switchLang() { commitPad(''); english = !english; paint(); show(english ? 'English' : 'বাংলা (Bijoy)'); }
+  function forwardDelete() {
+    if (sync()) { drawPad(); return; }
+    commitPad(''); after = Array.from(after).slice(1).join('');
+    drawPad();
+  }
+  function switchLang() {
+    var typing = document.activeElement === pad || full;
+    if (typing) sync();
+    commitPad(''); english = !english; paint(); show(english ? 'English' : 'বাংলা (Bijoy)');
+    // Keep the cursor visible in the box, where it was, so typing can carry on straight away
+    if (typing && pad) { pad.focus({ preventScroll: true }); var c = caret(); try { pad.setSelectionRange(c, c); } catch (e) {} }
+  }
   function action(act) {
     flash(kb.querySelector('.act-' + act));
     if (act === 'back') { backspace(); show('delete'); }
-    else if (act === 'enter') { commitPad('\n'); drawPad(); show('return'); }
-    else if (act === 'space') { commitPad(' '); drawPad(); show('space'); }
-    else if (act === 'tab') { commitPad('\t'); drawPad(); show('tab'); }
-    else if (act === 'shift' || act === 'caps') { shifted = !shifted; paint(); }
+    else if (act === 'enter') { sync(); commitPad('\n'); drawPad(); show('return'); }
+    else if (act === 'space') { sync(); commitPad(' '); drawPad(); show('space'); }
+    else if (act === 'tab') { sync(); commitPad('\t'); drawPad(); show('tab'); }
+    else if (act === 'shift') tapShift();
+    else if (act === 'caps') { locked = !locked; shifted = locked; paint(); }
     else if (act === 'lang') switchLang();
   }
-  toggle.addEventListener('click', function () { shifted = !shifted; paint(); });
+  toggle.addEventListener('click', tapShift);
+  // Key sound (off until switched on; remembered on this device). A short soft tick,
+  // made in the browser, so there is no sound file to download.
+  var soundBtn = document.querySelector('.kb-sound'), soundOn = false, actx = null;
+  try { soundOn = localStorage.getItem('kbSound') === 'on'; } catch (e) {}
+  function showSound() { if (soundBtn) soundBtn.setAttribute('aria-pressed', String(soundOn)); }
+  function click(kind) {
+    if (!soundOn) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === 'suspended') actx.resume();
+      var n = Math.floor(actx.sampleRate * 0.035), buf = actx.createBuffer(1, n, actx.sampleRate), d = buf.getChannelData(0);
+      for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 5);
+      var src = actx.createBufferSource(), f = actx.createBiquadFilter(), g = actx.createGain();
+      src.buffer = buf; f.type = 'bandpass'; f.Q.value = 1.1;
+      f.frequency.value = kind === 'space' || kind === 'enter' ? 1300 : kind === 'back' ? 1900 : 2700;
+      g.gain.value = 0.8;
+      src.connect(f); f.connect(g); g.connect(actx.destination); src.start();
+    } catch (e) {}
+  }
+  if (soundBtn) soundBtn.addEventListener('click', function () {
+    soundOn = !soundOn; showSound(); click('');
+    try { localStorage.setItem('kbSound', soundOn ? 'on' : 'off'); } catch (e) {}
+  });
+  showSound();
+  // Like a phone keyboard: one tap shifts the next letter only, a quick second tap locks it
+  var locked = false, lastShiftTap = 0;
+  function tapShift() {
+    var now = Date.now();
+    if (shifted && !locked && now - lastShiftTap < 400) locked = true;
+    else if (shifted) { shifted = false; locked = false; }
+    else shifted = true;
+    lastShiftTap = now; paint();
+  }
+  function afterTap() { if (shifted && !locked && !held) { shifted = false; paint(); } }
+  var held = false;   // a real Shift key is being held down
   if (langBtn) langBtn.addEventListener('click', switchLang);
 
   function keyOf(e) { return /^Key[A-Z]$/.test(e.code) ? e.code.slice(3).toLowerCase() : /^Digit\d$/.test(e.code) ? e.code.slice(5) : CODE[e.code]; }
   if (pad) {
     pad.addEventListener('keydown', function (e) {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      if (e.key === 'Shift') { shifted = true; paint(); return; }
+      if (e.key === 'Shift') { held = true; shifted = true; paint(); return; }
       if (e.key === 'Escape') { e.preventDefault(); switchLang(); return; }
-      if (pad.selectionStart !== pad.selectionEnd) {
-        dropSelection();
-        if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); drawPad(); return; }
-      }
-      if (e.key === 'Delete') { e.preventDefault(); return; }
+      if (!e.repeat && (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete' || e.key === 'Enter' || e.key === 'Tab'))
+        click(e.key === ' ' ? 'space' : e.key === 'Enter' ? 'enter' : e.key === 'Backspace' || e.key === 'Delete' ? 'back' : '');
+      if (e.key === 'Delete') { e.preventDefault(); forwardDelete(); return; }
       if (e.key === 'Backspace') { e.preventDefault(); backspace(); flash(kb.querySelector('.act-back')); return; }
       if (e.key === ' ' || e.key === 'Enter' || e.key === 'Tab') {
         e.preventDefault(); action(e.key === ' ' ? 'space' : e.key === 'Enter' ? 'enter' : 'tab'); return;
@@ -1290,9 +1455,10 @@ window.phoneEdit = function (now, was, fixedLen) {
       var k = keyOf(e);
       if (k) { e.preventDefault(); press(k); typeKey(k, e.shiftKey); }
     });
-    pad.addEventListener('keyup', function (e) { if (e.key === 'Shift') { shifted = false; paint(); } });
+    pad.addEventListener('keyup', function (e) { if (e.key === 'Shift') { held = false; shifted = locked; paint(); } });
     // Cut, paste or a phone keyboard changed the text: keep what is there now
     pad.addEventListener('input', function () {
+      if (after) { var a = pad.selectionStart; done = pad.value.slice(0, a); after = pad.value.slice(a); word = []; return; }
       var e = phoneEdit(pad.value, done + Bijoy.render(word), done.length);
       if (e && e.at === 'none') return;
       if (e && e.at === 'end') {
@@ -1300,7 +1466,7 @@ window.phoneEdit = function (now, was, fixedLen) {
         drawPad(); return;
       }
       if (e && e.at === 'back' && word.length) { word.pop(); drawPad(); return; }
-      done = pad.value; word = [];
+      var at = pad.selectionStart; done = pad.value.slice(0, at); after = pad.value.slice(at); word = [];
     });
   }
   // Outside the box: keys still light up while the keyboard is on screen, and Esc switches language
@@ -1308,12 +1474,79 @@ window.phoneEdit = function (now, was, fixedLen) {
   function onScreen() { var r = kb.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }
   document.addEventListener('keydown', function (e) {
     if (typingElsewhere(e) || e.metaKey || e.ctrlKey || e.altKey || !onScreen()) return;
-    if (e.key === 'Shift') { shifted = true; paint(); return; }
+    if (e.key === 'Shift') { held = true; shifted = true; paint(); return; }
     if (e.key === 'Escape') { switchLang(); return; }
     var k = keyOf(e);
     if (k && keys[k]) press(k);
   });
-  document.addEventListener('keyup', function (e) { if (e.key === 'Shift' && !typingElsewhere(e)) { shifted = false; paint(); } });
+  document.addEventListener('keyup', function (e) { if (e.key === 'Shift' && !typingElsewhere(e)) { held = false; shifted = locked; paint(); } });
+
+  // On phones and tablets the on-screen Bijoy keys replace the phone's own keyboard:
+  // tapping the box shows the cursor without opening the phone keyboard
+  var touch = window.matchMedia && matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (pad && touch) pad.setAttribute('inputmode', 'none');
+  // Tapping a key keeps the cursor in the box instead of moving focus to the key
+  // (also for the buttons above the box: language, Shift, sound)
+  [kb, document.querySelector('.kb-tools')].forEach(function (area) {
+    if (!area) return;
+    area.addEventListener('mousedown', function (e) { var b = e.target.closest('button'); if (b && !b.matches('.kb-full, .kb-screen, .kb-close')) e.preventDefault(); });
+    area.addEventListener('pointerdown', function (e) { var b = e.target.closest('button'); if (e.pointerType !== 'mouse' && b && !b.matches('.kb-full, .kb-screen, .kb-close')) e.preventDefault(); });
+  });
+
+  // Full screen typing (phones): the box and keyboard fill the screen; Close or Back returns
+  var stage = document.querySelector('.kb-stage'), fullBtn = document.querySelector('.kb-full'), closeBtn = document.querySelector('.kb-close');
+  var full = false;
+  // whole: true = the whole screen (computer full screen), false = fill the browser window
+  function openFull(whole) {
+    if (full || !stage) return;
+    full = true;
+    stage.classList.add('full'); document.documentElement.classList.add('kb-full-on');
+    try { history.pushState({ kbFull: 1 }, ''); } catch (e) {}
+    // Android browsers can also hide their address bar; iPhone Safari keeps it, which is fine
+    if ((touch || whole) && stage.requestFullscreen) {
+      stage.requestFullscreen({ navigationUI: 'hide' }).then(function () {
+        // Chrome and Edge let the page keep Esc (for switching language) while in full screen;
+        // holding Esc still leaves full screen. Safari and Firefox use Esc to leave full screen.
+        if (!touch && navigator.keyboard && navigator.keyboard.lock) navigator.keyboard.lock(['Escape']).catch(function () {});
+      }).catch(function () {});
+    }
+    if (pad) { pad.focus({ preventScroll: true }); pad.setSelectionRange(pad.value.length, pad.value.length); }
+  }
+  function closeFull(fromBack) {
+    if (!full) return;
+    full = false;
+    stage.classList.remove('full'); document.documentElement.classList.remove('kb-full-on');
+    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+    if (!fromBack && history.state && history.state.kbFull) history.back();
+    if (pad) pad.blur();
+    stage.scrollIntoView({ block: 'start' });
+  }
+  // Save: download what is in the box as a .txt file (UTF-8, readable by Word, Pages, Notepad and TextEdit)
+  var saveBtn = document.querySelector('.kb-save');
+  if (saveBtn) saveBtn.addEventListener('click', function () {
+    var text = pad ? pad.value : '';
+    if (!text.trim()) { show(pageBn ? 'এখনো কিছু লেখা হয়নি' : 'Nothing typed yet'); if (pad) pad.focus({ preventScroll: true }); return; }
+    var d = new Date(), two = function (n) { return (n < 10 ? '0' : '') + n; };
+    var name = 'Bijoy Bangla ' + d.getFullYear() + '-' + two(d.getMonth() + 1) + '-' + two(d.getDate()) + ' ' + two(d.getHours()) + '-' + two(d.getMinutes()) + '.txt';
+    var url = URL.createObjectURL(new Blob(['\uFEFF' + text.replace(/\r?\n/g, '\r\n')], { type: 'text/plain;charset=utf-8' }));
+    var a = document.createElement('a'); a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    saveBtn.classList.add('done');
+    saveBtn.querySelector('.lbl-save').hidden = true; saveBtn.querySelector('.lbl-saved').hidden = false;
+    setTimeout(function () { saveBtn.classList.remove('done'); saveBtn.querySelector('.lbl-save').hidden = false; saveBtn.querySelector('.lbl-saved').hidden = true; }, 2000);
+  });
+  if (fullBtn) fullBtn.addEventListener('click', function () { openFull(false); });
+  var screenBtn = document.querySelector('.kb-screen');
+  if (screenBtn) screenBtn.addEventListener('click', function () { openFull(true); });
+  if (closeBtn) closeBtn.addEventListener('click', function () { closeFull(false); });
+  addEventListener('popstate', function () { closeFull(true); });
+  // Leaving the browser's full screen: phones close the typing view; computers keep it, filling the window
+  document.addEventListener('fullscreenchange', function () {
+    if (document.fullscreenElement || !full) return;
+    if (navigator.keyboard && navigator.keyboard.unlock) navigator.keyboard.unlock();
+    if (touch) closeFull(false);
+  });
   paint();
 })();
 
