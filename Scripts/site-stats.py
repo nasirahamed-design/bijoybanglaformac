@@ -21,7 +21,7 @@ kept in a state file and only the days still in the logs are recounted.
 
 Usage:  site-stats.py [--log PATH] [--state PATH] [--out PATH]
 """
-import argparse, datetime as dt, glob, gzip, hashlib, json, os, re, tempfile
+import argparse, datetime as dt, glob, gzip, hashlib, json, os, re, tempfile, urllib.request
 
 LINE = re.compile(
     r'^(?P<ip>\S+) \S+ \S+ \[(?P<day>\d{2}/\w{3}/\d{4}):[^\]]+\] '
@@ -72,6 +72,35 @@ def fingerprint(who):
     return hashlib.sha256(("bijoy|" + who[0] + "|" + who[1]).encode()).hexdigest()[:16]
 
 
+REPO = "nasirahamed-design/bijoybanglaformac"
+
+
+def github(previous):
+    """Download count, latest version and recent release notes from GitHub.
+
+    Fetched here every 10 minutes, so visitors' browsers never ask GitHub
+    themselves (GitHub allows only 60 such requests an hour per address, and
+    someone who reloads a lot would otherwise see the count disappear).
+    If GitHub can't be reached, the last good figures are kept."""
+    try:
+        req = urllib.request.Request(f"https://api.github.com/repos/{REPO}/releases?per_page=100",
+                                     headers={"User-Agent": "bijoybanglaformac-stats", "Accept": "application/vnd.github+json"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            rels = json.load(r)
+    except Exception:
+        return previous
+    rels = [x for x in rels if not x.get("draft") and not x.get("prerelease")]
+    downloads = sum(a.get("download_count", 0) for x in rels for a in x.get("assets", [])
+                    if re.search(r"\.(pkg|dmg)$", a.get("name", ""), re.I))
+    latest = None
+    if rels:
+        named = next((a["browser_download_url"] for a in rels[0].get("assets", [])
+                      if re.match(r"^BijoyBangla-\d[\d.]*\.pkg$", a.get("name", ""))), None)
+        latest = {"tag": rels[0].get("tag_name"), "pkg": named}
+    return {"downloads": downloads, "latest": latest,
+            "releases": [{"tag_name": x.get("tag_name"), "published_at": x.get("published_at"), "body": x.get("body") or ""} for x in rels[:3]]}
+
+
 def write_json(path, data):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=os.path.dirname(path))
@@ -113,7 +142,14 @@ def main():
     saved.update(fresh)
     write_json(a.state, saved)
 
+    try:
+        with open(a.out) as f:
+            before = json.load(f).get("github")
+    except (OSError, ValueError):
+        before = None
+
     write_json(a.out, {
+        "github": github(before),
         "unique": len(seen),
         "visitors": sum(d["visitors"] for d in saved.values()),
         "bots": sum(d["bots"] for d in saved.values()),

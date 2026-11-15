@@ -799,7 +799,7 @@ html[lang="bn"] .kb-out, html[lang="bn"] .mode .mode-note, html[lang="bn"] .mode
           </a>
           <span class="dl-count" hidden></span>
           </div>
-          <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.3</span>, about 1 MB</span><span class="m2">For macOS 13 Ventura or later, on Apple silicon and Intel Macs</span><span class="links"><a class="how" href="#install">How to install</a><a class="how" href="/Activation-Guide.pdf">Activation Guide (PDF)</a></span></div>
+          <div class="meta" data-i18n="meta"><span class="m1">Version <span class="ver">1.1.5</span>, about 1 MB</span><span class="m2">For macOS 13 Ventura or later, on Apple silicon and Intel Macs</span><span class="links"><a class="how" href="#install">How to install</a><a class="how" href="/Activation-Guide.pdf">Activation Guide (PDF)</a></span></div>
       </div>
 
       <div class="demo">
@@ -1059,7 +1059,7 @@ window.phoneEdit = function (now, was, fixedLen) {
     navInstall: 'ইনস্টল', navTyping: "টাইপের নিয়ম", navAbout: "পরিচিতি", navFaq: 'প্রশ্নোত্তর', aboutTitle: "ম্যাকের জন্য পরিচিত বিজয় কীবোর্ড",
     seal: "সাইন ও নোটারাইজ করা",
     download: "ম্যাকের জন্য ডাউনলোড",
-    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৩</span>, আকার প্রায় ১ মেগাবাইট</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ, Apple silicon ও Intel ম্যাকের জন্য</span><span class="links"><a class="how" href="#install">ইনস্টল করার নিয়ম</a><a class="how" href="/Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a></span>',
+    meta: '<span class="m1">সংস্করণ <span class="ver">১.১.৫</span>, আকার প্রায় ১ মেগাবাইট</span><span class="m2">macOS 13 Ventura বা পরবর্তী সংস্করণ, Apple silicon ও Intel ম্যাকের জন্য</span><span class="links"><a class="how" href="#install">ইনস্টল করার নিয়ম</a><a class="how" href="/Activation-Guide.pdf">অ্যাক্টিভেশন গাইড (PDF)</a></span>',
     demoBadge: "টাইপ করে দেখুন", demoLabel: 'বিজয় কী চেপে দেখুন, যেমন',
     touchNote: 'ফোন বা ট্যাবলেটে যেকোনো নমুনা শব্দে ট্যাপ করুন, কীভাবে টাইপ হয় দেখতে পাবেন।',
     hintEmpty: 'আপনি যে কী চাপবেন, তা এখানে দেখা যাবে', hintSpace: 'শব্দ শেষ করতে স্পেস চাপুন',
@@ -1201,17 +1201,12 @@ window.phoneEdit = function (now, was, fixedLen) {
     const text = lang === "bn" ? latest.replace(/[0-9]/g, d => BN_DIGITS[d]) : latest;
     document.querySelectorAll(".ver").forEach(el => { el.textContent = text; });
   }
-  fetch("https://api.github.com/repos/nasirahamed-design/bijoybanglaformac/releases/latest")
-    .then(r => r.ok ? r.json() : null)
-    .then(rel => {
-      if (rel && rel.tag_name) { latest = rel.tag_name.replace(/^v/, ""); showVersion(); }
-      // If the release also has the installer with its version in the name
-      // (BijoyBangla-1.1.6.pkg), download that one, so people can see which
-      // version they have. Otherwise the links keep the plain BijoyBangla.pkg.
-      const named = rel && (rel.assets || []).find(a => /^BijoyBangla-\d[\d.]*\.pkg$/.test(a.name));
-      if (named) document.querySelectorAll('a[href$="/releases/latest/download/BijoyBangla.pkg"]').forEach(a => { a.href = named.browser_download_url; });
-    })
-    .catch(() => {});   // offline or rate-limited: keep the version written in the page
+  // Latest version, and the installer with its version in the name (BijoyBangla-1.1.6.pkg)
+  // when the release has one, so people can see which version they downloaded.
+  function useLatest(tag, pkg) {
+    if (tag) { latest = tag.replace(/^v/, ""); showVersion(); }
+    if (pkg) document.querySelectorAll('a[href$="/releases/latest/download/BijoyBangla.pkg"]').forEach(a => { a.href = pkg; });
+  }
 
   /* ---------- Download count and visitor numbers ---------- */
   // Downloads: GitHub counts every download of the installer (.pkg, or .dmg
@@ -1261,22 +1256,41 @@ window.phoneEdit = function (now, was, fixedLen) {
         item("bots", "bots", stats.bots, "", bn ? "বট" : "Bots");
     }
   }
-  fetch("https://api.github.com/repos/nasirahamed-design/bijoybanglaformac/releases?per_page=100")
-    .then(r => r.ok ? r.json() : null)
-    .then(list => {
-      if (!Array.isArray(list)) return;
-      downloads = list.reduce((sum, rel) => sum + (rel.assets || [])
-        .filter(a => /\.(dmg|pkg)$/i.test(a.name))
-        .reduce((s, a) => s + a.download_count, 0), 0);
-      showCounts();
-      releases = list.filter(r => !r.draft && !r.prerelease).slice(0, 3);
-      showNews();
-    })
-    .catch(() => {});
+  // The web server fetches the download count, latest version and release notes from
+  // GitHub every 10 minutes and puts them in /stats.json (Scripts/site-stats.py), so
+  // browsers don't ask GitHub themselves: GitHub allows only 60 such requests an hour
+  // per address, and the figures would vanish for anyone who reloads a lot.
+  // Asking GitHub directly is only the fallback, and the last count seen is remembered.
+  function fromGithub() {
+    fetch("https://api.github.com/repos/nasirahamed-design/bijoybanglaformac/releases?per_page=100")
+      .then(r => r.ok ? r.json() : null)
+      .then(list => {
+        if (!Array.isArray(list)) return;
+        const rels = list.filter(r => !r.draft && !r.prerelease);
+        downloads = rels.reduce((sum, rel) => sum + (rel.assets || [])
+          .filter(a => /\.(dmg|pkg)$/i.test(a.name))
+          .reduce((s, a) => s + a.download_count, 0), 0);
+        remember(); showCounts();
+        releases = rels.slice(0, 3); showNews();
+        const named = rels[0] && (rels[0].assets || []).find(a => /^BijoyBangla-\d[\d.]*\.pkg$/.test(a.name));
+        if (rels[0]) useLatest(rels[0].tag_name, named && named.browser_download_url);
+      })
+      .catch(() => {});
+  }
+  function remember() { try { localStorage.setItem("dlCount", String(downloads)); } catch (e) {} }
+  try { const c = localStorage.getItem("dlCount"); if (c !== null && !isNaN(+c)) { downloads = +c; showCounts(); } } catch (e) {}
   fetch("/stats.json", { cache: "no-store" })
     .then(r => r.ok ? r.json() : null)
-    .then(j => { if (j && typeof j.visitors === "number") { stats = j; showCounts(); } })
-    .catch(() => {});
+    .then(j => {
+      if (j && typeof j.visitors === "number") { stats = j; showCounts(); }
+      const g = j && j.github;
+      if (g && typeof g.downloads === "number") {
+        downloads = g.downloads; remember(); showCounts();
+        if (g.releases && g.releases.length) { releases = g.releases; showNews(); }
+        if (g.latest) useLatest(g.latest.tag, g.latest.pkg);
+      } else fromGithub();
+    })
+    .catch(fromGithub);
   if (/(^|\.)bijoybanglaformac\.com$/.test(location.hostname)) {
     fetch("/beacon.txt?" + Date.now(), { cache: "no-store", keepalive: true }).catch(() => {});
   }
