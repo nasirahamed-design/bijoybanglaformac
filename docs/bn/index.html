@@ -2,7 +2,7 @@
 <html lang="bn" data-page="bn">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
 <title>বিজয় ফর ম্যাক - ম্যাকের জন্য বিনামূল্যের বিজয় বাংলা কীবোর্ড</title>
 <meta name="description" content="বিজয় ফর ম্যাক: চেনা বিজয় লেআউটে MacBook, iMac ও Mac mini-তে বাংলা লিখুন। ইউনিকোড বাংলা ও SutonnyMJ, দুটোই চলে; macOS 13 ও পরবর্তী সংস্করণের জন্য সম্পূর্ণ বিনামূল্যে।">
 <meta name="keywords" content="Bijoy for Mac, Bijoy Bangla for Mac, Bijoy Mac, Bijoy keyboard for Mac, Bijoy keyboard for MacBook, Bijoy Bangla MacBook, Bijoy for macOS, Bijoy Bangla macOS, Bijoy Unicode Mac, Bijoy Classic Mac, Bangla keyboard for Mac, Bangla keyboard for MacBook, Bangla keyboard macOS, Bengali keyboard for Mac, Bengali keyboard macOS, Bangla typing on Mac, Bangla typing software for Mac, Bangla input method Mac, Bengali input method Mac, type Bangla on Mac, Bangla font Mac, SutonnyMJ Mac, SutonnyMJ for Mac, MJ font Mac, Bangla DTP Mac, Bijoy Word Mac, Bangla in Microsoft Word Mac, Bijoy Bangla download, Bijoy Bangla free download, free Bangla keyboard, Bijoy Sonoma, Bijoy Sequoia, Bijoy Tahoe, Bijoy Apple silicon, Bijoy M1, বিজয় ফর ম্যাক, বিজয় বাংলা ফর ম্যাক, ম্যাকে বিজয়, ম্যাকবুকে বিজয়, বিজয় কীবোর্ড, বিজয় কিবোর্ড ম্যাক, বিজয় বাংলা ম্যাক, ম্যাকে বাংলা লেখা, ম্যাকে বাংলা টাইপ, ম্যাকবুকে বাংলা লেখা, বাংলা কীবোর্ড ম্যাক, বাংলা কিবোর্ড ম্যাক, বাংলা টাইপ, বিজয় ইউনিকোড, বিজয় ক্লাসিক, সুতন্বী এমজে, সুতন্নি এমজে ম্যাক, বাংলা কীবোর্ড ডাউনলোড, বিজয় ডাউনলোড">
@@ -1674,6 +1674,19 @@ window.phoneEdit = function (now, was, fixedLen) {
 
 // Slim download bar once the main Download button has scrolled away
 (function () {
+  // Back to top: appears once the first screen has scrolled away, sits above the Ask button
+  var up = document.querySelector('.to-top');
+  if (up) {
+    up.hidden = false;
+    var showUp = function () { up.classList.toggle('on', scrollY > innerHeight * 1.2); };
+    addEventListener('scroll', showUp, { passive: true }); showUp();
+    up.addEventListener('click', function (e) {
+      e.preventDefault();
+      var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
+    });
+  }
   var bar = document.querySelector('.stick'), btn = document.querySelector('main .download');
   if (!bar || !btn || !('IntersectionObserver' in window)) return;
   new IntersectionObserver(function (es) {
@@ -1827,6 +1840,7 @@ window.phoneEdit = function (now, was, fixedLen) {
   start();
 })();
 </script>
+<script src="../my-answers.js" defer></script>
 <script src="../avro-phonetic.js" defer></script>
 <script src="../helper.js" defer></script>
 </body>

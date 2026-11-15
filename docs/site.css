@@ -340,3 +340,25 @@ html[lang="bn"] .hk-msg { line-height: 1.65; }
 :root[data-theme="dark"] .hk-suggest button.on { color: #000; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hk-suggest button.on { color: #000; } }
 .hk-suggest button.latin { color: var(--muted); font-size: 14px; }
+
+/* Phones: all six menu items visible at once, three to a row, nothing to scroll */
+@media (max-width: 640px) {
+  nav.site { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; overflow: visible; margin: 2px 0 0; padding: 4px 0 2px;
+    -webkit-mask-image: none; mask-image: none; scroll-snap-type: none; }
+  nav.site a, nav.site a:last-child { margin: 0; padding: 8px 4px; text-align: center; font-size: 14px; border-radius: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* Back to top: a small round button directly above the Ask button, on every screen size */
+html .to-top { right: 24px; bottom: 84px; width: 42px; height: 42px; }
+.to-top[hidden] { display: none; }
+.to-top:not(.on) { pointer-events: none; }
+html.hk-on .to-top, html.kb-full-on .to-top { display: none; }
+@media (max-width: 640px) {
+  html .to-top { right: 18px; bottom: 80px; width: 42px; height: 42px; }
+  /* the chat sits in the part of the screen the keyboard leaves free */
+  .hk-box { top: 0; bottom: auto; }
+}
+
+/* Bangla headline a little smaller than the English one */
+:root[lang="bn"] .hero h1, :root[lang="bn"]:not([data-theme="dark"]) .hero h1 { font-size: clamp(38px, 6vw, 72px); }
+@media (max-width: 640px) { :root[lang="bn"] .hero h1, :root[lang="bn"]:not([data-theme="dark"]) .hero h1 { font-size: clamp(34px, 9.6vw, 40px); } }

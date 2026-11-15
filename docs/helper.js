@@ -280,6 +280,17 @@
       bn: 'আপনাকেও ধন্যবাদ! শুভ হোক আপনার বাংলা লেখা।' }
   ];
 
+  // Your own answers from my-answers.js come first, so they win a tie with a built-in one
+  var mine = null;
+  function allAnswers() {
+    if (mine === null) {
+      mine = (window.BIJOY_MY_ANSWERS || []).filter(function (a) { return a && a.keywords && (a.en || a.bn); }).map(function (a) {
+        return { id: 'my-' + a.id, k: a.keywords.map(function (w) { return String(w).toLowerCase(); }), en: a.en || a.bn, bn: a.bn || a.en, p: (+a.priority || 0) + 0.5 };
+      });
+    }
+    return mine.concat(KB);
+  }
+
   var SUGGEST = {
     en: ['How do I install it?', 'How do I type ক্ষ?', 'Does it work on Facebook?', 'Does it work in Word?', 'Unicode or Classic?', 'Switch to English', 'Is it free?'],
     bn: ['কীভাবে ইনস্টল করব?', 'ক্ষ কীভাবে লিখব?', 'ফেসবুকে কি কাজ করবে?', 'ওয়ার্ডে কি কাজ করবে?', 'ইউনিকোড না ক্লাসিক?', 'ইংরেজিতে কীভাবে বদলাব?', 'এটা কি ফ্রি?']
@@ -309,7 +320,7 @@
     var q = norm(text);
     bnAnswer = PAGE_BN || (BN_RE.test(text) && !/[a-z]{3,}/i.test(text.replace(/[ঀ-৿\s]/g, '')));
     var words = banglaWords(text);
-    var scored = KB.map(function (it) { return { it: it, s: score(q, it) }; }).sort(function (a, b) { return b.s - a.s; });
+    var scored = allAnswers().map(function (it) { return { it: it, s: score(q, it) }; }).sort(function (a, b) { return b.s - a.s; });
     // A question about typing a Bangla word, or just a Bangla word on its own
     // ...or just a Bangla word (or two) on its own, with no question around it
     var onlyWords = !/[a-z]/i.test(text) && (text.match(/[\u0980-\u09FF\u200C\u200D]+/g) || []).length === words.length && words.length <= 2;
@@ -636,12 +647,27 @@
   function toggle(open) {
     box.hidden = !open; launcher.setAttribute('aria-expanded', String(open));
     document.documentElement.classList.toggle('hk-on', open);
+    fitToKeyboard();
     if (open) {
       if (!started) { started = true; add('bot', T.hi); chips(SUGGEST[PAGE_BN ? 'bn' : 'en']); }
       setTimeout(function () { input.focus({ preventScroll: true }); }, 50);
     } else launcher.focus({ preventScroll: true });
   }
   launcher.addEventListener('click', function () { toggle(box.hidden); });
+
+  // Phones: keep the text box just above the on-screen keyboard. The chat fills the part
+  // of the screen the keyboard leaves free (iPhone Safari and some Android browsers do
+  // not shrink full-height panels when the keyboard opens).
+  var vv = window.visualViewport;
+  function fitToKeyboard() {
+    if (box.hidden || !vv || innerWidth > 640) { box.style.height = ''; box.style.top = ''; return; }
+    box.style.top = vv.offsetTop + 'px';
+    box.style.height = vv.height + 'px';
+    log.scrollTop = log.scrollHeight;
+  }
+  if (vv) { vv.addEventListener('resize', fitToKeyboard); vv.addEventListener('scroll', fitToKeyboard); }
+  input.addEventListener('focus', function () { setTimeout(fitToKeyboard, 50); setTimeout(fitToKeyboard, 350); });
+  input.addEventListener('blur', function () { setTimeout(fitToKeyboard, 50); });
   box.querySelector('.hk-x').addEventListener('click', function () { toggle(false); });
   box.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
