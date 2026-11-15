@@ -359,7 +359,7 @@
   launcher.innerHTML = CHAT + '<span>' + T.open + '</span>';
   var box = document.createElement('div');
   box.className = 'hk-box'; box.hidden = true; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', T.title);
-  box.innerHTML = '<div class="hk-head"><picture class="hk-logo"><source srcset="/logo-dark.svg" media="(prefers-color-scheme: dark)"><img src="/logo.svg" alt="" width="58" height="36"></picture><div><b>' + T.title + '</b><small>' + T.sub + '</small></div>' +
+  box.innerHTML = '<div class="hk-head"><picture class="hk-logo"><source srcset="' + (PAGE_BN ? '/logo-bn-dark.svg' : '/logo-dark.svg') + '" media="(prefers-color-scheme: dark)"><img src="' + (PAGE_BN ? '/logo-bn.svg' : '/logo.svg') + '" alt="" width="58" height="36"></picture><div><b>' + T.title + '</b><small>' + T.sub + '</small></div>' +
     '<button type="button" class="hk-x" aria-label="' + T.close + '">' + X + '</button></div>' +
     '<div class="hk-modes" role="radiogroup" aria-label="' + T.modes + '">' +
       '<button type="button" role="radio" data-mode="bijoy">' + T.mBijoy + '</button>' +

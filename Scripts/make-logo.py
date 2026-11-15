@@ -13,6 +13,9 @@ from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 
 FONT = sys.argv[1] if len(sys.argv) > 1 else "/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf"
+# The Bangla logo (বিজয় বাংলা / ফর ম্যাক) needs Noto Sans Bengali Bold and HarfBuzz to
+# join the letters correctly:  pip install uharfbuzz
+BN_FONT = sys.argv[2] if len(sys.argv) > 2 else "NotoSansBengali-Bold.ttf"
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Branding")
 
 GREEN_TOP, GREEN_BOTTOM = "#11975A", "#075233"
@@ -41,7 +44,30 @@ def text_path(text, size, tracking=0.0):
     return pen.getCommands(), x
 
 
-def laptop(screen_text=True):
+def bn_text_path(text, size):
+    """Like text_path, for Bangla: HarfBuzz shapes the text (vowel signs, conjuncts)."""
+    import uharfbuzz as hb
+    bfont = TTFont(BN_FONT)
+    bglyphs, bupm = bfont.getGlyphSet(), bfont["head"].unitsPerEm
+    order = bfont.getGlyphOrder()
+    data = open(BN_FONT, "rb").read()
+    hbfont = hb.Font(hb.Face(hb.Blob(data)))
+    buf = hb.Buffer()
+    buf.add_str(text)
+    buf.guess_segment_properties()
+    hb.shape(hbfont, buf, {})
+    scale = size / bupm
+    pen = SVGPathPen(bglyphs)
+    x = 0.0
+    for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
+        name = order[info.codepoint]
+        tpen = TransformPen(pen, (scale, 0, 0, -scale, x + pos.x_offset * scale, -pos.y_offset * scale))
+        bglyphs[name].draw(tpen)
+        x += pos.x_advance * scale
+    return pen.getCommands(), x
+
+
+def laptop(screen_text=True, bangla=False):
     """The laptop drawing, 400 x 190 units."""
     parts = [
         '<rect x="30" y="2" width="340" height="164" rx="12" fill="#26302B"/>',
@@ -55,8 +81,12 @@ def laptop(screen_text=True):
         parts.insert(3, f'<circle cx="178" cy="84" r="44" fill="{RED}"/>')
     else:
         parts.insert(3, f'<circle cx="334" cy="36" r="10" fill="{RED}"/>')
-        d, w = text_path("BIJOY BANGLA", 36, tracking=1.5)
-        parts.append(f'<path transform="translate({200 - w / 2:.2f} 97)" d="{d}" fill="#fff"/>')
+        if bangla:
+            d, w = bn_text_path("বিজয় বাংলা", 50)
+            parts.append(f'<path transform="translate({200 - w / 2:.2f} 102)" d="{d}" fill="#fff"/>')
+        else:
+            d, w = text_path("BIJOY BANGLA", 36, tracking=1.5)
+            parts.append(f'<path transform="translate({200 - w / 2:.2f} 97)" d="{d}" fill="#fff"/>')
     return "\n  ".join(parts)
 
 
@@ -66,18 +96,23 @@ DEFS = f'''<defs>
   </defs>'''
 
 
-def full_logo(ink):
-    """Laptop + '---- FOR MAC ----' underneath. ink=None uses currentColor."""
-    d, w = text_path("FOR MAC", 26, tracking=9)
-    line_y, text_base = 226, 235.5
+def full_logo(ink, bangla=False):
+    """Laptop + '---- FOR MAC ----' underneath (ফর ম্যাক in the Bangla logo). ink=None uses currentColor."""
+    if bangla:
+        d, w = bn_text_path("ফর ম্যাক", 30)
+        line_y, text_base = 226, 236.5
+    else:
+        d, w = text_path("FOR MAC", 26, tracking=9)
+        line_y, text_base = 226, 235.5
     gap = 16
     left_end = 200 - w / 2 - gap
     right_start = 200 + w / 2 + gap
     fill = ink or "currentColor"
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 248" role="img" aria-label="Bijoy Bangla for Mac">
-  <title>Bijoy Bangla for Mac</title>
+    label = "বিজয় বাংলা ফর ম্যাক" if bangla else "Bijoy Bangla for Mac"
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 248" role="img" aria-label="{label}">
+  <title>{label}</title>
   {DEFS}
-  {laptop()}
+  {laptop(bangla=bangla)}
   <rect x="6" y="{line_y - 1.5}" width="{left_end - 6:.2f}" height="3" rx="1.5" fill="{RED}"/>
   <rect x="{right_start:.2f}" y="{line_y - 1.5}" width="{394 - right_start:.2f}" height="3" rx="1.5" fill="{RED}"/>
   <path transform="translate({200 - w / 2:.2f} {text_base})" d="{d}" fill="{fill}"/>
@@ -107,6 +142,9 @@ files = {
     "logo.svg": full_logo(INK_LIGHT),
     "logo-dark.svg": full_logo(INK_DARK),
     "logo-currentcolor.svg": full_logo(None),
+    "logo-bn.svg": full_logo(INK_LIGHT, bangla=True),
+    "logo-bn-dark.svg": full_logo(INK_DARK, bangla=True),
+    "logo-bn-currentcolor.svg": full_logo(None, bangla=True),
     "laptop.svg": icon_only(),
     "favicon.svg": favicon(),
 }

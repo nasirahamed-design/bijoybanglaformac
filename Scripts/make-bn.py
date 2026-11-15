@@ -25,6 +25,23 @@ HEAD = {
 }
 
 
+ATTRS = {
+    "Bijoy Bangla for Mac home page": "বিজয় বাংলা ফর ম্যাক, প্রথম পাতা",
+    "Screen recording: typing Bangla in Microsoft Word on a Mac with Bijoy Unicode": "স্ক্রিন রেকর্ডিং: ম্যাকে বিজয় ইউনিকোড দিয়ে Microsoft Word-এ বাংলা টাইপ",
+    "Bijoy Bangla installer welcome page": "বিজয় বাংলা ইনস্টলারের স্বাগত পাতা",
+    "Installer destination page: install for all users": "ইনস্টলারের স্থান বাছাইয়ের পাতা: সব ব্যবহারকারীর জন্য ইনস্টল",
+    "Installer standard install page with the Install button": "ইনস্টলারের Install বোতামসহ পাতা",
+    "Installer finish page: allow the keyboard, then log out": "ইনস্টলারের শেষ পাতা: কীবোর্ডের অনুমতি দিয়ে লগ আউট করুন",
+    "Back to top": "উপরে ফিরে যান",
+    "Type with the Bijoy keys": "বিজয় কী দিয়ে টাইপ করুন",
+    "Bijoy keyboard layout": "বিজয় কীবোর্ড লেআউট",
+    "Save as a text file": "টেক্সট ফাইল হিসেবে সেভ করুন",
+    "Key sound": "কী-এর শব্দ",
+    "Language": "ভাষা",
+    "Bijoy Bangla for Mac, back to the top": "বিজয় বাংলা ফর ম্যাক, পাতার শুরুতে ফিরুন",
+}
+
+
 def bn_table(html):
     start = html.index("const BN = {")
     end = html.index("\n  };", start)
@@ -64,7 +81,7 @@ def relink(html):
         if re.match(r"(?:[a-z]+:|/|#|\.\./)", url) or url == "":
             return m.group(0)
         return f'{attr}="../{url}"'
-    return re.sub(r'\b(src|href|poster)="([^"]*)"', fix, html)
+    return re.sub(r'\b(src|href|poster|srcset)="([^"]*)"', fix, html)
 
 
 def main():
@@ -102,6 +119,14 @@ def main():
         page = re.sub(r'(<span class="tw" id="twTrust" aria-label=")[^"]*("><span class="tw-ghost" aria-hidden="true">)[^<]*(</span>)',
                       lambda m: m.group(1) + t + m.group(2) + t + m.group(3), page, count=1)
 
+    # The Bangla logo (বিজয় বাংলা / ফর ম্যাক): in the header, the floating bar and the chat
+    bn_logo = (ROOT / "Branding/logo-bn-currentcolor.svg").read_text(encoding="utf-8")
+    bn_logo = re.sub(r'<svg xmlns="http://www.w3.org/2000/svg" ', '<svg class="logo" ', bn_logo.strip(), count=1)
+    page = re.sub(r'<svg class="logo".*?</svg>', lambda m: bn_logo, page, count=1, flags=re.S)
+    page = page.replace('srcset="logo-dark.svg"', 'srcset="logo-bn-dark.svg"').replace('src="logo.svg"', 'src="logo-bn.svg"')
+    # Labels that screen readers and search engines read (alt text, aria-label)
+    for en, bn_text in ATTRS.items():
+        page = page.replace(f'"{en}"', f'"{bn_text}"')
     out = relink(page) + relink_scripts(scripts)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(out, encoding="utf-8")

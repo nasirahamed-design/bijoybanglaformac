@@ -362,3 +362,4 @@ html.hk-on .to-top, html.kb-full-on .to-top { display: none; }
 /* Bangla headline a little smaller than the English one */
 :root[lang="bn"] .hero h1, :root[lang="bn"]:not([data-theme="dark"]) .hero h1 { font-size: clamp(38px, 6vw, 72px); }
 @media (max-width: 640px) { :root[lang="bn"] .hero h1, :root[lang="bn"]:not([data-theme="dark"]) .hero h1 { font-size: clamp(34px, 9.6vw, 40px); } }
+html[lang="bn"] .stick-brand { letter-spacing: 0; font-size: 14px; }
