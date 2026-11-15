@@ -292,8 +292,8 @@
   }
 
   var SUGGEST = {
-    en: ['How do I install it?', 'How do I type ক্ষ?', 'Does it work on Facebook?', 'Does it work in Word?', 'Unicode or Classic?', 'Switch to English', 'Is it free?'],
-    bn: ['কীভাবে ইনস্টল করব?', 'ক্ষ কীভাবে লিখব?', 'ফেসবুকে কি কাজ করবে?', 'ওয়ার্ডে কি কাজ করবে?', 'ইউনিকোড না ক্লাসিক?', 'ইংরেজিতে কীভাবে বদলাব?', 'এটা কি ফ্রি?']
+    en: ['How do I install it?', 'How do I type ক্ষ?', 'Does it work on Facebook?', 'Does it work in Word?', 'Unicode or Classic?', 'Is it free?', 'Practise typing', 'Word of the day'],
+    bn: ['কীভাবে ইনস্টল করব?', 'ক্ষ কীভাবে লিখব?', 'ফেসবুকে কি কাজ করবে?', 'ওয়ার্ডে কি কাজ করবে?', 'ইউনিকোড না ক্লাসিক?', 'এটা কি ফ্রি?', 'টাইপ অনুশীলন', 'আজকের শব্দ']
   };
 
   // ---------- Matching ----------
@@ -309,14 +309,29 @@
       var hit = BN_RE.test(w) ? q.indexOf(w) >= 0 : q.indexOf(' ' + w + ' ') >= 0 || (w.length > 4 && q.indexOf(' ' + w) >= 0);
       if (hit) best += 1 + w.split(' ').length + (w.length > 6 ? 1 : 0);
     });
+    // Typos: a single English or Bangla keyword of 5+ letters still matches a word
+    // that is one letter off ("instal", "unicod", "ফেইসবুক"), two letters off from 8+
+    if (!best) {
+      var qw = q.trim().split(' ');
+      item.k.forEach(function (w) {
+        if (best || w.indexOf(' ') >= 0 || w.length < 5) return;
+        var lim = w.length >= 8 ? 2 : 1;
+        for (var i = 0; i < qw.length; i++) {
+          var x = qw[i];
+          if (x.length < 4 || Math.abs(x.length - w.length) > lim || x.charAt(0) !== w.charAt(0)) continue;
+          if (distance(x, w) <= lim) { best = 2; break; }
+        }
+      });
+    }
     return best ? best + (item.p || 0) : 0;
   }
   function banglaWords(text) {
     return (text.match(/[ঀ-৿‌‍]+/g) || []).filter(function (w) { return STOP.indexOf(w) < 0 && !/^[।]+$/.test(w); });
   }
 
-  var bnAnswer = PAGE_BN;
+  var bnAnswer = PAGE_BN, lastId = null;
   function answer(text) {
+    lastId = null;
     var q = norm(text);
     bnAnswer = PAGE_BN || (BN_RE.test(text) && !/[a-z]{3,}/i.test(text.replace(/[ঀ-৿\s]/g, '')));
     var words = banglaWords(text);
@@ -331,10 +346,11 @@
         return k ? '<div class="hk-word"><span class="hk-bn" lang="bn">' + esc(w) + '</span><span class="hk-keys">' + keyCaps(k) + '</span></div>'
                  : '<div class="hk-word"><span class="hk-bn" lang="bn">' + esc(w) + '</span><span class="hk-miss">' + (bnAnswer ? 'এই শব্দের কী খুঁজে পাইনি' : 'I could not work this one out') + '</span></div>';
       }).join('');
+      lastId = 'keys';
       return (bnAnswer ? 'এই কী-গুলো পরপর চাপুন (বিজয় ইউনিকোড বা ক্লাসিক):' : 'Press these keys in order (in বিজয় ইউনিকোড or বিজয় ক্লাসিক):') + parts +
         '<p class="hk-note">' + (bnAnswer ? 'Shift + মানে Shift চেপে ধরে সেই কী চাপুন।' : 'Shift + means hold Shift while pressing that key.') + '</p>';
     }
-    if (scored[0].s >= 2) { var it = scored[0].it; return it.dyn ? it.dyn(bnAnswer) : (bnAnswer ? it.bn : it.en); }
+    if (scored[0].s >= 2) { var it = scored[0].it; lastId = it.id; return it.dyn ? it.dyn(bnAnswer) : (bnAnswer ? it.bn : it.en); }
     return null;
   }
 
@@ -344,11 +360,11 @@
     ? { sugg: 'শব্দের পরামর্শ', modes: 'লেখার ধরন', mBijoy: 'বিজয়', mPhon: 'ফনেটিক', escTip: 'Esc চেপে বদলান',
         open: 'প্রশ্ন করুন', title: 'বিজয় বাংলা সহায়িকা', sub: 'সফটওয়্যার ও লেআউট নিয়ে প্রশ্নের উত্তর', ph: 'প্রশ্ন বা বাংলা শব্দ লিখুন…', send: 'পাঠান', close: 'বন্ধ করুন',
         hi: 'আসসালামু আলাইকুম! বিজয় বাংলা ফর ম্যাক নিয়ে যা জানতে চান জিজ্ঞেস করুন। কোনো বাংলা শব্দ লিখলে সেটি টাইপ করার কী-ও দেখিয়ে দেব।',
-        miss: 'দুঃখিত, এর উত্তর আমার জানা নেই। কোনো শব্দ টাইপ করার কী জানতে লিখুন, যেমন “ক্ষ কীভাবে লিখব”। অথবা নিচের কোনো একটি বেছে নিন, বা <a href="' + GH + '/issues">GitHub-এ প্রশ্ন করুন</a>।' }
+        miss: 'দুঃখিত, এর উত্তর আমার জানা নেই। প্রশ্নটি নোট করে রাখলাম, যাতে পরে উত্তর যোগ করা যায় (আপনার পরিচয় নয়, শুধু প্রশ্নটি)। কোনো শব্দ টাইপ করার কী জানতে লিখুন, যেমন “ক্ষ কীভাবে লিখব”। অথবা নিচের কোনো একটি বেছে নিন, বা <a href="' + GH + '/issues">GitHub-এ প্রশ্ন করুন</a>।' }
     : { sugg: 'Word suggestions', modes: 'Typing layout', mBijoy: 'Bijoy', mPhon: 'Phonetic', escTip: 'Press Esc to switch',
         open: 'Ask a question', title: 'Bijoy Bangla help', sub: 'Answers about the app and the layout', ph: 'Ask a question or type a Bangla word…', send: 'Send', close: 'Close',
         hi: 'Hi! Ask me anything about Bijoy Bangla for Mac. Type a Bangla word and I will show you the keys for it too.',
-        miss: 'Sorry, I do not have an answer for that. To see the keys for a Bangla word, ask for example “how do I type ক্ষ”. Or try one of these, or <a href="' + GH + '/issues">ask on GitHub</a>.' };
+        miss: 'Sorry, I do not have an answer for that yet. I have noted the question (just the question, nothing about you) so an answer can be added. To see the keys for a Bangla word, ask for example “how do I type ক্ষ”. Or try one of these, or <a href="' + GH + '/issues">ask on GitHub</a>.' };
 
   var CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="3"/></svg>';
   var X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
@@ -388,15 +404,167 @@
     });
     log.appendChild(c); log.scrollTop = log.scrollHeight;
   }
+  // ---------- Follow-up questions, action buttons, ratings, practice, word of the day ----------
+  var L = function (en, bn) { return bnAnswer ? bn : en; };
+  // Questions to offer after an answer (each one is asked like a typed question)
+  var FOLLOW = {
+    free: [['Is it safe?', 'এটি কি নিরাপদ?'], ['How do I install it?', 'কীভাবে ইনস্টল করব?']],
+    download: [['How do I install it?', 'কীভাবে ইনস্টল করব?'], ['Which Macs are supported?', 'কোন কোন Mac-এ চলে?']],
+    install: [['It does not show in the menu', 'মেনুতে দেখাচ্ছে না'], ['Why do I need to log out?', 'লগ আউট কেন করতে হবে?'], ['How do I switch to English?', 'ইংরেজিতে কীভাবে বদলাব?']],
+    activate: [['The input menu icon is missing', 'ইনপুট মেনু আইকন নেই'], ['It asks me to allow', 'অনুমতি চাইছে']],
+    menubar: [['How do I switch to English?', 'ইংরেজিতে কীভাবে বদলাব?']],
+    logout: [['How do I switch to English?', 'ইংরেজিতে কীভাবে বদলাব?']],
+    allow: [['Why do I need to log out?', 'লগ আউট কেন করতে হবে?']],
+    switch: [['Control-Space is not working', 'শর্টকাট কাজ করছে না'], ['Unicode or Classic?', 'ইউনিকোড না ক্লাসিক?']],
+    modes: [['Which font for Word?', 'Word-এ কোন ফন্ট?'], ['Does it work on Facebook?', 'ফেসবুকে কি কাজ করবে?'], ['Can I use SutonnyMJ?', 'SutonnyMJ ব্যবহার করা যাবে?']],
+    sutonny: [['I see Avgvi instead of Bangla', 'বাংলার বদলে Avgvi দেখাচ্ছে'], ['Does it work in Photoshop?', 'ফটোশপে কাজ করবে?']],
+    fonts: [['Letters look broken', 'অক্ষর ভেঙে যাচ্ছে'], ['Unicode or Classic?', 'ইউনিকোড না ক্লাসিক?']],
+    office: [['Which font for Word?', 'Word-এ কোন ফন্ট?'], ['Red line under Bangla in Word', 'Word-এ বাংলার নিচে লাল দাগ']],
+    social: [['How do I type যুক্তাক্ষর?', 'যুক্তাক্ষর কীভাবে লিখব?'], ['Is it free?', 'এটা কি ফ্রি?']],
+    layout: [['How do I type কো?', 'কো কীভাবে লিখব?'], ['How do I type যুক্তাক্ষর?', 'যুক্তাক্ষর কীভাবে লিখব?']],
+    kar: [['How do I type যুক্তাক্ষর?', 'যুক্তাক্ষর কীভাবে লিখব?'], ['How do I type full vowels?', 'স্বরবর্ণ কীভাবে লিখব?']],
+    juktakkhor: [['How do I type রেফ?', 'রেফ কীভাবে লিখব?'], ['How do I type full vowels?', 'স্বরবর্ণ কীভাবে লিখব?']],
+    vowels: [['Where is the দাঁড়ি (।)?', 'দাঁড়ি কোথায়?']],
+    compat: [['How do I install it?', 'কীভাবে ইনস্টল করব?'], ['Is there a Windows version?', 'উইন্ডোজে চলবে?']],
+    uninstall: [['How do I update?', 'কীভাবে আপডেট করব?']],
+    phone: [['How do I learn Bijoy?', 'বিজয় কীভাবে শিখব?']],
+    learn: [['Practise typing', 'টাইপ অনুশীলন'], ['Word of the day', 'আজকের শব্দ']],
+    keys: [['Practise typing', 'টাইপ অনুশীলন'], ['How do I type যুক্তাক্ষর?', 'যুক্তাক্ষর কীভাবে লিখব?']]
+  };
+  // Buttons that do something on the page
+  var ACTS = {
+    download: { en: 'Download for Mac', bn: 'ডাউনলোড করুন', run: function () { var d = document.querySelector('main .download'); if (d) location.href = d.href; } },
+    keyboard: { en: 'Open the keyboard', bn: 'কীবোর্ড খুলুন', run: function () { goTo('#layout', '.kb-pad'); } },
+    full: { en: 'Full screen typing', bn: 'পূর্ণ স্ক্রিনে লিখুন', run: function () { toggle(false); var f = document.querySelector('.kb-full'); if (f) { document.getElementById('layout').scrollIntoView(); f.click(); } } },
+    guide: { en: 'Activation Guide (PDF)', bn: 'অ্যাক্টিভেশন গাইড', run: function () { window.open('/Activation-Guide.pdf', '_blank'); } },
+    steps: { en: 'Show the install steps', bn: 'ইনস্টলের ধাপ দেখুন', run: function () { goTo('#install'); } },
+    pdf: { en: 'Printable layout', bn: 'প্রিন্টযোগ্য লেআউট', run: function () { window.open('/Bijoy-Keyboard-Layout.pdf', '_blank'); } },
+    practice: { en: 'Practise typing', bn: 'টাইপ অনুশীলন', run: function () { startPractice(); } },
+    report: { en: 'Report on GitHub', bn: 'GitHub-এ জানান', run: function () { window.open(GH + '/issues/new', '_blank'); } }
+  };
+  var ACTIONS = {
+    free: ['download'], download: ['download', 'steps'], install: ['steps', 'guide'], activate: ['guide'], guide: ['guide', 'steps'],
+    layout: ['keyboard', 'pdf'], learn: ['practice', 'keyboard'], tryit: ['keyboard', 'full'], webkb: ['keyboard', 'full'],
+    phone: ['full'], keys: ['keyboard'], report: ['report'], update: ['download'], version: ['download'], compat: ['download'],
+    juktakkhor: ['keyboard'], kar: ['keyboard'], vowels: ['keyboard']
+  };
+  function goTo(sel, focus) {
+    if (innerWidth <= 640) toggle(false);
+    var el = document.querySelector(sel); if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (focus) setTimeout(function () { var f = document.querySelector(focus); if (f) f.focus({ preventScroll: true }); }, 600);
+  }
+  function report(path) {
+    if (!/(^|\.)bijoybanglaformac\.com$/.test(location.hostname)) return;   // only from the live site
+    fetch(path, { cache: 'no-store', keepalive: true }).catch(function () {});
+  }
+  function extras(msg, id) {
+    var acts = (ACTIONS[id] || []).filter(function (k) { return ACTS[k]; });
+    if (acts.length) {
+      var row = document.createElement('div'); row.className = 'hk-acts';
+      acts.forEach(function (k) {
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = L(ACTS[k].en, ACTS[k].bn);
+        b.addEventListener('click', ACTS[k].run);
+        row.appendChild(b);
+      });
+      log.appendChild(row);
+    }
+    // Was this helpful? (only for prepared answers)
+    if (id && id !== 'keys' && id !== 'hello' && id !== 'thanks') {
+      var fb = document.createElement('div'); fb.className = 'hk-fb';
+      fb.innerHTML = '<span>' + L('Was this helpful?', 'উত্তরটি কি কাজে এসেছে?') + '</span>';
+      [['up', '👍'], ['down', '👎']].forEach(function (v) {
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = v[1];
+        b.setAttribute('aria-label', v[0] === 'up' ? L('Yes', 'হ্যাঁ') : L('No', 'না'));
+        b.addEventListener('click', function () {
+          report('/fb.txt?a=' + encodeURIComponent(id) + '&v=' + v[0]);
+          fb.innerHTML = '<span>' + (v[0] === 'up' ? L('Thanks!', 'ধন্যবাদ!') : L('Thanks, we will improve this answer.', 'ধন্যবাদ, উত্তরটি আরও ভালো করা হবে।')) + '</span>';
+        });
+        fb.appendChild(b);
+      });
+      log.appendChild(fb);
+    }
+    var next = (FOLLOW[id] || []).map(function (q) { return L(q[0], q[1]); });
+    if (next.length) chips(next);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  // Practice: the chat shows a Bangla word, you type it with the Bijoy keys
+  var PRACTICE = ['আমার', 'বাংলা', 'বিজয়', 'ভাষা', 'মানুষ', 'দেশ', 'বন্ধু', 'ভালো', 'কলম', 'বই', 'শিক্ষা', 'আকাশ', 'নদী', 'ফুল', 'পাখি',
+    'সকাল', 'রাত', 'মা', 'বাবা', 'ধন্যবাদ', 'স্বাধীনতা', 'কম্পিউটার', 'বিশ্ববিদ্যালয়', 'কৃষক', 'প্রেম', 'সূর্য', 'চাঁদ', 'বৃষ্টি', 'গ্রাম', 'শহর'];
+  var practice = null;
+  function nextWord() {
+    var pool = PRACTICE.filter(function (w) { return keysFor(w) && (!practice || w !== practice.word); });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+  function startPractice() {
+    if (mode !== 'bijoy') setMode('bijoy');
+    practice = { word: nextWord(), streak: 0 };
+    add('bot', L('Let’s practise! I have switched the typing layout to <b>Bijoy</b>. Type this word and press Send:', 'চলুন অনুশীলন করি! লেখার ধরন <b>বিজয়</b> করে দিয়েছি। এই শব্দটি টাইপ করে পাঠান:') +
+      '<div class="hk-word"><span class="hk-bn" lang="bn">' + practice.word + '</span></div>');
+    practiceChips();
+    input.focus({ preventScroll: true });
+  }
+  function practiceChips() {
+    var c = document.createElement('div'); c.className = 'hk-chips';
+    [[L('Show keys', 'কী দেখান'), function () { add('bot', '<div class="hk-word"><span class="hk-bn" lang="bn">' + practice.word + '</span><span class="hk-keys">' + keyCaps(keysFor(practice.word)) + '</span></div>'); }],
+     [L('Skip', 'পরের শব্দ'), function () { practice.word = nextWord(); add('bot', L('Next word:', 'পরের শব্দ:') + '<div class="hk-word"><span class="hk-bn" lang="bn">' + practice.word + '</span></div>'); practiceChips(); }],
+     [L('Stop', 'থামুন'), function () { add('bot', L('Well done! Your streak: ', 'চমৎকার! টানা সঠিক: ') + practice.streak + '.'); practice = null; chips(SUGGEST[bnAnswer ? 'bn' : 'en']); }]
+    ].forEach(function (x) {
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = x[0];
+      b.addEventListener('click', function () { if (practice) x[1](); });
+      c.appendChild(b);
+    });
+    log.appendChild(c); log.scrollTop = log.scrollHeight;
+  }
+  function checkPractice(text) {
+    var got = text.trim().normalize('NFC'), want = practice.word.normalize('NFC');
+    if (got === want) {
+      practice.streak++;
+      practice.word = nextWord();
+      add('bot', L('Correct! 🎉 Streak: ', 'সঠিক! 🎉 টানা সঠিক: ') + practice.streak + '. ' + L('Next word:', 'পরের শব্দ:') +
+        '<div class="hk-word"><span class="hk-bn" lang="bn">' + practice.word + '</span></div>');
+    } else {
+      practice.streak = 0;
+      add('bot', L('Not quite. Press these keys:', 'হয়নি। এই কী-গুলো চাপুন:') +
+        '<div class="hk-word"><span class="hk-bn" lang="bn">' + practice.word + '</span><span class="hk-keys">' + keyCaps(keysFor(practice.word)) + '</span></div>' +
+        L('Try again.', 'আবার চেষ্টা করুন।'));
+    }
+    practiceChips();
+  }
+
+  // Word of the day: the same word for everyone on a given day
+  var WOTD = [['স্বাধীনতা', 'freedom'], ['ভালোবাসা', 'love'], ['আকাশ', 'sky'], ['বৃষ্টি', 'rain'], ['নদী', 'river'], ['মাতৃভাষা', 'mother tongue'],
+    ['বন্ধুত্ব', 'friendship'], ['শিক্ষা', 'education'], ['সাহস', 'courage'], ['আনন্দ', 'joy'], ['জ্ঞান', 'knowledge'], ['স্বপ্ন', 'dream'],
+    ['প্রকৃতি', 'nature'], ['সূর্যোদয়', 'sunrise'], ['কৃতজ্ঞতা', 'gratitude'], ['পরিবার', 'family'], ['ঐতিহ্য', 'heritage'], ['সংস্কৃতি', 'culture'],
+    ['বিজ্ঞান', 'science'], ['শান্তি', 'peace'], ['সততা', 'honesty'], ['ধৈর্য', 'patience'], ['উৎসব', 'festival'], ['কবিতা', 'poem'],
+    ['সমুদ্র', 'sea'], ['পাহাড়', 'mountain'], ['জোছনা', 'moonlight'], ['বসন্ত', 'spring'], ['শরৎ', 'autumn'], ['বিশ্বাস', 'trust']];
+  function wordOfDay() {
+    var d = new Date(), n = Math.floor((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(2026, 0, 1)) / 864e5);
+    var list = WOTD.filter(function (x) { return keysFor(x[0]); }), w = list[((n % list.length) + list.length) % list.length];
+    add('bot', L('Word of the day:', 'আজকের শব্দ:') + '<div class="hk-word"><span class="hk-bn" lang="bn">' + w[0] + '</span><span class="hk-keys">' + keyCaps(keysFor(w[0])) + '</span></div>' +
+      '<p class="hk-note">' + L('Meaning: ', 'ইংরেজি অর্থ: ') + w[1] + '</p>');
+    chips([L('Practise typing', 'টাইপ অনুশীলন')]);
+  }
+  var SPECIAL = [
+    [/^(practi[sc]e( typing)?|typing practice|টাইপ অনুশীলন|অনুশীলন|প্র্যাকটিস)\??$/i, startPractice],
+    [/^(word of the day|আজকের শব্দ)\??$/i, wordOfDay]
+  ];
+
   function ask(text) {
     text = text.trim(); if (!text) return;
     add('me', esc(text));
-    var a = answer(text);
+    for (var i = 0; i < SPECIAL.length; i++) if (SPECIAL[i][0].test(text)) { bnAnswer = PAGE_BN || BN_RE.test(text); SPECIAL[i][1](); return; }
+    if (practice && BN_RE.test(text) && text.trim().split(/\s+/).length === 1) { checkPractice(text); return; }
+    var a = answer(text), id = lastId;
     var wait = add('bot hk-typing', '<span></span><span></span><span></span>');
     setTimeout(function () {
       wait.remove();
-      if (a) add('bot', a);
-      else { add('bot', T.miss); chips(SUGGEST[bnAnswer ? 'bn' : 'en']); }
+      if (a) { add('bot', a); extras(null, id); }
+      else {
+        report('/ask.txt?q=' + encodeURIComponent(text.slice(0, 200)) + '&l=' + (bnAnswer ? 'bn' : 'en'));
+        add('bot', T.miss);
+        chips(SUGGEST[bnAnswer ? 'bn' : 'en']);
+      }
     }, 350);
   }
   // Links inside answers that point to this page close the chat on phones so the section is visible

@@ -21,7 +21,7 @@ kept in a state file and only the days still in the logs are recounted.
 
 Usage:  site-stats.py [--log PATH] [--state PATH] [--out PATH]
 """
-import argparse, datetime as dt, glob, gzip, hashlib, json, os, re, tempfile, urllib.request
+import argparse, datetime as dt, glob, gzip, hashlib, json, os, re, tempfile, urllib.parse, urllib.request
 
 LINE = re.compile(
     r'^(?P<ip>\S+) \S+ \S+ \[(?P<day>\d{2}/\w{3}/\d{4}):[^\]]+\] '
@@ -34,6 +34,37 @@ BOT_UA = re.compile(
     r'petalbot|bytespider|gptbot|claude|perplexity|ccbot', re.I)
 PAGE = re.compile(r'^/(?:index\.html)?(?:[?#].*)?$')
 BEACON = re.compile(r'^/beacon\.txt(?:\?.*)?$')
+# The chat on the website reports questions it could not answer (/ask.txt?q=...)
+# and the 👍 / 👎 buttons (/fb.txt?a=<answer>&v=up|down). Only the question text and
+# the answer name are kept - never who asked.
+ASK = re.compile(r'^/ask\.txt\?(.+)$')
+FEEDBACK = re.compile(r'^/fb\.txt\?(.+)$')
+
+
+def chat_reports(log_pattern):
+    """day -> {"ask": {question: count}, "fb": {answer: {"up": n, "down": n}}}"""
+    out = {}
+    for line in read_lines(log_pattern):
+        m = LINE.match(line)
+        if not m or m["method"] != "GET" or BOT_UA.search(m["ua"]):
+            continue
+        a, f = ASK.match(m["path"]), FEEDBACK.match(m["path"])
+        if not a and not f:
+            continue
+        day = dt.datetime.strptime(m["day"], "%d/%b/%Y").date().isoformat()
+        rec = out.setdefault(day, {"ask": {}, "fb": {}})
+        qs = urllib.parse.parse_qs((a or f).group(1))
+        if a:
+            q = " ".join((qs.get("q") or [""])[0].split())[:200]
+            if q:
+                key = ((qs.get("l") or ["en"])[0][:2]) + "|" + q
+                rec["ask"][key] = rec["ask"].get(key, 0) + 1
+        else:
+            name, vote = (qs.get("a") or [""])[0][:60], (qs.get("v") or [""])[0]
+            if name and vote in ("up", "down"):
+                votes = rec["fb"].setdefault(name, {"up": 0, "down": 0})
+                votes[vote] += 1
+    return out
 
 
 def read_lines(pattern):
@@ -116,6 +147,7 @@ def main():
     ap.add_argument("--state", default="/var/lib/bijoy-stats/days.json")
     ap.add_argument("--out", default="/var/lib/bijoy-stats/stats.json")
     ap.add_argument("--seen", default="/var/lib/bijoy-stats/seen.json")
+    ap.add_argument("--chat", default="/var/lib/bijoy-stats/chat.json")
     a = ap.parse_args()
 
     try:
@@ -141,6 +173,21 @@ def main():
             fresh.pop(oldest)
     saved.update(fresh)
     write_json(a.state, saved)
+
+    # Chat reports are kept per day, like the visits (not published on the website)
+    try:
+        with open(a.chat) as f:
+            chat = json.load(f)
+    except (OSError, ValueError):
+        chat = {}
+    fresh_chat = chat_reports(a.log)
+    if len(fresh_chat) > 1:
+        oldest = min(fresh_chat)
+        if oldest in chat:
+            fresh_chat.pop(oldest)
+    chat.update(fresh_chat)
+    write_json(a.chat, chat)
+    os.chmod(a.chat, 0o600)
 
     try:
         with open(a.out) as f:
