@@ -272,6 +272,10 @@
     { id: 'online', p: 1, k: ['display correctly', 'show correctly', 'others see', 'other people see', 'will people see', 'readable', 'ঠিকভাবে দেখাবে', 'অন্যরা দেখতে পাবে', 'সবাই দেখতে পাবে', 'পড়তে পারবে'],
       en: 'Yes, with <b>বিজয় ইউনিকোড</b>. The text is standard Unicode Bangla, so it shows correctly in every browser and app that supports Bangla: Word, Pages, WordPress, Facebook and the rest, on phones and computers alike.',
       bn: 'হ্যাঁ, <b>বিজয় ইউনিকোডে</b> লিখলে। লেখাটি আদর্শ ইউনিকোড বাংলা, তাই বাংলা সমর্থন করে এমন সব ব্রাউজার ও অ্যাপে, যেমন Word, Pages, WordPress, Facebook-এ, ফোন ও কম্পিউটার দুই জায়গাতেই ঠিকভাবে দেখায়।' },
+    { id: 'botname', p: 1, k: ['your name', 'who are you', 'what are you', 'are you a bot', 'are you human', 'are you ai', 'chatgpt',
+        'তোমার নাম', 'আপনার নাম', 'তুমি কে', 'আপনি কে', 'তুমি কি রোবট', 'মানুষ না রোবট', 'tomar nam', 'apnar nam'],
+      en: 'I am the <b>Bijoy Bangla help</b> chat, a small built-in guide for this website, not a person and not an AI service. I answer questions about Bijoy Bangla for Mac and the Bijoy layout, and I can show you the keys for any Bangla word.',
+      bn: 'আমি <b>বিজয় বাংলা সহায়িকা</b>, এই ওয়েবসাইটের ছোট্ট নির্দেশিকা; কোনো মানুষ বা এআই সেবা নই। বিজয় বাংলা ফর ম্যাক ও বিজয় লেআউট নিয়ে প্রশ্নের উত্তর দিই, আর যেকোনো বাংলা শব্দ টাইপ করার কী দেখাতে পারি।' },
     { id: 'hello', k: ['hello', 'hi', 'hey', 'salam', 'assalamu', 'good morning', 'হ্যালো', 'হাই', 'সালাম', 'আসসালামু', 'নমস্কার', 'কেমন আছ'],
       en: 'Hello! Ask me anything about Bijoy Bangla for Mac, or type a Bangla word and I will show you the keys for it.',
       bn: 'হ্যালো! বিজয় বাংলা ফর ম্যাক নিয়ে যা জানতে চান জিজ্ঞেস করুন, অথবা একটি বাংলা শব্দ লিখুন, কোন কী চাপতে হবে দেখিয়ে দেব।' },
@@ -335,10 +339,15 @@
     var q = norm(text);
     bnAnswer = PAGE_BN || (BN_RE.test(text) && !/[a-z]{3,}/i.test(text.replace(/[ঀ-৿\s]/g, '')));
     var words = banglaWords(text);
+    // "কি কীভাবে লিখব?" asks for the word কি itself
+    if (!words.length && TYPE_WORDS.test(text)) {
+      var verbs = ['কিভাবে', 'কীভাবে', 'কেমনে', 'লিখব', 'লিখবো', 'লিখতে', 'লেখা', 'যায়', 'টাইপ', 'করব', 'করবো', 'করতে'];
+      words = (text.match(/[\u0980-\u09FF\u200C\u200D]+/g) || []).filter(function (w) { return verbs.indexOf(w) < 0; }).slice(0, 1);
+    }
     var scored = allAnswers().map(function (it) { return { it: it, s: score(q, it) }; }).sort(function (a, b) { return b.s - a.s; });
     // A question about typing a Bangla word, or just a Bangla word on its own
     // ...or just a Bangla word (or two) on its own, with no question around it
-    var onlyWords = !/[a-z]/i.test(text) && (text.match(/[\u0980-\u09FF\u200C\u200D]+/g) || []).length === words.length && words.length <= 2;
+    var onlyWords = !/[a-z?]/i.test(text) && (text.match(/[\u0980-\u09FF\u200C\u200D]+/g) || []).length === words.length && words.length <= 2;
     var asksTyping = words.length && (TYPE_WORDS.test(text) || (onlyWords && scored[0].s === 0));
     if (asksTyping) {
       var parts = words.slice(0, 4).map(function (w) {
