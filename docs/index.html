@@ -1246,7 +1246,7 @@ window.phoneEdit = function (now, was, fixedLen) {
       const u = typeof stats.unique === "number" ? stats.unique : null;
       st.innerHTML =
         (u !== null ? item("people", "people", u, bn ? "জন" : "", bn ? "ইউনিক ভিজিটর" : "Unique visitors") : "") +
-        item("visits", "visits", stats.visitors, bn ? "জন" : "", bn ? "বর্তমান ভিজিট" : "Current visits") +
+        item("visits", "visits", stats.visitors, bn ? "জন" : "", bn ? "মোট ভিজিট" : "Total visits") +
         item("bots", "bots", stats.bots, "", bn ? "বট" : "Bots");
     }
   }
