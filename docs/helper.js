@@ -101,7 +101,7 @@
       bn: 'SutonnyMJ ও অন্যান্য MJ ফন্টের জন্য ইনপুট মেনুতে <b>বিজয় ক্লাসিক</b> বেছে নিন এবং লেখার ফন্ট SutonnyMJ করুন। বাংলার বদলে “Avgvi” এর মতো অক্ষর দেখালে লেখাটি ক্লাসিক বিজয়ে, কিন্তু ফন্টটি MJ নয়: ফন্ট SutonnyMJ করুন, অথবা সাধারণ ফন্টের জন্য বিজয় ইউনিকোড ব্যবহার করুন।' },
     { id: 'fonts', p: 3, k: ['font', 'fonts', 'noto', 'kalpurush', 'solaimanlipi', 'nikosh', 'ফন্ট', 'কোন ফন্ট', 'ওয়ার্ড', 'নোটো'],
       en: 'For Word, Pages and Google Docs, <b>Noto Sans Bengali</b> is the best Unicode font (free from <a href="https://fonts.google.com/noto/specimen/Noto+Sans+Bengali">Google Fonts</a>). Others that work well: Noto Serif Bengali, Tiro Bangla, Hind Siliguri, Anek Bangla, Baloo Da 2, SolaimanLipi, Kalpurush and Nikosh. Every Mac already has Kohinoor Bangla, Bangla Sangam MN and Bangla MN. SutonnyMJ is only for বিজয় ক্লাসিক.',
-      bn: 'Word, Pages ও Google Docs-এর জন্য সবচেয়ে ভালো ইউনিকোড ফন্ট <b>Noto Sans Bengali</b> (<a href="https://fonts.google.com/noto/specimen/Noto+Sans+Bengali">Google Fonts</a> থেকে বিনামূল্যে)। আরও ভালো ফন্ট: Noto Serif Bengali, Tiro Bangla, Hind Siliguri, Anek Bangla, Baloo Da 2, SolaimanLipi, Kalpurush ও Nikosh। প্রতিটি ম্যাকে আগে থেকেই আছে Kohinoor Bangla, Bangla Sangam MN ও Bangla MN। SutonnyMJ শুধু বিজয় ক্লাসিকের জন্য।' },
+      bn: 'Word, Pages ও Google Docs এর জন্য সবচেয়ে ভালো ইউনিকোড ফন্ট <b>Noto Sans Bengali</b> (<a href="https://fonts.google.com/noto/specimen/Noto+Sans+Bengali">Google Fonts</a> থেকে বিনামূল্যে)। আরও ভালো ফন্ট: Noto Serif Bengali, Tiro Bangla, Hind Siliguri, Anek Bangla, Baloo Da 2, SolaimanLipi, Kalpurush ও Nikosh। প্রতিটি ম্যাকে আগে থেকেই আছে Kohinoor Bangla, Bangla Sangam MN ও Bangla MN। SutonnyMJ শুধু বিজয় ক্লাসিকের জন্য।' },
     { id: 'compat', k: ['macos', 'version', 'ventura', 'sonoma', 'sequoia', 'tahoe', 'monterey', 'big sur', 'catalina', 'intel', 'apple silicon', 'm1', 'm2', 'm3', 'm4', 'macbook', 'imac', 'mac mini', 'support', 'compatible', 'requirement', 'old mac', 'সাপোর্ট', 'চলবে', 'চলে', 'ভার্সন', 'সংস্করণ', 'পুরনো ম্যাক', 'cholbe'],
       en: 'It needs <b>macOS 13 Ventura or later</b> (including Sonoma, Sequoia and Tahoe) and runs on Apple silicon (M1, M2, M3, M4) and Intel Macs: MacBook, iMac, Mac mini and others. macOS 12 Monterey and older are not supported.',
       bn: 'এর জন্য <b>macOS 13 Ventura বা পরবর্তী সংস্করণ</b> লাগবে (Sonoma, Sequoia ও Tahoe সহ)। Apple silicon (M1, M2, M3, M4) ও Intel দুই ধরনের ম্যাকেই চলে: MacBook, iMac, Mac mini ইত্যাদি। macOS 12 Monterey বা তার আগের সংস্করণে চলবে না।' },
@@ -125,7 +125,7 @@
       bn: 'পূর্ণ স্বরবর্ণ লিখতে আগে <kbd>G</kbd>, তারপর কার: <kbd>G</kbd> <kbd>F</kbd> = আ, <kbd>G</kbd> <kbd>D</kbd> = ই, <kbd>G</kbd> <span class="hk-shift"><kbd>Shift</kbd>+<kbd>D</kbd></span> = ঈ, <kbd>G</kbd> <kbd>S</kbd> = উ, <kbd>G</kbd> <kbd>C</kbd> = এ, <kbd>G</kbd> <span class="hk-shift"><kbd>Shift</kbd>+<kbd>C</kbd></span> = ঐ। অ হলো <span class="hk-shift"><kbd>Shift</kbd>+<kbd>F</kbd></span>, আর ও হলো <kbd>X</kbd>।' },
     { id: 'symbols', k: ['dari', 'danda', 'full stop', 'taka sign', 'number', 'numbers', 'digit', 'chandrabindu', 'anusvara', 'visarga', 'khanda ta', 'দাঁড়ি', 'দাড়ি', 'টাকা চিহ্ন', 'সংখ্যা', 'চন্দ্রবিন্দু', 'অনুস্বার', 'বিসর্গ', 'খণ্ড ত', 'ইংরেজি সংখ্যা'],
       en: 'Signs: । = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>G</kbd></span>, ং = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>Q</kbd></span>, ঃ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>\\</kbd></span>, ঁ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>7</kbd></span>, ৎ = <kbd>\\</kbd>, ৳ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>4</kbd></span>. The number keys type Bangla digits ১২৩; switch to English for 123.',
-      bn: 'চিহ্ন: । = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>G</kbd></span>, ং = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>Q</kbd></span>, ঃ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>\\</kbd></span>, ঁ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>7</kbd></span>, ৎ = <kbd>\\</kbd>, ৳ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>4</kbd></span>। সংখ্যার কী দিয়ে বাংলা সংখ্যা ১২৩ লেখা হয়; ইংরেজি 123-এর জন্য ইংরেজিতে বদলান।' },
+      bn: 'চিহ্ন: । = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>G</kbd></span>, ং = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>Q</kbd></span>, ঃ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>\\</kbd></span>, ঁ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>7</kbd></span>, ৎ = <kbd>\\</kbd>, ৳ = <span class="hk-shift"><kbd>Shift</kbd>+<kbd>4</kbd></span>। সংখ্যার কী দিয়ে বাংলা সংখ্যা ১২৩ লেখা হয়; ইংরেজি 123 এর জন্য ইংরেজিতে বদলান।' },
     { id: 'safe', k: ['safe', 'virus', 'malware', 'trust', 'security', 'notarized', 'signed', 'app store', 'unidentified developer', 'can\'t be opened', 'নিরাপদ', 'ভাইরাস', 'অ্যাপ স্টোর', 'বিশ্বাস', 'নিরাপত্তা'],
       en: 'Yes, it is safe. The installer is signed with an Apple Developer ID and notarized by Apple, and macOS checks it when you open it. It is shared directly from this website rather than the Mac App Store, and its full source code is on <a href="' + GH + '">GitHub</a>.',
       bn: 'হ্যাঁ, এটি নিরাপদ। ইনস্টলারটি Apple Developer ID দিয়ে সাইন করা এবং Apple নোটারাইজ করেছে; খোলার সময় macOS নিজেই যাচাই করে। এটি Mac App Store নয়, সরাসরি এই ওয়েবসাইট থেকে দেওয়া হয়, আর পুরো সোর্স কোড <a href="' + GH + '">GitHub</a>-এ আছে।' },
@@ -140,10 +140,10 @@
       bn: 'অ্যাপটি শুধু ম্যাকের জন্য; আইফোন, আইপ্যাড বা অ্যান্ড্রয়েড অ্যাপ নেই। তবে এই পাতার <a href="#layout">কীবোর্ড</a> ফোনেও চলে: <b>পূর্ণ স্ক্রিন</b> চাপুন, বিজয় কী দিয়ে লিখুন, তারপর <b>সেভ করুন</b> চেপে লেখা ডাউনলোড করুন, অথবা কপি করে যেকোনো অ্যাপে বসান।' },
     { id: 'windows', p: 1, k: ['windows', 'pc', 'linux', 'ubuntu', 'উইন্ডোজ', 'লিনাক্স'],
       en: 'Bijoy Bangla for Mac is for macOS only. There is no Windows or Linux version. On any computer you can still use the <a href="#layout">keyboard on this page</a> in a browser.',
-      bn: 'বিজয় বাংলা ফর ম্যাক শুধু macOS-এর জন্য। উইন্ডোজ বা লিনাক্স সংস্করণ নেই। তবে যেকোনো কম্পিউটারের ব্রাউজারে এই পাতার <a href="#layout">কীবোর্ড</a> ব্যবহার করতে পারেন।' },
+      bn: 'বিজয় বাংলা ফর ম্যাক শুধু macOS এর জন্য। উইন্ডোজ বা লিনাক্স সংস্করণ নেই। তবে যেকোনো কম্পিউটারের ব্রাউজারে এই পাতার <a href="#layout">কীবোর্ড</a> ব্যবহার করতে পারেন।' },
     { id: 'phonetic', p: 1, k: ['phonetic', 'avro', 'banglish', 'transliteration', 'probhat', 'ফোনেটিক', 'অভ্র'],
-      en: 'It uses the <b>Bijoy</b> key layout only, the one used in offices and print shops. It does not do phonetic (Avro-style) typing.',
-      bn: 'এটি শুধু <b>বিজয়</b> লেআউট ব্যবহার করে, যা অফিস ও ছাপাখানায় প্রচলিত। ফোনেটিক (অভ্রর মতো) টাইপিং এতে নেই।' },
+      en: 'The Mac app uses the <b>Bijoy</b> key layout only, the one used in offices and print shops; it does not do phonetic typing. In this chat box you can choose <b>Phonetic</b> at the top (Esc switches) and type Bangla the phonetic way, for example “amar sonar bangla”.',
+      bn: 'ম্যাক অ্যাপটি কেবল <b>বিজয়</b> লেআউট ব্যবহার করে, যা অফিস ও ছাপাখানায় প্রচলিত; এতে ফনেটিক টাইপিং নেই। তবে এই চ্যাট বক্সের উপরে <b>ফনেটিক</b> বেছে নিয়ে (Esc চেপেও বদলানো যায়) ফনেটিক পদ্ধতিতে বাংলা লিখতে পারেন, যেমন “amar sonar bangla”।' },
     { id: 'webkb', k: ['this page', 'website keyboard', 'online keyboard', 'full screen', 'save', 'txt', 'sound', 'copy', 'ওয়েবসাইটের কীবোর্ড', 'অনলাইন', 'সেভ', 'শব্দ', 'কপি'],
       en: 'The <a href="#layout">keyboard on this page</a> types Bijoy Bangla in the browser. <b>Full screen</b> gives you a big typing area, the speaker button turns key sounds on or off, <b>Save</b> downloads your text as a .txt file, and Esc (or the globe key) switches between Bangla and English.',
       bn: 'এই পাতার <a href="#layout">কীবোর্ড</a> দিয়ে ব্রাউজারেই বিজয়ে বাংলা লেখা যায়। <b>পূর্ণ স্ক্রিন</b> বড় লেখার জায়গা দেয়, স্পিকার বোতাম কী-এর শব্দ চালু বা বন্ধ করে, <b>সেভ করুন</b> লেখাটি .txt ফাইল হিসেবে ডাউনলোড করে, আর Esc (বা গ্লোব কী) বাংলা ও ইংরেজির মধ্যে বদলায়।' },
@@ -196,8 +196,8 @@
       bn: 'বিজয় বাংলা নতুন লেখা টাইপ করে; আগে থেকে থাকা লেখা SutonnyMJ (ক্লাসিক) থেকে ইউনিকোডে বা উল্টোটা রূপান্তর করে না। নতুন লেখার আগে দরকার মতো মোড বেছে নিন।' },
     { id: 'official', p: 1, k: ['bayanno', 'bijoy 52', 'bijoy ekushe', 'ekushe', 'official', 'ananda', 'serial', 'serial key', 'license key', 'activation key', 'product key', 'crack', 'original bijoy',
         'বায়ান্ন', 'একুশে', 'আনন্দ', 'অফিসিয়াল', 'সিরিয়াল', 'ক্র্যাক', 'লাইসেন্স কী', 'আসল বিজয়'],
-      en: 'Bijoy Bangla for Mac is an independent, free keyboard that uses the familiar Bijoy key layout. It needs no serial number, licence key or activation code.',
-      bn: 'বিজয় বাংলা ফর ম্যাক একটি স্বাধীন, বিনামূল্যের কীবোর্ড, যা পরিচিত বিজয় লেআউট ব্যবহার করে। এতে কোনো সিরিয়াল নম্বর, লাইসেন্স কী বা অ্যাক্টিভেশন কোড লাগে না।' },
+      en: 'Bijoy Bangla for Mac is an independent, free keyboard that uses the familiar Bijoy key layout. It is not affiliated with Ananda Computers, and it needs no serial number, licence key or activation code.',
+      bn: 'বিজয় বাংলা ফর ম্যাক একটি স্বতন্ত্র, বিনামূল্যের কীবোর্ড, যা পরিচিত বিজয় লেআউট ব্যবহার করে। আনন্দ কম্পিউটার্সের সঙ্গে এর কোনো সম্পর্ক নেই, আর এতে কোনো সিরিয়াল নম্বর, লাইসেন্স কী বা অ্যাক্টিভেশন কোড লাগে না।' },
     { id: 'hardware', p: 1, k: ['uk keyboard', 'irish keyboard', 'us keyboard', 'iso', 'azerty', 'qwertz', 'external keyboard', 'magic keyboard', 'logitech', 'bluetooth keyboard', 'keyboard sticker', 'stickers', 'my keyboard layout',
         'বাহ্যিক কীবোর্ড', 'ব্লুটুথ কীবোর্ড', 'স্টিকার', 'ইউকে কীবোর্ড'],
       en: 'It works with any Mac keyboard: the built-in one, a Magic Keyboard or any USB or Bluetooth keyboard, US, UK or other. It goes by where the keys are, so the Bijoy letters are always in the usual places. You do not need Bangla stickers; you can print the <a href="/Bijoy-Keyboard-Layout.pdf">layout (PDF)</a>.',
@@ -228,12 +228,56 @@
     { id: 'saved', p: 1, k: ['where is my file', 'where did it save', 'saved file', 'txt file', 'downloads folder', 'ফাইল কোথায়', 'সেভ কোথায়', 'কোথায় সেভ'],
       en: 'The <b>Save</b> button on this page’s keyboard downloads a .txt file named with the date and time. On a Mac and Android it goes to <b>Downloads</b>; on iPhone Safari asks first, then it is in the Files app under Downloads.',
       bn: 'এই পাতার কীবোর্ডের <b>সেভ করুন</b> বোতাম তারিখ ও সময়ের নামে একটি .txt ফাইল ডাউনলোড করে। ম্যাক ও অ্যান্ড্রয়েডে সেটি <b>Downloads</b>-এ যায়; আইফোনে Safari আগে জিজ্ঞেস করে, তারপর Files অ্যাপের Downloads-এ পাওয়া যায়।' },
+    // ---- From the install steps, installer screens and the rest of the page ----
+    { id: 'menubar', p: 2, k: ['input menu missing', 'no input menu', 'menu icon', 'icon', 'missing', 'menu bar icon', 'no icon', 'icon missing', 'top right', 'show input menu', 'where is the menu', 'can\'t see the menu', 'flag icon',
+        'মেনু বার', 'মেনু দেখছি না', 'আইকন নেই', 'আইকন দেখা যাচ্ছে না', 'ইনপুট মেনু নেই', 'ইনপুট মেনু কোথায়'],
+      en: 'The input menu is the small icon near the clock, at the top right of the screen. If it is missing, open System Settings → Keyboard → Input Sources → Edit… and turn on <b>Show Input menu in menu bar</b>.',
+      bn: 'ইনপুট মেনু হলো স্ক্রিনের উপরে ডানদিকে, ঘড়ির পাশের ছোট আইকনটি। সেটি না থাকলে System Settings → Keyboard → Input Sources → Edit… খুলে <b>Show Input menu in menu bar</b> চালু করুন।' },
+    { id: 'logout', p: 1, k: ['log out', 'logout', 'sign out', 'restart', 'reboot', 'why log out', 'do i need to restart', 'লগ আউট', 'লগআউট', 'রিস্টার্ট', 'সাইন আউট', 'আবার চালু'],
+      en: 'macOS loads new keyboards when you sign in, so after installing, log out and sign back in once (a restart works too). After that, বিজয় ইউনিকোড and বিজয় ক্লাসিক appear in the input menu.',
+      bn: 'macOS সাইন ইন করার সময় নতুন কীবোর্ড চালু করে। তাই ইনস্টলের পর একবার লগ আউট করে আবার সাইন ইন করুন (রিস্টার্ট করলেও চলবে)। তারপর ইনপুট মেনুতে বিজয় ইউনিকোড ও বিজয় ক্লাসিক দেখা যাবে।' },
+    { id: 'allow', p: 1, k: ['allow', 'permission', 'prompt', 'pop up', 'popup', 'asks to allow', 'enable bijoy bangla', 'অনুমতি', 'অ্যালাও', 'পপআপ', 'জানতে চাইছে'],
+      en: 'If macOS asks “Allow Bijoy Bangla to enable Bijoy Bangla?”, click <b>Allow</b>. It is macOS checking that you want the new keyboard. Then log out and sign back in. If you missed it, add the keyboard in System Settings → Keyboard → Input Sources.',
+      bn: 'macOS যদি জিজ্ঞেস করে “Allow Bijoy Bangla to enable Bijoy Bangla?”, তাহলে <b>Allow</b>-এ ক্লিক করুন। নতুন কীবোর্ড চালু করতে চান কি না, macOS তা নিশ্চিত হয়ে নিচ্ছে। তারপর লগ আউট করে আবার সাইন ইন করুন। বার্তাটি চলে গেলে System Settings → Keyboard → Input Sources থেকে কীবোর্ডটি যোগ করুন।' },
+    { id: 'diskspace', p: 1, k: ['disk space', 'storage', 'install location', 'all users', 'destination', 'which disk', 'where is it installed', 'জায়গা লাগবে', 'কোথায় ইনস্টল', 'সব ব্যবহারকারী'],
+      en: 'Leave “Install for all users of this computer” selected. It installs into /Library/Input Methods and needs about 1.7 MB of disk space.',
+      bn: '“Install for all users of this computer” যেমন আছে তেমন রাখুন। এটি /Library/Input Methods-এ ইনস্টল হয় এবং প্রায় ১.৭ মেগাবাইট জায়গা লাগে।' },
+    { id: 'guide', p: 1, k: ['activation guide', 'guide', 'manual', 'instructions', 'step by step', 'pictures', 'গাইড', 'নির্দেশিকা', 'ধাপে ধাপে', 'ম্যানুয়াল'],
+      en: 'The <a href="/Activation-Guide.pdf">Activation Guide (PDF)</a> shows every step with pictures: installing, allowing the input source and choosing বিজয় ইউনিকোড. The <a href="#install">install steps</a> on this page show the four installer screens.',
+      bn: '<a href="/Activation-Guide.pdf">অ্যাক্টিভেশন গাইডে (PDF)</a> ছবিসহ প্রতিটি ধাপ দেখানো আছে: ইনস্টল, ইনপুট সোর্সের অনুমতি ও বিজয় ইউনিকোড বেছে নেওয়া। এই পাতার <a href="#install">ইনস্টলের ধাপে</a> ইনস্টলারের চারটি স্ক্রিনও দেখতে পাবেন।' },
+    { id: 'version', p: 1, k: ['current version', 'latest version', 'which version', 'version number', 'what version', 'version', 'release', 'বর্তমান সংস্করণ', 'সর্বশেষ সংস্করণ', 'কোন সংস্করণ', 'ভার্সন কত'],
+      dyn: function (bn) {
+        var v = (document.querySelector('.ver') || {}).textContent || '';
+        return bn ? 'বর্তমান সংস্করণ <b>' + v + '</b>, আকার প্রায় ১ মেগাবাইট। প্রতিটি সংস্করণে কী বদলেছে, দেখুন <a href="#news">নতুন কী এসেছে</a>।'
+                  : 'The current version is <b>' + v + '</b>, about 1 MB. See <a href="#news">What’s new</a> for the changes in each version.';
+      } },
+    { id: 'count', p: 1, k: ['how many downloads', 'downloads', 'how many people', 'how many users', 'popular', 'visitors', 'কতজন', 'কত বার ডাউনলোড', 'কতবার ডাউনলোড', 'ডাউনলোড সংখ্যা', 'কত মানুষ'],
+      dyn: function (bn) {
+        var d = (document.querySelector('.dl-count') || {}).textContent || '';
+        if (!d.trim()) return bn ? 'ডাউনলোডের সংখ্যা এই মুহূর্তে পাওয়া যাচ্ছে না। পাতার উপরে Download বোতামের পাশে সংখ্যাটি দেখা যায়।' : 'The download count is not available right now. It is shown next to the Download button at the top of the page.';
+        return bn ? 'এখন পর্যন্ত <b>' + d.trim() + '</b>। পাতার নিচে দর্শকের সংখ্যাও দেখা যায়।' : 'So far: <b>' + d.trim() + '</b>. Visitor numbers are at the bottom of the page.';
+      } },
+    { id: 'tryit', p: 1, k: ['try it', 'try before', 'test it', 'demo', 'try online', 'without installing', 'sample words', 'টেস্ট', 'ডেমো', 'ইনস্টল না করে', 'চেষ্টা করে দেখ', 'নমুনা শব্দ'],
+      en: 'You can try it right here without installing: type Bijoy keys in the box at the top of the page (for example <kbd>H</kbd> <kbd>F</kbd> <span class="hk-shift"><kbd>Shift</kbd>+<kbd>Q</kbd></span> <span class="hk-shift"><kbd>Shift</kbd>+<kbd>V</kbd></span> <kbd>F</kbd> = বাংলা) or tap a sample word, or use the full <a href="#layout">keyboard on this page</a>.',
+      bn: 'ইনস্টল না করেই এখানে চেষ্টা করে দেখতে পারেন: পাতার উপরের বক্সে বিজয় কী টাইপ করুন (যেমন <kbd>H</kbd> <kbd>F</kbd> <span class="hk-shift"><kbd>Shift</kbd>+<kbd>Q</kbd></span> <span class="hk-shift"><kbd>Shift</kbd>+<kbd>V</kbd></span> <kbd>F</kbd> = বাংলা), কোনো নমুনা শব্দে ট্যাপ করুন, অথবা এই পাতার পুরো <a href="#layout">কীবোর্ড</a> ব্যবহার করুন।' },
+    { id: 'appmenu', p: 1, k: ['menu items', 'menu', 'options', 'what is in the menu', 'options in the menu', 'about bijoy bangla', 'menu options', 'settings', 'preferences', 'মেনুতে কী', 'অপশন', 'সেটিংস'],
+      en: 'The input menu (top right of the screen) has: English, বিজয় ইউনিকোড, বিজয় ক্লাসিক, <b>Show Bijoy Keyboard Layout…</b>, <b>About Bijoy Bangla</b>, <b>Keep Bangla - InScript Off</b> and <b>Uninstall Bijoy Bangla…</b>',
+      bn: 'ইনপুট মেনুতে (স্ক্রিনের উপরে ডানদিকে) আছে: English, বিজয় ইউনিকোড, বিজয় ক্লাসিক, <b>Show Bijoy Keyboard Layout…</b>, <b>About Bijoy Bangla</b>, <b>Keep Bangla - InScript Off</b> এবং <b>Uninstall Bijoy Bangla…</b>' },
+    { id: 'shortcutfix', p: 2, k: ['control space not working', 'control-space not working', 'shortcut not working', 'ctrl space not working', 'globe key not working', 'switching not working', 'শর্টকাট কাজ করছে না', 'বদলাচ্ছে না', 'সুইচ হচ্ছে না'],
+      en: 'Check System Settings → Keyboard → Keyboard Shortcuts… → Input Sources, and turn on <b>Select the previous input source</b> (<kbd>Control</kbd>+<kbd>Space</kbd>). For the Globe key, set “Press 🌐 key to” <b>Change Input Source</b> in System Settings → Keyboard.',
+      bn: 'System Settings → Keyboard → Keyboard Shortcuts… → Input Sources-এ গিয়ে <b>Select the previous input source</b> (<kbd>Control</kbd>+<kbd>Space</kbd>) চালু করুন। Globe কী-এর জন্য System Settings → Keyboard-এ “Press 🌐 key to” অপশনে <b>Change Input Source</b> বেছে দিন।' },
+    { id: 'whatis', p: 0, k: ['what is this', 'what is bijoy', 'what does it do', 'tell me about', 'about this app', 'bijoy bangla for mac', 'এটা কী', 'এটি কী', 'কী কাজ করে', 'সম্পর্কে বলুন', 'বিজয় বাংলা ফর ম্যাক কী'],
+      en: '<b>Bijoy Bangla for Mac</b> is a free, open-source Bangla keyboard for macOS with the familiar Bijoy layout. Type Bangla in Word, Pages, Google Docs, Safari, Chrome, Facebook, WhatsApp, Gmail and every other Mac app, in Unicode or classic SutonnyMJ text.',
+      bn: '<b>বিজয় বাংলা ফর ম্যাক</b> macOS এর জন্য বিনামূল্যের, ওপেন-সোর্স বাংলা কীবোর্ড, যাতে রয়েছে পরিচিত বিজয় লেআউট। Word, Pages, Google Docs, Safari, Chrome, Facebook, WhatsApp, Gmail-সহ ম্যাকের সব অ্যাপে ইউনিকোড বা ক্লাসিক SutonnyMJ লেখায় বাংলা লিখুন।' },
+    { id: 'online', p: 1, k: ['display correctly', 'show correctly', 'others see', 'other people see', 'will people see', 'readable', 'ঠিকভাবে দেখাবে', 'অন্যরা দেখতে পাবে', 'সবাই দেখতে পাবে', 'পড়তে পারবে'],
+      en: 'Yes, with <b>বিজয় ইউনিকোড</b>. The text is standard Unicode Bangla, so it shows correctly in every browser and app that supports Bangla: Word, Pages, WordPress, Facebook and the rest, on phones and computers alike.',
+      bn: 'হ্যাঁ, <b>বিজয় ইউনিকোডে</b> লিখলে। লেখাটি আদর্শ ইউনিকোড বাংলা, তাই বাংলা সমর্থন করে এমন সব ব্রাউজার ও অ্যাপে, যেমন Word, Pages, WordPress, Facebook-এ, ফোন ও কম্পিউটার দুই জায়গাতেই ঠিকভাবে দেখায়।' },
     { id: 'hello', k: ['hello', 'hi', 'hey', 'salam', 'assalamu', 'good morning', 'হ্যালো', 'হাই', 'সালাম', 'আসসালামু', 'নমস্কার', 'কেমন আছ'],
       en: 'Hello! Ask me anything about Bijoy Bangla for Mac, or type a Bangla word and I will show you the keys for it.',
       bn: 'হ্যালো! বিজয় বাংলা ফর ম্যাক নিয়ে যা জানতে চান জিজ্ঞেস করুন, অথবা একটি বাংলা শব্দ লিখুন, কোন কী চাপতে হবে দেখিয়ে দেব।' },
     { id: 'thanks', k: ['thank', 'thanks', 'great', 'perfect', 'awesome', 'ধন্যবাদ', 'অনেক ধন্যবাদ', 'thanks a lot', 'dhonnobad'],
       en: 'You are welcome! Happy typing in Bangla.',
-      bn: 'আপনাকেও ধন্যবাদ! আনন্দে বাংলা লিখুন।' }
+      bn: 'আপনাকেও ধন্যবাদ! শুভ হোক আপনার বাংলা লেখা।' }
   ];
 
   var SUGGEST = {
@@ -274,38 +318,46 @@
       var parts = words.slice(0, 4).map(function (w) {
         var k = keysFor(w);
         return k ? '<div class="hk-word"><span class="hk-bn" lang="bn">' + esc(w) + '</span><span class="hk-keys">' + keyCaps(k) + '</span></div>'
-                 : '<div class="hk-word"><span class="hk-bn" lang="bn">' + esc(w) + '</span><span class="hk-miss">' + (bnAnswer ? 'এটির কী খুঁজে পাইনি' : 'I could not work this one out') + '</span></div>';
+                 : '<div class="hk-word"><span class="hk-bn" lang="bn">' + esc(w) + '</span><span class="hk-miss">' + (bnAnswer ? 'এই শব্দের কী খুঁজে পাইনি' : 'I could not work this one out') + '</span></div>';
       }).join('');
-      return (bnAnswer ? 'এই কী-গুলো পর পর চাপুন (বিজয় ইউনিকোড বা ক্লাসিক):' : 'Press these keys in order (in বিজয় ইউনিকোড or বিজয় ক্লাসিক):') + parts +
+      return (bnAnswer ? 'এই কী-গুলো পরপর চাপুন (বিজয় ইউনিকোড বা ক্লাসিক):' : 'Press these keys in order (in বিজয় ইউনিকোড or বিজয় ক্লাসিক):') + parts +
         '<p class="hk-note">' + (bnAnswer ? 'Shift + মানে Shift চেপে ধরে সেই কী চাপুন।' : 'Shift + means hold Shift while pressing that key.') + '</p>';
     }
-    if (scored[0].s >= 2) return bnAnswer ? scored[0].it.bn : scored[0].it.en;
+    if (scored[0].s >= 2) { var it = scored[0].it; return it.dyn ? it.dyn(bnAnswer) : (bnAnswer ? it.bn : it.en); }
     return null;
   }
 
   // ---------- Chat window ----------
   function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   var T = PAGE_BN
-    ? { open: 'প্রশ্ন করুন', title: 'বিজয় বাংলা সহায়তা', sub: 'সফটওয়্যার ও লেআউট নিয়ে উত্তর', ph: 'প্রশ্ন বা বাংলা শব্দ লিখুন…', send: 'পাঠান', close: 'বন্ধ করুন',
+    ? { sugg: 'শব্দের পরামর্শ', modes: 'লেখার ধরন', mBijoy: 'বিজয়', mPhon: 'ফনেটিক', escTip: 'Esc চেপে বদলান',
+        open: 'প্রশ্ন করুন', title: 'বিজয় বাংলা সহায়িকা', sub: 'সফটওয়্যার ও লেআউট নিয়ে প্রশ্নের উত্তর', ph: 'প্রশ্ন বা বাংলা শব্দ লিখুন…', send: 'পাঠান', close: 'বন্ধ করুন',
         hi: 'আসসালামু আলাইকুম! বিজয় বাংলা ফর ম্যাক নিয়ে যা জানতে চান জিজ্ঞেস করুন। কোনো বাংলা শব্দ লিখলে সেটি টাইপ করার কী-ও দেখিয়ে দেব।',
         miss: 'দুঃখিত, এর উত্তর আমার জানা নেই। কোনো শব্দ টাইপ করার কী জানতে লিখুন, যেমন “ক্ষ কীভাবে লিখব”। অথবা নিচের কোনো একটি বেছে নিন, বা <a href="' + GH + '/issues">GitHub-এ প্রশ্ন করুন</a>।' }
-    : { open: 'Ask a question', title: 'Bijoy Bangla help', sub: 'Answers about the app and the layout', ph: 'Ask a question or type a Bangla word…', send: 'Send', close: 'Close',
+    : { sugg: 'Word suggestions', modes: 'Typing layout', mBijoy: 'Bijoy', mPhon: 'Phonetic', escTip: 'Press Esc to switch',
+        open: 'Ask a question', title: 'Bijoy Bangla help', sub: 'Answers about the app and the layout', ph: 'Ask a question or type a Bangla word…', send: 'Send', close: 'Close',
         hi: 'Hi! Ask me anything about Bijoy Bangla for Mac. Type a Bangla word and I will show you the keys for it too.',
         miss: 'Sorry, I do not have an answer for that. To see the keys for a Bangla word, ask for example “how do I type ক্ষ”. Or try one of these, or <a href="' + GH + '/issues">ask on GitHub</a>.' };
 
   var CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="3"/></svg>';
   var X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
-  var SEND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
+  var SEND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
 
   var launcher = document.createElement('button');
   launcher.type = 'button'; launcher.className = 'hk-open'; launcher.setAttribute('aria-expanded', 'false');
   launcher.innerHTML = CHAT + '<span>' + T.open + '</span>';
   var box = document.createElement('div');
   box.className = 'hk-box'; box.hidden = true; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', T.title);
-  box.innerHTML = '<div class="hk-head"><img src="/favicon.svg" alt="" width="28" height="28"><div><b>' + T.title + '</b><small>' + T.sub + '</small></div>' +
+  box.innerHTML = '<div class="hk-head"><picture class="hk-logo"><source srcset="/logo-dark.svg" media="(prefers-color-scheme: dark)"><img src="/logo.svg" alt="" width="58" height="36"></picture><div><b>' + T.title + '</b><small>' + T.sub + '</small></div>' +
     '<button type="button" class="hk-x" aria-label="' + T.close + '">' + X + '</button></div>' +
+    '<div class="hk-modes" role="radiogroup" aria-label="' + T.modes + '">' +
+      '<button type="button" role="radio" data-mode="bijoy">' + T.mBijoy + '</button>' +
+      '<button type="button" role="radio" data-mode="phonetic">' + T.mPhon + '</button>' +
+      '<button type="button" role="radio" data-mode="english">English</button>' +
+      '<kbd class="hk-esc" title="' + T.escTip + '">Esc</kbd></div>' +
     '<div class="hk-log" aria-live="polite"></div>' +
-    '<form class="hk-form"><input type="text" autocomplete="off" enterkeyhint="send" maxlength="300" placeholder="' + T.ph + '" aria-label="' + T.ph + '">' +
+    '<div class="hk-suggest" role="listbox" aria-label="' + T.sugg + '" hidden></div>' +
+    '<form class="hk-form"><input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="send" maxlength="300" placeholder="' + T.ph + '" aria-label="' + T.ph + '">' +
     '<button type="submit" aria-label="' + T.send + '">' + SEND + '</button></form>';
   document.body.appendChild(launcher); document.body.appendChild(box);
   var log = box.querySelector('.hk-log'), form = box.querySelector('.hk-form'), input = form.querySelector('input');
@@ -340,7 +392,245 @@
   log.addEventListener('click', function (e) {
     var a = e.target.closest('a'); if (a && a.getAttribute('href').charAt(0) === '#' && innerWidth <= 640) toggle(false);
   });
-  form.addEventListener('submit', function (e) { e.preventDefault(); var t = input.value; input.value = ''; ask(t); });
+  form.addEventListener('submit', function (e) { e.preventDefault(); finish(); var t = input.value; input.value = ''; reset(); ask(t); });
+
+  // ---------- Typing layouts for the chat box: Bijoy, Phonetic (Avro rules) and English ----------
+  // The box holds: text before the word being typed (base), the Latin keys of that
+  // word (raw, shown converted to Bangla) and the text after the cursor (tail).
+  var MODES = ['bijoy', 'phonetic', 'english'], mode = PAGE_BN ? 'bijoy' : 'english';
+  try { var saved = localStorage.getItem('hkMode'); if (MODES.indexOf(saved) >= 0) mode = saved; } catch (e) {}
+  var base = '', raw = '', tail = '';
+  var hasAvro = function () { return typeof OmicronLab !== 'undefined' && OmicronLab.Avro && OmicronLab.Avro.Phonetic; };
+  function conv(r) {
+    if (!r) return '';
+    if (mode === 'bijoy') return Bijoy.render(Array.from(r));
+    if (mode === 'phonetic' && hasAvro()) { var list = suggestFor(r); return list[Math.min(pick, list.length - 1)]; }
+    return r;
+  }
+
+  // ---------- Word suggestions for phonetic typing ----------
+  // Like Avro Keyboard: the typed Latin word is turned into a pattern of the Bangla
+  // spellings it could stand for ("s" can be স, শ or ষ; "o" can be অ, ো or nothing...),
+  // and matching words from a 110,000-word Bangla dictionary are offered, closest first.
+  // The dictionary loads the first time Phonetic is used.
+  var dict = null, dictIndex = null, dictLoading = false, pick = 0, sugCache = { key: '', list: [] };
+  function loadDict() {
+    if (dict || dictLoading) return;
+    dictLoading = true;
+    fetch('/bn-words.txt').then(function (r) { return r.ok ? r.text() : ''; }).then(function (txt) {
+      var lines = txt.split('\n'), abc = Array.from(lines[1] || '');
+      if (!abc.length) return;
+      var decode = function (w) { var o = ''; for (var i = 0; i < w.length; i++) o += abc[w.charCodeAt(i) - 33] || ''; return o; };
+      dict = []; dictIndex = {};
+      for (var i = 2; i < lines.length; i++) {
+        if (!lines[i]) continue;
+        var w = decode(lines[i]); dict.push(w);
+        var f = w.charAt(0); (dictIndex[f] = dictIndex[f] || []).push(w);
+      }
+      sugCache.key = '';
+      if (raw && mode === 'phonetic') { draw(); }
+    }).catch(function () {}).then(function () { dictLoading = false; });
+  }
+  var V = '(?:া|আ|অ|য়া|এ)';
+  var TOKENS = [
+    ['t``', 'ৎ'], ['kkh', 'ক্ষ'], ['kSh', 'ক্ষ'], ['rri', '(?:ৃ|ঋ|রি)'], ['oi', '(?:ৈ|ঐ|োই|ই)'], ['ou', '(?:ৌ|ঔ|োউ)'],
+    ['kh', '(?:খ|ক্ষ)'], ['gh', 'ঘ'], ['Ng', 'ঙ'], ['ng', '(?:ং|ঙ|ঙ্গ)'], ['ch', '(?:ছ|চ)'], ['jh', 'ঝ'], ['NG', 'ঞ'],
+    ['Th', 'ঠ'], ['Dh', 'ঢ'], ['th', '(?:থ|ঠ)'], ['dh', '(?:ধ|ঢ)'], ['ph', 'ফ'], ['bh', 'ভ'], ['Sh', 'ষ'], ['sh', '(?:শ|ষ|স|স্ব)'], ['Rh', 'ঢ়'],
+    ['k', 'ক'], ['g', '(?:গ|জ্ঞ)'], ['c', '(?:চ|ছ)'], ['j', '(?:জ|য)'], ['T', '(?:ট|ত)'], ['t', '(?:ত|ট|ৎ)'], ['D', '(?:ড|দ)'], ['d', '(?:দ|ড)'],
+    ['N', '(?:ণ|ন)'], ['n', '(?:ন|ণ|ং)'], ['p', 'প'], ['f', 'ফ'], ['b', 'ব'], ['v', 'ভ'], ['m', 'ম'], ['z', '(?:য|জ)'], ['y', '(?:য়|্য|ই)'],
+    ['Y', 'য়'], ['r', '(?:র|ড়|ঋ|ৃ)'], ['R', '(?:ড়|ঢ়)'], ['l', 'ল'], ['S', '(?:শ|ষ)'], ['s', '(?:স|শ|ষ|স্ব)'], ['h', '(?:হ|ঃ)'], ['w', '(?:ও|ব|্ব)'],
+    ['x', 'ক্স'], ['q', 'ক'],
+    ['a', V], ['i', '(?:ি|ী|ই|ঈ|য়ি)'], ['I', '(?:ী|ঈ)'], ['u', '(?:ু|ূ|উ|ঊ)'], ['U', '(?:ূ|ঊ)'], ['e', '(?:ে|এ|্যা|অ্যা|য়ে)'],
+    ['o', '(?:ো|অ|ও|য়ো)?'], ['O', '(?:ো|ও)'], ['^', 'ঁ'], [':', 'ঃ']
+  ];
+  var VOWELS = /^(?:a|i|I|u|U|e|o|O|oi|ou|rri)$/;
+  // The typed word as a list of regex pieces, one per sound
+  function pieces(r) {
+    var out = [], i = 0, prevCons = false, prevTok = '';
+    while (i < r.length) {
+      var hit = null, t;
+      for (t = 0; t < TOKENS.length && !hit; t++) if (r.substr(i, TOKENS[t][0].length) === TOKENS[t][0]) hit = TOKENS[t];
+      for (t = 0; t < TOKENS.length && !hit; t++) if (r.substr(i, TOKENS[t][0].length).toLowerCase() === TOKENS[t][0].toLowerCase()) hit = TOKENS[t];
+      if (!hit) return null;
+      var cons = !VOWELS.test(hit[0]) && hit[0] !== '^' && hit[0] !== ':';
+      var piece = (cons && prevCons ? '্?' : '') + hit[1];
+      // A doubled letter often stands for য-ফলা: "biddaloy" = বিদ্যালয়, "dhonnobad" = ধন্যবাদ
+      if (cons && prevCons && hit[0] === prevTok) piece = '(?:' + piece + '|্য)';
+      out.push(piece.normalize('NFC'));
+      prevCons = cons; prevTok = hit[0]; i += hit[0].length;
+    }
+    return out;
+  }
+  // Letters a match can start with, so only those parts of the dictionary are searched
+  function starts(ps) {
+    var set = {}, k = 0;
+    while (k < ps.length) {
+      var p = ps[k], optional = /\)\?$/.test(p);
+      p.replace(/^\(\?:/, '').replace(/\)\??$/, '').split('|').forEach(function (alt) { if (alt) set[alt.charAt(0)] = 1; });
+      if (!optional) break;
+      k++;
+    }
+    return Object.keys(set);
+  }
+  var SUFFIXES = [['der', 'দের'], ['er', 'ের'], ['r', 'র'], ['ke', 'কে'], ['te', 'তে'], ['ra', 'রা'], ['gulo', 'গুলো'], ['ta', 'টা'], ['ti', 'টি'], ['e', 'ে']];
+  var matchCache = {};
+  function matches(r) {
+    if (matchCache[r]) return matchCache[r].slice();
+    var ps = pieces(r), found = [];
+    if (ps && ps.length) {
+      var re = new RegExp('^' + ps.join('') + '$');
+      starts(ps).forEach(function (f) {
+        var bucket = dictIndex[f] || [];
+        for (var k = 0; k < bucket.length; k++) if (re.test(bucket[k])) found.push(bucket[k]);
+      });
+    }
+    matchCache[r] = found;
+    return found.slice();
+  }
+  function distance(a, b) {
+    var m = a.length, n = b.length, d = [], i, j;
+    for (i = 0; i <= m; i++) d[i] = [i];
+    for (j = 1; j <= n; j++) d[0][j] = j;
+    for (i = 1; i <= m; i++) for (j = 1; j <= n; j++)
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    return d[m][n];
+  }
+  function suggestFor(r) {
+    var key = r + '|' + (dict ? 1 : 0);
+    if (sugCache.key === key) return sugCache.list;
+    var avro = OmicronLab.Avro.Phonetic.parse(r).normalize('NFC'), list = [];
+    var found = dict && /^[A-Za-z`^:]+$/.test(r) ? matches(r) : [];
+    // Word endings the dictionary often lacks: সোনা + র, বাংলাদেশ + ের, তোমা + কে...
+    if (dict && (!found.length || distance(found[0], avro) > 1)) {
+      SUFFIXES.forEach(function (sf) {
+        if (r.length - sf[0].length < 2 || r.slice(-sf[0].length) !== sf[0]) return;
+        matches(r.slice(0, -sf[0].length)).slice(0, 4).forEach(function (w) { found.push(w + sf[1]); });
+      });
+    }
+    var seen = {};
+    found = found.filter(function (w) { return seen[w] ? false : (seen[w] = 1); });
+    found.sort(function (x, y) { return (distance(x, avro) - distance(y, avro)) || (x.length - y.length); });
+    list = found.slice(0, 5);
+    // A dictionary word goes first only when it is close to what was typed; otherwise
+    // Avro's own spelling comes first, so Space never puts in an unexpected word
+    var i0 = list.indexOf(avro);
+    if (i0 > 0) list.splice(i0, 1);
+    if (i0 !== 0) list.splice(list.length && distance(list[0], avro) <= 1 ? 1 : 0, 0, avro);
+    if (list.length > 6) list.length = 6;
+    sugCache = { key: key, list: list };
+    return list;
+  }
+  var sugBar = null;
+  function showSuggestions() {
+    if (!sugBar) return;
+    if (mode !== 'phonetic' || !raw || !hasAvro()) { sugBar.hidden = true; sugBar.innerHTML = ''; return; }
+    var list = suggestFor(raw);
+    sugBar.innerHTML = '';
+    list.forEach(function (w, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = w; b.setAttribute('role', 'option'); b.setAttribute('aria-selected', String(i === pick));
+      if (i === pick) b.className = 'on';
+      b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      b.addEventListener('click', function () { pick = i; finish(); base += ' '; draw(); input.focus({ preventScroll: true }); });
+      sugBar.appendChild(b);
+    });
+    var en = document.createElement('button');
+    en.type = 'button'; en.className = 'latin'; en.textContent = raw; en.lang = 'en';
+    en.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    en.addEventListener('click', function () { base += raw; raw = ''; pick = 0; base += ' '; draw(); input.focus({ preventScroll: true }); });
+    sugBar.appendChild(en);
+    sugBar.hidden = false;
+  }
+  function inWord(ch) {
+    if (mode === 'bijoy') return Bijoy.isMapped(ch);
+    if (mode === 'phonetic') return /[A-Za-z`^:$0-9]/.test(ch);
+    return false;
+  }
+  function draw() {
+    setTimeout(showSuggestions, 0);
+    var mid = conv(raw);
+    input.value = base + mid + tail;
+    var c = base.length + mid.length;
+    try { input.setSelectionRange(c, c); } catch (e) {}
+  }
+  function finish() { base += conv(raw); raw = ''; pick = 0; }
+  function reset() { base = ''; raw = ''; tail = ''; }
+  // The person moved the cursor, pasted or selected: start again from what the box shows
+  function resync() {
+    var v = input.value, a = input.selectionStart == null ? v.length : input.selectionStart, b = input.selectionEnd == null ? a : input.selectionEnd;
+    base = v.slice(0, a); tail = v.slice(b); raw = '';
+  }
+  function expected() { return base + conv(raw) + tail; }
+  function addText(t) {
+    Array.from(t).forEach(function (ch) {
+      if (inWord(ch)) { raw += ch; pick = 0; return; }
+      finish();
+      base += mode === 'phonetic' && ch === '.' ? '।' : ch;   // as in Avro, a full stop is the দাঁড়ি
+    });
+  }
+  function showMode() {
+    box.querySelectorAll('.hk-modes button').forEach(function (b) {
+      var on = b.getAttribute('data-mode') === mode;
+      b.setAttribute('aria-checked', String(on)); b.classList.toggle('on', on);
+    });
+    input.lang = mode === 'english' ? 'en' : 'bn';
+  }
+  function setMode(m) {
+    if (input.value !== expected()) resync();
+    finish(); mode = m; showMode();
+    if (m === 'phonetic') loadDict();
+    showSuggestions();
+    try { localStorage.setItem('hkMode', m); } catch (e) {}
+  }
+  function nextMode() { setMode(MODES[(MODES.indexOf(mode) + 1) % MODES.length]); input.focus({ preventScroll: true }); }
+  box.querySelectorAll('.hk-modes button').forEach(function (b) {
+    b.addEventListener('mousedown', function (e) { e.preventDefault(); });   // keep the cursor in the box
+    b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); input.focus({ preventScroll: true }); });
+  });
+  sugBar = box.querySelector('.hk-suggest');
+  showMode();
+  if (mode === 'phonetic') loadDict();
+
+  // Computers: take the key from where it is on the keyboard (works with any keyboard language)
+  input.addEventListener('keydown', function (e) {
+    if (mode === 'english' || e.isComposing || e.keyCode === 229) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (input.value !== expected() || input.selectionStart !== input.selectionEnd ||
+        input.selectionStart !== base.length + conv(raw).length) { resync(); }
+    if (e.key === 'Backspace') {
+      if (raw) { e.preventDefault(); raw = Array.from(raw).slice(0, -1).join(''); pick = 0; draw(); }
+      return;   // otherwise the browser deletes, and the next key starts from there
+    }
+    if (e.key === 'Enter') { finish(); draw(); return; }
+    if (mode === 'phonetic' && raw && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || (e.key === 'Tab' && !e.shiftKey))) {
+      var n = suggestFor(raw).length;
+      e.preventDefault(); pick = (pick + (e.key === 'ArrowUp' ? n - 1 : 1)) % n; draw(); return;
+    }
+    var ch = null;
+    if (mode === 'bijoy' && e.code) ch = Bijoy.usChar(e.code, e.shiftKey);
+    // Same letter key, but trust the case the keyboard reports (Caps Lock, some virtual keyboards)
+    if (ch && e.key && e.key.length === 1 && /[a-z]/i.test(e.key) && e.key.toLowerCase() === ch.toLowerCase()) ch = e.key;
+    if (!ch && e.key && e.key.length === 1) ch = e.key;
+    if (!ch) return;
+    e.preventDefault();
+    if (ch === ' ') { finish(); base += ' '; } else addText(ch);
+    draw();
+  });
+  // Phones and tablets (Android Gboard and Samsung keyboards send only the text they insert)
+  input.addEventListener('input', function () {
+    if (mode === 'english') return;
+    var v = input.value, was = conv(raw);
+    var front = base, back = tail;
+    if (v.length >= front.length + back.length && v.slice(0, front.length) === front && v.slice(v.length - back.length) === back) {
+      var mid = v.slice(front.length, v.length - back.length);
+      if (mid.length > was.length && mid.slice(0, was.length) === was) { addText(mid.slice(was.length)); draw(); return; }
+      if (mid.length < was.length && was.slice(0, mid.length) === mid && raw) { raw = Array.from(raw).slice(0, -1).join(''); draw(); return; }
+      if (mid === was) return;
+    }
+    resync();
+  });
+  input.addEventListener('click', function () { if (input.value !== expected() || input.selectionStart !== base.length + conv(raw).length) resync(); });
+  input.addEventListener('blur', function () { if (input.value === expected()) { finish(); } });
 
   var started = false;
   function toggle(open) {
@@ -353,7 +643,11 @@
   }
   launcher.addEventListener('click', function () { toggle(box.hidden); });
   box.querySelector('.hk-x').addEventListener('click', function () { toggle(false); });
-  box.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); toggle(false); } });
+  box.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    e.stopPropagation();
+    if (e.target === input) { e.preventDefault(); nextMode(); } else toggle(false);
+  });
 
   // For testing from the browser console
   window.bijoyHelper = { keysFor: keysFor, answer: answer };

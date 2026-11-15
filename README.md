@@ -126,3 +126,13 @@ The site lives in `docs/` (English at `/`, Bangla at `/bn/`). After editing
 python3 Scripts/make-bn.py          # writes docs/bn/index.html from the BN strings
 python3 Scripts/make-layout-pdf.py  # writes docs/Bijoy-Keyboard-Layout.pdf (needs weasyprint)
 ```
+
+## Third-party code on the website
+
+- `docs/avro-phonetic.js` is **jsAvroPhonetic** v1.1.4 by Rifat Nabi / OmicronLab, used unchanged for the
+  Phonetic typing option in the website's chat box. It is licensed under the Mozilla Public License 1.1
+  (https://www.mozilla.org/MPL/1.1/); its source is at https://github.com/torifat/jsAvroPhonetic.
+  The rest of this project stays under the MIT licence.
+- `docs/bn-words.txt` is the word list behind the phonetic word suggestions. It comes from the Hunspell
+  Bengali (bn_BD) dictionary, licensed under the GNU GPL version 2, with a few everyday words added;
+  rebuild it with `python3 Scripts/make-dict.py /usr/share/hunspell/bn_BD.dic` (package `hunspell-bn`).
