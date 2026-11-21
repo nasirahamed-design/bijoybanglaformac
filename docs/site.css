@@ -374,3 +374,29 @@ html[lang="bn"] .stick-brand { letter-spacing: 0; font-size: 14px; }
 .hk-fb span { margin-right: 4px; }
 .hk-fb button { width: 30px; height: 28px; border: 0; border-radius: 8px; background: transparent; font-size: 15px; cursor: pointer; filter: grayscale(1); opacity: .7; transition: filter .15s, opacity .15s, background .15s; }
 .hk-fb button:hover { filter: none; opacity: 1; background: var(--tint); }
+
+/* Phones: much larger reading text (headlines and keyboard keys keep their size) */
+@media (max-width: 640px) {
+  body { font-size: 19px; }
+  .lead, .sub, section.see .lead, section.layout .lead, section.modes .lead, section.typing .lead { font-size: 20px; line-height: 1.55; }
+  .hero .trust, .hero .trust.show, .hero .trust .tw-ghost { font-size: 18.5px; }
+  .meta .m1, .meta .m2, .meta .ver, .demo .touch-note, .demo label, .demo label b { font-size: 17.5px; }
+  .meta .how, .dl-count, .dl-count strong { font-size: 19px; }
+  nav.site a, nav.site a:last-child { font-size: 16.5px; }
+  ol.steps .step-head strong { font-size: 20px; }
+  ol.steps .step-head p, ol.steps p, .note-banner, .rule .what { font-size: 18.5px; }
+  .mode .mode-note, .mode li, .mode li b, .mode-note span { font-size: 19px; }
+  .mode .ansi-note { font-size: 17px; }
+  .about-cols p { font-size: 20px; }
+  .about-cols p:first-child { font-size: 22px; }
+  .faq summary { font-size: 21px; }
+  .faq details p, .faq .answer p { font-size: 19.5px; }
+  .releases .rel-date { font-size: 16.5px; }
+  .releases li, .releases p, a.all-rel, .kb-pdf span { font-size: 18.5px; }
+  .seal span { font-size: 16.5px; }
+  .tries button { font-size: 18px; }
+  footer.site, footer.site p, footer.site a { font-size: 16px; }
+  footer.site .stats span { font-size: 15.5px; }
+  .hk-msg { font-size: 18px; }
+  .hk-head small { font-size: 14.5px; }
+}
